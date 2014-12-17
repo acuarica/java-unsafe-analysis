@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import os
 import requests
@@ -25,7 +26,16 @@ def getReps():
 
 	return reps
 
-def some():
+def downloadFile(url, filename):
+    r = requests.get(url, stream=True)
+    with open(filename, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
+                f.flush()
+    return filename
+
+def downloadAll():
 	reps = getReps()
 
 	print reps['total_count']
@@ -34,26 +44,23 @@ def some():
 	i = 0
 	for rep in reps['items']:
 		i += 1
-		name = rep['full_name']
+		fullname = rep['full_name']
 		url = rep['html_url']
 		desc = rep['description']
-		print i, name, url, ascii(desc)
+		print i, fullname, url
 
-def downloadFile(url):
-    local_filename = url.split('/')[-1]
-    r = requests.get(url, stream=True)
-    with open(local_filename, 'wb') as f:
-        for chunk in r.iter_content(chunk_size=1024):
-            if chunk:
-                f.write(chunk)
-                f.flush()
-    return local_filename
+		url = 'https://github.com/' + fullname
+		zipurl = url + '/archive/master.zip'
+
+		filename = 'build/' + fullname.replace('/', '-') + '-master.zip'
+
+		downloadFile(zipurl, filename)
+
+		if i == 5:
+			break
 
 def main():
-	url = 'https://github.com/elasticsearch/elasticsearch'
-	zipurl = url + '/archive/master.zip'
-
-	downloadFile(zipurl)
+	downloadAll()
 
 if __name__ == '__main__':
 	main()
