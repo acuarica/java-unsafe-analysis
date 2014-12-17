@@ -4,6 +4,7 @@ import os
 import requests
 import json
 from pprint import pprint
+import argparse
 
 def ascii(text):
 	if text == None:
@@ -35,7 +36,7 @@ def downloadFile(url, filename):
                 f.flush()
     return filename
 
-def downloadAll():
+def downloadRepos(repocount):
 	reps = getReps()
 
 	print reps['total_count']
@@ -56,11 +57,18 @@ def downloadAll():
 
 		downloadFile(zipurl, filename)
 
-		if i == 5:
+		if i == repocount:
 			break
 
 def main():
-	downloadAll()
+	def parseargs():
+		parser = argparse.ArgumentParser(description='Download repos.')
+		parser.add_argument('repocount', metavar='repocount', default=5, type=int, nargs='?', help='How many repos to download.')
+		return parser.parse_args()
+
+	args = parseargs()
+
+	downloadRepos(args.repocount)
 
 if __name__ == '__main__':
 	main()
