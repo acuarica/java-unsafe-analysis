@@ -1,0 +1,29 @@
+# mining how many projects use AWT
+projectsWithAWTAPI: output sum of int;
+
+awt := false;
+
+visit(input, visitor {
+    after node: Project ->
+        if (awt)
+            projectsWithAWTAPI << 1;
+	# only look at the latest snapshot of Java files
+	before n: CodeRepository -> {
+		snapshot := getsnapshot(n, "SOURCE_JAVA_JLS");
+		foreach (i: int; def(snapshot[i]))
+			visit(snapshot[i]);
+		stop;
+	}
+	# look for imports
+	before node: ASTRoot ->
+	    exists(j: int; match("^java\\.awt\\.", node.imports[j])) {
+			awt = true;
+			stop;
+	    }
+	# look for FQN
+	before node: Type ->
+	    if (match("^java\\.awt\\.", node.name)) {
+			awt = true;
+			stop;
+	    }
+});

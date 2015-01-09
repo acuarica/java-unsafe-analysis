@@ -1,0 +1,123 @@
+# mining how many projects use sun.misc.Unsafe
+
+projectsWithUnsafe: output top(10000) of string weight int;
+
+counts: output top(1000) of string weight int;
+
+types: output top(1000) of string weight int;
+
+#c: output sum of int;
+
+methods: set of string;
+add(methods, "ensureClassInitialized");
+add(methods, "monitorEnter");
+add(methods, "getBooleanVolatile");
+add(methods, "getObjectVolatile");
+add(methods, "getBoolean");
+add(methods, "monitorExit");
+add(methods, "putShort");
+add(methods, "putOrderedInt");
+add(methods, "setMemory");
+add(methods, "putFloat");
+add(methods, "putInt");
+add(methods, "allocateMemory");
+add(methods, "allocateInstance");
+add(methods, "putBooleanVolatile");
+add(methods, "putShortVolatile");
+add(methods, "putBoolean");
+add(methods, "shouldBeInitialized");
+add(methods, "addressSize");
+add(methods, "getChar");
+add(methods, "tryMonitorEnter");
+add(methods, "getObject");
+add(methods, "getAddress");
+add(methods, "putFloatVolatile");
+add(methods, "getIntVolatile");
+add(methods, "arrayBaseOffset");
+add(methods, "defineClass");
+add(methods, "getShort");
+add(methods, "putByte");
+add(methods, "pageSize");
+add(methods, "freeMemory");
+add(methods, "putLongVolatile");
+add(methods, "putIntVolatile");
+add(methods, "putAddress");
+add(methods, "throwException");
+add(methods, "reallocateMemory");
+add(methods, "getFloat");
+add(methods, "putOrderedLong");
+add(methods, "copyMemory");
+add(methods, "putObject");
+add(methods, "staticFieldOffset");
+add(methods, "getDouble");
+add(methods, "getLoadAverage");
+add(methods, "putChar");
+add(methods, "compareAndSwapLong");
+add(methods, "arrayIndexScale");
+add(methods, "getLong");
+add(methods, "putLong");
+add(methods, "putObjectVolatile");
+add(methods, "putOrderedObject");
+add(methods, "getDoubleVolatile");
+add(methods, "unpark");
+add(methods, "getFloatVolatile");
+add(methods, "getByteVolatile");
+add(methods, "objectFieldOffset");
+add(methods, "park");
+add(methods, "getCharVolatile");
+add(methods, "getInt");
+add(methods, "compareAndSwapObject");
+add(methods, "getByte");
+add(methods, "putByteVolatile");
+add(methods, "putDouble");
+add(methods, "putDoubleVolatile");
+add(methods, "staticFieldBase");
+add(methods, "compareAndSwapInt");
+add(methods, "putCharVolatile");
+add(methods, "getShortVolatile");
+add(methods, "getLongVolatile");
+add(methods, "defineAnonymousClass");
+add(methods, "fieldOffset");
+
+uses := 0;
+
+visit(input, visitor {
+    after node: Project -> {
+    	#c++;
+        if (uses > 0) {
+            projectsWithUnsafe << node.name weight uses;
+        }
+    }
+	# only look at the latest snapshot of Java files
+	before n: CodeRepository -> {
+		snapshot := getsnapshot(n, "SOURCE_JAVA_JLS");
+		foreach (i: int; def(snapshot[i])) {
+			visit(snapshot[i]);
+		}
+		stop;
+	}
+	# look for imports
+	before node: ASTRoot -> {
+	    exists(j: int; match("^sun\\.misc\\.", node.imports[j])) {
+			uses = uses + 1;
+			counts << node.imports[j] weight 1;
+	    }
+	}
+	# look for FQN
+	before node: Type -> {
+	    if (match("^sun\\.misc\\.Unsafe", node.name)) {
+			uses = uses + 1;
+	    }
+	    if (match("^Unsafe", node.name)) {
+			uses = uses + 1;
+	    }
+	}
+	before node: Expression -> {
+		if (node.kind == ExpressionKind.METHODCALL) {
+		 	if (contains(methods, node.method)) {
+				counts << node.method weight 1;
+				types << node.variable weight 1;
+			}
+		}
+	}
+});
