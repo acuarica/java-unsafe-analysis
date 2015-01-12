@@ -6,12 +6,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Set;
 
+import ch.usi.inf.sape.argparser.ArgParser;
 import edu.iastate.cs.boa.BoaClient;
 import edu.iastate.cs.boa.BoaException;
 import edu.iastate.cs.boa.CompileStatus;
 import edu.iastate.cs.boa.ExecutionStatus;
+import edu.iastate.cs.boa.InputHandle;
 import edu.iastate.cs.boa.JobHandle;
 import edu.iastate.cs.boa.NotLoggedInException;
 
@@ -36,10 +37,11 @@ public class Main {
 		}
 	}
 
-	private static JobHandle run(BoaClient client, String query, PrintStream out)
-			throws NotLoggedInException, BoaException, InterruptedException {
+	private static JobHandle run(BoaClient client, String query,
+			PrintStream out, InputHandle ds) throws NotLoggedInException,
+			BoaException, InterruptedException {
 
-		JobHandle j = client.query(query);
+		JobHandle j = client.query(query, ds);
 		out.println("Job id: " + j.getId() + " with dataset \""
 				+ j.getDataset() + "\"");
 
@@ -76,30 +78,28 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws BoaException, IOException,
-			InterruptedException {
+			InterruptedException, InstantiationException,
+			IllegalAccessException {
 
 		PrintStream out = System.out;
 
-		if (args.length == 0) {
-			throw new IllegalArgumentException("Missing query file");
-		}
+		MainArgs as = ArgParser.parseArgs(args, MainArgs.class);
 
-		String file = args[0];
-		String user = "luismastrangelo";
-		String pass = "elotrodia";
-
-		String query = readFile(file);
+		String query = readFile(as.filename);
 
 		try (final BoaClient client = new BoaClient()) {
-			client.login(user, pass);
+			client.login(as.username, as.password);
 
-			out.println("Sending file: \"" + file + "\" as user " + user + "");
+			InputHandle ds = client.getDataset(as.dataset);
 
-			JobHandle j = run(client, query, out);
+			out.println("Sending file: \"" + as.filename + "\" as user "
+					+ as.username + "");
+
+			JobHandle j = run(client, query, out, ds);
 
 			out.println(j.getOutput());
 
-			writeFile(file + "-" + j.getId() + ".out", j.getOutput());
+			writeFile(as.filename + "-" + j.getId() + ".out", j.getOutput());
 		}
 	}
 }

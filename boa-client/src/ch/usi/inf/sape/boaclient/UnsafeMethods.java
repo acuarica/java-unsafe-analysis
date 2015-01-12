@@ -18,13 +18,13 @@ public class UnsafeMethods {
 
 		return result;
 	}
-	
-//	public static String getBoaCode() {
-//		String result = "";
-//		Set<String> ms = UnsafeMethods.get();
-//		for (String m : ms) {
-//			System.out.format("add(methods, \"%s\");\n", m);
-//		}
-//		
-//	}
+
+	// public static String getBoaCode() {
+	// String result = "";
+	// Set<String> ms = UnsafeMethods.get();
+	// for (String m : ms) {
+	// System.out.format("add(methods, \"%s\");\n", m);
+	// }
+	//
+	// }
 }

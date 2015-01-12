@@ -1,12 +1,9 @@
 # mining how many projects use sun.misc.Unsafe
 
-projectsWithUnsafe: output top(10000) of string weight int;
-
-counts: output top(1000) of string weight int;
-
-types: output top(1000) of string weight int;
-
-#c: output sum of int;
+p: Project = input;
+#projectsWithUnsafe: output top(10000) of string weight int;
+#projectsWithUnsafe: output map[string] of string;
+projectsWithUnsafe: output collection[string][string][string][string] of int;
 
 methods: set of string;
 add(methods, "ensureClassInitialized");
@@ -79,13 +76,15 @@ add(methods, "getLongVolatile");
 add(methods, "defineAnonymousClass");
 add(methods, "fieldOffset");
 
-uses := 0;
+
+filename: string;
+imports := false;
+methodname: string;
 
 visit(input, visitor {
     after node: Project -> {
-    	#c++;
-        if (uses > 0) {
-            projectsWithUnsafe << node.name weight uses;
+        if (imports) {
+          #  projectsWithUnsafe << node.name weight 1;
         }
     }
 	# only look at the latest snapshot of Java files
@@ -96,27 +95,25 @@ visit(input, visitor {
 		}
 		stop;
 	}
+	before node: ChangedFile -> filename = node.name; 
 	# look for imports
 	before node: ASTRoot -> {
-	    exists(j: int; match("^sun\\.misc\\.", node.imports[j])) {
-			uses = uses + 1;
-			counts << node.imports[j] weight 1;
+		imports = false;
+	    exists(j: int; match("^sun\\.misc\\.Unsafe", node.imports[j])) {
+			imports = true;
 	    }
 	}
+	before node: Method -> methodname = node.name;
 	# look for FQN
 	before node: Type -> {
 	    if (match("^sun\\.misc\\.Unsafe", node.name)) {
-			uses = uses + 1;
-	    }
-	    if (match("^Unsafe", node.name)) {
-			uses = uses + 1;
+	    	imports = true;
 	    }
 	}
 	before node: Expression -> {
 		if (node.kind == ExpressionKind.METHODCALL) {
-		 	if (contains(methods, node.method)) {
-				counts << node.method weight 1;
-				types << node.variable weight 1;
+		 	if (contains(methods, node.method) and imports) {
+				projectsWithUnsafe[p.project_url][filename][methodname][node.method] << 1;
 			}
 		}
 	}
