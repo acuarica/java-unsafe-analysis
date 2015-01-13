@@ -77,5 +77,8 @@ def main():
     print '# uses per project'        
     select('SELECT project, count(*) FROM boa group BY project ORDER BY count(*) DESC', db)        
 
+    print 'What uses in each project'
+    select('SELECT project, use, count(*) FROM boa group BY project, use ORDER BY count(*) DESC', db)
+
 if __name__ == '__main__':
     main()

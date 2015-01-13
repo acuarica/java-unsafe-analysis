@@ -1,8 +1,7 @@
 # mining how many projects use sun.misc.Unsafe
 
 p: Project = input;
-#projectsWithUnsafe: output top(10000) of string weight int;
-#projectsWithUnsafe: output map[string] of string;
+
 projectsWithUnsafe: output collection[string][string][string][string] of int;
 
 methods: set of string;
@@ -76,7 +75,6 @@ add(methods, "getLongVolatile");
 add(methods, "defineAnonymousClass");
 add(methods, "fieldOffset");
 
-
 filename: string;
 imports := false;
 methodname: string;
@@ -84,7 +82,7 @@ methodname: string;
 visit(input, visitor {
     after node: Project -> {
         if (imports) {
-          #  projectsWithUnsafe << node.name weight 1;
+        	countsUnsafe << 1;
         }
     }
 	# only look at the latest snapshot of Java files
