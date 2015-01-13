@@ -48,6 +48,14 @@ def buildDb(filename):
 
     return db
 
+def buildCsv(filename):
+    import csv
+
+    with open(filename + '.csv', 'wb') as csvfile:
+        w = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+        for r in parseBoa(filename):
+            w.writerow([r.project, r.file, r.method, r.use])
+
 def select(query, db):
     for row in db.execute(query):
         print row
@@ -63,6 +71,8 @@ def main():
     
     #args = parseargs()
 
+    buildCsv(filename)
+    
     db = buildDb(filename)
     
     print '# uses'
