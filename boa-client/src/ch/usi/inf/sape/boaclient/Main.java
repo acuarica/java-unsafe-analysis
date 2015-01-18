@@ -81,7 +81,7 @@ public class Main {
 			InterruptedException, InstantiationException,
 			IllegalAccessException {
 
-		PrintStream out = System.out;
+		PrintStream out = System.err;
 
 		MainArgs as = ArgParser.parseArgs(args, MainArgs.class);
 

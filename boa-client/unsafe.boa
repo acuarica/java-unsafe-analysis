@@ -4,6 +4,8 @@ p: Project = input;
 
 projectsWithUnsafe: output collection[string][string][string][string] of int;
 
+projectsWithUnsafeLiteral: output collection[string][string][string][string] of int;
+
 methods: set of string;
 add(methods, "ensureClassInitialized");
 add(methods, "monitorEnter");
@@ -82,7 +84,7 @@ methodname: string;
 visit(input, visitor {
     after node: Project -> {
         if (imports) {
-        	countsUnsafe << 1;
+        	#countsUnsafe << 1;
         }
     }
 	# only look at the latest snapshot of Java files
@@ -113,6 +115,9 @@ visit(input, visitor {
 		 	if (contains(methods, node.method) and imports) {
 				projectsWithUnsafe[p.project_url][filename][methodname][node.method] << 1;
 			}
+		}
+		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
+			projectsWithUnsafeLiteral[p.project_url][filename][methodname][node.literal] << 1;
 		}
 	}
 });
