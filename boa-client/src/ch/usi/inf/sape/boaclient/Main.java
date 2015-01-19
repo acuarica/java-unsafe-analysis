@@ -37,9 +37,9 @@ public class Main {
 		}
 	}
 
-	private static JobHandle run(BoaClient client, String query,
-			PrintStream out, InputHandle ds) throws NotLoggedInException,
-			BoaException, InterruptedException {
+	private static String run(BoaClient client, String query, PrintStream out,
+			InputHandle ds) throws NotLoggedInException, BoaException,
+			InterruptedException {
 
 		JobHandle j = client.query(query, ds);
 		out.println("Job id: " + j.getId() + " with dataset \""
@@ -74,7 +74,7 @@ public class Main {
 
 		out.println();
 
-		return j;
+		return j.getOutput();
 	}
 
 	public static void main(String[] args) throws BoaException, IOException,
@@ -85,21 +85,21 @@ public class Main {
 
 		MainArgs as = ArgParser.parseArgs(args, MainArgs.class);
 
-		String query = readFile(as.filename);
+		String query = readFile(as.input);
 
 		try (final BoaClient client = new BoaClient()) {
 			client.login(as.username, as.password);
 
 			InputHandle ds = client.getDataset(as.dataset);
 
-			out.println("Sending file: \"" + as.filename + "\" as user "
+			out.println("Sending file: \"" + as.input + "\" as user "
 					+ as.username + "");
 
-			JobHandle j = run(client, query, out, ds);
+			String result = run(client, query, out, ds);
 
-			out.println(j.getOutput());
+			out.println(result);
 
-			writeFile(as.filename + "-" + j.getId() + ".out", j.getOutput());
+			writeFile(as.output, result);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-<project name="boa-client" default="run-unsafe-small" basedir=".">
+<project name="boa-client" default="test" basedir=".">
 	<description>boa client</description>
 	<property name="src" location="src" />
 	<property name="build" location="build" />
@@ -8,40 +8,18 @@
 	<target name="compile" depends="init" description="compile project">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}" classpath="lib/boa-client-0.1.0.jar" />
 	</target>
-	<target name="run-unsafe-small" depends="compile" description="run with small dataset">
+	<target name="test" depends="compile" description="run test">
 		<java classname="ch.usi.inf.sape.boaclient.Main" classpath="${build}:lib/boa-client-0.1.0.jar">
 			<arg value="--user" />
 			<arg value="luismastrangelo" />
 			<arg value="--pass" />
 			<arg value="elotrodia" />
-			<arg value="--file" />
-			<arg value="unsafe.boa" />
 			<arg value="--dataset" />
 			<arg value="2013 September (small)" />
-		</java>
-	</target>
-	<target name="run-unsafe-large" depends="compile" description="run with large dataset">
-		<java classname="ch.usi.inf.sape.boaclient.Main" classpath="${build}:lib/boa-client-0.1.0.jar">
-			<arg value="--user" />
-			<arg value="luismastrangelo" />
-			<arg value="--pass" />
-			<arg value="elotrodia" />
-			<arg value="--file" />
-			<arg value="unsafe.boa" />
-			<arg value="--dataset" />
-			<arg value="2013 September" />
-		</java>
-	</target>
-	<target name="run-stats-large" depends="compile" description="run stats with large dataset">
-		<java classname="ch.usi.inf.sape.boaclient.Main" classpath="${build}:lib/boa-client-0.1.0.jar">
-			<arg value="--user" />
-			<arg value="luismastrangelo" />
-			<arg value="--pass" />
-			<arg value="elotrodia" />
-			<arg value="--file" />
-			<arg value="stats.boa" />
-			<arg value="--dataset" />
-			<arg value="2013 September" />
+			<arg value="--input" />
+			<arg value="tests/test.boa" />
+			<arg value="--output" />
+			<arg value="tests/test.out" />
 		</java>
 	</target>
 	<target name="dist" depends="compile" description="generate the distribution">

@@ -10,10 +10,12 @@ public class MainArgs {
 	@Arg(shortkey = "p", longkey = "pass")
 	public String password;
 
-	@Arg(shortkey = "f", longkey = "file")
-	public String filename;
-
 	@Arg(shortkey = "d", longkey = "dataset")
 	public String dataset;
 
+	@Arg(shortkey = "i", longkey = "input")
+	public String input;
+
+	@Arg(shortkey = "o", longkey = "output")
+	public String output;
 }
