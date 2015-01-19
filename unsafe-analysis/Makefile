@@ -5,10 +5,10 @@ CLASSNAME=ch.usi.inf.sape.boaclient.Main
 
 USER=--user luismastrangelo
 PASS=--pass elotrodia
-FILE=--file unsafe.boa
+FILE=--input unsafe.boa
 
-small:
-	java -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) $(USER) $(PASS) $(FILE) --dataset "2013 September (small)"
+unsafe-small.out: unsafe.boa
+	java -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) $(USER) $(PASS) --dataset "2013 September (small)" $(FILE) --output unsafe-small.out 
 
-large:
-	java -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) $(USER) $(PASS) $(FILE) --dataset "2013 September"
+unsafe-large.out: unsafe.boa
+	java -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) $(USER) $(PASS) --dataset "2013 September" $(FILE) --output unsafe-large.out
