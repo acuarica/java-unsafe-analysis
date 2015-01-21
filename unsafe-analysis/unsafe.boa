@@ -13,8 +13,8 @@ foreach (i: int; match(`^java$`, lowercase(p.programming_languages[i]))) {
 
 # mining how many projects use sun.misc.Unsafe.
 
-projectsWithUnsafe: output collection[string][string][string][string] of int;
-projectsWithUnsafeLiteral: output collection[string][string][string][string] of int;
+projectsWithUnsafe: output collection[string][string][string][string][string][string] of int;
+projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string] of int;
 
 methods: set of string;
 add(methods, "ensureClassInitialized");
@@ -123,11 +123,11 @@ visit(input, visitor {
 	before node: Expression -> {
 		if (node.kind == ExpressionKind.METHODCALL) {
 		 	if (contains(methods, node.method) and imports) {
-				projectsWithUnsafe[p.project_url][filename][methodname][node.method] << 1;
+				projectsWithUnsafe[p.name][p.description][p.project_url][filename][methodname][node.method] << 1;
 			}
 		}
 		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
-			projectsWithUnsafeLiteral[p.project_url][filename][methodname][node.literal] << 1;
+			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][methodname]["sun.misc.Unsafe"] << 1;
 		}
 	}
 });

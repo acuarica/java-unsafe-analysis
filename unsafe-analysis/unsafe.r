@@ -2,48 +2,67 @@
 library(ggplot2)
 library(reshape2)
 library(tools)
+library(xtable)
+library(scales)
 
-printf <- function(format, ...) print(sprintf(format, ...))
+printf <- function(format, ...) print(sprintf(format, ...));
 
-save <- function(p, d, s, w=12, h=8) {
-  path <- sprintf('%s-chart-%s.pdf', d, s)
+save.plot <- function(p, d, s, w=12, h=8) {
+  path <- sprintf('%s-%s.pdf', d, s)
   printf("Saving plot %s to %s", s, path)
   pdf(file=path, paper='special', width=w, height=h, pointsize=12)
   print(p)
   null <- dev.off()
 }
 
-csvfilename <- 'unsafe.boa-7751.out.csv'
+save.table <- function(df, d, s, caption, label) {
+  path <- sprintf('%s-%s.tex', d, s)
+  printf("Saving table %s to %s", s, path)
+  print.xtable(xtable(df, caption=caption, label=label), file=path)
+}
+
+if (interactive()) {
+  csvfilename <- 'unsafe-large.csv'
+} else {
+  csvfilename <- commandArgs(trailingOnly = TRUE)[1]
+}
+
 path <- file_path_sans_ext(csvfilename)
 csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
-colnames(csv) <- c('url', 'file', 'method', 'use');
+colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'method', 'use', 'value');
 
-uses <- nrow(csv)
+countsTotal <- subset(csv, kind=='countsTotal')[1,'value']
+countsJava <- subset(csv, kind=='countsJava')[1,'value']
 
-countsTotal <- 699331
-countsJava <- 50692
-countsUnsafe <- nrow(dcast(csv, url~use, value.var='use', fun.aggregate = length))
+projectsWithUnsafe <- subset(csv, kind=='projectsWithUnsafe');
+projectsWithUnsafe$use <- factor(projectsWithUnsafe$use)
 
-keys <- c("Non-Java projects", "Java projects", "Java projects w/ Unsafe")
-values <- c(countsTotal-countsJava, countsJava-countsUnsafe, countsUnsafe)
+projectsWithUnsafeLiteral <- subset(csv, kind=='projectsWithUnsafeLiteral');
 
-pct <- round(values/countsTotal * 100, 2)
-keys <- paste(keys,"\n")
-keys <- paste(keys, pct) # add percents to labels 
-keys <- paste(keys,"%",sep="") # ad % to labels 
-keys <- paste(keys, values, sep=' (')
-keys <- paste(keys,")",sep="")
+# java-over-total plot
+keys <- c("Non-Java projects", "Java projects")
+values <- c(countsTotal-countsJava, countsJava)
 
 df <- data.frame(keys, values)
-p <- ggplot(df, aes(x=1, y=values, fill=keys)) + geom_bar(stat="identity", color='gray87') +
-  guides(fill=guide_legend(override.aes=list(colour=NA))) + coord_polar(theta='y') +
-  theme(axis.ticks=element_blank(), 
-        axis.title=element_blank(), 
-        axis.text.y=element_blank(), 
-        axis.text.x=element_text(color='black'),
-        legend.position="none",panel.background = element_rect(fill = "white")) +
-  scale_y_continuous(breaks=cumsum(df$values) - df$values/1.65, labels=df$keys)
-save(p, path, 'pie', w=8, h=8)
+p <- ggplot(df, aes(x=keys, y=values, fill=keys)) + geom_bar(stat='identity')
+p <- p + theme(legend.position="none") + labs(x='', y = "# projects")
+p <- p + scale_y_continuous(labels=comma)
+save.plot(p, path, 'java-over-total', w=4, h=4)
+
+# unsafe-over-java plot
+countsUnsafe <- nrow(dcast(projectsWithUnsafe, url~use, value.var='use', fun.aggregate=length))
+
+keys <- c("Java projects not using Unsafe", "Java projects using Unsafe")
+values <- c(countsJava-countsUnsafe, countsUnsafe)
+
+df <- data.frame(keys, values)
+p <- ggplot(df, aes(x=keys, y=values, fill=keys)) + geom_bar(stat='identity')
+p <- p + theme(legend.position="none") + labs(x='', y = "# projects")
+p <- p + scale_y_continuous(labels=comma)
+save.plot(p, path, 'unsafe-over-java', w=6, h=6)
+
+
+# usage plot
 
 g.array <- 'Array'
 g.memory <- 'Memory'
@@ -62,7 +81,7 @@ groups <- c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
             g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
             g.memory, g.memory, g.offset, g.offset, g.single, g.park)
 
-df <- dcast(csv, use~., value.var='use', fun.aggregate = length)
+df <- dcast(projectsWithUnsafe, use~., value.var='use', fun.aggregate = length)
 colnames(df) <- c('use', 'count')
 df$group <- df$use
 levels(df$group) <- factor(groups)
@@ -72,5 +91,12 @@ p <- p + facet_grid(. ~ group, space='free_x', scales="free_x")
 p <- p + geom_bar(stat="identity")
 p <- p + theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="none")
 p <- p + labs(x="sun.misc.Unsafe Method", y = "# call sites")
-p
-save(p, path, "usage", h=6)
+save.plot(p, path, "usage", h=6)
+
+# tex table
+df <- dcast(projectsWithUnsafe, id+name+description~., value.var='use', fun.aggregate = length)
+save.table(df, path, 'projects', 'Projects using Unsafe', 'table:projects')
+
+# tex literal table 
+df <- dcast(projectsWithUnsafeLiteral, id+name+description~., value.var='use', fun.aggregate = length)
+save.table(df, path, 'literal', 'Projects using literal unsafe', 'table:literal')

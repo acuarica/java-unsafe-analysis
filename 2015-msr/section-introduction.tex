@@ -1,14 +1,25 @@
 
 \section{Introduction} \label{sec:introduction}
 
-Performance is the main reason for Unsafe.
+\smu{} is an undocumented~\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}} class provided by Oracle.
+It allows the developer to access low-level programming features.
+It is the equivalent to \texttt{unsafe}~\footnote{\url{http://msdn.microsoft.com/en-us/en-en/library/chfa2zb8(v=vs.90).aspx}} in C\#.
+
+There is a trend in the late years to use \smu{}.
+The main reason to use \smu{} is \emph{performance}.
+Because \smu{} provides groups of methods to allow the programmer to access otherwise impossible low-level access. 
+
+\input{table-groups}
+
+
+Our research goal is to find 
 
 Trend using unsafe methods. But what for? Certainly you can do everithing without Unsafe API, so why using it? The key is performance.
 
 We searched for Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}
 
-
-GHTorrent \cite{Gousi13} provide GitHub quering but for metadata, not source code mining, true?
+ discouraged. 
+ 
 
 
 \subsection{Subsection Heading Here}
@@ -33,13 +44,13 @@ Measure error with boa.
 
 \subsection{Reflection}
 
-\begin{verbatim}
-Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
-Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
-unsafeField.setAccessible(true);
-Object unsafe = unsafeField.get(null);
-int addressSize = ((Number) unsafeClass.getMethod("addressSize").invoke(unsafe)).intValue();
-\end{verbatim}
+%\begin{verbatim}
+%Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+%Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
+%unsafeField.setAccessible(true);
+%Object unsafe = unsafeField.get(null);
+%int addressSize = ((Number) %unsafeClass.getMethod("addressSize").invoke(unsafe)).intValue();
+%\end{verbatim}
 
 What happens with other uses such as reflection? It is not detected but it uses Unsafe. There should be a way to measure this kind of use.
 
