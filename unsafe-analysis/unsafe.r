@@ -2,7 +2,6 @@
 library(ggplot2)
 library(reshape2)
 library(tools)
-library(xtable)
 library(scales)
 
 printf <- function(format, ...) print(sprintf(format, ...));
@@ -47,7 +46,7 @@ df <- data.frame(keys, values)
 p <- ggplot(df, aes(x=keys, y=values, fill=keys)) + geom_bar(stat='identity')
 p <- p + theme(legend.position="none") + labs(x='', y = "# projects")
 p <- p + scale_y_continuous(labels=comma)
-save.plot(p, path, 'java-over-total', w=4, h=4)
+save.plot(p, path, 'plot-java-over-total', w=4, h=4)
 
 # unsafe-over-java plot
 countsUnsafe <- nrow(dcast(projectsWithUnsafe, url~use, value.var='use', fun.aggregate=length))
@@ -59,7 +58,7 @@ df <- data.frame(keys, values)
 p <- ggplot(df, aes(x=keys, y=values, fill=keys)) + geom_bar(stat='identity')
 p <- p + theme(legend.position="none") + labs(x='', y = "# projects")
 p <- p + scale_y_continuous(labels=comma)
-save.plot(p, path, 'unsafe-over-java', w=6, h=6)
+save.plot(p, path, 'plot-unsafe-over-java', w=6, h=6)
 
 
 # usage plot
@@ -91,12 +90,4 @@ p <- p + facet_grid(. ~ group, space='free_x', scales="free_x")
 p <- p + geom_bar(stat="identity")
 p <- p + theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="none")
 p <- p + labs(x="sun.misc.Unsafe Method", y = "# call sites")
-save.plot(p, path, "usage", h=6)
-
-# tex table
-df <- dcast(projectsWithUnsafe, id+name+description~., value.var='use', fun.aggregate = length)
-save.table(df, path, 'projects', 'Projects using Unsafe', 'table:projects')
-
-# tex literal table 
-df <- dcast(projectsWithUnsafeLiteral, id+name+description~., value.var='use', fun.aggregate = length)
-save.table(df, path, 'literal', 'Projects using literal unsafe', 'table:literal')
+save.plot(p, path, "plot-usage", h=6)
