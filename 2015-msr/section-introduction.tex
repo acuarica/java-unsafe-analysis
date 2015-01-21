@@ -7,63 +7,114 @@ It is the equivalent to \texttt{unsafe}~\footnote{\url{http://msdn.microsoft.com
 
 There is a trend in the late years to use \smu{}.
 The main reason to use \smu{} is \emph{performance}.
-Because \smu{} provides groups of methods to allow the programmer to access otherwise impossible low-level access. 
+Because \smu{} provides methods to allow the programmer to access otherwise impossible low-level details.
+For instance, \smu{} contains methods to do CAS operations, the base ground to develop lock-free data structures.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\footnote{\url{http://cr.openjdk.java.net/~psandoz/dv14-uk-paul-sandoz-unsafe-the-situation.pdf}}
+
+Our research goal is to find 
+Similar \cite{Dyer-Rajan-Nguyen-Nguyen-14}
+
+
+
+It is possible to group methods in \smu{} by functionality.
+Table \ref{table:groups} shows all methods (without overloads) grouped by functionality.
 
 \input{table-groups}
 
 
-Our research goal is to find 
+Trend using unsafe methods. But what for? Certainly you can do everithing without Unsafe API, so why using it? 
 
-Trend using unsafe methods. But what for? Certainly you can do everithing without Unsafe API, so why using it? The key is performance.
-
-We searched for Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}
-
- discouraged. 
  
-
-
-\subsection{Subsection Heading Here}
-Subsection text here.
-
-
-\subsubsection{Subsubsection Heading Here}
-
-%\verbatiminput{../boa-client/unsafe.boa}
-
-
-This demo file is intended to serve as a ``starter file''
-for IEEE conference papers produced under \LaTeX\ using
-IEEEtran.cls version 1.7 and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-
 
 Stackoverflow mining.
 
 Measure error with boa.
 
-\subsection{Reflection}
-
-%\begin{verbatim}
-%Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
-%Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
-%unsafeField.setAccessible(true);
-%Object unsafe = unsafeField.get(null);
-%int addressSize = ((Number) %unsafeClass.getMethod("addressSize").invoke(unsafe)).intValue();
-%\end{verbatim}
-
-What happens with other uses such as reflection? It is not detected but it uses Unsafe. There should be a way to measure this kind of use.
-
-Mine github, maybe parsing html.
-
-Look for problematic uses of the API, and some use patterns.
 
 Bugreport stackoverflow posts.
 
+
+Overall, the main contributions of this paper are two-fold:
+\begin{itemize}
+\item We present a detailed study of how the Java \smu{} API is used and
+\item We constrast this information on why this API is used based on responses from Stackoverflow.
+\end{itemize}
+
 The rest of this paper is organized as follows:
 Section \ref{sec:relatedwork} presents related work.
-In Section \ref{fig:} we show how to use the JNIF API.
-Section 4 describes the design of JNIF.
-Section 5 explains how we validated JNIF.
-Section 6 evaluates JNIF’s performance against the mainstream bytecode manipulator, ASM.
-Section 7 discusses limitations, and Section \ref{sec:conclusions} concludes.
+Section \ref{sec:methodology} explains the methodology and technologies used to get our results.
+Section \ref{sec:results} shows the results we obtained and Section \ref{sec:conclusions} concludes.

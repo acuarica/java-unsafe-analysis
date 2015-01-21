@@ -3,6 +3,27 @@
 
 methodology
 
+
+We searched for Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}
+
+ discouraged. 
+
+
 The complete API documentation and more extensive examples are available online~\footnote{\url{https://bitbucket.org/acuarica/java-unsafe-analysis}}.
 
 Our Boa script starts 
+
+
+\subsection{Reflection}
+
+%\begin{verbatim}
+%Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+%Field unsafeField = unsafeClass.getDeclaredField("theUnsafe");
+%unsafeField.setAccessible(true);
+%Object unsafe = unsafeField.get(null);
+%int addressSize = ((Number) %unsafeClass.getMethod("addressSize").invoke(unsafe)).intValue();
+%\end{verbatim}
+
+What happens with other uses such as reflection? It is not detected but it uses Unsafe. There should be a way to measure this kind of use.
+
+Look for problematic uses of the API, and some use patterns.
