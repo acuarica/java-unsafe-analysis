@@ -16,7 +16,10 @@ PDFS=$(CSVS:%.csv=%-plot-java-over-total.pdf) $(CSVS:%.csv=%-plot-unsafe-over-ja
 
 .SECONDARY:
 
-all: $(PDFS)
+all: pdfs
+pdfs: $(PDFS)
+csvs: $(CSVS)
+outs: $(OUTS)
 
 %-plot-java-over-total.pdf %-plot-unsafe-over-java.pdf %-plot-usage.pdf: %.csv unsafe.r
 	$(R) --slave --vanilla --file=unsafe.r --args $<

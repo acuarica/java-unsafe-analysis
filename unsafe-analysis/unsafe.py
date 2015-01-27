@@ -10,6 +10,10 @@ class Rec:
         self.file = ''
         self.method = ''
         self.use = ''
+        self.revs = 0
+        self.start = None
+        self.end = None
+        self.asts = 0
         self.value = 0
 
 def parseBoa(filename):
@@ -29,13 +33,17 @@ def parseBoa(filename):
             r.file = ''
             r.method = ''
             r.use = ''
+            r.revs = 0
+            r.start = None
+            r.end = None
+            r.asts = 0
             r.value = m.group(2)
         else:
             def getid(url):
                 m = re.search('http://sourceforge.net/projects/(\w+)', url)
                 return m.group(1)
             
-            m = re.search('(\w+)\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\] = 1', line)
+            m = re.search('(\w+)\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\] = 1', line)
             
             url = m.group(4)
             
@@ -47,6 +55,10 @@ def parseBoa(filename):
             r.file = m.group(5)
             r.method = m.group(6)
             r.use = m.group(7)
+            r.revs = m.group(8)
+            r.start = m.group(9)
+            r.end = m.group(10)
+            r.asts = m.group(11)
             r.value = 1
         
         return r
@@ -63,7 +75,7 @@ def buildCsv(input, output):
     with open(output, 'wb') as csvfile:
         w = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         for r in parseBoa(input):
-            w.writerow([r.kind, r.id, r.name, r.description, r.project, r.file, r.method, r.use, r.value])
+            w.writerow([r.kind, r.id, r.name, r.description, r.project, r.file, r.method, r.use, r.revs, r.start, r.end, r.asts, r.value])
 
 def main():
     def parseargs():

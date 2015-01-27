@@ -13,8 +13,34 @@ foreach (i: int; match(`^java$`, lowercase(p.programming_languages[i]))) {
 
 # mining how many projects use sun.misc.Unsafe.
 
-projectsWithUnsafe: output collection[string][string][string][string][string][string] of int;
-projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string] of int;
+revs: int = 0;
+pstart: time = now();
+pend: time = 0;
+asts := 0;
+
+visit(p, visitor {
+	before node: CodeRepository -> {
+	    revs = revs + len(node.revisions);	    	    
+	}
+	before node: Revision -> {
+		pstart = min(pstart, node.commit_date);
+		pend = max(pend, node.commit_date);
+	}
+});
+
+visit(p, visitor {
+	before n: CodeRepository -> {
+		snapshot := getsnapshot(n);
+		foreach (i: int; def(snapshot[i]))
+			visit(snapshot[i]);
+		stop;
+	}
+	before _ -> asts++;
+	before Project, ChangedFile -> ;
+});
+
+projectsWithUnsafe: output collection[string][string][string][string][string][string][int][time][time][int] of int;
+projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string][int][time][time][int] of int;
 
 methods: set of string;
 add(methods, "ensureClassInitialized");
@@ -123,11 +149,11 @@ visit(input, visitor {
 	before node: Expression -> {
 		if (node.kind == ExpressionKind.METHODCALL) {
 		 	if (contains(methods, node.method) and imports) {
-				projectsWithUnsafe[p.name][p.description][p.project_url][filename][methodname][node.method] << 1;
+				projectsWithUnsafe[p.name][p.description][p.project_url][filename][methodname][node.method][revs][pstart][pend][asts] << 1;
 			}
 		}
 		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
-			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][methodname]["sun.misc.Unsafe"] << 1;
+			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
 		}
 	}
 });
