@@ -9,6 +9,27 @@ printf <- function(format, ...) {
   print(sprintf(format, ...));
 }
 
+formatd <- function(days) {
+  days <- as.numeric(days);
+  y <- trunc(days/365);
+  m <- trunc((days %% 365) / 30);
+  d <- trunc((days %% 365) %% 30);
+
+  if (y == 0) y <- sprintf('', y);
+  if (y == 1) y <- sprintf(' %s year', y);
+  if (y >= 2) y <- sprintf( '%s years', y);
+
+  if (m == 0) m <- sprintf('', m);
+  if (m == 1) m <- sprintf(' %s month', m);
+  if (m >= 2) m <- sprintf(' %s months', m);
+
+  if (d == 0) d <- sprintf('', d);
+  if (d == 1) d <- sprintf(' %s day', d);
+  if (d >= 2) d <- sprintf(' %s days', d);
+  
+  sprintf('%s%s%s', y, m, d)
+}
+
 save.plot <- function(p, d, s, w=12, h=8) {
   path <- sprintf('%s-%s.pdf', d, s)
   printf("Saving plot %s to %s", s, path)
@@ -34,9 +55,18 @@ csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
 colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
 csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
 csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
-csv$lifetime <- round(as.numeric(csv$end-csv$start, units = "days") / 365, digits=2)
+csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");
+csv$formatd <- csv$lifetime;
 
+for (i in 3:nrow(csv) ) {
+  csv$formatd[i] <- formatd(csv$formatd[i]);
+}
 
+csv$lifetimey <- trunc(csv$lifetime/365);
+csv$lifetimem <- trunc((csv$lifetime %% 365) / 30);
+csv$lifetimed <- trunc((csv$lifetime %% 365) %% 30);
+
+formatd(csv$lifetime)
 
 1 & adtools & Amiga Development Tools (adtools) \\
 2 & amino & Concurrent Building Block \\ 
