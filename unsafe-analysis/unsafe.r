@@ -57,63 +57,11 @@ csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
 csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
 csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");
 csv$formatd <- csv$lifetime;
+csv$asts <- paste(trunc(csv$asts / 1000), 'k');
 
 for (i in 3:nrow(csv) ) {
   csv$formatd[i] <- formatd(csv$formatd[i]);
 }
-
-csv$lifetimey <- trunc(csv$lifetime/365);
-csv$lifetimem <- trunc((csv$lifetime %% 365) / 30);
-csv$lifetimed <- trunc((csv$lifetime %% 365) %% 30);
-
-formatd(csv$lifetime)
-
-1 & adtools & Amiga Development Tools (adtools) \\
-2 & amino & Concurrent Building Block \\ 
-3 & amock & Java Mock libarary for static method \\ 
-4 & android & Android on PXA270 \\ 
-5 & aojunit & An aspect-oriented extension to JUnit \\ 
-6 & archaiosjava & Scalable and fast libraries for Java \\ 
-7 & beanlib & Java Bean Library \\ 
-8 & caloriecount & Track what you eat \\ 
-9 & cegcc & CeGCC - Cross development for Pocket PC \\ 
-10 & cgnu & CGNU (Clean GNU) \\ 
-11 & classreach & Identifies unused Java classes and methods \\ 
-12 & clipc & Library for IPC \\ 
-13 & concutest & Tools to test concurrent Java programs easier \\ 
-14 & ec & ec-gin Europe China Grid InterNetworking  \\ 
-15 & essence & Essence Java Framework  \\ 
-16 & essentialbudget & Essential Budget \\ 
-17 & glassbox & Troubleshooting and monitoring agent \\ 
-18 & grinder & Load testing framework \\ 
-19 & high & Highly Scalable Java  \\ 
-20 & ikvm & JVM for .NET Framework and Mono \\ 
-21 & jadoth & abstraction utils and frameworks \\ 
-22 & janetdev & Ja.NET - Java Development Tools for .NET \\ 
-23 & janux & Java directly on the Linux Kernel \\ 
-24 & java & Lightweight Java Game Library \\ 
-25 & javapayload & Payloads to be used for post-exploitation \\ 
-26 & jaxlib & Platform independent Java library \\ 
-27 & jikesrvm & The Jikes Research Virtual Machine (RVM) \\ 
-28 & jnode & JNode: new Java Operating System \\ 
-29 & jon & Java Object Notation \\ 
-30 & jprovocateur & RAD for Ajax applications in Java \\ 
-31 & junitrecorder & Record test cases \\ 
-32 & katta & Lucene in the cloud \\ 
-33 & l2next & L2 Private Server code  \\ 
-34 & neurogrid & P2P Bookmark Organiser \\ 
-35 & osfree & osFree operating system \\ 
-36 & ps2toolchain & Toolchain for the Playstation 2's \\ 
-  37 & simulaeco & Semester project \\ 
-  38 & snarej & Snare's Not A Risc os Emulator in Java \\ 
-39 & statewalker & Graph traversing library \\ 
-40 & takatuka & TakaTuka Java Virtual Machine \\ 
-41 & timelord & A tool for estimating and tracking time \\ 
-42 & vcb & Component Based Development tool \\ 
-43 & x10 & Experimental language for DARPA/HPCS \\ 
-44 & xbeedriver & Driver for the ZigBee network \\ 
-
-
 
 countsTotal <- subset(csv, kind=='countsTotal')[1,'value']
 countsJava <- subset(csv, kind=='countsJava')[1,'value']
@@ -180,8 +128,23 @@ save.plot(p, path, "plot-usage", h=6)
 
 
 # tex table
-df <- dcast(projectsWithUnsafe, id+name+description+revs+start+end+lifetime+asts~., value.var='use', fun.aggregate = length)
+df <- dcast(projectsWithUnsafe, id+name+description+revs+start+end+lifetime+asts+formatd~., value.var='use', fun.aggregate = length)
+df$name <- NULL
+df$description <- NULL
+df$start <- NULL
+df$end <- NULL
+df$lifetime <- NULL
+df <- df[with(df, order(id)), ]
+
 save.table(df, path, 'projects', 'Projects using Unsafe', 'table:projects')
 
 # tex literal table 
-df <- dcast(projectsWithUnsafeLiteral, id+name+description~., value.var='use', fun.aggregate = length)
+#df <- dcast(projectsWithUnsafeLiteral, id+name+description~., value.var='use', fun.aggregate = length)
+df <- dcast(projectsWithUnsafeLiteral, id+name+description+revs+start+end+lifetime+asts+formatd~., value.var='use', fun.aggregate = length)
+df$name <- NULL
+df$description <- NULL
+df$start <- NULL
+df$end <- NULL
+df$lifetime <- NULL
+df <- df[with(df, order(id)), ]
+save.table(df, path, 'literal', 'Projects using Unsafe', 'table:projects')
