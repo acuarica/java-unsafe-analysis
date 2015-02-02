@@ -1,19 +1,37 @@
 
 \section{Introduction} \label{sec:introduction}
 
-\smu{} is an undocumented~\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}} class provided by Oracle.
-It allows the developer to access low-level programming features.
+The Java Virtual Machine (JVM) executes Java bytecode and provides other
+services for programs written in Java, Scala, Clojure, and many other
+languages. Although the JVM was designed to be portable, ``write once run
+anywhere'', many JVM implementations in wide use expose an API to allow access
+to low-level, non-portable features of the JVM.
+This API is provided through an
+undocumented~\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}}
+class, \smu{}, in the Java reference implementation produced by Oracle.
+The class allows the developer to access low-level programming features.
 It is the equivalent to \texttt{unsafe}~\footnote{\url{http://msdn.microsoft.com/en-us/en-en/library/chfa2zb8(v=vs.90).aspx}} in C\#.
 
 There is a trend in the late years to use \smu{}.
 The main reason to use \smu{} is \emph{performance}.
-Because \smu{} provides methods to allow the programmer to access otherwise impossible low-level details.
-For instance, \smu{} contains methods to do CAS operations, the base ground to develop lock-free data structures.
+\smu{} provides methods to allow the programmer to access otherwise impossible low-level details.
+For instance, \smu{} contains methods to do compare-and-swap (CAS) operations,
+needed to implement lock-free data structures.
 
-Why is it important to study \smu{} API usage patterns? Because with \smu{} bad things can happen.
+The operations \smu{} provides can be dangerous. If misused they
+can cause 
+performance problems, resource leaks, deadlock, data corruption,
+and even VM crashes. 
+
+Because of the danger of using \smu{}, we aim to study how the API is used
+in practice, with the longer term goal of helping to provide safer
+alternatives
+to \smu{}.
+
 Sandoz~\cite{psandoz14} describe several usage patterns of \smu{}. Let's show of these examples.
 
 Sandoz~\cite{psandoz14} did a survey to study how Unsafe is used~\footnote{\url{http://www.infoq.com/news/2014/02/Unsafe-Survey}}.
+
 We took one step further and analyse how \smu{} is used in BOA. Moreover, we want to study how effectively people is discussing with respect to \smu{}, to that end, we analyse the Stackoverflow database.
 
 Our research goal is to find 
