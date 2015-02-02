@@ -52,7 +52,7 @@ if (interactive()) {
 
 path <- file_path_sans_ext(csvfilename)
 csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
-colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
+colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
 csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
 csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
 csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");

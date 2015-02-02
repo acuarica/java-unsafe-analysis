@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from fileinput import filename
 
 class Rec:
     def __init__(self):
@@ -8,6 +9,8 @@ class Rec:
         self.description = ''
         self.project = ''
         self.file = ''
+        self.nsname = ''
+        self.clsname = ''
         self.method = ''
         self.use = ''
         self.revs = 0
@@ -31,6 +34,8 @@ def parseBoa(filename):
             r.description = ''
             r.project = ''
             r.file = ''
+            r.nsname = ''
+            r.clsname = ''
             r.method = ''
             r.use = ''
             r.revs = 0
@@ -43,7 +48,17 @@ def parseBoa(filename):
                 m = re.search('http://sourceforge.net/projects/(\w+)', url)
                 return m.group(1)
             
-            m = re.search('(\w+)\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\] = 1', line)
+            def getclassname(filepath):
+                import os, re
+                
+                filename = os.path.basename(filepath)
+                                    
+                m = re.search('(\w+)\.java', filename)
+                clsname = m.group(1)
+                
+                return clsname
+            
+            m = re.search('(\w+)\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.*)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\]\[(.+)\] = 1', line)
             
             url = m.group(4)
             
@@ -53,12 +68,14 @@ def parseBoa(filename):
             r.description = m.group(3)
             r.project = url
             r.file = m.group(5)
-            r.method = m.group(6)
-            r.use = m.group(7)
-            r.revs = m.group(8)
-            r.start = m.group(9)
-            r.end = m.group(10)
-            r.asts = m.group(11)
+            r.nsname = m.group(6)
+            r.clsname = getclassname(r.file)
+            r.method = m.group(7)
+            r.use = m.group(8)
+            r.revs = m.group(9)
+            r.start = m.group(10)
+            r.end = m.group(11)
+            r.asts = m.group(12)
             r.value = 1
         
         return r
@@ -69,13 +86,13 @@ def parseBoa(filename):
             
             yield r
 
-def buildCsv(input, output):
+def buildCsv(input, output):        
     import csv
 
     with open(output, 'wb') as csvfile:
         w = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         for r in parseBoa(input):
-            w.writerow([r.kind, r.id, r.name, r.description, r.project, r.file, r.method, r.use, r.revs, r.start, r.end, r.asts, r.value])
+            w.writerow([r.kind, r.id, r.name, r.description, r.project, r.file, r.nsname, r.clsname, r.method, r.use, r.revs, r.start, r.end, r.asts, r.value])
 
 def main():
     def parseargs():

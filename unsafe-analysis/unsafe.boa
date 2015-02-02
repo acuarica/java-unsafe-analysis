@@ -39,8 +39,8 @@ visit(p, visitor {
 	before Project, ChangedFile -> ;
 });
 
-projectsWithUnsafe: output collection[string][string][string][string][string][string][int][time][time][int] of int;
-projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string][int][time][time][int] of int;
+projectsWithUnsafe: output collection[string][string][string][string][string][string][string][int][time][time][int] of int;
+projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string][string][int][time][time][int] of int;
 
 methods: set of string;
 add(methods, "ensureClassInitialized");
@@ -114,6 +114,7 @@ add(methods, "defineAnonymousClass");
 add(methods, "fieldOffset");
 
 filename: string;
+nsname: string;
 imports := false;
 methodname: string;
 
@@ -139,6 +140,9 @@ visit(input, visitor {
 			imports = true;
 	    }
 	}
+	before node: Namespace -> {
+		nsname = node.name;
+	}
 	before node: Method -> methodname = node.name;
 	# look for FQN
 	before node: Type -> {
@@ -149,11 +153,11 @@ visit(input, visitor {
 	before node: Expression -> {
 		if (node.kind == ExpressionKind.METHODCALL) {
 		 	if (contains(methods, node.method) and imports) {
-				projectsWithUnsafe[p.name][p.description][p.project_url][filename][methodname][node.method][revs][pstart][pend][asts] << 1;
+				projectsWithUnsafe[p.name][p.description][p.project_url][filename][nsname][methodname][node.method][revs][pstart][pend][asts] << 1;
 			}
 		}
 		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
-			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
+			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][nsname][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
 		}
 	}
 });
