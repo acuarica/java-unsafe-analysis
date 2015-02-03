@@ -10,11 +10,16 @@ This API is provided through an
 undocumented~\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}}
 class, \smu{}, in the Java reference implementation produced by Oracle.
 The class allows the developer to access low-level programming features.
-It is the equivalent to \texttt{unsafe}~\footnote{\url{http://msdn.microsoft.com/en-us/en-en/library/chfa2zb8(v=vs.90).aspx}} in C\#.
 
-There is a trend in the late years to use \smu{}.
-The main reason to use \smu{} is \emph{performance}.
-\smu{} provides methods to allow the programmer to access otherwise impossible low-level details.
+Other virtual machines provide similar functionality. For instance the
+language C\# provides an \texttt{unsafe} construct on the .NET
+platform.\footnote{\url{http://msdn.microsoft.com/en-us/en-en/library/chfa2zb8(v=vs.90).aspx}}
+
+Use of \smu{} has increased recently [FIXME citation].
+The main reason for this trend \smu{} is \emph{performance}.
+\smu{} provides methods to allow the programmer to access low-level 
+details of the virtual machine and underlying hardware that
+would otherwise be impossible.
 For instance, \smu{} contains methods to do compare-and-swap (CAS) operations,
 needed to implement lock-free data structures.
 
@@ -24,18 +29,20 @@ performance problems, resource leaks, deadlock, data corruption,
 and even VM crashes. 
 
 Because of the danger of using \smu{}, we aim to study how the API is used
-in practice, with the longer term goal of helping to provide safer
-alternatives
-to \smu{}.
+in practice, with the longer term goal of providing safer
+alternatives to \smu{} on the JVM and on other virtual machines in general.
 
 Sandoz~\cite{psandoz14} describe several usage patterns of \smu{}. Let's show of these examples.
 
 Sandoz~\cite{psandoz14} did a survey to study how Unsafe is used~\footnote{\url{http://www.infoq.com/news/2014/02/Unsafe-Survey}}.
 
-We took one step further and analyse how \smu{} is used in BOA. Moreover, we want to study how effectively people is discussing with respect to \smu{}, to that end, we analyse the Stackoverflow database.
-
-Our research goal is to find 
-Similar \cite{Dyer-Rajan-Nguyen-Nguyen-14}
+In this paper, we go beyond that survey and look at 
+how \smu{} is used in the wild. We systematically examine projects open source
+projects from the SourceForge repository
+using BOA~\cite{Dyer-Nguyen-Rajan-Nguyen-13} and analyze how these
+projects use \smu{}.
+Moreover, we study problems encountered using \smu{} by analyzing the
+StackOverflow question/answer database.
 
 Trend using unsafe methods. But what for? Certainly you can do everithing without Unsafe API, so why using it? 
 
