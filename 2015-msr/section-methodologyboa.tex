@@ -1,0 +1,103 @@
+
+\section{Mining Boa infrastructure} \label{sec:methodologyboa}
+
+In this section we describe our methodology to mine the data we used for our analysis.
+We first begin describing how we mined source code repositories. The next section describes how we analysed the Stackoverflow database.
+
+The complete scripts and results used for our study are available online~\footnote{\url{https://bitbucket.org/acuarica/java-unsafe-analysis}}.
+
+\subsection{Static usage}
+
+For source code mining we searched in Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}. 
+The BOA infrastructure allows the user to navigate the parsed AST of source code.
+Notice that BOA does not provide type resolution analysis.
+Therefore we develop some heuristics to determine where and how \smu{} is used.
+
+The following assumptions hold:
+\begin{itemize}
+\item \smu{} class is \texttt{final} 
+\item inherits directly from \texttt{java.lang.Object}
+\item Its public methods (except for \texttt{getUnsafe}) are instance methods
+\end{itemize}
+
+Thus, our Boa script~\footnote{\url{https://bitbucket.org/acuarica/java-unsafe-analysis/raw/master/unsafe-analysis/unsafe.boa}} looks for \texttt{sun.misc.Unsafe} as either an import or fully qualified name where a type may appear.
+In case that we found a use of \smu{} we proceed to determine which method is used.
+If \smu{} is found in a compilation unit, then all call sites in the compilation unit are analysed.
+If a call site target is one of the \smu{} methods, then we can conclude that \smu{} is used and that method is called.
+
+\subsection{Reflection usage}
+
+What happens if \smu{} is used through reflection?
+Sometimes this API is used through reflection to avoid the compilation dependency (remember that \smu{} is not part of the public API).
+
+For instance, listing~\ref{lst:reflection} shows how to take the address size of the host machine.
+First it obtains an instance of \smu{} by reflection.
+Then, again by reflection, invoke the method \texttt{addressSize}, which returns the address size of the host machine.
+
+
+%\definecolor{codegreen}{rgb}{0,0.6,0}
+%\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+%\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{java}{
+    language=Java,
+ %   backgroundcolor=\color{backcolour},   
+%    commentstyle=\color{codegreen},
+%    keywordstyle=\color{magenta},
+  %  numberstyle=\tiny\color{codegray},
+%    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+%    numbers=left,                    
+%    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=shadowbox
+}
+
+\lstset{style=java}
+\lstset{escapechar=§}
+
+\begin{lstlisting}[caption=Use of sun.misc.Unsafe with reflection,label=lst:reflection]
+Class<?> cls = Class.forName("sun.misc.Unsafe");
+Field theUnsafe = cls.getDeclaredField("theUnsafe");
+theUnsafe.setAccessible(true);
+Object unsafe = theUnsafe.get(null);
+Method method = cls.getMethod("addressSize");
+Object value = method.invoke(unsafe);
+int addressSize = ((Number) value).intValue();
+\end{lstlisting}
+
+We are aware of this situation and also look for the string literal \texttt{"sun.misc.Unsafe"} to see when it is used through reflection.
+
+\subsection{Avoiding duplicates}
+
+Usually a code repository has branches, to allow the team to introduce new features without interrupt the main source of development.
+In Boa, all \smu{} uses are reported, regardless if it is the same file in different branches.
+Sometimes it happens that the same file, with the same uses, has different package in different branches.
+Therefore we need to take into account this situation.
+To determine if a file is a duplicate in another branch, we look for the same file name and uses, if we found the same file and the same uses, we assume that the file is in a branch and we exclude it.
+
+\subsection{OpenJDK forks}
+
+
+\subsection{Metadata}
+
+Also we are interested in some metadata information.
+For each project that uses \smu{}, either statically or dinamically, our Boa script also retrieves :
+\begin{itemize}
+\item the size of the project (in number of AST nodes)
+\item the number of revisions in the repository.
+\item the lifetime of the repository (time from the first to the last commit)
+\end{itemize}
+
+It is possible to group methods in \smu{} by functionality.
+Table \ref{table:groups} shows all methods (without overloads) grouped by functionality.
+
+\input{table-groups}

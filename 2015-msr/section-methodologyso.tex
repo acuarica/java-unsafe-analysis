@@ -1,24 +1,24 @@
 
-\section{Methodology} \label{sec:methodology}
+\section{Mining StackOverflow} \label{sec:methodologyso}
 
 In this section we describe our methodology to retrieve the data we used for our analysis.
-We begin describing how we mined BOA repositories and then how we analysed the Stackoverflow database.
+We first begin describing how we mined source code repositories and then how we analysed the Stackoverflow database.
 
-The complete scripts and results are available online~\footnote{\url{https://bitbucket.org/acuarica/java-unsafe-analysis}}.
+The complete scripts and results used for our study are available online~\footnote{\url{https://bitbucket.org/acuarica/java-unsafe-analysis}}.
 
-\subsection{BOA repositories}
+\subsection{Source Code repositories}
 
-We searched for Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}
+For source code mining we searched in Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}. 
+The BOA infrastructure allows the user to navigate the parsed AST of source code.
 
- discouraged. 
+Our Boa script looks for \texttt{sun.misc.Unsafe} as either an import or fully qualified name where a type may appear.
+In case that we found a use of \smu{} we proceed to determine which method is used.
 
-Our Boa script starts 
 
 It is possible to group methods in \smu{} by functionality.
 Table \ref{table:groups} shows all methods (without overloads) grouped by functionality.
 
 \input{table-groups}
-
 
 \subsubsection*{Reflection}
 
@@ -33,7 +33,6 @@ Table \ref{table:groups} shows all methods (without overloads) grouped by functi
 What happens with other uses such as reflection? It is not detected but it uses Unsafe. There should be a way to measure this kind of use.
 
 Look for problematic uses of the API, and some use patterns.
-
 
 
 \subsection{Stackoverflow}
