@@ -58,10 +58,16 @@ for (i in 3:nrow(csv) ) {
   csv$formatd[i] <- formatd(csv$formatd[i]);
 }
 
+csv$description <- NULL
+csv$url <- NULL
+csv$start <- NULL
+csv$end <- NULL
+csv$lifetime <- NULL
+
 # Print summary
 countsTotal <- subset(csv, kind=='countsTotal')[1,'value']
 countsJava <- subset(csv, kind=='countsJava')[1,'value']
-countsUnsafe <- nrow(dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), url~use, value.var='use', fun.aggregate=length))
+countsUnsafe <- nrow(dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), id~use, value.var='use', fun.aggregate=length))
 
 printf("Total number of projects: %d", countsTotal);
 printf("Total number of Java projects: %d (%s%%)", countsJava, round((countsJava/countsTotal)*100, 2) );
@@ -88,6 +94,12 @@ groups <- c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
 methods <- dcast(subset(csv, kind=='projectsWithUnsafe'), use~., value.var='use', fun.aggregate=length)$use
 
 df <- subset(csv, kind=='projectsWithUnsafe');
+df <- dcast(df, id+name+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
+df$file <- NULL
+df <- df[!duplicated(df),]
+df <- melt(df, id.vars=c('id', 'name', 'nsname', 'clsname', 'method'), variable.name='use')
+df <- subset(df, value>0)
+
 df$use <- factor(df$use)
 df$package <- as.character('other')
 df[startsWith(df$nsname,'java.') ,]$package <- 'java'
@@ -103,7 +115,7 @@ save.plot(p, path, "plot-usage", h=6)
 # Project table
 df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
 df[df$kind=='projectsWithUnsafe','use'] <- 'allocateMemory';
-df <- dcast(df, id+name+asts+revs+formatd~use, value.var='use', fun.aggregate = length)
+df <- dcast(df, id+name+asts+revs+formatd~use, value.var='use', fun.aggregate=length)
 df$n <- row.names(df)
 df <- df[c(8,1,2,3,4,5,6,7)]
 
