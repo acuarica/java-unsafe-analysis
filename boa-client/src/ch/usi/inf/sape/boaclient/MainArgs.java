@@ -4,12 +4,6 @@ import ch.usi.inf.sape.argparser.Arg;
 
 public class MainArgs {
 
-	@Arg(shortkey = "u", longkey = "user")
-	public String username;
-
-	@Arg(shortkey = "p", longkey = "pass")
-	public String password;
-
 	@Arg(shortkey = "d", longkey = "dataset")
 	public String dataset;
 

@@ -14,6 +14,7 @@ import edu.iastate.cs.boa.CompileStatus;
 import edu.iastate.cs.boa.ExecutionStatus;
 import edu.iastate.cs.boa.InputHandle;
 import edu.iastate.cs.boa.JobHandle;
+import edu.iastate.cs.boa.LoginException;
 import edu.iastate.cs.boa.NotLoggedInException;
 
 public class Main {
@@ -87,13 +88,22 @@ public class Main {
 
 		String query = readFile(as.input);
 
+		String username = System.console().readLine("Boa user name: ");
+		String password = new String(System.console().readPassword(
+				"Boa password: "));
+
 		try (final BoaClient client = new BoaClient()) {
-			client.login(as.username, as.password);
+			try {
+				client.login(username, password);
+			} catch (LoginException e) {
+				out.println(e.getMessage());
+				System.exit(1);
+			}
 
 			InputHandle ds = client.getDataset(as.dataset);
 
 			out.println("Sending file: \"" + as.input + "\" as user "
-					+ as.username + "");
+					+ username + "");
 
 			String result = run(client, query, out, ds);
 

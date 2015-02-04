@@ -7,7 +7,6 @@ BUILD=build
 BOACLIENT=../boa-client/lib/boa-client.jar
 BOAAPI=../boa-client/lib/boa-client-0.1.0.jar
 CLASSNAME=ch.usi.inf.sape.boaclient.Main
-AUTH=--user luismastrangelo --pass elotrodia
 
 BOA=unsafe.boa
 OUT=$(BOA:%.boa=$(BUILD)/%.out)
@@ -28,7 +27,7 @@ out: $(OUT)
 	$(PYTHON) unsafe.py $< $@
 
 $(BUILD)/%.out: %.boa
-	$(JAVA) -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) $(AUTH) --dataset "2013 September" --input $< --output $@
+	$(JAVA) -cp $(BOACLIENT):$(BOAAPI) $(CLASSNAME) --dataset "2013 September" --input $< --output $@
 
 clean:
 	rm -f $(OUT) $(CSV) $(PDF)
