@@ -4,6 +4,7 @@ library(reshape2)
 library(tools)
 library(scales)
 library(xtable)
+suppressMessages(library(gdata))
 
 printf <- function(format, ...) {
   print(sprintf(format, ...));
@@ -66,11 +67,6 @@ printf("Total number of projects: %d", countsTotal);
 printf("Total number of Java projects: %d (%s%%)", countsJava, round((countsJava/countsTotal)*100, 2) );
 printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/countsJava)*100, 2) );
 
-projectsWithUnsafe <- subset(csv, kind=='projectsWithUnsafe');
-projectsWithUnsafe$use <- factor(projectsWithUnsafe$use)
-
-projectsWithUnsafeLiteral <- subset(csv, kind=='projectsWithUnsafeLiteral');
-
 # usage plot
 
 g.array <- 'Array'
@@ -89,17 +85,19 @@ groups <- c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
             g.offset, g.memory, g.park, g.memory,
             g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
             g.memory, g.memory, g.offset, g.offset, g.single, g.park)
+methods <- dcast(subset(csv, kind=='projectsWithUnsafe'), use~., value.var='use', fun.aggregate=length)$use
 
-df <- dcast(projectsWithUnsafe, use~., value.var='use', fun.aggregate = length)
-colnames(df) <- c('use', 'count')
-df$group <- df$use
-levels(df$group) <- factor(groups)
+df <- subset(csv, kind=='projectsWithUnsafe');
+df$use <- factor(df$use)
+df$package <- as.character('other')
+df[startsWith(df$nsname,'java.') ,]$package <- 'java'
+df[startsWith(df$nsname,'sun.') ,]$package <- 'java'
 
-p <- ggplot(df, aes(x=use, y=count, fill=group))
-p <- p + facet_grid(. ~ group, space='free_x', scales="free_x")
-p <- p + geom_bar(stat="identity")
-p <- p + theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="none")
-p <- p + labs(x="sun.misc.Unsafe Method", y = "# call sites")
+df <- merge(df, data.frame(methods, groups), by.x = "use", by.y = "methods")
+
+p <- ggplot(df, aes(x=use, fill=package))+facet_grid(.~groups, space='free_x', scales="free_x")+geom_bar(stat="bin")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  labs(x="sun.misc.Unsafe Method", y = "# call sites")
 save.plot(p, path, "plot-usage", h=6)
 
 # Project table
