@@ -112,9 +112,10 @@ df[startsWith(df$nsname,'sun.nio') ,]$package <- 'sun.nio'
 df <- merge(df, data.frame(methods, groups), by.x = "use", by.y = "methods")
 
 p <- ggplot(df, aes(x=use, fill=package))+facet_grid(.~groups, space='free_x', scales="free_x")+geom_bar(stat="bin")+
-  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
-  labs(x="sun.misc.Unsafe Method", y = "# call sites")
-save.plot(p, path, "plot-usage", h=6)
+  theme(axis.text.x=element_text(angle=40, hjust=1), legend.box="horizontal", legend.position="top")+
+  #labs(x="sun.misc.Unsafe Method", y = "# call sites")
+  labs(x="", y = "# call sites")
+save.plot(p, path, "plot-usage", h=5)
 
 # Project table
 df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
