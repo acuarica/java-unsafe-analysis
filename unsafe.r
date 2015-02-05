@@ -175,11 +175,11 @@ df[df$id=='vcb','name'] <- 'Component Based Development tool'
 df[df$id=='x10','name'] <- 'Experimental language for DARPA/HPCS'
 df[df$id=='xbeedriver','name'] <- 'Driver for the ZigBee network'
 
-colnames(df) <- c('#', 'Name', 'Description', '# AST Nodes', '# Revisions', 'Lifetime', '# smU Calls', '# smU Literal')
+colnames(df) <- c('#', 'Name', 'Description', '# AST Nodes', '# Revisions', 'Lifetime', '# smU Call Sites', '# smU String Literal')
 
 p <- sprintf('%s-%s.tex', path, 'table-projects')
 printf("Saving table %s to %s", 'table-projects', p)
-print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|X|r|r|r|r|r|'), 
+print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|l|r|r|r|Y|Y|'), 
              file=p, floating.environment='table*', table.placement='htb', tabular.environment='tabularx',
              caption.placement='top', include.rownames=FALSE,width="\\textwidth")
 
