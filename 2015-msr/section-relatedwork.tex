@@ -13,6 +13,77 @@ For source code mining we searched in Boa \cite{Dyer-Nguyen-Rajan-Nguyen-13}.
 
 Paul Sandoz estimates how Unsafe is used~\cite{psandoz14}, but only provides a survey.
 
+In the past years several enhacements were proposed to relieve the Unsafe situation.
+
+JEP 193 Enhanced Volatiles~\footnote{\url{http://openjdk.java.net/jeps/193}} for Enhanced atomic access.
+
+
+* Reduce GC
+  - Value types
+    ~\footnote{\url{http://cr.openjdk.java.net/~jrose/values/values-0.html}}
+  - JEP 189 Shenandoah: Low Pause GC for >20GB heap size.
+  
+    ~\footnote{\url{http://openjdk.java.net/jeps/189}}
+
+* Efficient memory layout
+  - Value types
+    http://cr.openjdk.java.net/~jrose/values/values-0.html
+  - Arrays 2.0 \& Layouts
+    ~\footnote{\url{http://cr.openjdk.java.net/~jrose/pres/201207-Arrays-2.pdf}}
+    ~\footnote{\url{http://hg.openjdk.java.net/sumatra/sumatra-dev/scratch/file/tip/src/org/openjdk/sumatra/data/prototype/README}}
+
+* Very Large Collections
+  - Value types
+    ~\footnote{\url{http://cr.openjdk.java.net/~jrose/values/values-0.html}}
+  - Arrays 2.0 \& Layouts
+    ~\footnote{\url{http://cr.openjdk.java.net/~jrose/pres/201207-Arrays-2.pdf}}
+    ~\footnote{\url{http://hg.openjdk.java.net/sumatra/sumatra-dev/scratch/file/tip/src/org/openjdk/sumatra/data/prototype/README}}
+
+* Communicate across JVM boundary
+  - Project Panama
+  - JEP 191 FFI
+    http://openjdk.java.net/jeps/191
+    
+
+
 Several research work uses \smu{} in their implementation.
 
+
+
+
 As far as we know, no prior work shows how the \smu{} is used in industry.
+
+
+
+unsafe in Racket: unsafe-fl+ performance unchecked operation.
+
+
+
+http://qualitascorpus.com/ for analysis code dataset
+But the dataset is rather small.
+
+
+C\# with unsafe block
+====================
+
+- http://msdn.microsoft.com/en-us/library/y31yhkeb.aspx
+
+Structs/value types
+"A pointer cannot point to a reference or to a struct that contains references,
+because an object reference can be garbage collected even if a pointer is 
+pointing to it. The garbage collector does not keep track of whether an 
+object is being pointed to by any pointer types."
+
+- stackalloc, fixed, unsafe, valuetypes/structs in C\#
+
+* Communicate across JVM boundary
+- Platform invoke
+
+
+* References
+  - the isthmus in the VM
+  \footnote{\url{https://blogs.oracle.com/jrose/entry/the_isthmus_in_the_vm}}
+
+Paul Sandoz. Atomic VarHandles. July 30, 2014.
+http://www.oracle.com/technetwork/java/jvmls2014sandoz-2265216.pdf
+(JEP 193 Enhanced Volatiles, are VarHandles the same of our Lvalues??)

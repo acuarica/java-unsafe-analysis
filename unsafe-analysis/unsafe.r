@@ -102,8 +102,12 @@ df <- subset(df, value>0)
 
 df$use <- factor(df$use)
 df$package <- as.character('other')
-df[startsWith(df$nsname,'java.') ,]$package <- 'java'
-df[startsWith(df$nsname,'sun.') ,]$package <- 'java'
+df[startsWith(df$nsname,'java.io') ,]$package <- 'java.io'
+df[startsWith(df$nsname,'java.lang') ,]$package <- 'java.lang'
+df[startsWith(df$nsname,'java.nio') ,]$package <- 'java.nio'
+df[startsWith(df$nsname,'java.security') ,]$package <- 'java.security'
+df[startsWith(df$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
+df[startsWith(df$nsname,'sun.nio') ,]$package <- 'sun.nio'
 
 df <- merge(df, data.frame(methods, groups), by.x = "use", by.y = "methods")
 

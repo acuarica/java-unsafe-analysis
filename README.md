@@ -1,6 +1,19 @@
 Unsafe study
 ============
 
+
+Java Unsafe Analysis
+====================
+
+The project contains the following folders
+
+* 2015-msr
+* 2015-msr-slides
+* boa-client
+
+* unsafe-analysis
+
+
 * References
   - the isthmus in the VM
   https://blogs.oracle.com/jrose/entry/the_isthmus_in_the_vm
