@@ -85,19 +85,22 @@ g.get <- 'Get'
 g.put <- 'Put'
 g.offset <- 'Offset'
 
-groups <- c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
+methods <- data.frame(
+  dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
+  c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
             g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
             g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, 
             g.offset, g.memory, g.park, g.memory,
             g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
-            g.memory, g.memory, g.offset, g.offset, g.single, g.park)
-methods <- dcast(subset(csv, kind=='projectsWithUnsafe'), use~., value.var='use', fun.aggregate=length)$use
+            g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
+);
+colnames(methods) <- c('method', 'group');
 
-df <- subset(csv, kind=='projectsWithUnsafe');
-df <- dcast(df, id+name+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
+df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
+df <- dcast(df, kind+id+name+asts+revs+formatd+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
 df$file <- NULL
 df <- df[!duplicated(df),]
-df <- melt(df, id.vars=c('id', 'name', 'nsname', 'clsname', 'method'), variable.name='use')
+df <- melt(df, id.vars=c('kind', 'id', 'name', 'asts', 'revs', 'formatd', 'nsname', 'clsname', 'method'), variable.name='use')
 df <- subset(df, value>0)
 
 df$use <- factor(df$use)
@@ -109,15 +112,15 @@ df[startsWith(df$nsname,'java.security') ,]$package <- 'java.security'
 df[startsWith(df$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
 df[startsWith(df$nsname,'sun.nio') ,]$package <- 'sun.nio'
 
-df <- merge(df, data.frame(methods, groups), by.x = "use", by.y = "methods")
+df <- merge(df, methods, by.x = "use", by.y = "method")
 
-p <- ggplot(df, aes(x=use, fill=package))+facet_grid(.~groups, space='free_x', scales="free_x")+geom_bar(stat="bin")+
+p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe methods", y = "# call sites")
 save.plot(p, path, "plot-usage", h=8)
 
 # Project table
-df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
+#df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
 df[df$kind=='projectsWithUnsafe','use'] <- 'allocateMemory';
 df <- dcast(df, id+name+asts+revs+formatd~use, value.var='use', fun.aggregate=length)
 df$n <- row.names(df)
@@ -127,7 +130,7 @@ df$name <- as.character(df$name)
 
 df[df$id=='adtools','name'] <- 'Amiga Development Tools (adtools)'
 df[df$id=='amino','name'] <- 'Concurrent Building Block'
-df[df$id=='amock','name'] <- 'Java Mock libarary for static method'
+df[df$id=='amock','name'] <- 'Java Mock library for static method'
 df[df$id=='android','name'] <- 'Android on PXA270'
 df[df$id=='aojunit','name'] <- 'An aspect-oriented extension to JUnit'
 df[df$id=='archaiosjava','name'] <- 'Scalable and fast libraries for Java'
