@@ -39,8 +39,8 @@ visit(p, visitor {
 	before Project, ChangedFile -> ;
 });
 
-projectsWithUnsafe: output collection[string][string][string][string][string][string][string][int][time][time][int] of int;
-projectsWithUnsafeLiteral: output collection[string][string][string][string][string][string][string][int][time][time][int] of int;
+projectsWithUnsafe: output collection[string][int][string][string][string][string][string][string][string][int][time][time][int] of int;
+projectsWithUnsafeLiteral: output collection[string][int][string][string][string][string][string][string][string][int][time][time][int] of int;
 
 methods: set of string;
 add(methods, "ensureClassInitialized");
@@ -113,10 +113,24 @@ add(methods, "getLongVolatile");
 add(methods, "defineAnonymousClass");
 add(methods, "fieldOffset");
 
+repo: string;
+rev: int;
 filename: string;
 nsname: string;
 imports := false;
 methodname: string;
+
+# output repository kind and revision number.
+
+repoToString := function(r: RepositoryKind): string {	
+	if (r == RepositoryKind.BZR) return "BZR";
+	if (r == RepositoryKind.CVS) return "CVS";
+	if (r == RepositoryKind.GIT) return "GIT";
+	if (r == RepositoryKind.HG) return "HG";
+	if (r == RepositoryKind.SVN) return "SVN";
+
+	return "UNKNOWN";
+};
 
 visit(input, visitor {
     after node: Project -> {
@@ -126,11 +140,15 @@ visit(input, visitor {
     }
 	# only look at the latest snapshot of Java files
 	before n: CodeRepository -> {
+		repo = repoToString(n.kind);
 		snapshot := getsnapshot(n, "SOURCE_JAVA_JLS");
 		foreach (i: int; def(snapshot[i])) {
 			visit(snapshot[i]);
 		}
 		stop;
+	}
+	before n: Revision -> {
+		rev = n.id;
 	}
 	before node: ChangedFile -> filename = node.name; 
 	# look for imports
@@ -153,11 +171,11 @@ visit(input, visitor {
 	before node: Expression -> {
 		if (node.kind == ExpressionKind.METHODCALL) {
 		 	if (contains(methods, node.method) and imports) {
-				projectsWithUnsafe[p.name][p.description][p.project_url][filename][nsname][methodname][node.method][revs][pstart][pend][asts] << 1;
+				projectsWithUnsafe[repo][rev][p.name][p.description][p.project_url][filename][nsname][methodname][node.method][revs][pstart][pend][asts] << 1;
 			}
 		}
 		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
-			projectsWithUnsafeLiteral[p.name][p.description][p.project_url][filename][nsname][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
+			projectsWithUnsafeLiteral[repo][rev][p.name][p.description][p.project_url][filename][nsname][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
 		}
 	}
 });

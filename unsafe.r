@@ -47,7 +47,7 @@ if (interactive()) {
 
 path <- file_path_sans_ext(csvfilename)
 csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
-colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
+colnames(csv) <- c('kind', 'repo', 'rev', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
 csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
 csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
 csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");
@@ -76,10 +76,10 @@ printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/
 # usage plot
 
 g.array <- 'Array'
-g.memory <- 'Memory'
+g.memory <- 'Off-Heap Memory'
 g.park <- 'Park'
 g.cas <- 'CAS'
-g.single <- 'Single'
+g.single <- 'Misc'
 g.class <- 'Class'
 g.get <- 'Get'
 g.put <- 'Put'
@@ -89,7 +89,7 @@ methods <- data.frame(
   dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
   c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
             g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
-            g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, 
+            g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.single, g.get, g.get, g.get, g.get, g.get, 
             g.offset, g.memory, g.park, g.memory,
             g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
             g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
@@ -185,4 +185,9 @@ printf("Saving table %s to %s", 'table-projects', p)
 print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|l|r|r|r|Y|Y|'), 
              file=p, floating.environment='table*', table.placement='htb', tabular.environment='tabularx',
              caption.placement='top', include.rownames=FALSE,width="\\textwidth")
+
+
+
+# cluster methods by project
+# get file from boa to match use case to functionality.
 
