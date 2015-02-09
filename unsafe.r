@@ -76,7 +76,7 @@ printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/
 # usage plot
 
 g.array <- 'Array'
-g.memory <- 'Off-Heap Memory'
+g.memory <- 'Off-Heap'
 g.park <- 'Park'
 g.cas <- 'CAS'
 g.single <- 'Misc'
@@ -118,6 +118,15 @@ p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+f
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe methods", y = "# call sites")
 save.plot(p, path, "plot-usage", h=8)
+
+# cluster methods by project
+p <- ggplot(subset(df, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
+  facet_wrap(~id, scales="free_x")+geom_bar(stat="bin")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
+save.plot(p, path, "plot-usage-by-project", h=16)
+
+
 
 # Project table
 #df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
@@ -185,9 +194,3 @@ printf("Saving table %s to %s", 'table-projects', p)
 print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|l|r|r|r|Y|Y|'), 
              file=p, floating.environment='table*', table.placement='htb', tabular.environment='tabularx',
              caption.placement='top', include.rownames=FALSE,width="\\textwidth")
-
-
-
-# cluster methods by project
-# get file from boa to match use case to functionality.
-
