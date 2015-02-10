@@ -177,7 +177,7 @@ df.project$id <- factor(df.project$id, levels=projectLevels);
 
 gs <- list(g1, g2, g3, g4, g5, g6, g7, g8);
 cs <-    c( 4,  3,  2,  5,  3,  2,  1,  5);
-ws <-    c( 6,  6,  6,  6,  6,  6,  6,  6);
+ws <-    c( 6,  6,  6,  6,  6,  6,  6,  8);
 hs <-    c( 4,  8,  4,  3,  3, 10,  4,  4);
 
 p <- ggplot(subset(df.project, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
