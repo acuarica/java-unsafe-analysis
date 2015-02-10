@@ -39,6 +39,8 @@ save.plot <- function(p, d, s, w=12, h=8) {
   null <- dev.off()
 }
 
+csv.so <- read.csv('method-usages-so.csv', strip.white=TRUE, sep=',', header=TRUE);
+
 if (interactive()) {
   csvfilename <- 'build/unsafe.csv'
 } else {
@@ -85,6 +87,8 @@ g.get <- 'Get'
 g.put <- 'Put'
 g.offset <- 'Offset'
 
+g.monitor <- 'Monitor'
+
 methods <- data.frame(
   dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
   c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
@@ -95,6 +99,37 @@ methods <- data.frame(
             g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
 );
 colnames(methods) <- c('method', 'group');
+
+csv.so <- merge(csv.so, methods, by.x = "method", by.y = "method", all.x=TRUE);
+csv.so$group <- as.character(csv.so$group)
+csv.so[csv.so$method=='defineAnonymousClass','group'] <- g.class;
+csv.so[csv.so$method=='getBooleanVolatile','group'] <- g.class;
+csv.so[csv.so$method=='getByteVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getCharVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getDoubleVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getFloatVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getShortVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getUnsafe','group'] <- g.single;
+csv.so[csv.so$method=='monitorEnter','group'] <- g.monitor;
+csv.so[csv.so$method=='monitorExit','group'] <- g.monitor;
+csv.so[csv.so$method=='putBooleanVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putByteVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putCharVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putDoubleVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putFloatVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putShortVolatile','group'] <- g.put;
+csv.so[csv.so$method=='tryMonitorEnter','group'] <- g.monitor;
+
+csv.so <- melt(csv.so, id.vars = c('method', 'group'));
+
+levels(csv.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
+
+p <- ggplot(csv.so, aes(x=method, y=value, fill=variable))+
+  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="identity")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top", legend.title=element_blank())+
+  labs(x="sun.misc.Unsafe methods", y = "# matches")
+save.plot(p, path, "plot-usage-so", h=6)
+
 
 df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
 df <- dcast(df, kind+id+name+asts+revs+formatd+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
