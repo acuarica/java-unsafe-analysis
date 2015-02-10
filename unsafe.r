@@ -103,29 +103,61 @@ df <- df[!duplicated(df),]
 df <- melt(df, id.vars=c('kind', 'id', 'name', 'asts', 'revs', 'formatd', 'nsname', 'clsname', 'method'), variable.name='use')
 df <- subset(df, value>0)
 
+other.text <- 'application'
+
 df$use <- factor(df$use)
-df$package <- as.character('other')
+df$package <- as.character(other.text)
 df[startsWith(df$nsname,'java.io') ,]$package <- 'java.io'
 df[startsWith(df$nsname,'java.lang') ,]$package <- 'java.lang'
 df[startsWith(df$nsname,'java.nio') ,]$package <- 'java.nio'
 df[startsWith(df$nsname,'java.security') ,]$package <- 'java.security'
 df[startsWith(df$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
 df[startsWith(df$nsname,'sun.nio') ,]$package <- 'sun.nio'
+df$package <- factor(df$package)
+df$package <- factor(df$package, levels=c("java.io", "java.lang", "java.nio", 
+                                          "java.security", "java.util.concurrent", "sun.nio", other.text));
 
 df <- merge(df, methods, by.x = "use", by.y = "method")
 
-p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
+p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+
+  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe methods", y = "# call sites")
 save.plot(p, path, "plot-usage", h=8)
 
 # cluster methods by project
-p <- ggplot(subset(df, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
+
+g1 <- c('adtools', 'cegcc', 'cgnu', 'janetdev', 'ps2toolchain', 'takatuka', 'android', 'jikesrvm');
+g2 <- c('caloriecount', 'classreach', 'clipc', 'ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 'timelord', 'vcb', 'xbeedriver', 'beanlib', 'statewalker');
+g3 <- c('osfree', 'snarej'); 
+g4 <- c('aojunit', 'glassbox', 'jon', 'junitrecorder', 'neurogrid');
+g5 <- c('concutest', 'high', 'katta');
+g6 <- c('amino', 'amock', 'archaiosjava', 'essence', 'grinder', 'janux', 'java', 'javapayload', 'jaxlib', 'l2next');
+g7 <- c('jadoth');
+g8 <- c('x10', 'jnode', 'ikvm');
+
+df.project <- df;
+projectLevels <- c(g1, g2, g3, g4, g5, g6, g7, g8);
+df.project$id <- factor(df.project$id, levels=projectLevels);
+
+gs <- list(g1, g2, g3, g4, g5, g6, g7, g8);
+cs <-    c( 4,  3,  2,  5,  3,  2,  1,  5);
+ws <-    c( 6,  6,  6,  6,  6,  6,  6,  6);
+hs <-    c( 4,  8,  4,  3,  3, 10,  4,  4);
+
+p <- ggplot(subset(df.project, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
   facet_wrap(~id, scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
 save.plot(p, path, "plot-usage-by-project", h=16)
 
+for (i in 1:length(gs) ) {
+p <- ggplot(subset(df.project, kind=='projectsWithUnsafe' & id %in% gs[[i]]), aes(x=group, fill=package))+
+  facet_wrap(~id, ncol=cs[i], scales="free_x")+geom_bar(stat="bin")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
+save.plot(p, path, sprintf("plot-usage-by-project%s", i), w=ws[i], h=hs[i])
+}
 
 
 # Project table
