@@ -39,7 +39,7 @@ save.plot <- function(p, d, s, w=12, h=8) {
   null <- dev.off()
 }
 
-csv.so <- read.csv('method-usages-so.csv', strip.white=TRUE, sep=',', header=TRUE);
+csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
 
 if (interactive()) {
   csvfilename <- 'build/unsafe.csv'
