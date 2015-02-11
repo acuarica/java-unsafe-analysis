@@ -142,31 +142,32 @@ save.plot(p, path, "plot-usage", h=6)
 # cluster methods by project
 
 g1 <- c('adtools', 'cegcc', 'cgnu', 'janetdev', 'ps2toolchain', 'takatuka', 'android', 'jikesrvm');
-g2 <- c('caloriecount', 'classreach', 'clipc', 'ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 'timelord', 'vcb', 'xbeedriver', 'beanlib', 'statewalker');
+g2 <- c('caloriecount', 'classreach', 'clipc', 'ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 'timelord', 'vcb', 'xbeedriver', 'statewalker', 'beanlib');
 g3 <- c('osfree', 'snarej'); 
 g4 <- c('aojunit', 'glassbox', 'jon', 'junitrecorder', 'neurogrid');
 g5 <- c('concutest', 'high', 'katta');
 g6 <- c('amino', 'amock', 'archaiosjava', 'essence', 'grinder', 'janux', 'java', 'javapayload', 'jaxlib', 'l2next');
 g7 <- c('jadoth');
 g8 <- c('x10', 'jnode', 'ikvm');
-
+g9 <- c('ucl', 'lockss', 'jigcell', 'javapathfinder', 'hlv');
 df.project <- df;
-projectLevels <- c(g1, g2, g3, g4, g5, g6, g7, g8);
-df.project$id <- factor(df.project$id, levels=projectLevels);
+projectLevels <- c(g1, g2, g3, g4, g5, g6, g7, g8, g9);
+df.project$id <- factor(df.project$id, levels=c(projectLevels));
 
-gs <- list(g1, g2, g3, g4, g5, g6, g7, g8);
-cs <-    c( 4,  3,  2,  5,  3,  2,  1,  5);
-ws <-    c( 6,  6,  6,  6,  6,  6,  6,  8);
-hs <-    c( 4,  8,  4,  3,  3, 10,  4,  4);
+gs <- list(g1, g2, g3, g4, g5, g6, g7, g8, g9);
+cs <-    c( 4,  3,  2,  5,  3,  2,  1,  5,  5);
+ws <-    c( 6,  6,  6,  6,  6,  6,  6,  8,  4);
+hs <-    c( 4,  8,  4,  3,  3, 10,  4,  4,  4);
 
-p <- ggplot(subset(df.project, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
+p <- ggplot(subset(df.project, kind=='projectsWithUnsafe'|kind=='projectsWithUnsafeLiteral'), 
+            aes(x=group, fill=package))+
   facet_wrap(~id, scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
 save.plot(p, path, "plot-usage-by-project", h=16)
 
 for (i in 1:length(gs) ) {
-p <- ggplot(subset(df.project, kind=='projectsWithUnsafe' & id %in% gs[[i]]), aes(x=group, fill=package))+
+p <- ggplot(subset(df.project, (kind=='projectsWithUnsafe'|kind=='projectsWithUnsafeLiteral') & id %in% gs[[i]]), aes(x=group, fill=package))+
   facet_wrap(~id, ncol=cs[i], scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
@@ -185,7 +186,7 @@ df.table.plot <- df.table;
 df.table.plot$astsk <- NULL;
 df.table.plot$formatd <- NULL;
 df.table.plot$asts <- df.table.plot$asts / 1000;
-colnames(df.table.plot) <- c('id', 'name', '# Revs', '# AST Nodes', 'Lifetime', '# smu Literal', '# call sites');
+colnames(df.table.plot) <- c('id', 'name', '# Revs', '# AST Nodes', 'Lifetime', '# call sites', '# smu Literal');
 
 p <- ggplot(melt(df.table.plot, id.vars=c('id', 'name')), aes(x=id, y=value, fill=id))+
   facet_grid(variable~., scales='free')+geom_bar(stat="identity")+
