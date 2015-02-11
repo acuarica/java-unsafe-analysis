@@ -6,141 +6,114 @@ library(scales)
 library(xtable)
 suppressMessages(library(gdata))
 
-printf <- function(format, ...) {
-  print(sprintf(format, ...));
-}
+printf <- function(format, ...) print(sprintf(format, ...));
 
-formatd <- function(days) {
-  days <- as.numeric(days);
-  y <- trunc(days/365);
-  m <- trunc((days %% 365) / 30);
-  d <- trunc((days %% 365) %% 30);
-  
-  if (d > 15) m <- m + 1;
-  if (m > 6) y <- y + 1;
-
-  if (y == 0) { 
-    if (m == 0) {
-      if (d == 0 || d == 1) return ('1 day');
-      if (d >= 2) return (sprintf('%s days', d));
-    }
-    if (m == 1) return ('1 month');
-    if (m >= 2) return (sprintf('%s months', m));
-  }
-  if (y == 1) return ('1 year');
-  if (y >= 2) return (sprintf('%s years', y));
-}
-
-save.plot <- function(p, d, s, w=12, h=8) {
+save.plot <- function(plot, d, s, w=12, h=8) {
   path <- sprintf('%s-%s.pdf', d, s)
   printf("Saving plot %s to %s", s, path)
   pdf(file=path, paper='special', width=w, height=h, pointsize=12)
-  print(p)
+  print(plot)
   null <- dev.off()
 }
 
-csv.groups <- read.csv('unsafe-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
-#csv.groups[csv.groups$gid=='putordered','group'] <- 'Put\nOrdered';
-csv.methods <- read.csv('unsafe-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
-df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
-df.methods$gid <- NULL;
-
-if (interactive()) {
-  csvfilename <- 'build/unsafe.csv'
-} else {
-  csvfilename <- commandArgs(trailingOnly = TRUE)[1]
+save.csv <- function(csv, prefix, name) {
+  file <- sprintf('%s-%s.csv', prefix, name);
+  printf("Saving csv %s to %s", name, file);
+  write.csv(csv, file=file);
 }
 
+df.methods <- (function() {
+  csv.groups <- read.csv('unsafe-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
+  csv.methods <- read.csv('unsafe-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
+  df <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
+  df$gid <- NULL;
+  df;
+})();
+
+csvfilename <- if (interactive()) 'build/unsafe.csv' else commandArgs(trailingOnly = TRUE)[1];
 path <- file_path_sans_ext(csvfilename)
-csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
-colnames(csv) <- c('kind', 'repo', 'rev', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
-csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
-csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
-csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");
-csv$formatd <- csv$lifetime;
-csv$asts <- paste(trunc(csv$asts / 1000), 'k');
 
-for (i in 3:nrow(csv) ) {
-  csv$formatd[i] <- formatd(csv$formatd[i]);
-}
+csv.boa <- (function() {
+  formatd <- function(days) {
+    days <- as.numeric(days);
+    y <- trunc(days/365);
+    m <- trunc((days %% 365) / 30);
+    d <- trunc((days %% 365) %% 30);
+    
+    if (d > 15) m <- m + 1;
+    if (m > 6) y <- y + 1;
+    
+    if (y == 0) { 
+      if (m == 0) {
+        if (d == 0 || d == 1) return ('1 day');
+        if (d >= 2) return (sprintf('%s days', d));
+      }
+      if (m == 1) return ('1 month');
+      if (m >= 2) return (sprintf('%s months', m));
+    }
+    if (y == 1) return ('1 year');
+    if (y >= 2) return (sprintf('%s years', y));
+  }
+  
+  csv.boa <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
+  colnames(csv.boa) <- c('kind', 'repo', 'rev', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
+  csv.boa$start <- as.POSIXct(csv.boa$start/1000000, origin="1970-01-01");
+  csv.boa$end <- as.POSIXct(csv.boa$end/1000000, origin="1970-01-01");
+  csv.boa$lifetime <- as.numeric(csv.boa$end-csv.boa$start, units = "days");
+  csv.boa$formatd <- csv.boa$lifetime;
+  csv.boa$astsk <- paste(trunc(csv.boa$asts / 1000), 'k');
+  
+  for (i in 3:nrow(csv.boa) ) {
+    csv.boa$formatd[i] <- formatd(csv.boa$formatd[i]);
+  }
+  
+  csv.boa$description <- NULL
+  csv.boa$url <- NULL
+  csv.boa$start <- NULL
+  csv.boa$end <- NULL
+  #csv.boa$lifetime <- NULL
+  
+  csv.projects <- read.csv('unsafe-projects.csv', strip.white=TRUE, sep=',', header=TRUE);
+  csv.boa$name <- NULL;
+  csv.boa <- merge(csv.boa, csv.projects, by.x='id', by.y='id', all.x=TRUE);
+  csv.boa;
+})();
 
-csv$description <- NULL
-csv$url <- NULL
-csv$start <- NULL
-csv$end <- NULL
-csv$lifetime <- NULL
+df.summary <- (function() {
+  counts.total <- subset(csv.boa, kind=='countsTotal')[1,'value']
+  counts.java <- subset(csv.boa, kind=='countsJava')[1,'value']
+  counts.unsafe <- nrow(dcast(subset(csv.boa, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), id~use, value.var='use', fun.aggregate=length))
+  
+  label <- c('nprojects', 'njavaprojects', 'nunsafeprojects');
+  total <- c(counts.total, counts.java, counts.unsafe);
+  perc <- c(100, round((counts.java/counts.total)*100, 2), round((counts.unsafe/counts.java)*100, 2))
+  data.frame(label, total, perc);
+})();
 
-# Print summary
-countsTotal <- subset(csv, kind=='countsTotal')[1,'value']
-countsJava <- subset(csv, kind=='countsJava')[1,'value']
-countsUnsafe <- nrow(dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), id~use, value.var='use', fun.aggregate=length))
-
-printf("Total number of projects: %d", countsTotal);
-printf("Total number of Java projects: %d (%s%%)", countsJava, round((countsJava/countsTotal)*100, 2) );
-printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/countsJava)*100, 2) );
+save.csv(df.summary, path, 'summary');  
 
 # usage plot
 
-#g.array <- 'Array'
-#g.memory <- 'Off-Heap'
-#g.park <- 'Park'
-#g.cas <- 'CAS'
-#g.single <- 'Misc'
-#g.class <- 'Class'
-#g.get <- 'Get'
-#g.put <- 'Put'
-#g.offset <- 'Offset'
-#g.monitor <- 'Monitor'
-#methods <- data.frame(
- # dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
-  #c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
-   #         g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
-    #        g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.single, g.get, g.get, g.get, g.get, g.get, 
-     #       g.offset, g.memory, g.park, g.memory,
-      #      g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
-       #     g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
-#);
-#colnames(methods) <- c('method', 'group');
+(function() {
+  csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
+  df.so <- merge(csv.so, df.methods, by.x="method", by.y="method", all.x=TRUE);
+  df.so <- melt(df.so, id.vars = c('method', 'group'));
+  levels(df.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
+  
+  p <- ggplot(df.so, aes(x=method, y=value, fill=variable))+
+    facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="identity")+
+    theme(axis.text.x=element_text(angle=45, hjust=1), 
+          legend.box="horizontal", legend.position="top", legend.title=element_blank(),
+          strip.text.x=element_text(angle=45))+
+    labs(x="sun.misc.Unsafe methods", y = "# matches")
+  save.plot(p, path, "plot-usage-so", h=6)
+})();
 
-#csv.so <- merge(csv.so, methods, by.x = "method", by.y = "method", all.x=TRUE);
-#csv.so$group <- as.character(csv.so$group)
-#csv.so[csv.so$method=='defineAnonymousClass','group'] <- g.class;
-#csv.so[csv.so$method=='getBooleanVolatile','group'] <- g.class;
-#csv.so[csv.so$method=='getByteVolatile','group'] <- g.get;
-#csv.so[csv.so$method=='getCharVolatile','group'] <- g.get;
-#csv.so[csv.so$method=='getDoubleVolatile','group'] <- g.get;
-#csv.so[csv.so$method=='getFloatVolatile','group'] <- g.get;
-#csv.so[csv.so$method=='getShortVolatile','group'] <- g.get;
-#csv.so[csv.so$method=='getUnsafe','group'] <- g.single;
-#csv.so[csv.so$method=='monitorEnter','group'] <- g.monitor;
-#csv.so[csv.so$method=='monitorExit','group'] <- g.monitor;
-#csv.so[csv.so$method=='putBooleanVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='putByteVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='putCharVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='putDoubleVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='putFloatVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='putShortVolatile','group'] <- g.put;
-#csv.so[csv.so$method=='tryMonitorEnter','group'] <- g.monitor;
-
-csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
-df.so <- merge(csv.so, df.methods, by.x="method", by.y="method", all.x=TRUE);
-df.so <- melt(df.so, id.vars = c('method', 'group'));
-levels(df.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
-
-p <- ggplot(df.so, aes(x=method, y=value, fill=variable))+
-  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="identity")+
-  theme(axis.text.x=element_text(angle=45, hjust=1), 
-        legend.box="horizontal", legend.position="top", legend.title=element_blank(),
-        strip.text.x=element_text(angle=45))+
-  labs(x="sun.misc.Unsafe methods", y = "# matches")
-save.plot(p, path, "plot-usage-so", h=6)
-
-
-df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
-df <- dcast(df, kind+id+name+asts+revs+formatd+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
+df <- subset(csv.boa, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
+df <- dcast(df, kind+id+name+asts+revs+formatd+file+nsname+clsname+method+astsk+lifetime~use, value.var='use', fun.aggregate=length, fill=-1)
 df$file <- NULL
 df <- df[!duplicated(df),]
-df <- melt(df, id.vars=c('kind', 'id', 'name', 'asts', 'revs', 'formatd', 'nsname', 'clsname', 'method'), variable.name='use')
+df <- melt(df, id.vars=c('kind', 'id', 'name', 'asts', 'revs', 'formatd', 'nsname', 'clsname', 'method', 'astsk', 'lifetime'), variable.name='use')
 df <- subset(df, value>0)
 
 other.text <- 'application'
@@ -203,67 +176,41 @@ save.plot(p, path, sprintf("plot-usage-by-project%s", i), w=ws[i], h=hs[i])
 
 # Project table
 #df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
-df[df$kind=='projectsWithUnsafe','use'] <- 'allocateMemory';
-df <- dcast(df, id+name+asts+revs+formatd~use, value.var='use', fun.aggregate=length)
-df$n <- row.names(df)
-df <- df[c(8,1,2,3,4,5,6,7)]
 
-df$name <- as.character(df$name)
+df.table <- df;
+df.table[df.table$kind=='projectsWithUnsafe','use'] <- 'allocateMemory';
+df.table <- dcast(df.table, id+name+astsk+revs+formatd+asts+lifetime~use, value.var='use', fun.aggregate=length)
 
-df[df$id=='adtools','name'] <- 'Amiga Development Tools (adtools)'
-df[df$id=='amino','name'] <- 'Concurrent Building Block'
-df[df$id=='amock','name'] <- 'Java Mock library for static method'
-df[df$id=='android','name'] <- 'Android on PXA270'
-df[df$id=='aojunit','name'] <- 'An aspect-oriented extension to JUnit'
-df[df$id=='archaiosjava','name'] <- 'Scalable and fast libraries for Java'
-df[df$id=='beanlib','name'] <- 'Java Bean Library'
-df[df$id=='caloriecount','name'] <- 'Track what you eat'
-df[df$id=='cegcc','name'] <- 'CeGCC - Cross development for Pocket PC'
-df[df$id=='cgnu','name'] <- 'CGNU (Clean GNU)'
-df[df$id=='classreach','name'] <- 'Identifies unused Java classes and methods'
-df[df$id=='clipc','name'] <- 'Library for IPC'
-df[df$id=='concutest','name'] <- 'Tools to test concurrent Java programs'
-df[df$id=='ec','name'] <- 'ec-gin Europe China Grid InterNetworking'
-df[df$id=='essence','name'] <- 'Essence Java Framework'
-df[df$id=='essentialbudget','name'] <- 'Essential Budget'
-df[df$id=='glassbox','name'] <- 'Troubleshooting and monitoring agent'
-df[df$id=='grinder','name'] <- 'Load testing framework'
-df[df$id=='high','name'] <- 'Highly Scalable Java'
-df[df$id=='hlv','name'] <- 'Collection of high level view plugins for eclipse'
-df[df$id=='ikvm','name'] <- 'JVM for .NET Framework and Mono'
-df[df$id=='jadoth','name'] <- 'abstraction utils and frameworks'
-df[df$id=='janetdev','name'] <- 'Ja.NET - Java Development Tools for .NET'
-df[df$id=='janux','name'] <- 'Java directly on the Linux Kernel'
-df[df$id=='java','name'] <- 'Lightweight Java Game Library'
-df[df$id=='javapathfinder','name'] <- 'Verifies Java bytecode programs'
-df[df$id=='javapayload','name'] <- 'Payloads to be used for post-exploitation'
-df[df$id=='jaxlib','name'] <- 'Platform independent Java library'
-df[df$id=='jigcell','name'] <- 'Computational biology problem solving'
-df[df$id=='jikesrvm','name'] <- 'The Jikes Research Virtual Machine (RVM)'
-df[df$id=='jnode','name'] <- 'JNode: new Java Operating System'
-df[df$id=='jon','name'] <- 'Java Object Notation'
-df[df$id=='jprovocateur','name'] <- 'RAD for Ajax applications in Java'
-df[df$id=='junitrecorder','name'] <- 'Record test cases'
-df[df$id=='katta','name'] <- 'Lucene in the cloud'
-df[df$id=='l2next','name'] <- 'L2 Private Server code'
-df[df$id=='lockss','name'] <- 'Lots of Copies Keep Stuff Safe'
-df[df$id=='neurogrid','name'] <- 'P2P Bookmark Organiser'
-df[df$id=='osfree','name'] <- 'osFree operating system'
-df[df$id=='ps2toolchain','name'] <- "Toolchain for the Playstation 2's"
-df[df$id=='simulaeco','name'] <- 'Semester project'
-df[df$id=='snarej','name'] <- "Snare's Not A Risc OS Emulator in Java"
-df[df$id=='statewalker','name'] <- 'Graph traversing library'
-df[df$id=='takatuka','name'] <- 'TakaTuka Java Virtual Machine'
-df[df$id=='timelord','name'] <- 'A tool for estimating and tracking time'
-df[df$id=='ucl','name'] <- 'A final year project by UCL students'
-df[df$id=='vcb','name'] <- 'Component Based Development tool'
-df[df$id=='x10','name'] <- 'Experimental language for DARPA/HPCS'
-df[df$id=='xbeedriver','name'] <- 'Driver for the ZigBee network'
+df.table.plot <- df.table;
+df.table.plot$astsk <- NULL;
+df.table.plot$formatd <- NULL;
+df.table.plot$asts <- df.table.plot$asts / 1000;
+colnames(df.table.plot) <- c('id', 'name', '# Revs', '# AST Nodes', 'Lifetime', '# smu Literal', '# call sites');
 
-colnames(df) <- c('#', 'Name', 'Description', '# AST Nodes', '# Revisions', 'Lifetime', '# smU Call Sites', '# smU String Literal')
+p <- ggplot(melt(df.table.plot, id.vars=c('id', 'name')), aes(x=id, y=value, fill=id))+
+  facet_grid(variable~., scales='free')+geom_bar(stat="identity")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), 
+        legend.box="horizontal", legend.position="none"#,
+        #strip.text.x=element_text(angle=45)
+        )+
+  labs(x="Projects", y = "")
+save.plot(p, path, "plot-projects-summary")
+
+
+df.table <- df.table[with(df.table, order(id)), ]
+df.table$asts <- NULL;
+df.table$lifetime <- NULL;
+
+#df.table$n <- row.names(df.table)
+#df.table <- df.table[c(8,1,2,3,4,5,6,7)]
+
+#df.table$name <- as.character(df.table$name)
+#colnames(df.table) <- c('#', 'Name', 'Description', '# AST Nodes', '# Revisions', 'Lifetime', '# smU Call Sites', '# smU String Literal')
+colnames(df.table) <- c('Name', 'Description', '# AST Nodes', '# Revisions', 'Lifetime', '# smU Call Sites', '# smU String Literal')
 
 p <- sprintf('%s-%s.tex', path, 'table-projects')
 printf("Saving table %s to %s", 'table-projects', p)
-print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|l|r|r|r|Y|Y|'), 
+print(xtable(df.table, caption='Java Projects using \\smu{}', label='table:projects', align='r|l|l|r|r|r|Y|Y|'), 
              file=p, floating.environment='table*', table.placement='htb', tabular.environment='tabularx',
              caption.placement='top', include.rownames=FALSE,width="\\textwidth")
+
