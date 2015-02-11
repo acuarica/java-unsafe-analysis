@@ -39,7 +39,11 @@ save.plot <- function(p, d, s, w=12, h=8) {
   null <- dev.off()
 }
 
-csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
+csv.groups <- read.csv('unsafe-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
+#csv.groups[csv.groups$gid=='putordered','group'] <- 'Put\nOrdered';
+csv.methods <- read.csv('unsafe-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
+df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
+df.methods$gid <- NULL;
 
 if (interactive()) {
   csvfilename <- 'build/unsafe.csv'
@@ -77,56 +81,57 @@ printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/
 
 # usage plot
 
-g.array <- 'Array'
-g.memory <- 'Off-Heap'
-g.park <- 'Park'
-g.cas <- 'CAS'
-g.single <- 'Misc'
-g.class <- 'Class'
-g.get <- 'Get'
-g.put <- 'Put'
-g.offset <- 'Offset'
+#g.array <- 'Array'
+#g.memory <- 'Off-Heap'
+#g.park <- 'Park'
+#g.cas <- 'CAS'
+#g.single <- 'Misc'
+#g.class <- 'Class'
+#g.get <- 'Get'
+#g.put <- 'Put'
+#g.offset <- 'Offset'
+#g.monitor <- 'Monitor'
+#methods <- data.frame(
+ # dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
+  #c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
+   #         g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
+    #        g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.single, g.get, g.get, g.get, g.get, g.get, 
+     #       g.offset, g.memory, g.park, g.memory,
+      #      g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
+       #     g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
+#);
+#colnames(methods) <- c('method', 'group');
 
-g.monitor <- 'Monitor'
+#csv.so <- merge(csv.so, methods, by.x = "method", by.y = "method", all.x=TRUE);
+#csv.so$group <- as.character(csv.so$group)
+#csv.so[csv.so$method=='defineAnonymousClass','group'] <- g.class;
+#csv.so[csv.so$method=='getBooleanVolatile','group'] <- g.class;
+#csv.so[csv.so$method=='getByteVolatile','group'] <- g.get;
+#csv.so[csv.so$method=='getCharVolatile','group'] <- g.get;
+#csv.so[csv.so$method=='getDoubleVolatile','group'] <- g.get;
+#csv.so[csv.so$method=='getFloatVolatile','group'] <- g.get;
+#csv.so[csv.so$method=='getShortVolatile','group'] <- g.get;
+#csv.so[csv.so$method=='getUnsafe','group'] <- g.single;
+#csv.so[csv.so$method=='monitorEnter','group'] <- g.monitor;
+#csv.so[csv.so$method=='monitorExit','group'] <- g.monitor;
+#csv.so[csv.so$method=='putBooleanVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='putByteVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='putCharVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='putDoubleVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='putFloatVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='putShortVolatile','group'] <- g.put;
+#csv.so[csv.so$method=='tryMonitorEnter','group'] <- g.monitor;
 
-methods <- data.frame(
-  dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
-  c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
-            g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
-            g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.single, g.get, g.get, g.get, g.get, g.get, 
-            g.offset, g.memory, g.park, g.memory,
-            g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
-            g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
-);
-colnames(methods) <- c('method', 'group');
+csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
+df.so <- merge(csv.so, df.methods, by.x="method", by.y="method", all.x=TRUE);
+df.so <- melt(df.so, id.vars = c('method', 'group'));
+levels(df.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
 
-csv.so <- merge(csv.so, methods, by.x = "method", by.y = "method", all.x=TRUE);
-csv.so$group <- as.character(csv.so$group)
-csv.so[csv.so$method=='defineAnonymousClass','group'] <- g.class;
-csv.so[csv.so$method=='getBooleanVolatile','group'] <- g.class;
-csv.so[csv.so$method=='getByteVolatile','group'] <- g.get;
-csv.so[csv.so$method=='getCharVolatile','group'] <- g.get;
-csv.so[csv.so$method=='getDoubleVolatile','group'] <- g.get;
-csv.so[csv.so$method=='getFloatVolatile','group'] <- g.get;
-csv.so[csv.so$method=='getShortVolatile','group'] <- g.get;
-csv.so[csv.so$method=='getUnsafe','group'] <- g.single;
-csv.so[csv.so$method=='monitorEnter','group'] <- g.monitor;
-csv.so[csv.so$method=='monitorExit','group'] <- g.monitor;
-csv.so[csv.so$method=='putBooleanVolatile','group'] <- g.put;
-csv.so[csv.so$method=='putByteVolatile','group'] <- g.put;
-csv.so[csv.so$method=='putCharVolatile','group'] <- g.put;
-csv.so[csv.so$method=='putDoubleVolatile','group'] <- g.put;
-csv.so[csv.so$method=='putFloatVolatile','group'] <- g.put;
-csv.so[csv.so$method=='putShortVolatile','group'] <- g.put;
-csv.so[csv.so$method=='tryMonitorEnter','group'] <- g.monitor;
-
-csv.so <- melt(csv.so, id.vars = c('method', 'group'));
-
-levels(csv.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
-
-p <- ggplot(csv.so, aes(x=method, y=value, fill=variable))+
+p <- ggplot(df.so, aes(x=method, y=value, fill=variable))+
   facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="identity")+
-  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top", legend.title=element_blank())+
+  theme(axis.text.x=element_text(angle=45, hjust=1), 
+        legend.box="horizontal", legend.position="top", legend.title=element_blank(),
+        strip.text.x=element_text(angle=45))+
   labs(x="sun.misc.Unsafe methods", y = "# matches")
 save.plot(p, path, "plot-usage-so", h=6)
 
@@ -152,13 +157,14 @@ df$package <- factor(df$package)
 df$package <- factor(df$package, levels=c("java.io", "java.lang", "java.nio", 
                                           "java.security", "java.util.concurrent", "sun.nio", other.text));
 
-df <- merge(df, methods, by.x = "use", by.y = "method")
+df <- merge(df, df.methods, by.x = "use", by.y = "method");
 
 p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+
   facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
-  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top",
+        strip.text.x=element_text(angle=45))+
   labs(x="sun.misc.Unsafe methods", y = "# call sites")
-save.plot(p, path, "plot-usage", h=8)
+save.plot(p, path, "plot-usage", h=6)
 
 # cluster methods by project
 
