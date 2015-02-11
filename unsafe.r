@@ -39,6 +39,8 @@ save.plot <- function(p, d, s, w=12, h=8) {
   null <- dev.off()
 }
 
+csv.so <- read.csv('method-usages-so.csv', strip.white=TRUE, sep=',', header=TRUE);
+
 if (interactive()) {
   csvfilename <- 'build/unsafe.csv'
 } else {
@@ -47,7 +49,7 @@ if (interactive()) {
 
 path <- file_path_sans_ext(csvfilename)
 csv <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
-colnames(csv) <- c('kind', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
+colnames(csv) <- c('kind', 'repo', 'rev', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
 csv$start <- as.POSIXct(csv$start/1000000, origin="1970-01-01");
 csv$end <- as.POSIXct(csv$end/1000000, origin="1970-01-01");
 csv$lifetime <- as.numeric(csv$end-csv$start, units = "days");
@@ -76,25 +78,58 @@ printf("Total number of projects: %d (%s%%)", countsUnsafe, round((countsUnsafe/
 # usage plot
 
 g.array <- 'Array'
-g.memory <- 'Memory'
+g.memory <- 'Off-Heap'
 g.park <- 'Park'
 g.cas <- 'CAS'
-g.single <- 'Single'
+g.single <- 'Misc'
 g.class <- 'Class'
 g.get <- 'Get'
 g.put <- 'Put'
 g.offset <- 'Offset'
 
+g.monitor <- 'Monitor'
+
 methods <- data.frame(
   dcast(subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), use~., value.var='use', fun.aggregate=length)$use,
   c(g.memory, g.single, g.memory, g.array, g.array, g.cas, g.cas, g.cas,
             g.memory, g.class, g.class, g.offset, g.memory, g.memory, 
-            g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.get, 
+            g.get, g.get, g.get, g.get, g.get, g.get, g.get, g.single, g.get, g.get, g.get, g.get, g.get, 
             g.offset, g.memory, g.park, g.memory,
             g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, g.put, 
             g.memory, g.memory, g.offset, g.offset, 'Literal', g.single, g.park)
 );
 colnames(methods) <- c('method', 'group');
+
+csv.so <- merge(csv.so, methods, by.x = "method", by.y = "method", all.x=TRUE);
+csv.so$group <- as.character(csv.so$group)
+csv.so[csv.so$method=='defineAnonymousClass','group'] <- g.class;
+csv.so[csv.so$method=='getBooleanVolatile','group'] <- g.class;
+csv.so[csv.so$method=='getByteVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getCharVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getDoubleVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getFloatVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getShortVolatile','group'] <- g.get;
+csv.so[csv.so$method=='getUnsafe','group'] <- g.single;
+csv.so[csv.so$method=='monitorEnter','group'] <- g.monitor;
+csv.so[csv.so$method=='monitorExit','group'] <- g.monitor;
+csv.so[csv.so$method=='putBooleanVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putByteVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putCharVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putDoubleVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putFloatVolatile','group'] <- g.put;
+csv.so[csv.so$method=='putShortVolatile','group'] <- g.put;
+csv.so[csv.so$method=='tryMonitorEnter','group'] <- g.monitor;
+
+csv.so <- melt(csv.so, id.vars = c('method', 'group'));
+
+levels(csv.so$variable) <- c('Usages in Questions only ', 'Usage in Answers only', 'Usages in both');
+
+p <- ggplot(csv.so, aes(x=method, y=value, fill=variable))+
+  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="identity")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top", legend.title=element_blank())+
+  labs(x="sun.misc.Unsafe methods", y = "# matches")
+save.plot(p, path, "plot-usage-so", h=6)
+
 
 df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
 df <- dcast(df, kind+id+name+asts+revs+formatd+file+nsname+clsname+method~use, value.var='use', fun.aggregate=length, fill=-1)
@@ -103,21 +138,62 @@ df <- df[!duplicated(df),]
 df <- melt(df, id.vars=c('kind', 'id', 'name', 'asts', 'revs', 'formatd', 'nsname', 'clsname', 'method'), variable.name='use')
 df <- subset(df, value>0)
 
+other.text <- 'application'
+
 df$use <- factor(df$use)
-df$package <- as.character('other')
+df$package <- as.character(other.text)
 df[startsWith(df$nsname,'java.io') ,]$package <- 'java.io'
 df[startsWith(df$nsname,'java.lang') ,]$package <- 'java.lang'
 df[startsWith(df$nsname,'java.nio') ,]$package <- 'java.nio'
 df[startsWith(df$nsname,'java.security') ,]$package <- 'java.security'
 df[startsWith(df$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
 df[startsWith(df$nsname,'sun.nio') ,]$package <- 'sun.nio'
+df$package <- factor(df$package)
+df$package <- factor(df$package, levels=c("java.io", "java.lang", "java.nio", 
+                                          "java.security", "java.util.concurrent", "sun.nio", other.text));
 
 df <- merge(df, methods, by.x = "use", by.y = "method")
 
-p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
+p <- ggplot(subset(df, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+
+  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe methods", y = "# call sites")
 save.plot(p, path, "plot-usage", h=8)
+
+# cluster methods by project
+
+g1 <- c('adtools', 'cegcc', 'cgnu', 'janetdev', 'ps2toolchain', 'takatuka', 'android', 'jikesrvm');
+g2 <- c('caloriecount', 'classreach', 'clipc', 'ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 'timelord', 'vcb', 'xbeedriver', 'beanlib', 'statewalker');
+g3 <- c('osfree', 'snarej'); 
+g4 <- c('aojunit', 'glassbox', 'jon', 'junitrecorder', 'neurogrid');
+g5 <- c('concutest', 'high', 'katta');
+g6 <- c('amino', 'amock', 'archaiosjava', 'essence', 'grinder', 'janux', 'java', 'javapayload', 'jaxlib', 'l2next');
+g7 <- c('jadoth');
+g8 <- c('x10', 'jnode', 'ikvm');
+
+df.project <- df;
+projectLevels <- c(g1, g2, g3, g4, g5, g6, g7, g8);
+df.project$id <- factor(df.project$id, levels=projectLevels);
+
+gs <- list(g1, g2, g3, g4, g5, g6, g7, g8);
+cs <-    c( 4,  3,  2,  5,  3,  2,  1,  5);
+ws <-    c( 6,  6,  6,  6,  6,  6,  6,  8);
+hs <-    c( 4,  8,  4,  3,  3, 10,  4,  4);
+
+p <- ggplot(subset(df.project, kind=='projectsWithUnsafe'), aes(x=group, fill=package))+
+  facet_wrap(~id, scales="free_x")+geom_bar(stat="bin")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
+save.plot(p, path, "plot-usage-by-project", h=16)
+
+for (i in 1:length(gs) ) {
+p <- ggplot(subset(df.project, kind=='projectsWithUnsafe' & id %in% gs[[i]]), aes(x=group, fill=package))+
+  facet_wrap(~id, ncol=cs[i], scales="free_x")+geom_bar(stat="bin")+
+  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top")+
+  labs(x="sun.misc.Unsafe functional groups", y = "# call sites")
+save.plot(p, path, sprintf("plot-usage-by-project%s", i), w=ws[i], h=hs[i])
+}
+
 
 # Project table
 #df <- subset(csv, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
@@ -185,4 +261,3 @@ printf("Saving table %s to %s", 'table-projects', p)
 print(xtable(df, caption='Java Projects using \\smu{}', label='table:projects', align='l|r|l|l|r|r|r|Y|Y|'), 
              file=p, floating.environment='table*', table.placement='htb', tabular.environment='tabularx',
              caption.placement='top', include.rownames=FALSE,width="\\textwidth")
-

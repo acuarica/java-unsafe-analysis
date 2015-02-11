@@ -4,8 +4,8 @@ PYTHON=python
 R=r
 
 BUILD=build
-BOACLIENT=../boa-client/lib/boa-client.jar
-BOAAPI=../boa-client/lib/boa-client-0.1.0.jar
+BOACLIENT=boa-client/lib/boa-client.jar
+BOAAPI=boa-client/lib/boa-client-0.1.0.jar
 CLASSNAME=ch.usi.inf.sape.boaclient.Main
 
 BOA=unsafe.boa
