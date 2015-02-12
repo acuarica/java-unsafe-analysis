@@ -11,7 +11,7 @@ CLASSNAME=ch.usi.inf.sape.boaclient.Main
 BOA=unsafe.boa
 OUT=$(BOA:%.boa=$(BUILD)/%.out)
 CSV=$(OUT:%.out=%.csv)
-PDF=$(CSV:%.csv=%-plot-usage.pdf)
+PDF=$(CSV:%.csv=%-plot-usage-boa.pdf)
 
 .SECONDARY:
 
@@ -20,7 +20,7 @@ pdf: $(PDF)
 csv: $(CSV)
 out: $(OUT)
 
-%-plot-usage.pdf: %.csv unsafe-groups.csv unsafe-methods.csv unsafe.r
+%-plot-usage-boa.pdf: %.csv unsafe-groups.csv unsafe-methods.csv unsafe-projects.csv unsafe.r
 	$(R) --slave --vanilla --file=unsafe.r --args $<
 
 %.csv: %.out unsafe.py
