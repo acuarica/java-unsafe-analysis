@@ -20,7 +20,7 @@ pdf: $(PDF)
 csv: $(CSV)
 out: $(OUT)
 
-%-plot-usage.pdf: %.csv unsafe.r
+%-plot-usage.pdf: %.csv unsafe-groups.csv unsafe-methods.csv unsafe.r
 	$(R) --slave --vanilla --file=unsafe.r --args $<
 
 %.csv: %.out unsafe.py
