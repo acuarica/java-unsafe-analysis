@@ -86,7 +86,7 @@ save.plot(ggplot(df.so, aes(x=method, y=value, fill=variable))+
             theme(axis.text.x=element_text(angle=45, hjust=1), 
                   legend.box="horizontal", legend.position="top", legend.title=element_blank(),
                   strip.text.x=element_text(angle=90))+
-            labs(x="sun.misc.Unsafe methods", y = "# matches"), path, "plot-usage-so", h=6);
+            labs(x="sun.misc.Unsafe methods", y = "# matches"), path, "plot-usage-so", h=5);
 
 df.usage <- subset(df.boa, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral');
 df.usage <- dcast(df.usage, kind+id+name+asts+revs+formatd+file+nsname+clsname+method+astsk+lifetime+package~use, value.var='use', fun.aggregate=length, fill=-1)
@@ -98,11 +98,16 @@ df.usage <- merge(df.usage, df.methods, by.x = "use", by.y = "method");
 
 # Outputs
 
-save.plot(ggplot(subset(df.usage, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+
-  facet_grid(.~group, space='free_x', scales="free_x")+geom_bar(stat="bin")+
-  theme(axis.text.x=element_text(angle=45, hjust=1), legend.box="horizontal", legend.position="top",
+save.plot(ggplot(subset(df.usage, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+geom_bar(stat="bin")+
+    facet_grid(.~group, space='free', scales="free")+
+  theme(axis.text.x=element_text(angle=50, hjust=1), axis.text.y=element_text(angle=90, hjust=1), 
+        axis.title.x=element_text(angle=180),
+        legend.box="horizontal", legend.position="top",
+        #legend.text=element_text(angle=180),legend.text.align=1,
+        #legend.title=element_text(angle=180),legend.title.align=1,
+        #legend.direction='vertical',
     strip.text.x=element_text(angle=90))+
-    labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage-boa", h=6);
+    labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage-boa", w=12.5, h=5);
 
 # cluster methods by project
 
@@ -138,7 +143,7 @@ df.project$projlabel <- factor(df.project$projlabel, levels=levels(df.project$pr
 save.plot(ggplot(df.project, aes(x=group, fill=package))+facet_wrap(~projlabel, scales="free_x")+
             geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=60, hjust=1), legend.box="horizontal", legend.position="top")+
-  labs(x="sun.misc.Unsafe functional groups", y = "# call sites"), path, "plot-usage-boa-by-project", h=16);
+  labs(x="sun.misc.Unsafe functional groups", y = "# call sites"), path, "plot-usage-boa-by-project", h=14);
 
 
 # real uses
