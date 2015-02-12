@@ -54,6 +54,7 @@ csv.projects <- read.csv('unsafe-projects.csv', strip.white=TRUE, sep=',', heade
 
 df.boa <- csv.boa;
 colnames(df.boa) <- c('kind', 'repo', 'rev', 'id', 'name', 'description', 'url', 'file', 'nsname', 'clsname', 'method', 'use', 'revs', 'start', 'end', 'asts', 'value');
+df.boa <- subset(df.boa, id != 'neurogrid');
 df.boa$start <- as.POSIXct(df.boa$start/1000000, origin="1970-01-01");
 df.boa$end <- as.POSIXct(df.boa$end/1000000, origin="1970-01-01");
 df.boa$lifetime <- as.numeric(df.boa$end-df.boa$start, units = "days");
@@ -70,17 +71,6 @@ df.boa[startsWith(df.boa$nsname,'java.nio') ,]$package <- 'java.nio'
 df.boa[startsWith(df.boa$nsname,'java.security') ,]$package <- 'java.security'
 df.boa[startsWith(df.boa$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
 df.boa[startsWith(df.boa$nsname,'sun.nio') ,]$package <- 'sun.nio'
-
-counts.total <- subset(df.boa, kind=='countsTotal')[1,'value']
-counts.java <- subset(df.boa, kind=='countsJava')[1,'value']
-counts.unsafe <- nrow(dcast(subset(df.boa, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), id~use, value.var='use', fun.aggregate=length))
-
-df.summary <- data.frame(
-  label=c('nprojects', 'njavaprojects', 'nunsafeprojects'), 
-  total=c(counts.total, counts.java, counts.unsafe),
-  perc=c(100, round((counts.java/counts.total)*100, 2), round((counts.unsafe/counts.java)*100, 2)));
-
-print(df.summary);
 
 df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
 df.methods$gid <- NULL;
@@ -123,18 +113,20 @@ gs <- list(
   c('jikesrvm', 'x10', 'jnode', 'ikvm'), # partial jdk
   c('jadoth', 'jaxlib', 'javapayload'), # use several things
   
+  c('amock', 'essence'), 
+  c('amino', 'concutest', 'high', 'katta', 'l2next'),
+  
+  c('archaiosjava', 'grinder', 'janux', 'java'),
+  
   c('ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 'xbeedriver', 'statewalker'), # literal/offset/put
   c('caloriecount', 'classreach', 'clipc', 'timelord', 'vcb'), # offset/put
   c('osfree', 'snarej'),
   
-  c('amino', 'amock', 'archaiosjava', 'essence', 'grinder', 'janux', 'java', 'l2next'),
-  
-  c('concutest', 'high', 'katta'),
   c('beanlib'),
   c('aojunit', 'glassbox', 'junitrecorder'),
   
-  c('jon', 'neurogrid'),
-  c('ucl', 'lockss', 'jigcell', 'javapathfinder', 'hlv')
+  c('jon'),
+  c('hlv', 'javapathfinder', 'jigcell', 'lockss', 'ucl')
 );
 
 projectLevels <- unlist(gs);
@@ -143,7 +135,8 @@ df.project <- df.usage;
 df.project$projlabel <- factor(paste(df.project$id, ' (', df.project$astsk, ')\n', df.project$revs, ' revs in ', df.project$formatd, sep=''));
 df.project$projlabel <- factor(df.project$projlabel, levels=levels(df.project$projlabel)[match(projectLevels, projectLevels[order(projectLevels)])]);
 
-save.plot(ggplot(df.project, aes(x=group, fill=package))+facet_wrap(~projlabel, scales="free_x")+geom_bar(stat="bin")+
+save.plot(ggplot(df.project, aes(x=group, fill=package))+facet_wrap(~projlabel, scales="free_x")+
+            geom_bar(stat="bin")+
   theme(axis.text.x=element_text(angle=60, hjust=1), legend.box="horizontal", legend.position="top")+
   labs(x="sun.misc.Unsafe functional groups", y = "# call sites"), path, "plot-usage-boa-by-project", h=16);
 
@@ -163,3 +156,16 @@ df.callers <- merge(df.callers, df.methods, by.x = "use", by.y = "method");
 #            theme(axis.text.x=element_text(angle=60, hjust=1), legend.box="horizontal", legend.position="top",
 #                  strip.text.x=element_text(angle=30))+
 #            labs(x="sun.misc.Unsafe functional groups", y = "# call sites"), path, "plot-usage-boa-by-package", h=16);
+
+
+
+counts.total <- subset(df.boa, kind=='countsTotal')[1,'value'];
+counts.java <- subset(df.boa, kind=='countsJava')[1,'value'];
+counts.unsafe <- nrow(dcast(subset(df.boa, kind=='projectsWithUnsafe' | kind=='projectsWithUnsafeLiteral'), id~use, value.var='use', fun.aggregate=length));
+
+printf("# of projects in SourceForge: %s (%s %%)", counts.total, 100);
+printf("# of Java projects: %s (%s %%)", counts.java, round((counts.java/counts.total)*100, 2));
+printf("# of Unsafe projects: %s (%s %%)", counts.unsafe, round((counts.unsafe/counts.java)*100, 2));
+printf("# of call sites to Unsafe (include branches): %s", nrow(df.boa)-2);
+printf("# of call sites to Unsafe (exclude branches): %s", nrow(df.usage));
+printf("# of call sites to Unsafe (exclude branches and duplicates between projects): %s", nrow(df.callers));
