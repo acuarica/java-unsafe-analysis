@@ -1,0 +1,59 @@
+
+p: Project = input;
+
+projectsWith: output collection[string][string][string] of int;
+
+repo: string;
+filename: string;
+nsname: string;
+imports := false;
+methodname: string;
+
+
+visit(input, visitor {
+    after node: Project -> {
+        if (imports) {
+        	#countsUnsafe << 1;
+        	projectsWith[p.name][p.description][p.project_url] << 1;
+        }
+    }
+	# only look at the latest snapshot of Java files
+	before n: CodeRepository -> {
+		#repo = repoToString(n.kind);
+		snapshot := getsnapshot(n, "SOURCE_JAVA_JLS");
+		foreach (i: int; def(snapshot[i])) {
+			visit(snapshot[i]);
+		}
+		stop;
+	}
+	before node: ChangedFile -> filename = node.name; 
+	# look for imports
+	before node: ASTRoot -> {
+		imports = false;
+	    exists(j: int; match("^java.util.concurrent.", node.imports[j])) {
+			imports = true;
+			#projectsWith[p.name][p.description][p.project_url][filename] << 1;
+	    }
+	}
+	before node: Namespace -> {
+		nsname = node.name;
+	}
+	before node: Method -> methodname = node.name;
+	# look for FQN
+	before node: Type -> {
+	    if (match("^java.util.concurrent.", node.name)) {
+	    	imports = true;
+	    	#projectsWith[p.name][p.description][p.project_url][filename] << 1;
+	    }
+	}
+#	before node: Expression -> {
+#		if (node.kind == ExpressionKind.METHODCALL) {
+#		 	if (contains(methods, node.method) and imports) {
+#				projectsWithUnsafe[repo][snaprev[filename].id][p.name][p.description][p.project_url][filename][nsname][methodname][node.method][revs][pstart][pend][asts] << 1;
+#			}
+#		}
+#		if (node.kind == ExpressionKind.LITERAL and node.literal == "\"sun.misc.Unsafe\"") {
+#			projectsWithUnsafeLiteral[repo][snaprev[filename].id][p.name][p.description][p.project_url][filename][nsname][methodname]["sun.misc.Unsafe"][revs][pstart][pend][asts] << 1;
+#		}
+#	}
+});

@@ -98,16 +98,18 @@ df.usage <- merge(df.usage, df.methods, by.x = "use", by.y = "method");
 
 # Outputs
 
-save.plot(ggplot(subset(df.usage, kind=='projectsWithUnsafe') , aes(x=use, fill=package))+geom_bar(stat="bin")+
+save.plot(ggplot(subset(df.usage, kind=='projectsWithUnsafe'), aes(x=use, fill=package))+geom_bar(stat="bin")+
     facet_grid(.~group, space='free', scales="free")+
-  theme(axis.text.x=element_text(angle=50, hjust=1), axis.text.y=element_text(angle=90, hjust=1), 
-        axis.title.x=element_text(angle=180),
+  theme(axis.text.x=element_text(angle=50, hjust=1), axis.text.y=element_text(angle=0, hjust=1), 
+        axis.title.x=element_text(angle=0),
         legend.box="horizontal", legend.position="top",
-        #legend.text=element_text(angle=180),legend.text.align=1,
-        #legend.title=element_text(angle=180),legend.title.align=1,
+        #legend.text=element_text(angle=180,vjust=1),legend.text.align=-1,
+        #legend.direction='horizontal',
+        #legend.title=element_text(angle=180),legend.title.align=0.5,
+        #legend.justification='center',
         #legend.direction='vertical',
     strip.text.x=element_text(angle=90))+
-    labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage-boa", w=12.5, h=5);
+    labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage-boa", h=5);
 
 # cluster methods by project
 
@@ -187,11 +189,15 @@ save.plot(
   ggplot(subset(df.project, id %in% c('amock', 'aojunit', 'glassbox', 'junitrecorder', 'ucl')))+
     f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-test", w=6, h=4);
 
-# 5 projects
+# 4 projects
 save.plot(
-  ggplot(subset(df.project, id %in% c('archaiosjava', 'java', 'jigcell', 'essence', 'hlv')))+
-    f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-misc", w=6, h=4);
+  ggplot(subset(df.project, id %in% c('java', 'jigcell', 'essence', 'hlv')))+
+    f(2)+g+t(45)+l, path, "plot-usage-boa-by-project-misc", w=6, h=4);
 
+# 1 Project
+save.plot(
+  ggplot(subset(df.project, id %in% c('archaiosjava')))+
+    f(1)+g+t(45)+l, path, "plot-usage-boa-by-project-offheap", w=6, h=3);
 
 
 
