@@ -140,10 +140,59 @@ df.project <- df.usage;
 df.project$projlabel <- factor(paste(df.project$id, ' (', df.project$astsk, ')\n', df.project$revs, ' revs in ', df.project$formatd, sep=''));
 df.project$projlabel <- factor(df.project$projlabel, levels=levels(df.project$projlabel)[match(projectLevels, projectLevels[order(projectLevels)])]);
 
-save.plot(ggplot(df.project, aes(x=group, fill=package))+facet_wrap(~projlabel, scales="free_x")+
-            geom_bar(stat="bin")+
-  theme(axis.text.x=element_text(angle=60, hjust=1), legend.box="horizontal", legend.position="top")+
-  labs(x="sun.misc.Unsafe functional groups", y = "# call sites"), path, "plot-usage-boa-by-project", h=14);
+g <- geom_bar(stat="bin", aes(x=group, fill=package));
+f <- function(ncol) facet_wrap(~projlabel, scales="free_x", ncol=ncol);
+t <- function(a) theme(axis.text.x=element_text(angle=a, hjust=1), legend.box="horizontal", legend.position="top");
+l <- labs(x="sun.misc.Unsafe functional groups", y = "# call sites");
+
+save.plot(
+  ggplot(df.project)+
+    f(7)+g+t(60)+l, path, "plot-usage-boa-by-project", h=15);
+
+# 10 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('adtools', 'cegcc', 'cgnu', 'ps2toolchain', 'takatuka', 
+                                      'janetdev', 'android', 'jikesrvm', 'x10', 'jnode')))+
+    f(2)+g+t(45)+l, path, "plot-usage-boa-by-project-juc", w=6, h=10);
+
+# 3 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('ikvm', 'jadoth', 'jaxlib')))+
+    f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-lot", w=6, h=3);
+
+# 4 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('osfree', 'snarej', 'janux', 'javapayload')))+
+    f(4)+g+t(45)+l, path, "plot-usage-boa-by-project-natadd", w=6, h=3);
+
+# 13 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('ec', 'essentialbudget', 'jprovocateur', 'simulaeco', 
+    'xbeedriver', 'statewalker', 'caloriecount', 'classreach', 'clipc', 'timelord', 'vcb', 'lockss', 'jon')))+
+    f(4)+g+t(45)+l+scale_y_continuous(breaks=c(0,5,10), limits=c(0,10)), path, "plot-usage-boa-by-project-ser", w=7, h=6);
+
+# 6 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('amino', 'concutest', 'high', 'katta', 
+                                      'javapathfinder', 'l2next')))+
+    f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-cas", w=6, h=4);
+
+# 2 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('beanlib', 'grinder')))+
+    f(2)+g+t(45)+l+scale_y_continuous(breaks=c(0,1,2), limits=c(0,2)), path, "plot-usage-boa-by-project-volatile", w=6, h=2.5);
+
+# 5 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('amock', 'aojunit', 'glassbox', 'junitrecorder', 'ucl')))+
+    f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-test", w=6, h=4);
+
+# 5 projects
+save.plot(
+  ggplot(subset(df.project, id %in% c('archaiosjava', 'java', 'jigcell', 'essence', 'hlv')))+
+    f(3)+g+t(45)+l, path, "plot-usage-boa-by-project-misc", w=6, h=4);
+
+
 
 
 # real uses
