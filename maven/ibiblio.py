@@ -5,22 +5,25 @@ from __future__ import print_function
 def fetchdirlist(dirurl, retries, log):
 	"""Fetches directory list from url, parsing HTML table."""
 
-	import requests
+	def request(dirurl, retries, log):
+		import requests
 
-	log("Fetching directory list from '" + dirurl + "'")
+		log("Fetching directory list from '" + dirurl + "'")
 
-	for i in range(retries):
-		r = requests.get(dirurl)
+		for i in range(retries):
+			r = requests.get(dirurl)
 
-		if (r.status_code == 200):
-			break
+			if (r.status_code == 200):
+				break
 
-		secs = 5 * (i+1)
-		log("**** Retry no. {0} due to status code {1} on '{2}' (waiting {3} secs) ****".format(i+1, r.status_code, dirurl, secs))
-		import time
-		time.sleep(secs)
+			secs = 5 * (i+1)
+			log("**** Retry no. {0} due to status code {1} on '{2}' (waiting {3} secs) ****".format(i+1, r.status_code, dirurl, secs))
+			import time
+			time.sleep(secs)
 
-	xmltext = r.text
+		return r.text
+
+	xmltext = request(dirurl, retries, log)
 
 	b = xmltext.index("<table summary='Directory Listing'")
 	e = xmltext.index("</table>")
@@ -36,27 +39,38 @@ def fetchdirlist(dirurl, retries, log):
 	for link in links:
 		s = link.attrib['href']
 		if s != '../':
-			yield (dirurl, s)
+			yield s
 
 def fetchdirlistrec(rootdirurl, retries, log):
 	"""Fetches directory list recursively starting from rootdirurl, parsing HTML table."""
 
+	lsfname = 'build/' + rootdirurl.replace(':', '_c_').replace('/', '_') + '.list'
+
+	import os
+	
+	if os.path.isfile(lsfname):
+		log('Directory ' + rootdirurl + ' already in database index.')
+		return
+
+	ls = []
 	dl = fetchdirlist(rootdirurl, retries, log)
-	for f in dl:
-		if f[1].endswith('/'):
-			for g in fetchdirlistrec(f[0] + f[1], retries, log):
-				yield g
+	for href in dl:
+		if href.endswith('/'):
+			fetchdirlistrec(rootdirurl + href, retries, log)
 		else:
-			yield f
+			ls.append(rootdirurl + href)
+
+	with open(lsfname, 'w') as lsf:
+		for href in ls:
+			lsf.write(href + '\n')
 
 def main():
-	def parseargs(root, dl, dlrec, retries):
+	def parseargs(root, retries):
 		import argparse
 
-		parser = argparse.ArgumentParser(description='Fetches directory list.')
+		parser = argparse.ArgumentParser(description='Fetches directory list recursively.')
 		parser.add_argument('root', metavar='root', default=root, nargs='?', help='root to start fetching directory list.')
-		parser.add_argument('-r', '--recursive', dest='fetchdl', action='store_const', default=dl, const=dlrec, help='fetches directory list recursively.')
-		parser.add_argument('-t', dest='retries', metavar='retries', type=int, default=retries, help='maximum number of retries.')
+		parser.add_argument('-r', '--retries', type=int, default=retries, help='maximum number of retries.')
 		return parser.parse_args()
 
 	def log(message):
@@ -68,12 +82,9 @@ def main():
 	root = 'http://mirrors.ibiblio.org/maven2/'
 	retries = 5
 
-	args = parseargs(root, fetchdirlist, fetchdirlistrec, retries)
+	args = parseargs(root, retries)
 
-	dl = args.fetchdl(args.root, args.retries, log)
-
-	for f in dl:
-		print(f[0] + f[1])
+	fetchdirlistrec(args.root, args.retries, log)
 
 if __name__ == '__main__':
 	main()
