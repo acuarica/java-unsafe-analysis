@@ -2,6 +2,16 @@
 
 from __future__ import print_function
 
+class StatusCodeException(Exception):
+	def __init__(self, statuscode):
+		self.statuscode = statuscode
+
+class TableNotFoundException(Exception):
+	pass
+
+class FetchException(Exception):
+	pass
+
 def fetchdirlist(dirurl, retries, log):
 	"""Fetches directory list from url, parsing HTML table."""
 
@@ -14,18 +24,27 @@ def fetchdirlist(dirurl, retries, log):
 			r = requests.get(dirurl)
 
 			if (r.status_code == 200):
-				break
+				return r.text
+
+			if (r.status_code == 404):
+				log("**** Error {0} not found on '{1}' ****".format(r.status_code, dirurl))
+				raise StatusCodeException(404)
 
 			secs = 5 * (i+1)
 			log("**** Retry no. {0} due to status code {1} on '{2}' (waiting {3} secs) ****".format(i+1, r.status_code, dirurl, secs))
 			import time
 			time.sleep(secs)
 
-		return r.text
+		raise FetchException
 
 	xmltext = request(dirurl, retries, log)
 
-	b = xmltext.index("<table summary='Directory Listing'")
+	try:
+		b = xmltext.index("<table summary='Directory Listing'")
+	except ValueError:
+		log("**** Directory list table not found on '{0}' ****".format(dirurl))
+		raise TableNotFoundException
+
 	e = xmltext.index("</table>")
 	xmltext = xmltext[b:e+8]
 
@@ -36,10 +55,13 @@ def fetchdirlist(dirurl, retries, log):
 	xml = ET.XML(xmltext)
 	links = xml.findall('./tbody/tr/td/a')
 
+	ls = []
 	for link in links:
 		s = link.attrib['href']
 		if s != '../':
-			yield s
+			ls.append(s)
+
+	return ls
 
 def fetchdirlistrec(rootdirurl, retries, log):
 	"""Fetches directory list recursively starting from rootdirurl, parsing HTML table."""
@@ -53,7 +75,15 @@ def fetchdirlistrec(rootdirurl, retries, log):
 		return
 
 	ls = []
-	dl = fetchdirlist(rootdirurl, retries, log)
+
+	try:
+		dl = fetchdirlist(rootdirurl, retries, log)
+	except (StatusCodeException, TableNotFoundException):
+		with open(lsfname, 'w') as lsf:
+			lsf.write('')
+
+		return
+
 	for href in dl:
 		if href.endswith('/'):
 			fetchdirlistrec(rootdirurl + href, retries, log)
