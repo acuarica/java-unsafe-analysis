@@ -30,30 +30,23 @@ public class Main {
 			throws IOException {
 
 		String localPath = "db/" + path;
-		String localPathDone = localPath + ".done";
 
-		if (!new File(localPathDone).exists()) {
+		if (!new File(localPath).exists()) {
 			log.log("Processing %s", path);
-
-			new File(new File(localPath).getParent()).mkdirs();
 
 			try {
 				byte[] response = mirror.download(path, log);
-				List<UnsafeEntry> matches = UnsafeAnalysis
-						.searchJarFile(response);
 
-				boolean save = matches.size() > 0;
-				if (save) {
-					log.log("sun.misc.Unsafe found, saving %s", path);
+				new File(new File(localPath).getParent()).mkdirs();
+				FileOutputStream fos = new FileOutputStream(localPath);
+				fos.write(response);
+				fos.close();
 
-					FileOutputStream fos = new FileOutputStream(localPath);
-					fos.write(response);
-					fos.close();
+				// List<UnsafeEntry> matches = UnsafeAnalysis
+				// .searchJarFile(response);
+				// log.log("sun.misc.Unsafe found, saving %s", path);
+				// saveCsv(matches, localPath);
 
-					saveCsv(matches, localPath);
-				}
-
-				new FileOutputStream(localPathDone).close();
 			} catch (FileNotFoundException e) {
 				log.log("File not found %s on mirror", path);
 			}
