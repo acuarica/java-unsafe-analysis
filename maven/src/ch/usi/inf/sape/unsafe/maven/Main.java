@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -24,6 +24,11 @@ public class Main {
 		try (PrintStream out = new PrintStream(localPathCsv)) {
 			UnsafeAnalysis.printMatchesCsv(out, matches);
 		}
+
+		// List<UnsafeEntry> matches = UnsafeAnalysis
+		// .searchJarFile(response);
+		// saveCsv(matches, localPath);
+
 	}
 
 	private static void processArtifact(String path, Mirror mirror, Log log)
@@ -42,11 +47,6 @@ public class Main {
 				fos.write(response);
 				fos.close();
 
-				// List<UnsafeEntry> matches = UnsafeAnalysis
-				// .searchJarFile(response);
-				// log.log("sun.misc.Unsafe found, saving %s", path);
-				// saveCsv(matches, localPath);
-
 			} catch (FileNotFoundException e) {
 				log.log("File not found %s on mirror", path);
 			}
@@ -56,16 +56,13 @@ public class Main {
 	}
 
 	private static class DumpThread extends Thread {
-		private MavenIndex index;
-		private Mirror mirror;
-		private String prefix;
-		private Log log;
+		private final Mirror mirror;
+		private final List<String> queue;
+		private final Log log;
 
-		public DumpThread(MavenIndex index, Mirror mirror, String prefix,
-				Log log) {
-			this.index = index;
+		public DumpThread(Mirror mirror, List<String> queue, Log log) {
 			this.mirror = mirror;
-			this.prefix = prefix;
+			this.queue = queue;
 			this.log = log;
 		}
 
@@ -73,11 +70,8 @@ public class Main {
 		public void run() {
 			try {
 
-				for (Entry<String, Artifact> entry : index.map.entrySet()) {
-					if (entry.getKey().startsWith(prefix)) {
-						Artifact a = entry.getValue();
-						processArtifact(a.getPath(), mirror, log);
-					}
+				for (String path : queue) {
+					processArtifact(path, mirror, log);
 				}
 
 			} catch (IOException e) {
@@ -89,47 +83,58 @@ public class Main {
 		}
 	}
 
-	private static void dumpMap(MavenIndex index, Mirror mirror, Log log)
-			throws IOException, InterruptedException {
+	private static void dumpMap(MavenIndex index, Mirror mirrors[], Log log,
+			int numberOfThreads) throws IOException, InterruptedException {
 		log.log("Dumping map...");
 
-		int numberOfThreads = 5;
+		HashMap<Integer, List<String>> queues = new HashMap<Integer, List<String>>();
+		for (int i = 0; i < numberOfThreads; i++) {
+			queues.put(i, new ArrayList<String>());
+		}
 
-		Log[] ls = new Log[numberOfThreads];
+		int j = 0;
+		for (Entry<String, Artifact> entry : index.map.entrySet()) {
+			Artifact a = entry.getValue();
+			queues.get(j % numberOfThreads).add(a.getPath());
+
+			j++;
+		}
 
 		for (int i = 0; i < numberOfThreads; i++) {
 			String logFileName = "db/logindex-" + i + ".log";
 			log.log("Opening log %s...", logFileName);
 
 			new File(new File(logFileName).getParent()).mkdirs();
-			ls[i] = new Log(new PrintStream(logFileName));
+
+			Thread t = new DumpThread(mirrors[i % mirrors.length],
+					queues.get(i), new Log(new PrintStream(logFileName)));
+			t.start();
 		}
 
-		Deque<String> qs = new ArrayDeque<String>(index.rootGroupsList);
-
-		Thread[] ts = new Thread[numberOfThreads];
-
-		while (!qs.isEmpty()) {
-			for (int i = 0; i < numberOfThreads; i++) {
-				Thread t = ts[i];
-				if (t == null || !t.isAlive()) {
-					String prefix = qs.pop();
-
-					log.log("Dumping map for prefix %s...", prefix);
-					ts[i] = new DumpThread(index, mirror, prefix, ls[i]);
-					ts[i].start();
-
-					break;
-				}
-			}
-
-			Thread.sleep(2000);
-		}
+		// Deque<String> qs = new ArrayDeque<String>(index.rootGroupsList);
+		//
+		// Thread[] ts = new Thread[numberOfThreads];
+		//
+		// while (!qs.isEmpty()) {
+		// for (int i = 0; i < numberOfThreads; i++) {
+		// Thread t = ts[i];
+		// if (t == null || !t.isAlive()) {
+		// String prefix = qs.pop();
+		//
+		// log.log("Dumping map for prefix %s...", prefix);
+		// ts[i] = new DumpThread(index, mirror, prefix, ls[i]);
+		// ts[i].start();
+		//
+		// break;
+		// }
+		// }
+		//
+		// Thread.sleep(2000);
+		// }
 	}
 
 	public static void main(String[] args) throws Exception {
 		final IndexSearcher searcher = new IndexSearcher("index/");
-		final Mirror mirror = new Mirror("http://mirrors.ibiblio.org/maven2/");
 
 		Log log = new Log(System.err);
 
@@ -149,6 +154,13 @@ public class Main {
 				index.rootGroupsList);
 		log.log("Extension set (%d): %s", index.extSet.size(), index.extSet);
 
-		dumpMap(index, mirror, log);
+		final int retries = 10;
+		final Mirror[] mirrors = new Mirror[2];
+		mirrors[0] = new Mirror("http://mirrors.ibiblio.org/maven2/", retries);
+		mirrors[1] = new Mirror(
+				"http://maven.antelink.com/content/repositories/central/",
+				retries);
+
+		dumpMap(index, mirrors, log, 8);
 	}
 }

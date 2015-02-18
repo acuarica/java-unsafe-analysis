@@ -11,15 +11,18 @@ import java.util.Iterator;
 
 public class Mirror {
 
-	private String rootUrl;
+	private final String rootUrl;
+	private final int noRetries;
 
-	public Mirror(String rootUrl) {
+	public Mirror(String rootUrl, int noRetries) {
 		assert rootUrl.startsWith("http://") : "rootUrl does not start with 'http://': "
 				+ rootUrl;
 		assert rootUrl.endsWith("/") : "rootUrl does not end with '/': "
 				+ rootUrl;
 
 		this.rootUrl = rootUrl;
+
+		this.noRetries = noRetries;
 	}
 
 	public byte[] download(String path, Log log) throws IOException {
@@ -27,7 +30,7 @@ public class Mirror {
 				+ path;
 
 		IOException ex = null;
-		for (int r : new Retry(5)) {
+		for (int r : new Retry(noRetries)) {
 			URL url = new URL(rootUrl + path);
 			URLConnection conn = url.openConnection();
 
@@ -93,7 +96,7 @@ public class Mirror {
 			retry++;
 
 			try {
-				Thread.sleep(retry * 2 * 1000);
+				Thread.sleep(retry * 4 * 1000);
 			} catch (InterruptedException e) {
 			}
 
