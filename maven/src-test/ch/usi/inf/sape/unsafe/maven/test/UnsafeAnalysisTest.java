@@ -1,6 +1,6 @@
 package ch.usi.inf.sape.unsafe.maven.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,12 +19,14 @@ public class UnsafeAnalysisTest {
 
 	private static void testJar(String jarFileName, boolean expected)
 			throws IOException {
+		log.log("Testing %s", jarFileName);
+
 		List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(testJars
 				+ jarFileName);
 
 		assertEquals(expected, matches.size() > 0);
 
-		log.log("%s", matches);
+		UnsafeAnalysis.printMatchesCsv(System.out, matches);
 	}
 
 	@Test

@@ -6,9 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -18,6 +16,15 @@ import ch.usi.inf.sape.unsafe.maven.MavenIndex.Artifact;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 
 public class Main {
+
+	private static void saveCsv(List<UnsafeEntry> matches, String localPath)
+			throws FileNotFoundException {
+		String localPathCsv = localPath + ".csv";
+
+		try (PrintStream out = new PrintStream(localPathCsv)) {
+			UnsafeAnalysis.printMatchesCsv(out, matches);
+		}
+	}
 
 	private static void processArtifact(String path, Mirror mirror, Log log)
 			throws IOException {
@@ -42,6 +49,8 @@ public class Main {
 					FileOutputStream fos = new FileOutputStream(localPath);
 					fos.write(response);
 					fos.close();
+
+					saveCsv(matches, localPath);
 				}
 
 				new FileOutputStream(localPathDone).close();
@@ -69,16 +78,20 @@ public class Main {
 
 		@Override
 		public void run() {
-			for (Entry<String, Artifact> entry : index.map.entrySet()) {
-				if (entry.getKey().startsWith(prefix)) {
-					Artifact a = entry.getValue();
-					try {
+			try {
+
+				for (Entry<String, Artifact> entry : index.map.entrySet()) {
+					if (entry.getKey().startsWith(prefix)) {
+						Artifact a = entry.getValue();
 						processArtifact(a.getPath(), mirror, log);
-					} catch (IOException e) {
-						e.printStackTrace();
-						throw new RuntimeException(e);
 					}
 				}
+
+			} catch (IOException e) {
+				log.log("Exception in DumpThread: ");
+
+				e.printStackTrace(log.out);
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -87,33 +100,37 @@ public class Main {
 			throws IOException, InterruptedException {
 		log.log("Dumping map...");
 
+		int numberOfThreads = 5;
+
+		Log[] ls = new Log[numberOfThreads];
+
+		for (int i = 0; i < numberOfThreads; i++) {
+			String logFileName = "db/logindex-" + i + ".log";
+			log.log("Opening log %s...", logFileName);
+
+			new File(new File(logFileName).getParent()).mkdirs();
+			ls[i] = new Log(new PrintStream(logFileName));
+		}
+
 		Deque<String> qs = new ArrayDeque<String>(index.rootGroupsList);
 
-		List<Thread> ts = new ArrayList<Thread>();
+		Thread[] ts = new Thread[numberOfThreads];
 
 		while (!qs.isEmpty()) {
-			while (ts.size() < 5 && !qs.isEmpty()) {
-				String prefix = qs.pop();
+			for (int i = 0; i < numberOfThreads; i++) {
+				Thread t = ts[i];
+				if (t == null || !t.isAlive()) {
+					String prefix = qs.pop();
 
-				Log flog = new Log(new PrintStream("db/logindex-" + prefix
-						+ ".log"));
+					log.log("Dumping map for prefix %s...", prefix);
+					ts[i] = new DumpThread(index, mirror, prefix, ls[i]);
+					ts[i].start();
 
-				log.log("Dumping map for prefix %s...", prefix);
-
-				Thread t = new DumpThread(index, mirror, prefix, flog);
-				ts.add(t);
-				t.start();
+					break;
+				}
 			}
 
 			Thread.sleep(2000);
-			log.lognl(".");
-
-			for (Iterator<Thread> it = ts.iterator(); it.hasNext();) {
-				Thread t = it.next();
-				if (!t.isAlive()) {
-					it.remove();
-				}
-			}
 		}
 	}
 

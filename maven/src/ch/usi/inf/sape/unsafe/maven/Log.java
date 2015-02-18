@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 public class Log {
 
-	private PrintStream out;
+	public PrintStream out;
 
 	public Log(PrintStream out) {
 		this.out = out;
@@ -17,5 +17,4 @@ public class Log {
 	public void lognl(String format, Object... args) {
 		out.format(format, args);
 	}
-
 }

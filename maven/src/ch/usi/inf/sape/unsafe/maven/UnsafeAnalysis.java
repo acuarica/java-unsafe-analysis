@@ -3,6 +3,7 @@ package ch.usi.inf.sape.unsafe.maven;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -127,6 +128,15 @@ public class UnsafeAnalysis {
 		ClassReader cr = new ClassReader(classFile);
 		UnsafeVisitor uv = new UnsafeVisitor(matches);
 		cr.accept(uv, 0);
+	}
 
+	public static void printMatchesCsv(PrintStream out,
+			List<UnsafeEntry> matches) {
+
+		for (UnsafeEntry entry : matches) {
+			out.format("\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"\n",
+					entry.className, entry.methodName, entry.methodDesc,
+					entry.owner, entry.name, entry.desc);
+		}
 	}
 }
