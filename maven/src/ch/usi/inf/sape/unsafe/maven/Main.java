@@ -1,84 +1,119 @@
 package ch.usi.inf.sape.unsafe.maven;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.PrintStream;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.apache.lucene.search.IndexSearcher;
 
 import ch.usi.inf.sape.unsafe.maven.MavenIndex.Artifact;
+import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 
 public class Main {
 
-	private static void log(String format, Object... args) {
-		System.err.format("[ " + format + " ]\n", args);
-	}
-
-	private static boolean analyseArtifact(byte[] cf) throws IOException {
-		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(cf));
-
-		boolean found = false;
-		ZipEntry entry;
-		while ((entry = zip.getNextEntry()) != null) {
-			if (!entry.getName().endsWith(".class")) {
-				continue;
-			}
-
-			ByteArrayOutputStream classfile = new ByteArrayOutputStream();
-			byte[] buffer = new byte[4096];
-
-			int len = 0;
-			while ((len = zip.read(buffer)) > 0) {
-				classfile.write(buffer, 0, len);
-			}
-
-			if (UnsafeAnalysis.search(classfile.toByteArray())) {
-				found = true;
-			}
-		}
-
-		return found;
-	}
-
-	private static void processArtifact(String path, Mirror mirror)
+	private static void processArtifact(String path, Mirror mirror, Log log)
 			throws IOException {
 
 		String localPath = "db/" + path;
 		String localPathDone = localPath + ".done";
 
 		if (!new File(localPathDone).exists()) {
-			log("Processing %s", path);
-
-			byte[] response = mirror.download(path);
-			boolean save = analyseArtifact(response);
+			log.log("Processing %s", path);
 
 			new File(new File(localPath).getParent()).mkdirs();
 
-			if (save) {
-				FileOutputStream fos = new FileOutputStream(localPath);
-				fos.write(response);
-				fos.close();
-			}
+			try {
+				byte[] response = mirror.download(path, log);
+				List<UnsafeEntry> matches = UnsafeAnalysis
+						.searchJarFile(response);
 
-			new FileOutputStream(localPathDone).close();
+				boolean save = matches.size() > 0;
+				if (save) {
+					log.log("sun.misc.Unsafe found, saving %s", path);
+
+					FileOutputStream fos = new FileOutputStream(localPath);
+					fos.write(response);
+					fos.close();
+				}
+
+				new FileOutputStream(localPathDone).close();
+			} catch (FileNotFoundException e) {
+				log.log("File not found %s on mirror", path);
+			}
 		} else {
-			log("Skipping %s", path);
+			log.log("Skipping %s", path);
 		}
 	}
 
-	private static void dumpMap(HashMap<String, Artifact> map, Mirror mirror)
-			throws IOException {
-		log("Dumping map...");
+	private static class DumpThread extends Thread {
+		private MavenIndex index;
+		private Mirror mirror;
+		private String prefix;
+		private Log log;
 
-		for (Entry<String, Artifact> entry : map.entrySet()) {
-			Artifact a = entry.getValue();
-			processArtifact(a.getPath(), mirror);
+		public DumpThread(MavenIndex index, Mirror mirror, String prefix,
+				Log log) {
+			this.index = index;
+			this.mirror = mirror;
+			this.prefix = prefix;
+			this.log = log;
+		}
+
+		@Override
+		public void run() {
+			for (Entry<String, Artifact> entry : index.map.entrySet()) {
+				if (entry.getKey().startsWith(prefix)) {
+					Artifact a = entry.getValue();
+					try {
+						processArtifact(a.getPath(), mirror, log);
+					} catch (IOException e) {
+						e.printStackTrace();
+						throw new RuntimeException(e);
+					}
+				}
+			}
+		}
+	}
+
+	private static void dumpMap(MavenIndex index, Mirror mirror, Log log)
+			throws IOException, InterruptedException {
+		log.log("Dumping map...");
+
+		Deque<String> qs = new ArrayDeque<String>(index.rootGroupsList);
+
+		List<Thread> ts = new ArrayList<Thread>();
+
+		while (!qs.isEmpty()) {
+			while (ts.size() < 5 && !qs.isEmpty()) {
+				String prefix = qs.pop();
+
+				Log flog = new Log(new PrintStream("db/logindex-" + prefix
+						+ ".log"));
+
+				log.log("Dumping map for prefix %s...", prefix);
+
+				Thread t = new DumpThread(index, mirror, prefix, flog);
+				ts.add(t);
+				t.start();
+			}
+
+			Thread.sleep(2000);
+			log.lognl(".");
+
+			for (Iterator<Thread> it = ts.iterator(); it.hasNext();) {
+				Thread t = it.next();
+				if (!t.isAlive()) {
+					it.remove();
+				}
+			}
 		}
 	}
 
@@ -86,26 +121,24 @@ public class Main {
 		final IndexSearcher searcher = new IndexSearcher("index/");
 		final Mirror mirror = new Mirror("http://mirrors.ibiblio.org/maven2/");
 
-		processArtifact(
-				"org/infinispan/infinispan-osgi/7.1.0.Final/infinispan-osgi-7.1.0.Final.jar",
-				mirror);
+		Log log = new Log(System.err);
 
-		log("Analysing database with %,d documents...", searcher.maxDoc());
+		log.log("Analysing database with %,d documents...", searcher.maxDoc());
 
 		MavenIndex index = MavenIndex.build(searcher);
 
-		log("uniqueArtifactsCount: %,d", index.uniqueArtifactsCount);
-		log("totalSize: %,d MB", index.totalSize / (1024 * 1024));
-		log("lastVersionJarsSize: %,d MB", index.lastVersionJarsSize
+		log.log("uniqueArtifactsCount: %,d", index.uniqueArtifactsCount);
+		log.log("totalSize: %,d MB", index.totalSize / (1024 * 1024));
+		log.log("lastVersionJarsSize: %,d MB", index.lastVersionJarsSize
 				/ (1024 * 1024));
-		log("mmindate: %s", index.mmindate);
-		log("mmindate: %s", index.mmaxdate);
-		log("mmindate: %s", index.imindate);
-		log("mmindate: %s", index.imaxdate);
-		log("Root groups list (%d): %s", index.rootGroupsList.size(),
+		log.log("mmindate: %s", index.mmindate);
+		log.log("mmindate: %s", index.mmaxdate);
+		log.log("mmindate: %s", index.imindate);
+		log.log("mmindate: %s", index.imaxdate);
+		log.log("Root groups list (%d): %s", index.rootGroupsList.size(),
 				index.rootGroupsList);
-		log("Extension set (%d): %s", index.extSet.size(), index.extSet);
+		log.log("Extension set (%d): %s", index.extSet.size(), index.extSet);
 
-		dumpMap(index.map, mirror);
+		dumpMap(index, mirror, log);
 	}
 }
