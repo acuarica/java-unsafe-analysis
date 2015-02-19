@@ -8,19 +8,30 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Mirror {
 
 	private final String rootUrl;
 	private final int noRetries;
+	public final String id;
 
-	public Mirror(String rootUrl, int noRetries) {
+	public Mirror(String rootUrl, int noRetries) throws Exception {
 		assert rootUrl.startsWith("http://") : "rootUrl does not start with 'http://': "
 				+ rootUrl;
 		assert rootUrl.endsWith("/") : "rootUrl does not end with '/': "
 				+ rootUrl;
 
 		this.rootUrl = rootUrl;
+
+		Matcher m = Pattern.compile("http://.+\\.(.+)\\.(.+)/(.+)").matcher(
+				rootUrl);
+		if (m.matches()) {
+			this.id = m.group(1);
+		} else {
+			throw new Exception("Invalid mirror url: " + rootUrl);
+		}
 
 		this.noRetries = noRetries;
 	}
@@ -51,7 +62,8 @@ public class Mirror {
 			} catch (IOException e) {
 				int rc = ((HttpURLConnection) conn).getResponseCode();
 				if (rc == 403) {
-					log.log("Retry #%d on response code %d", r, rc);
+					log.log("Retry #%d for %s on response code %s in mirror %s",
+							r, path, rc, id);
 					ex = e;
 				} else {
 					throw e;

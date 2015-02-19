@@ -75,6 +75,19 @@ public class UnsafeAnalysis {
 								methodDesc, owner, name, desc));
 					}
 				}
+
+				@Override
+				public void visitLdcInsn(Object cst) {
+					if (cst instanceof String) {
+						String value = (String) cst;
+						if ("sun/misc/Unsafe".equals(value)) {
+							System.out.println(value);
+							matches.add(new UnsafeEntry(className, methodName,
+									methodDesc, "sun/misc/Unsafe",
+									"sun/misc/Unsafe", "literal"));
+						}
+					}
+				}
 			};
 
 			return mv;
@@ -132,6 +145,8 @@ public class UnsafeAnalysis {
 
 	public static void printMatchesCsv(PrintStream out,
 			List<UnsafeEntry> matches) {
+
+		out.println("className, methodName, methodDesc, owner, name, desc");
 
 		for (UnsafeEntry entry : matches) {
 			out.format("%s, %s, %s, %s, %s, %s\n", entry.className,
