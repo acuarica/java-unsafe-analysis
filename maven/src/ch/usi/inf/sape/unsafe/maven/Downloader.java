@@ -36,7 +36,7 @@ public class Downloader {
 					int mid = (i + mirrorStart) % mirrors.length;
 
 					log.log("Downloading %s (%d KB) from %s", path,
-							size / 1024, mid);
+							size / 1024, mirrors[mid].id);
 
 					try {
 						byte[] response = mirrors[mid].download(path, log);
