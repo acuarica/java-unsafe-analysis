@@ -134,9 +134,9 @@ public class UnsafeAnalysis {
 			List<UnsafeEntry> matches) {
 
 		for (UnsafeEntry entry : matches) {
-			out.format("\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"\n",
-					entry.className, entry.methodName, entry.methodDesc,
-					entry.owner, entry.name, entry.desc);
+			out.format("%s, %s, %s, %s, %s, %s\n", entry.className,
+					entry.methodName, entry.methodDesc, entry.owner,
+					entry.name, entry.desc);
 		}
 	}
 }

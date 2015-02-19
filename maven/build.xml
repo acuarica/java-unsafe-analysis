@@ -1,4 +1,4 @@
-<project name="maven-client" default="run" basedir=".">
+<project name="maven-client" default="compile" basedir=".">
 	<description>maven client</description>
 	<property name="src" location="src" />
 	<property name="build" location="build" />
@@ -8,8 +8,29 @@
 	<target name="compile" depends="init">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}" classpath="lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" />
 	</target>
-	<target name="run" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main" classpath="${build}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
+	<target name="run.check" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Check" classpath="${build}:lib/lucene-core-2.4.1.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="run.build" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:lib/lucene-core-2.4.1.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="run.download" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Download" classpath="${build}:lib/lucene-core-2.4.1.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="run.analyse" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Analyse" classpath="${build}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
 			<assertions>
 				<enable />
 			</assertions>
@@ -17,9 +38,5 @@
 	</target>
 	<target name="clean" description="clean up">
 		<delete dir="${build}" />
-	</target>
-	<target name="luke">
-		<java jar="tools/lukeall-3.5.0.jar" fork="true">
-		</java>
 	</target>
 </project>
