@@ -25,9 +25,8 @@ public class Downloader {
 			this.log = log;
 		}
 
-		private static void download(Artifact a, Mirror[] mirrors,
+		private static void download(String path, long size, Mirror[] mirrors,
 				int mirrorStart, Log log) throws IOException {
-			String path = a.getPath();
 			String localPath = "db/" + path;
 			String localPathNotFound = localPath + ".notfound";
 
@@ -37,7 +36,7 @@ public class Downloader {
 					int mid = (i + mirrorStart) % mirrors.length;
 
 					log.log("Downloading %s (%d KB) from %s", path,
-							a.size / 1024, mid);
+							size / 1024, mid);
 
 					try {
 						byte[] response = mirrors[mid].download(path, log);
@@ -67,7 +66,8 @@ public class Downloader {
 		public void run() {
 			try {
 				for (Artifact a : queue) {
-					download(a, mirrors, mirrorStart, log);
+					download(a.getPath(), a.size, mirrors, mirrorStart, log);
+					download(a.getPath("pom"), -1, mirrors, mirrorStart, log);
 				}
 
 				log.log("[DONE]");
