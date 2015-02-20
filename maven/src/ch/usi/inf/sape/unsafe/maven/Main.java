@@ -172,6 +172,9 @@ public class Main {
 					});
 				} catch (FileNotFoundException e) {
 					log.log("POM not found %s", path);
+				} catch (Exception e) {
+					log.log("Exception (%s) in %s: %s", e.getClass(), path,
+							e.getMessage());
 				}
 			}
 
