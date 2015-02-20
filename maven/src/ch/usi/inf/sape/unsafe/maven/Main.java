@@ -71,10 +71,10 @@ public class Main {
 
 			final int r = 10;
 			final Mirror[] mirrors = new Mirror[] {
-			// new Mirror("http://mirrors.ibiblio.org/maven2/", r),
-			new Mirror(
-					"http://maven.antelink.com/content/repositories/central/",
-					r) };
+					new Mirror("http://mirrors.ibiblio.org/maven2/", r),
+					new Mirror(
+							"http://maven.antelink.com/content/repositories/central/",
+							r) };
 
 			int numberOfThreads = 8;
 

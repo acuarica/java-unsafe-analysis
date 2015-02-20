@@ -8,8 +8,7 @@ suppressMessages(library(gdata))
 
 printf <- function(format, ...) print(sprintf(format, ...));
 
-save.plot <- function(plot, s, w=12, h=8) {
-  d <- file_path_sans_ext(csvfilename)
+save.plot <- function(plot, d, s, w=12, h=8) {
   path <- sprintf('%s-%s.pdf', d, s)
   printf("Saving plot %s to %s", s, path)
   pdf(file=path, paper='special', width=w, height=h, pointsize=12)
@@ -44,14 +43,16 @@ formatd <- function(days) {
   if (y >= 2) return (sprintf('%s years', y));
 }
 
-csvfilename <- if (interactive()) 'unsafe-maven.csv' else commandArgs(trailingOnly = TRUE)[1];
+csvfilename <- if (interactive()) 'build/unsafe-maven.csv' else commandArgs(trailingOnly = TRUE)[1];
+path <- file_path_sans_ext(csvfilename);
+
 csv.maven <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=TRUE);
 
 save.plot(ggplot(csv.maven, aes(x=name))+geom_bar(stat="bin")+
             theme(axis.text.x=element_text(angle=45, hjust=1), 
                   legend.box="horizontal", legend.position="top", legend.title=element_blank(),
                   strip.text.x=element_text(angle=90))+
-            labs(x="sun.misc.Unsafe methods", y = "# matches"), csvfilename, "plot-usage", h=5);
+            labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage", h=5);
 
 
 
