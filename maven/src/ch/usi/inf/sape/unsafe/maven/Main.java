@@ -108,8 +108,6 @@ public class Main {
 					log.log("Exception for %s (%dth): %s", path, i,
 							e.getMessage());
 				}
-				
-				if (i > 1000) break;
 			}
 
 			String localPathCsv = "db/unsafe-maven.csv";
