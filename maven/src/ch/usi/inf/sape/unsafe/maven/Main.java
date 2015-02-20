@@ -129,58 +129,68 @@ public class Main {
 		public static void main(String[] args) throws Exception {
 			final MavenIndex index = build(Graph.class);
 
-			for (final Artifact a : index) {
-				String path = a.getPomPath();
-				try {
-					SAXParserFactory spf = SAXParserFactory.newInstance();
+			String localPathCsv = "db/depgraph.csv";
+			try (PrintStream out = new PrintStream(localPathCsv)) {
 
-					File f = new File("db/" + path);
-					spf.newSAXParser().parse(f, new DefaultHandler() {
-						private Dependency dep;
-						private String value;
+				out.println("groupId, artifactId, depGroupId, depArtifactId, depVersion");
 
-						@Override
-						public void startElement(String uri, String localName,
-								String qName, Attributes attributes)
-								throws SAXException {
-							if (qName.equals("dependency")) {
-								dep = new Dependency();
+				for (final Artifact a : index) {
+					String path = a.getPomPath();
+					try {
+						SAXParserFactory spf = SAXParserFactory.newInstance();
+
+						File f = new File("db/" + path);
+						spf.newSAXParser().parse(f, new DefaultHandler() {
+							private Dependency dep;
+							private String value;
+
+							@Override
+							public void startElement(String uri,
+									String localName, String qName,
+									Attributes attributes) throws SAXException {
+								if (qName.equals("dependency")) {
+									dep = new Dependency();
+								}
 							}
-						}
 
-						@Override
-						public void characters(char[] ch, int start, int length)
-								throws SAXException {
-							value = new String(ch, start, length);
-						}
-
-						@Override
-						public void endElement(String uri, String localName,
-								String qName) throws SAXException {
-							if (qName.equals("dependency")) {
-								a.dependencies.add(dep);
-								dep = null;
-							} else if (dep != null && qName.equals("groupId")) {
-								dep.groupId = value;
-							} else if (dep != null
-									&& qName.equals("artifactId")) {
-								dep.artifactId = value;
-							} else if (dep != null && qName.equals("version")) {
-								dep.version = value;
+							@Override
+							public void characters(char[] ch, int start,
+									int length) throws SAXException {
+								value = new String(ch, start, length);
 							}
-						}
-					});
-				} catch (FileNotFoundException e) {
-					log.log("POM not found %s", path);
-				} catch (Exception e) {
-					log.log("Exception (%s) in %s: %s", e.getClass(), path,
-							e.getMessage());
+
+							@Override
+							public void endElement(String uri,
+									String localName, String qName)
+									throws SAXException {
+								if (qName.equals("dependency")) {
+									out.format("%s, %s, %s, %s, %s\n",
+											a.groupId, a.artifactId,
+											dep.groupId, dep.artifactId,
+											dep.version);
+
+									a.dependencies.add(dep);
+									dep = null;
+								} else if (dep != null
+										&& qName.equals("groupId")) {
+									dep.groupId = value;
+								} else if (dep != null
+										&& qName.equals("artifactId")) {
+									dep.artifactId = value;
+								} else if (dep != null
+										&& qName.equals("version")) {
+									dep.version = value;
+								}
+							}
+						});
+					} catch (FileNotFoundException e) {
+						log.log("POM not found %s", path);
+					} catch (Exception e) {
+						log.log("Exception (%s) in %s: %s", e.getClass(), path,
+								e.getMessage());
+					}
 				}
 			}
-
-			Artifact spr = index.get("org.springframework:spring-core");
-			System.out.println(spr.dependencies);
-			System.out.println(spr.dependencies.size());
 		}
 	}
 }
