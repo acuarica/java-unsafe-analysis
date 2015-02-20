@@ -43,24 +43,38 @@ formatd <- function(days) {
   if (y >= 2) return (sprintf('%s years', y));
 }
 
+df.methods <- (function() {
+  csv.groups <- read.csv('unsafe-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
+  csv.methods <- read.csv('unsafe-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
+  
+  df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
+  df.methods$gid <- NULL; 
+  
+  df.methods
+})();
+
 csvfilename <- if (interactive()) 'build/unsafe-maven.csv' else commandArgs(trailingOnly = TRUE)[1];
 path <- file_path_sans_ext(csvfilename);
 
-csv.maven <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=TRUE);
+df.maven <- (function() {
+  csv.maven <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=TRUE);
+  df.maven <- merge(csv.maven, df.methods, by.x="name", by.y="method", all.x=TRUE);
+  df.maven$name <- factor(df.maven$name, levels=levels(df.methods$method));
+  df.maven
+})();
 
-save.plot(ggplot(csv.maven, aes(x=name))+geom_bar(stat="bin")+
+save.plot(ggplot(df.maven, aes(x=name))+geom_bar(stat="bin")+scale_x_discrete( drop=TRUE)+
+            facet_grid(.~group, space='free_x', scales="free_x",drop=TRUE)+
             theme(axis.text.x=element_text(angle=45, hjust=1), 
                   legend.box="horizontal", legend.position="top", legend.title=element_blank(),
-                  strip.text.x=element_text(angle=90))+
-            labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage", h=5);
+  strip.text.x=element_text(angle=90))+
+  labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-usage", h=5);
 
 
 
 
 csv.boa <- read.csv(csvfilename, strip.white=TRUE, sep=',', header=FALSE);
 csv.so <- read.csv('stackoverflow/method-usages.csv', strip.white=TRUE, sep=',', header=TRUE);
-csv.groups <- read.csv('unsafe-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
-csv.methods <- read.csv('unsafe-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
 csv.projects <- read.csv('unsafe-projects.csv', strip.white=TRUE, sep=',', header=TRUE);
 
 df.boa <- csv.boa;
@@ -83,8 +97,6 @@ df.boa[startsWith(df.boa$nsname,'java.security') ,]$package <- 'java.security'
 df.boa[startsWith(df.boa$nsname,'java.util.concurrent') ,]$package <- 'java.util.concurrent'
 df.boa[startsWith(df.boa$nsname,'sun.nio') ,]$package <- 'sun.nio'
 
-df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
-df.methods$gid <- NULL;
 
 # plot-usage-so
 

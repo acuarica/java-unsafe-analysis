@@ -22,7 +22,7 @@ public class UnsafeAnalysisTest {
 		log.log("Testing %s", jarFileName);
 
 		List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(testJars
-				+ jarFileName);
+				+ jarFileName, null);
 
 		assertEquals(expected, matches.size() > 0);
 

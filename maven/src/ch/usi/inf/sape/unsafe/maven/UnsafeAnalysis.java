@@ -19,21 +19,24 @@ import org.objectweb.asm.Opcodes;
 public class UnsafeAnalysis {
 
 	public static class UnsafeEntry {
-		public String className;
-		public String methodName;
-		public String methodDesc;
-		public String owner;
-		public String name;
-		public String desc;
+		public final String className;
+		public final String methodName;
+		public final String methodDesc;
+		public final String owner;
+		public final String name;
+		public final String desc;
+		public final Artifact artifact;
 
 		public UnsafeEntry(String className, String methodName,
-				String methodDesc, String owner, String name, String desc) {
+				String methodDesc, String owner, String name, String desc,
+				Artifact artifact) {
 			this.className = className;
 			this.methodName = methodName;
 			this.methodDesc = methodDesc;
 			this.owner = owner;
 			this.name = name;
 			this.desc = desc;
+			this.artifact = artifact;
 		}
 
 		@Override
@@ -45,14 +48,15 @@ public class UnsafeAnalysis {
 
 	private static class UnsafeVisitor extends ClassVisitor {
 
-		private List<UnsafeEntry> matches;
-
+		private final List<UnsafeEntry> matches;
+		private final Artifact artifact;
 		private String className;
 
-		public UnsafeVisitor(List<UnsafeEntry> matches) {
+		public UnsafeVisitor(List<UnsafeEntry> matches, Artifact a) {
 			super(Opcodes.ASM5);
 
 			this.matches = matches;
+			this.artifact = a;
 		}
 
 		@Override
@@ -72,7 +76,7 @@ public class UnsafeAnalysis {
 						String name, String desc, boolean itf) {
 					if ("sun/misc/Unsafe".equals(owner)) {
 						matches.add(new UnsafeEntry(className, methodName,
-								methodDesc, owner, name, desc));
+								methodDesc, owner, name, desc, artifact));
 					}
 				}
 
@@ -81,10 +85,9 @@ public class UnsafeAnalysis {
 					if (cst instanceof String) {
 						String value = (String) cst;
 						if ("sun/misc/Unsafe".equals(value)) {
-							System.out.println(value);
 							matches.add(new UnsafeEntry(className, methodName,
 									methodDesc, "sun/misc/Unsafe",
-									"sun/misc/Unsafe", "literal"));
+									"sun/misc/Unsafe", "literal", artifact));
 						}
 					}
 				}
@@ -94,16 +97,16 @@ public class UnsafeAnalysis {
 		}
 	}
 
-	public static List<UnsafeEntry> searchClassFile(byte[] classFile) {
+	public static List<UnsafeEntry> searchClassFile(byte[] classFile, Artifact a) {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 
-		searchClassFile(classFile, matches);
+		searchClassFile(classFile, matches, a);
 
 		return matches;
 	}
 
-	public static List<UnsafeEntry> searchJarFile(byte[] jarFileBuffer)
-			throws IOException {
+	public static List<UnsafeEntry> searchJarFile(byte[] jarFileBuffer,
+			Artifact a) throws IOException {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 
 		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(
@@ -123,35 +126,39 @@ public class UnsafeAnalysis {
 				classfile.write(buffer, 0, len);
 			}
 
-			UnsafeAnalysis.searchClassFile(classfile.toByteArray(), matches);
+			UnsafeAnalysis.searchClassFile(classfile.toByteArray(), matches, a);
 		}
 
 		return matches;
 	}
 
-	public static List<UnsafeEntry> searchJarFile(String jarFileName)
+	public static List<UnsafeEntry> searchJarFile(String jarFileName, Artifact a)
 			throws IOException {
 		byte[] jarFileBuffer = Files.readAllBytes(Paths.get(jarFileName));
 
-		return searchJarFile(jarFileBuffer);
+		return searchJarFile(jarFileBuffer, a);
 	}
 
 	private static void searchClassFile(byte[] classFile,
-			List<UnsafeEntry> matches) {
+			List<UnsafeEntry> matches, Artifact a) {
 		ClassReader cr = new ClassReader(classFile);
-		UnsafeVisitor uv = new UnsafeVisitor(matches);
+		UnsafeVisitor uv = new UnsafeVisitor(matches, a);
 		cr.accept(uv, 0);
 	}
 
 	public static void printMatchesCsv(PrintStream out,
 			List<UnsafeEntry> matches) {
-
-		out.println("className, methodName, methodDesc, owner, name, desc");
+		out.println("className, methodName, methodDesc, owner, name, desc, groupId, artifactId, version, size, ext");
 
 		for (UnsafeEntry entry : matches) {
-			out.format("%s, %s, %s, %s, %s, %s\n", entry.className,
-					entry.methodName, entry.methodDesc, entry.owner,
-					entry.name, entry.desc);
+			out.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+					entry.className, entry.methodName, entry.methodDesc,
+					entry.owner, entry.name, entry.desc,
+					entry.artifact == null ? "" : entry.artifact.groupId,
+					entry.artifact == null ? "" : entry.artifact.artifactId,
+					entry.artifact == null ? "" : entry.artifact.version,
+					entry.artifact == null ? "" : entry.artifact.size,
+					entry.artifact == null ? "" : entry.artifact.ext);
 		}
 	}
 }

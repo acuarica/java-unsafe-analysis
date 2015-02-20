@@ -95,8 +95,8 @@ public class Main {
 				String path = a.getPath();
 
 				try {
-					List<UnsafeEntry> matches = UnsafeAnalysis
-							.searchJarFile("db/" + path);
+					List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
+							"db/" + path, a);
 
 					allMatches.addAll(matches);
 				} catch (NoSuchFileException e) {
@@ -108,6 +108,8 @@ public class Main {
 					log.log("Exception for %s (%dth): %s", path, i,
 							e.getMessage());
 				}
+				
+				if (i > 1000) break;
 			}
 
 			String localPathCsv = "db/unsafe-maven.csv";
