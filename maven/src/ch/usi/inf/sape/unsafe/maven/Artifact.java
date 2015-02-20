@@ -1,5 +1,8 @@
 package ch.usi.inf.sape.unsafe.maven;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Artifact {
 
 	public final String groupId;
@@ -9,6 +12,16 @@ public class Artifact {
 	public final String ext;
 	public final String groupDesc;
 	public final String artifactDesc;
+	public final List<Dependency> dependencies = new ArrayList<Dependency>();
+
+	public static class Dependency {
+		public String groupId;
+		public String artifactId;
+		public String version;
+
+		public Dependency() {
+		}
+	}
 
 	public Artifact(String groupId, String artifactId, String version,
 			long size, String ext, String groupDesc, String artifactDesc) {
@@ -25,7 +38,15 @@ public class Artifact {
 		return getPath(ext);
 	}
 
-	public String getPath(String ext) {
+	public String getPomPath() {
+		return getPath("pom");
+	}
+
+	public String getKey() {
+		return groupId + ":" + artifactId;
+	}
+
+	private String getPath(String ext) {
 		return groupId.replace('.', '/') + "/" + artifactId + "/" + version
 				+ "/" + artifactId + "-" + version + "." + ext;
 	}

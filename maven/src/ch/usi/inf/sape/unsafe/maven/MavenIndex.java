@@ -190,10 +190,9 @@ public class MavenIndex implements Iterable<Artifact> {
 					// System.out.println(docText);
 					// }
 
-					String key = groupId + ":" + artifactId;
-
 					Artifact a = new Artifact(groupId, artifactId, version,
 							size, ext, n, d);
+					String key = a.getKey();
 					if (index.map.containsKey(key)) {
 						Artifact b = index.map.get(key);
 						index.lastVersionJarsSize -= b.size;
@@ -260,6 +259,10 @@ public class MavenIndex implements Iterable<Artifact> {
 			out.format("%s, %s, %s, %s, %s\n", a.groupId, a.artifactId,
 					a.version, a.size, a.ext);
 		}
+	}
+
+	public Artifact get(String key) {
+		return map.get(key);
 	}
 
 	@Override

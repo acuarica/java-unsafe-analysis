@@ -1,14 +1,21 @@
 package ch.usi.inf.sape.unsafe.maven;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.file.NoSuchFileException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipException;
 
-import org.apache.lucene.search.IndexSearcher;
+import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.lucene.search.IndexSearcher;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import ch.usi.inf.sape.unsafe.maven.Artifact.Dependency;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 
 public class Main {
@@ -115,6 +122,62 @@ public class Main {
 			try (PrintStream out = new PrintStream(localPathCsv)) {
 				UnsafeAnalysis.printMatchesCsv(out, allMatches);
 			}
+		}
+	}
+
+	public static class Graph {
+		public static void main(String[] args) throws Exception {
+			final MavenIndex index = build(Graph.class);
+
+			for (final Artifact a : index) {
+				String path = a.getPomPath();
+				try {
+					SAXParserFactory spf = SAXParserFactory.newInstance();
+
+					File f = new File("db/" + path);
+					spf.newSAXParser().parse(f, new DefaultHandler() {
+						private Dependency dep;
+						private String value;
+
+						@Override
+						public void startElement(String uri, String localName,
+								String qName, Attributes attributes)
+								throws SAXException {
+							if (qName.equals("dependency")) {
+								dep = new Dependency();
+							}
+						}
+
+						@Override
+						public void characters(char[] ch, int start, int length)
+								throws SAXException {
+							value = new String(ch, start, length);
+						}
+
+						@Override
+						public void endElement(String uri, String localName,
+								String qName) throws SAXException {
+							if (qName.equals("dependency")) {
+								a.dependencies.add(dep);
+								dep = null;
+							} else if (dep != null && qName.equals("groupId")) {
+								dep.groupId = value;
+							} else if (dep != null
+									&& qName.equals("artifactId")) {
+								dep.artifactId = value;
+							} else if (dep != null && qName.equals("version")) {
+								dep.version = value;
+							}
+						}
+					});
+				} catch (FileNotFoundException e) {
+					log.log("POM not found %s", path);
+				}
+			}
+
+			Artifact spr = index.get("org.springframework:spring-core");
+			System.out.println(spr.dependencies);
+			System.out.println(spr.dependencies.size());
 		}
 	}
 }

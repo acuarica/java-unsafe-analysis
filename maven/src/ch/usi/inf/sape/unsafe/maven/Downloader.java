@@ -23,7 +23,7 @@ public class Downloader {
 			this.queue = queue;
 			this.mirrorStart = mirrorStart;
 			this.log = log;
-			
+
 		}
 
 		private static void download(String path, long size, Mirror[] mirrors,
@@ -68,7 +68,7 @@ public class Downloader {
 			try {
 				for (Artifact a : queue) {
 					download(a.getPath(), a.size, mirrors, mirrorStart, log);
-					download(a.getPath("pom"), -1, mirrors, mirrorStart, log);
+					download(a.getPomPath(), -1, mirrors, mirrorStart, log);
 				}
 
 				log.log("DONE");
