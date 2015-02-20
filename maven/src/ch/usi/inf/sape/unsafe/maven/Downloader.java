@@ -23,6 +23,7 @@ public class Downloader {
 			this.queue = queue;
 			this.mirrorStart = mirrorStart;
 			this.log = log;
+			
 		}
 
 		private static void download(String path, long size, Mirror[] mirrors,
@@ -70,7 +71,7 @@ public class Downloader {
 					download(a.getPath("pom"), -1, mirrors, mirrorStart, log);
 				}
 
-				log.log("[DONE]");
+				log.log("DONE");
 			} catch (IOException e) {
 				log.log("Exception in DumpThread: ");
 

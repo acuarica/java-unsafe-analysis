@@ -69,13 +69,12 @@ public class Main {
 		public static void main(String[] args) throws Exception {
 			final MavenIndex index = build(Download.class);
 
-			final int retries = 10;
-			final Mirror[] mirrors = new Mirror[2];
-			mirrors[0] = new Mirror("http://mirrors.ibiblio.org/maven2/",
-					retries);
-			mirrors[1] = new Mirror(
+			final int r = 10;
+			final Mirror[] mirrors = new Mirror[] {
+			// new Mirror("http://mirrors.ibiblio.org/maven2/", r),
+			new Mirror(
 					"http://maven.antelink.com/content/repositories/central/",
-					retries);
+					r) };
 
 			int numberOfThreads = 8;
 
