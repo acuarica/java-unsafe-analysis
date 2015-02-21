@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ch.usi.inf.sape.unsafe.maven.Log;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
+import ch.usi.inf.sape.util.Log;
 
 public class UnsafeAnalysisTest {
 

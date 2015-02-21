@@ -16,6 +16,8 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
+import ch.usi.inf.sape.mavendb.MavenArtifact;
+
 public class UnsafeAnalysis {
 
 	public static class UnsafeEntry {
@@ -25,11 +27,11 @@ public class UnsafeAnalysis {
 		public final String owner;
 		public final String name;
 		public final String desc;
-		public final Artifact artifact;
+		public final MavenArtifact artifact;
 
 		public UnsafeEntry(String className, String methodName,
 				String methodDesc, String owner, String name, String desc,
-				Artifact artifact) {
+				MavenArtifact artifact) {
 			this.className = className;
 			this.methodName = methodName;
 			this.methodDesc = methodDesc;
@@ -49,10 +51,10 @@ public class UnsafeAnalysis {
 	private static class UnsafeVisitor extends ClassVisitor {
 
 		private final List<UnsafeEntry> matches;
-		private final Artifact artifact;
+		private final MavenArtifact artifact;
 		private String className;
 
-		public UnsafeVisitor(List<UnsafeEntry> matches, Artifact a) {
+		public UnsafeVisitor(List<UnsafeEntry> matches, MavenArtifact a) {
 			super(Opcodes.ASM5);
 
 			this.matches = matches;
@@ -97,7 +99,7 @@ public class UnsafeAnalysis {
 		}
 	}
 
-	public static List<UnsafeEntry> searchClassFile(byte[] classFile, Artifact a) {
+	public static List<UnsafeEntry> searchClassFile(byte[] classFile, MavenArtifact a) {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 
 		searchClassFile(classFile, matches, a);
@@ -106,7 +108,7 @@ public class UnsafeAnalysis {
 	}
 
 	public static List<UnsafeEntry> searchJarFile(byte[] jarFileBuffer,
-			Artifact a) throws IOException {
+			MavenArtifact a) throws IOException {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 
 		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(
@@ -132,7 +134,7 @@ public class UnsafeAnalysis {
 		return matches;
 	}
 
-	public static List<UnsafeEntry> searchJarFile(String jarFileName, Artifact a)
+	public static List<UnsafeEntry> searchJarFile(String jarFileName, MavenArtifact a)
 			throws IOException {
 		byte[] jarFileBuffer = Files.readAllBytes(Paths.get(jarFileName));
 
@@ -140,7 +142,7 @@ public class UnsafeAnalysis {
 	}
 
 	private static void searchClassFile(byte[] classFile,
-			List<UnsafeEntry> matches, Artifact a) {
+			List<UnsafeEntry> matches, MavenArtifact a) {
 		ClassReader cr = new ClassReader(classFile);
 		UnsafeVisitor uv = new UnsafeVisitor(matches, a);
 		cr.accept(uv, 0);

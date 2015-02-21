@@ -9,15 +9,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ch.usi.inf.sape.mavendb.MavenArtifact;
+import ch.usi.inf.sape.mavendb.MavenIndex;
+import ch.usi.inf.sape.util.Log;
+import ch.usi.inf.sape.util.Mirror;
+
 public class Downloader {
 
 	private static class DumpThread extends Thread {
 		private final Mirror[] mirrors;
-		private final List<Artifact> queue;
+		private final List<MavenArtifact> queue;
 		private final int mirrorStart;
 		private final Log log;
 
-		public DumpThread(Mirror[] mirrors, List<Artifact> queue,
+		public DumpThread(Mirror[] mirrors, List<MavenArtifact> queue,
 				int mirrorStart, Log log) {
 			this.mirrors = mirrors;
 			this.queue = queue;
@@ -63,12 +68,21 @@ public class Downloader {
 			}
 		}
 
+		public int progress;
+
 		@Override
 		public void run() {
 			try {
-				for (Artifact a : queue) {
+				for (MavenArtifact a : queue) {
 					download(a.getPath(), a.size, mirrors, mirrorStart, log);
 					download(a.getPomPath(), -1, mirrors, mirrorStart, log);
+
+					if (a.sources) {
+						download(a.getSourcesPath(), -1, mirrors, mirrorStart,
+								log);
+					}
+
+					progress++;
 				}
 
 				log.log("DONE");
@@ -82,28 +96,54 @@ public class Downloader {
 	}
 
 	public static void downloadAll(MavenIndex index, Mirror[] mirrors,
-			int numberOfThreads, Log log) throws FileNotFoundException {
+			int numberOfThreads, Log log) throws FileNotFoundException,
+			InterruptedException {
 		log.log("Dumping map...");
 
-		HashMap<Integer, List<Artifact>> queues = new HashMap<Integer, List<Artifact>>();
+		HashMap<Integer, List<MavenArtifact>> queues = new HashMap<Integer, List<MavenArtifact>>();
 		for (int i = 0; i < numberOfThreads; i++) {
-			queues.put(i, new ArrayList<Artifact>());
+			queues.put(i, new ArrayList<MavenArtifact>());
 		}
 
 		int j = 0;
-		for (Artifact a : index) {
+		for (MavenArtifact a : index) {
 			queues.get(j % numberOfThreads).add(a);
 			j++;
 		}
 
+		DumpThread[] ts = new DumpThread[numberOfThreads];
 		for (int i = 0; i < numberOfThreads; i++) {
 			String logFileName = "db/logindex-" + i + ".log";
 			log.log("Opening log %s...", logFileName);
 
 			new File(new File(logFileName).getParent()).mkdirs();
-			Thread t = new DumpThread(mirrors, queues.get(i), i
-					% mirrors.length, new Log(new PrintStream(logFileName)));
-			t.start();
+			ts[i] = new DumpThread(mirrors, queues.get(i), i % mirrors.length,
+					new Log(new PrintStream(logFileName)));
+			ts[i].start();
+		}
+
+		while (true) {
+			Thread.sleep(5000);
+
+			boolean done = true;
+
+			String progress = "";
+			for (int i = 0; i < numberOfThreads; i++) {
+				DumpThread t = ts[i];
+				if (t.isAlive()) {
+					done = false;
+				}
+
+				String join = i == 0 ? "" : " | ";
+				float p = (t.progress / t.queue.size()) * 100;
+				progress += join + String.format("%6.2f %%", p);
+			}
+
+			log.log("%s", progress);
+
+			if (done) {
+				break;
+			}
 		}
 	}
 }

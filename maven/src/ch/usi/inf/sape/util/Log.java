@@ -1,4 +1,4 @@
-package ch.usi.inf.sape.unsafe.maven;
+package ch.usi.inf.sape.util;
 
 import java.io.PrintStream;
 

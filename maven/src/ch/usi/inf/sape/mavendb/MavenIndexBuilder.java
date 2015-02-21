@@ -1,37 +1,14 @@
-package ch.usi.inf.sape.unsafe.maven;
+package ch.usi.inf.sape.mavendb;
 
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.search.IndexSearcher;
 
-public class MavenIndex implements Iterable<Artifact> {
-
-	public long maxDoc;
-	public List<String> rootGroupsList;
-	public long totalSize = 0;
-	public long lastVersionJarsSize = 0;
-	public long uniqueArtifactsCount = 0;
-	public Date mmindate = null;
-	public Date mmaxdate = null;
-	public Date imindate = null;
-	public Date imaxdate = null;
-	public final HashMap<String, Artifact> map = new HashMap<String, Artifact>();
-	public final Set<String> fieldSet = new HashSet<String>();
-	public final Set<String> extSet = new HashSet<String>();
-
-	private MavenIndex() {
-	}
+public class MavenIndexBuilder {
 
 	@SuppressWarnings("deprecation")
 	public static MavenIndex build(IndexSearcher searcher) throws Exception {
@@ -179,6 +156,10 @@ public class MavenIndex implements Iterable<Artifact> {
 
 				index.totalSize += size;
 
+				MavenArtifact a = new MavenArtifact(groupId, artifactId,
+						version, size, ext, n, d);
+				String id = a.getId();
+
 				if (us.length == 4
 						&& Arrays.asList("jar", "ejb", "war", "ear").contains(
 								ext)) {
@@ -186,24 +167,30 @@ public class MavenIndex implements Iterable<Artifact> {
 					// assert one != null && one.matches("[0-9a-f]{40}") :
 					// "sha1: "+ docText;
 
-					// if (one == null || !one.matches("[0-9a-f]{40}")){
-					// System.out.println(docText);
-					// }
-
-					Artifact a = new Artifact(groupId, artifactId, version,
-							size, ext, n, d);
-					String key = a.getKey();
-					if (index.map.containsKey(key)) {
-						Artifact b = index.map.get(key);
+					if (index.map.containsKey(id)) {
+						MavenArtifact b = index.map.get(id);
 						index.lastVersionJarsSize -= b.size;
 
 						a = b.max(a);
 					}
 
 					index.lastVersionJarsSize += a.size;
-					index.map.put(key, a);
+					index.map.put(id, a);
+				}
+
+				if (us.length == 5
+						&& kind.equals("sources")
+						&& Arrays.asList("jar", "ejb", "war", "ear").contains(
+								ext)) {
+					if (index.map.containsKey(id)) {
+						index.get(id).sources = true;
+					}
 				}
 			}
+
+			// if (one != null && !one.toLowerCase().matches("[0-9a-f]{40}")) {
+			// System.out.println(docText);
+			// }
 		}
 
 		assert mmindate.getYear() + 1900 == 2011 : "Unexpected mmindate: "
@@ -223,50 +210,5 @@ public class MavenIndex implements Iterable<Artifact> {
 		index.imaxdate = imaxdate;
 
 		return index;
-	}
-
-	public static void showSearcher(IndexSearcher searcher, String term,
-			PrintStream out) throws CorruptIndexException, IOException {
-
-		for (int i = 0; i < searcher.maxDoc(); i++) {
-			Document doc = searcher.doc(i);
-
-			@SuppressWarnings("unchecked")
-			List<Field> fs = (List<Field>) doc.getFields();
-
-			String docText = "";
-			boolean found = false;
-			for (Field f : fs) {
-				String name = f.name();
-				String value = doc.get(name);
-				docText += name + "=" + value + " ";
-
-				if (value.toLowerCase().contains(term)
-						&& !name.contains("allGroupsList")) {
-					found = true;
-				}
-			}
-
-			if (found) {
-				out.println(docText);
-			}
-		}
-	}
-
-	public void print(PrintStream out) {
-		out.println("groupId, artifactId, version, size, ext");
-		for (Artifact a : this) {
-			out.format("%s, %s, %s, %s, %s\n", a.groupId, a.artifactId,
-					a.version, a.size, a.ext);
-		}
-	}
-
-	public Artifact get(String key) {
-		return map.get(key);
-	}
-
-	@Override
-	public Iterator<Artifact> iterator() {
-		return map.values().iterator();
 	}
 }

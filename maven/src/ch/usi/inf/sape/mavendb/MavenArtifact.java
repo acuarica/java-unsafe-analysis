@@ -1,9 +1,9 @@
-package ch.usi.inf.sape.unsafe.maven;
+package ch.usi.inf.sape.mavendb;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Artifact {
+public class MavenArtifact {
 
 	public final String groupId;
 	public final String artifactId;
@@ -13,6 +13,7 @@ public class Artifact {
 	public final String groupDesc;
 	public final String artifactDesc;
 	public final List<Dependency> dependencies = new ArrayList<Dependency>();
+	public boolean sources = false;
 
 	public static class Dependency {
 		public String groupId;
@@ -23,7 +24,7 @@ public class Artifact {
 		}
 	}
 
-	public Artifact(String groupId, String artifactId, String version,
+	public MavenArtifact(String groupId, String artifactId, String version,
 			long size, String ext, String groupDesc, String artifactDesc) {
 		this.groupId = groupId;
 		this.artifactId = artifactId;
@@ -35,23 +36,27 @@ public class Artifact {
 	}
 
 	public String getPath() {
-		return getPath(ext);
+		return getPath("." + ext);
 	}
 
 	public String getPomPath() {
-		return getPath("pom");
+		return getPath(".pom");
 	}
 
-	public String getKey() {
+	public String getSourcesPath() {
+		return getPath("-sources.jar");
+	}
+
+	public String getId() {
 		return groupId + ":" + artifactId;
 	}
 
 	private String getPath(String ext) {
 		return groupId.replace('.', '/') + "/" + artifactId + "/" + version
-				+ "/" + artifactId + "-" + version + "." + ext;
+				+ "/" + artifactId + "-" + version + ext;
 	}
 
-	public Artifact max(Artifact other) {
+	public MavenArtifact max(MavenArtifact other) {
 		String[] ls = this.version.split("\\.");
 		String[] rs = other.version.split("\\.");
 

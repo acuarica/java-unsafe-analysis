@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.file.NoSuchFileException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipException;
@@ -15,8 +16,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import ch.usi.inf.sape.unsafe.maven.Artifact.Dependency;
+import ch.usi.inf.sape.mavendb.MavenArtifact;
+import ch.usi.inf.sape.mavendb.MavenArtifact.Dependency;
+import ch.usi.inf.sape.mavendb.MavenDBProperties;
+import ch.usi.inf.sape.mavendb.MavenIndex;
+import ch.usi.inf.sape.mavendb.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
+import ch.usi.inf.sape.util.Log;
+import ch.usi.inf.sape.util.Mirror;
 
 public class Main {
 
@@ -40,29 +47,24 @@ public class Main {
 	private static MavenIndex build(Class<?> mainClass) throws Exception {
 		log.log("Running class %s", mainClass);
 
-		final IndexSearcher searcher = new IndexSearcher("index/");
+		String indexPath = MavenDBProperties.get().indexPath();
+		IndexSearcher searcher = new IndexSearcher(indexPath);
 
 		log.log("Maven Index contains %,d documents", searcher.maxDoc());
 
-		final MavenIndex index = MavenIndex.build(searcher);
+		MavenIndex index = MavenIndexBuilder.build(searcher);
 		showSummary(index);
 
 		return index;
 	}
 
-	public static class Check {
-		public static void main(String args[]) throws Exception {
-			build(Check.class);
-		}
-	}
-
 	public static class Build {
 		public static void main(String args[]) throws Exception {
-			final MavenIndex index = build(Build.class);
+			MavenIndex index = build(Build.class);
 
 			log.log("Serializing index... ");
 
-			String fileName = "db/index.list";
+			String fileName = MavenDBProperties.get().artifactsPath();
 			new File(new File(fileName).getParent()).mkdirs();
 			try (PrintStream out = new PrintStream(fileName)) {
 				index.print(out);
@@ -74,18 +76,20 @@ public class Main {
 
 	public static class Download {
 		public static void main(String[] args) throws Exception {
-			final MavenIndex index = build(Download.class);
+			MavenIndex index = build(Download.class);
 
-			final int r = 10;
-			final Mirror[] mirrors = new Mirror[] {
-					new Mirror("http://mirrors.ibiblio.org/maven2/", r),
-					new Mirror(
-							"http://maven.antelink.com/content/repositories/central/",
-							r) };
+			int r = MavenDBProperties.get().downloaderRetries();
+			int n = MavenDBProperties.get().downloaderNumberOfThreads();
 
-			int numberOfThreads = 8;
+			List<Mirror> ms = new ArrayList<Mirror>();
+			for (String url : MavenDBProperties.get().downloaderMirrorList()) {
+				Mirror m = new Mirror(url, r);
+				ms.add(m);
+			}
 
-			Downloader.downloadAll(index, mirrors, numberOfThreads, log);
+			Mirror[] mirrors = ms.toArray(new Mirror[ms.size()]);
+
+			Downloader.downloadAll(index, mirrors, n, log);
 		}
 	}
 
@@ -96,7 +100,7 @@ public class Main {
 			List<UnsafeEntry> allMatches = new LinkedList<UnsafeEntry>();
 
 			int i = 0;
-			for (Artifact a : index) {
+			for (MavenArtifact a : index) {
 				i++;
 
 				String path = a.getPath();
@@ -134,7 +138,7 @@ public class Main {
 
 				out.println("groupId, artifactId, depGroupId, depArtifactId, depVersion");
 
-				for (final Artifact a : index) {
+				for (final MavenArtifact a : index) {
 					String path = a.getPomPath();
 					try {
 						SAXParserFactory spf = SAXParserFactory.newInstance();
