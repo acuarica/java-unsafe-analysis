@@ -135,7 +135,7 @@ public class Downloader {
 				}
 
 				String join = i == 0 ? "" : " | ";
-				float p = (t.progress / t.queue.size()) * 100;
+				float p = ((float) t.progress / t.queue.size()) * 100;
 				progress += join + String.format("%6.2f %%", p);
 			}
 
