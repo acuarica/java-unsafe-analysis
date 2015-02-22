@@ -43,6 +43,8 @@ df.maven <- (function() {
   df.maven
 })();
 
+dcast(df.maven, groupId+artifactId+id~name, value.var='name', fun.aggregate=length);
+
 save.plot(ggplot(df.maven, aes(x=name))+geom_bar(stat="bin")+facet_grid(.~group, space='free_x', scales="free_x")+
             theme(axis.text.x=element_text(angle=62, hjust=1), axis.text.y=element_text(angle=90, hjust=1), 
                   axis.title.x=element_text(angle=180),
