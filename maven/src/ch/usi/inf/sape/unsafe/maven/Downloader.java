@@ -116,27 +116,33 @@ public class Downloader {
 			String logFileName = "db/logindex-" + i + ".log";
 			log.log("Opening log %s...", logFileName);
 
+			int mirrorStart = i % mirrors.length;
 			new File(new File(logFileName).getParent()).mkdirs();
-			ts[i] = new DumpThread(mirrors, queues.get(i), i % mirrors.length,
+			ts[i] = new DumpThread(mirrors, queues.get(i), mirrorStart,
 					new Log(new PrintStream(logFileName)));
 			ts[i].start();
 		}
 
 		while (true) {
-			Thread.sleep(5000);
+			Thread.sleep(5 * 1000);
 
 			boolean done = true;
 
 			String progress = "";
 			for (int i = 0; i < numberOfThreads; i++) {
 				DumpThread t = ts[i];
+
+				int p = t.progress * 100 / t.queue.size();
+				String sp;
 				if (t.isAlive()) {
 					done = false;
+					sp = String.format("%2d %%", p);
+				} else {
+					sp = p == 100 ? "DONE" : " ERR";
 				}
 
-				String join = i == 0 ? "" : " | ";
-				float p = ((float) t.progress / t.queue.size()) * 100;
-				progress += join + String.format("%6.2f %%", p);
+				String join = i == 0 ? "" : " ";
+				progress += join + sp;
 			}
 
 			log.log("%s", progress);

@@ -11,9 +11,11 @@ public class MirrorTest {
 	@Test
 	public void idTest() throws Exception {
 
-		System.out.format("%6.2f %%\n", 3.4567);
-		System.out.format("%6.2f %%\n", 123.4567);
-		System.out.format("%6.2f %%\n", 1234.4567);
+		System.out.format("%2d%%\n", 20 * 100 / 1000);
+		System.out.format("%2d%%\n", 55 * 100 / 1000);
+		System.out.format("%2d%%\n", 99 * 100 / 1000);
+		System.out.format("%2d%%\n", 999 * 100 / 1000);
+		System.out.format("%2d%%\n", 1000 * 100 / 1000);
 
 		Mirror m = new Mirror("http://mirrors.ibiblio.org/maven2/", 10);
 
