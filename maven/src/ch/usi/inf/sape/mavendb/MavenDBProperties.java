@@ -44,8 +44,8 @@ public class MavenDBProperties {
 		return Integer.parseInt(getProperty("downloader.retries"));
 	}
 
-	public int downloaderNumberOfThreads() {
-		return Integer.parseInt(getProperty("downloader.numberofthreads"));
+	public int downloaderThreadsPerMirror() {
+		return Integer.parseInt(getProperty("downloader.threadspermirror"));
 	}
 
 	public String[] downloaderMirrorList() {

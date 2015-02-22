@@ -18,8 +18,8 @@ public class MavenDBPropertiesTest {
 		log.log("indexPath: %s", prop.indexPath());
 		log.log("repoPath: %s", prop.repoPath());
 		log.log("downloaderRetries: %d", prop.downloaderRetries());
-		log.log("downloaderNumberOfThreads: %d",
-				prop.downloaderNumberOfThreads());
+		log.log("downloaderThreadsPerMirror: %d",
+				prop.downloaderThreadsPerMirror());
 
 		for (String mirrorUrl : prop.downloaderMirrorList()) {
 			log.log("mirror: %s", mirrorUrl);

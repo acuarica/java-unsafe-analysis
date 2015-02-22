@@ -79,7 +79,7 @@ public class Main {
 			MavenIndex index = build(Download.class);
 
 			int r = MavenDBProperties.get().downloaderRetries();
-			int n = MavenDBProperties.get().downloaderNumberOfThreads();
+			int n = MavenDBProperties.get().downloaderThreadsPerMirror();
 
 			List<Mirror> ms = new ArrayList<Mirror>();
 			for (String url : MavenDBProperties.get().downloaderMirrorList()) {
@@ -89,7 +89,7 @@ public class Main {
 
 			Mirror[] mirrors = ms.toArray(new Mirror[ms.size()]);
 
-			Downloader.downloadAll(index, mirrors, n, log);
+			Downloader.downloadAll(index, mirrors, n * mirrors.length, log);
 		}
 	}
 
