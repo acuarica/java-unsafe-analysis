@@ -50,11 +50,9 @@ save.plot(ggplot(df.maven, aes(x=name))+geom_bar(stat="bin")+facet_grid(.~group,
                   legend.title=element_blank(),strip.text.x=element_text(angle=90))+
             labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, "plot-cs", w=15, h=6);
 
-for (gaid in head(levels(df.maven$id), 20)) {
+gaid <- 'org.python_jython'
+for (gaid in levels(df.maven$id)) {
   save.plot(ggplot(subset(df.maven, id==gaid), aes(x=name))+geom_bar(stat="bin")+facet_grid(.~group, space='free_x', scales="free_x")+
-            theme(axis.text.x=element_text(angle=62, hjust=1), axis.text.y=element_text(angle=90, hjust=1), 
-                  axis.title.x=element_text(angle=180),
-                  legend.box="horizontal", legend.position="top", 
-                  legend.title=element_blank(),strip.text.x=element_text(angle=90))+
-            labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, paste('plot-cs', gaid, sep='-'), w=15, h=6);
+            theme(axis.text.x=element_text(angle=45, hjust=1))+ 
+            labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, paste('plot-cs', gaid, sep='-'));
 }
