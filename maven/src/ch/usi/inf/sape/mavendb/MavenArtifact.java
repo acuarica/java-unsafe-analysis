@@ -19,6 +19,7 @@ public class MavenArtifact {
 		public String groupId;
 		public String artifactId;
 		public String version;
+		public String scope;
 
 		public Dependency() {
 		}

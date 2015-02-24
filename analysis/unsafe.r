@@ -48,7 +48,9 @@ save.plot(ggplot(df.maven, aes(x=name))+geom_bar(stat="bin")+facet_grid(.~group,
             labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, 'cs', w=15, h=6);
 
 gaid <- 'org.python_jython'
-for (gaid in head(levels(df.maven$id), 5)) {
+h <- 5
+h <- length(levels(df.maven$id))
+for (gaid in head(levels(df.maven$id), h)) {
   save.plot(ggplot(subset(df.maven, id==gaid), aes(x=name))+geom_bar(stat="bin")+facet_grid(.~group, space='free_x', scales="free_x")+
             theme(axis.text.x=element_text(angle=45, hjust=1))+ 
             labs(x="sun.misc.Unsafe methods", y = "# call sites"), path, paste('cs', gaid, sep='-'));
@@ -62,7 +64,6 @@ df <- dcast(df.maven, id~., value.var='name', fun.aggregate=length);
 df <- merge(df, df.invdeps, by.x='id', by.y='depId', all.x=TRUE);
 df <- df[with(df, order(rank) ), ]
 
-save.plot(ggplot(df, aes(x=rank, y='Ranking'))+
-            geom_vline(aes(xintercept=rank, x=rank, y='Ranking'))+
+save.plot(ggplot(df, aes(x=rank, y='Ranking'))+geom_point(position='jitter')+
             theme(axis.text.y=element_blank())+labs(x="Ranking", y = "Artifacts"), 
           path, 'ranking', h=2, w=8);

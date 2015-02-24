@@ -16,7 +16,8 @@ public class IndexSearcherTest {
 
 	private static void show(IndexSearcher searcher, String term,
 			PrintStream out) throws CorruptIndexException, IOException {
-
+		out.format("docs: %d\n", searcher.maxDoc());
+		
 		for (int i = 0; i < searcher.maxDoc(); i++) {
 			Document doc = searcher.doc(i);
 

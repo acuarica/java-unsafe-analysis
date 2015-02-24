@@ -136,7 +136,7 @@ public class Main {
 			String localPathCsv = "db/depgraph.csv";
 			try (PrintStream out = new PrintStream(localPathCsv)) {
 
-				out.println("groupId, artifactId, depGroupId, depArtifactId, depVersion");
+				out.println("groupId, artifactId, depGroupId, depArtifactId, depVersion, depScope");
 
 				for (final MavenArtifact a : index) {
 					String path = a.getPomPath();
@@ -168,10 +168,10 @@ public class Main {
 									String localName, String qName)
 									throws SAXException {
 								if (qName.equals("dependency")) {
-									out.format("%s, %s, %s, %s, %s\n",
+									out.format("%s, %s, %s, %s, %s, %s\n",
 											a.groupId, a.artifactId,
 											dep.groupId, dep.artifactId,
-											dep.version);
+											dep.version, dep.scope);
 
 									a.dependencies.add(dep);
 									dep = null;
@@ -184,6 +184,9 @@ public class Main {
 								} else if (dep != null
 										&& qName.equals("version")) {
 									dep.version = value;
+								} else if (dep != null
+										&& qName.equals("scope")) {
+									dep.scope = value;
 								}
 							}
 						});
