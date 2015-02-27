@@ -50,9 +50,6 @@ df.maven <- (function() {
 
   noartifacts <- nrow(dcast(df.maven, groupId+artifactId~name, value.var='name', fun.aggregate=length));
   nogroups <- nrow(dcast(df.maven, groupId~name, value.var='name', fun.aggregate=length));
-  #printf("# of call sites to Unsafe: %s", nrow(df.maven));
-  #printf("# of artifacts using Unsafe: %s", noartifacts);
-  #printf("# of groups using Unsafe: %s", nogroups);
   
   save.grid(data.frame(
     description=c("# of call sites to Unsafe", "# of artifacts using Unsafe", "# of groups using Unsafe"),
@@ -60,6 +57,25 @@ df.maven <- (function() {
   
   df.maven
 })();
+
+
+library(pvclust)
+
+df <- dcast(df.maven, id~name, value.var='name', fun.aggregate=length);
+rownames(df) <- df$id
+df$id <- NULL
+
+d <- dist(df[1:5,], method = "euclidean");
+fit <- hclust(d, method="ward");
+plot(fit);
+groups <- cutree(fit, k=5);
+rect.hclust(fit, k=5, border="red");
+
+fit <- pvclust(df, method.hclust="ward", method.dist="euclidean");
+plot(fit);
+pvrect(fit, alpha=.95);
+
+
 
 invdeps <- function(f) {
   csv.invdeps <- read.csv(f, strip.white=TRUE, sep=',', header=TRUE);
@@ -73,8 +89,8 @@ invdeps <- function(f) {
               theme(axis.text.y=element_blank())+labs(x="Ranking", y = "Artifacts"), 
             f, 'ranking', h=2, w=8);
   
-  #save.csv(df.invdeps[1:20,], f, 'requested-top20-all');
-  #save.csv(df[1:20,c('id', 'depCount', 'rank')], f, 'requested-top20-unsafe');
+  save.csv(df.invdeps[1:20,], f, 'requested-top20-all');
+  save.csv(df[1:20,c('id', 'depCount', 'rank')], f, 'requested-top20-unsafe');
   
   save.grid(df.invdeps[1:20,], f, 'requested-top20-all');
   save.grid(df[1:20,c('id', 'depCount', 'rank')], f, 'requested-top20-unsafe');
