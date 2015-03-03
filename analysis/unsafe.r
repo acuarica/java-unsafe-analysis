@@ -60,24 +60,26 @@ df.maven <- (function() {
   df.maven
 })();
 
-(function() {
+df.most.used.artifacts.w.unsafe <- (function() {
 
   invdeps <- function(f) {
     csv.invdeps <- read.csv(f, strip.white=TRUE, sep=',', header=TRUE);
     df.invdeps <- csv.invdeps[with(csv.invdeps, order(-depCount) ), ]
     df.invdeps$rank <- c(1:nrow(df.invdeps))
-    df <- dcast(df.maven, id~., value.var='name', fun.aggregate=length);
+    df <- dcast(df.maven, id+groupId~., value.var='name', fun.aggregate=length);
     df <- merge(df, df.invdeps, by.x='id', by.y='depId', all.x=TRUE);
     df <- df[with(df, order(rank) ), ]
     
-    print(ggplot(subset(df, !is.na(depCount)), aes(x=rank, y='Ranking'))+geom_point(position='jitter')+
-            theme(axis.text.y=element_blank())+labs(x="Ranking", y = "Artifacts"));
+    print(ggplot(subset(df, !is.na(depCount)), aes(x=rank))+geom_histogram(binwidth=1000)+
+            theme()+labs(x="Ranking", y = "Artifacts"));
     
     grid.newpage();
     grid.table(df.invdeps[1:20,], show.rownames=FALSE);
     
     grid.newpage();
     grid.table(df[1:20,c('id', 'depCount', 'rank')], show.rownames=FALSE);
+    
+    df;
   };
   
   save.plot.open(csvfilename, 'summary');
@@ -91,8 +93,11 @@ df.maven <- (function() {
     total=c(nrow(df.maven), noartifacts, nogroups)));
   
   invdeps('maven-invdeps-production.csv');
-  invdeps('maven-invdeps-all.csv');
+  df <- invdeps('maven-invdeps-all.csv');
+  
   save.plot.close();
+  
+  df;
 })();
 
 cluster.sort <- (function() {
@@ -137,16 +142,18 @@ for (i in levels(df.maven$class)) {
 }
 save.plot.close();
 
-#i <- 'ai.h2o'
-#save.plot.open(csvfilename, 'cs-groups');
-#for (i in levels(df.maven$groupId)) {
-#  printf('Processing group %s...', i);
-#  print(ggplot(subset(df.maven, groupId==i), aes(x=name, fill=className))+geom_bar(stat="bin")+
-#    facet_grid(artifactId~group, space='free_x', scales="free_x")+
-#    theme(axis.text.x=element_text(angle=45, hjust=1))+
-#    labs(x="sun.misc.Unsafe methods", y = "# call sites"));
-#}
-#save.plot.close();
+df <- dcast(subset(df.most.used.artifacts.w.unsafe, !is.na(rank)), groupId~., value.var='rank', fun.aggregate=min)
+df <- df[with(df, order(.) ), ]
+i <- 'ai.h2o'
+save.plot.open(csvfilename, 'cs-groups-by-dep');
+for (i in df$groupId) {
+  printf('Processing group %s...', i);
+  print(ggplot(subset(df.maven, groupId==i), aes(x=name, fill=className))+geom_bar(stat="bin")+
+    facet_grid(artifactId~group, space='free_x', scales="free_x")+
+    theme(axis.text.x=element_text(angle=45, hjust=1))+
+    labs(x="sun.misc.Unsafe methods", y = sprintf("# call sites in %s", i) ));
+}
+save.plot.close();
 
 save.plot.open(csvfilename, 'cs-artifacts');
 for (i in cluster.sort) {
