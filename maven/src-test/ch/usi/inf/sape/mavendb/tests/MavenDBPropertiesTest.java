@@ -1,6 +1,9 @@
 package ch.usi.inf.sape.mavendb.tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import org.junit.Test;
 
@@ -24,5 +27,19 @@ public class MavenDBPropertiesTest {
 		for (String mirrorUrl : prop.downloaderMirrorList()) {
 			log.log("mirror: %s", mirrorUrl);
 		}
+	}
+
+	@Test
+	public void main() {
+		ArrayList<String> s = new ArrayList<String>();
+
+		Iterator<String> i = s.iterator();
+		s.addAll(Arrays.asList("A", "B", "C", "D"));
+
+		// if (i.hasNext()) {
+		String item = i.next();
+		// }
+
+		System.out.println(s);
 	}
 }

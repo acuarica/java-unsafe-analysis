@@ -50,9 +50,12 @@ df.maven <- (function() {
   df.maven <- merge(csv.maven, df.methods, by.x="name", by.y="method", all.x=FALSE);
   df.maven$id <- factor(paste(df.maven$groupId, df.maven$artifactId, sep=':'));
 
-  df.maven$class = as.character(df.maven$className);
+  df.maven$package <- NA;
+  df.maven$class = NA;
   for (i in 1:nrow(df.maven)) {
-    a <- strsplit(df.maven$class[i], '/')[[1]]
+    className <- as.character(df.maven$className[i]);
+    a <- strsplit(className, '/')[[1]]
+    df.maven$package[i] <- paste(a[1:length(a)-1], collapse='/');
     df.maven$class[i] <- a[length(a)];
   }
   df.maven$class <- factor(df.maven$class);
@@ -131,9 +134,12 @@ cluster.sort <- (function() {
               labs(x="sun.misc.Unsafe methods", y = "# call sites"), csvfilename, 'cs-all-vertical-pre', w=15, h=6);  
 })();
 
-
+df <- dcast(df.maven, class+className~., fun.aggregate=length);
+df <- dcast(df, class~., fun.aggregate=length);
+df <- df[with(df, order(-.) ), ]
 save.plot.open(csvfilename, 'cs-classes');
-for (i in levels(df.maven$class)) {
+i <- 'Striped64';
+for (i in df$class) {
   printf('Processing class %s...', i);
   print(ggplot(subset(df.maven, class==i), aes(x=name, fill=className))+geom_bar(stat="bin")+
           facet_grid(.~group, space='free_x', scales="free_x")+
