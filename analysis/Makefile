@@ -2,22 +2,44 @@
 R=r
 BUILD=build
 
-CSCSV=$(BUILD)/unsafe-maven-cs.csv
-CSPDFPRE=$(BUILD)/unsafe-maven-cs-all-vertical-pre.pdf
-CSPDF=$(BUILD)/unsafe-maven-cs-all-vertical.pdf
+INS=$(wildcard csv/*.csv)
+CSVS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.csv.r))
+PDFS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.pdf.r))
 
-cspdf: $(CSPDF)
-cspdfpre: $(CSPDFPRE)
-cscsv: $(CSCSV)
+#CS=$(BUILD)/cs.csv
+#OVERVIEWPRE=$(BUILD)/overview-pre.pdf
+#OVERVIEW=$(BUILD)/overview.pdf
+#SUMMARY=$(BUILD)/summary.pdf
+#CLASSUNIT=$(BUILD)/classunit.pdf
 
-$(CSPDF): $(CSPDFPRE)
+#.PHONY: all cs summary classunit
+
+.SECONDARY:
+
+#all:
+#	echo $(PDFS)
+all: $(PDFS)
+
+#	$(CSVS) 
+
+#all: cs overview summary classunit
+
+#cs: $(CS)
+#overview: $(OVERVIEW)
+#summary: $(SUMMARY)
+#classunit: $(CLASSUNIT)
+
+$(BUILD)/overview.pdf: $(BUILD)/overview-pre.pdf
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
 
-$(CSPDFPRE): $(CSCSV) unsafe.r | $(BUILD)
-	$(R) --slave --vanilla --file=unsafe.r
+#$(CS): cs.r csv/unsafe-maven.csv csv/unsafe-def-groups.csv csv/unsafe-def-methods.csv
+#$(BUILD)/cs.csv
 
-$(CSCSV): unsafe-maven.csv unsafe-def-groups.csv unsafe-def-methods.csv cs.r | $(BUILD)
-	$(R) --slave --vanilla --file=cs.r
+$(BUILD)/%.pdf: %.pdf.r $(CSVS) | $(BUILD)
+	$(R) --slave --vanilla --file=$< --args $@
+
+$(BUILD)/%.csv: %.csv.r $(INS) | $(BUILD)
+	$(R) --slave --vanilla --file=$< --args $@
 
 $(BUILD):
 	mkdir $(BUILD)

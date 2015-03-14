@@ -3,18 +3,14 @@ printf <- function(format, ...) {
   print(sprintf(format, ...));
 }
 
-outpath <- function(file, ext) {
-  path <- sprintf('build/%s.%s', file, ext);
-  printf("Saving %s", path);
-  path;
-}
-
-save.csv <- function(df, file) {
-  write.csv(df, file=outpath(file, 'csv'));
+save.csv <- function(df, file, quote=FALSE, row.names=FALSE) {
+  printf("Saving %s", file);
+  write.csv(df, file=file, quote=quote, row.names=row.names);
 }
 
 save.plot.open <- function(file, w=12, h=8) {
-  pdf(file=outpath(file, 'pdf'), paper='special', width=w, height=h, pointsize=12);
+  printf("Saving %s", file);
+  pdf(file=file, paper='special', width=w, height=h, pointsize=12);
 }
 
 save.plot.close <- function() {
@@ -28,8 +24,8 @@ save.plot <- function(plot, file, w=12, h=8) {
 }
 
 df.methods <- (function() {
-  csv.groups <- read.csv('unsafe-def-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
-  csv.methods <- read.csv('unsafe-def-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
+  csv.groups <- read.csv('csv/unsafe-def-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
+  csv.methods <- read.csv('csv/unsafe-def-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
   
   df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
   df.methods$gid <- NULL; 
@@ -121,3 +117,5 @@ groups.hclust = function (tree, k= NULL, which=NULL, x=NULL, h=NULL, border=2, c
   
   retval
 }
+
+outfile <- commandArgs(trailingOnly = TRUE)[1];
