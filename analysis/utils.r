@@ -7,24 +7,30 @@ load.csv = function(file) {
   read.csv(file, strip.white=TRUE, comment.char='#');
 }
 
-save.csv <- function(df, file, quote=FALSE, row.names=FALSE) {
+save.csv = function(df, file, quote=FALSE, row.names=FALSE) {
   printf("Saving %s", file);
   write.csv(df, file=file, quote=quote, row.names=row.names);
 }
 
-save.plot.open <- function(file, w=12, h=8) {
+save.plot.open = function(file, w=12, h=8) {
   printf("Saving %s", file);
   pdf(file=file, paper='special', width=w, height=h, pointsize=12);
 }
 
-save.plot.close <- function() {
-  null <- dev.off();
+save.plot.close = function() {
+  null = dev.off();
 }
 
-save.plot <- function(plot, file, w=12, h=8) { 
+save.plot = function(plot, file, w=12, h=8) { 
   save.plot.open(file, w=w, h=h);
   print(plot);
   save.plot.close();
+}
+
+suffixfile = function(outfile, suffix, sep='-') {
+  library(tools);
+  
+  sprintf('%s%s%s.%s', file_path_sans_ext(outfile), sep, suffix, file_ext(outfile));
 }
 
 # Multiple plot function
