@@ -34,12 +34,14 @@ invdeps <- function(f) {
 
 save.plot.open(outfile);
 
-noarts <- nrow(dcast(df.maven, id~name, value.var='name', fun.aggregate=length));
+df = dcast(df.maven, id~'cs', value.var='cs', fun.aggregate=sum);
+nocs = dcast(df, .~'cs', value.var='cs', fun.aggregate=sum)$cs[1];
+noarts = nrow(df);
 
 grid.newpage();
 grid.table(data.frame(
   desc=c("# of call sites to Unsafe", "# of artifacts using Unsafe"),
-  total=c(nrow(df.maven), noarts)));
+  total=c(nocs, noarts)));
 
 invdeps('csv/maven-invdeps-production.csv');
 invdeps('csv/maven-invdeps-all.csv');

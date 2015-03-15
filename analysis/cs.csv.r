@@ -1,4 +1,6 @@
 
+library(reshape2)
+
 source('utils.r')
 
 fcls <- function(cls) {    
@@ -14,7 +16,9 @@ fcls <- function(cls) {
   sprintf("%s*", cls);
 }
 
-df <- read.csv('csv/unsafe-maven.csv', strip.white=TRUE, sep=',', header=TRUE);
+csv <- load.csv('csv/unsafe-maven.csv');
+
+df <- dcast(csv, className+name+groupId+artifactId~'cs', value.var='name', fun.aggregate=length);
 
 df$methodName = NULL;
 df$methodDesc = NULL;
@@ -24,7 +28,7 @@ df$version = NULL;
 df$size = NULL;
 df$ext = NULL;
 
-df <- merge(df, df.methods, by.x="name", by.y="method", all.x=FALSE);
+#df <- merge(df, df.methods, by.x="name", by.y="method", all.x=FALSE);
 df$id <- factor(paste(df$groupId, df$artifactId, sep=':'));
 
 df$className <- as.character(df$className);

@@ -1,6 +1,10 @@
 
-printf <- function(format, ...) {
+printf = function(format, ...) {
   print(sprintf(format, ...));
+}
+
+load.csv = function(file) {
+  read.csv(file, strip.white=TRUE, comment.char='#');
 }
 
 save.csv <- function(df, file, quote=FALSE, row.names=FALSE) {
@@ -22,17 +26,6 @@ save.plot <- function(plot, file, w=12, h=8) {
   print(plot);
   save.plot.close();
 }
-
-df.methods <- (function() {
-  csv.groups <- read.csv('csv/unsafe-def-groups.csv', strip.white=TRUE, sep=',', header=TRUE);
-  csv.methods <- read.csv('csv/unsafe-def-methods.csv', strip.white=TRUE, sep=',', header=TRUE);
-  
-  df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
-  df.methods$gid <- NULL; 
-  
-  df.methods
-})();
-
 
 # Multiple plot function
 #
@@ -80,42 +73,14 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
-groups.hclust = function (tree, k= NULL, which=NULL, x=NULL, h=NULL, border=2, cluster=NULL) {
-  if (length(h) > 1L | length(k) > 1L) 
-    stop("'k' and 'h' must be a scalar")
-  if (!is.null(h)) {
-    if (!is.null(k)) 
-      stop("specify exactly one of 'k' and 'h'")
-    k <- min(which(rev(tree$height) < h))
-    k <- max(k, 2)
-  }
-  else if (is.null(k)) 
-    stop("specify exactly one of 'k' and 'h'")
-  if (k < 2 | k > length(tree$height)) 
-    stop(gettextf("k must be between 2 and %d", length(tree$height)), 
-         domain = NA)
-  if (is.null(cluster)) 
-    cluster <- cutree(tree, k = k)
-  clustab <- table(cluster)[unique(cluster[tree$order])]
-  m <- c(0, cumsum(clustab))
-  if (!is.null(x)) {
-    if (!is.null(which)) 
-      stop("specify exactly one of 'which' and 'x'")
-    which <- x
-    for (n in seq_along(x)) which[n] <- max(which(m < x[n]))
-  }
-  else if (is.null(which)) 
-    which <- 1L:k
-  if (any(which > k)) 
-    stop(gettextf("all elements of 'which' must be between 1 and %d", 
-                  k), domain = NA)
-  border <- rep_len(border, length(which))
-  retval <- list()
-  for (n in seq_along(which)) {
-    retval[[n]] <- which(cluster == as.integer(names(clustab)[which[n]]))
-  }
-  
-  retval
-}
-
 outfile <- commandArgs(trailingOnly = TRUE)[1];
+
+df.methods <- (function() {
+  csv.groups <- load.csv('csv/unsafe-def-groups.csv');
+  csv.methods <- load.csv('csv/unsafe-def-methods.csv');
+  
+  df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=FALSE);
+  df.methods$gid <- NULL; 
+  
+  df.methods
+})();
