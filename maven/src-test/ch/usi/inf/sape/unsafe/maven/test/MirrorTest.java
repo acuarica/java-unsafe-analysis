@@ -53,8 +53,8 @@ public class MirrorTest {
 		return s;
 	}
 
-	private static void depsTest(String outFileName, boolean all)
-			throws FileNotFoundException, IOException {
+	private static void depsTest(String outFileName, String outListFileName,
+			boolean all) throws FileNotFoundException, IOException {
 		Map<String, Set<String>> ds = new HashMap<String, Set<String>>();
 		Map<String, Set<String>> bs = new HashMap<String, Set<String>>();
 
@@ -73,7 +73,7 @@ public class MirrorTest {
 
 					String scope = fs[5].trim();
 
-					//System.out.println(scope);
+					// System.out.println(scope);
 					if (all || !scope.equals("test")) {
 						Set<String> s = ds.get(did);
 						if (s == null) {
@@ -97,7 +97,21 @@ public class MirrorTest {
 			try (PrintStream out = new PrintStream(outFileName)) {
 				out.println("depId, depCount");
 				for (Entry<String, Set<String>> e : bs.entrySet()) {
-					out.format("%s, %d\n", e.getKey(), e.getValue().size());
+					String did = e.getKey();
+					Set<String> deps = e.getValue();
+					out.format("%s, %d\n", did, deps.size());
+				}
+			}
+
+			try (PrintStream out = new PrintStream(outListFileName)) {
+				out.println("depId, depCount");
+				for (Entry<String, Set<String>> e : bs.entrySet()) {
+					String did = e.getKey();
+					Set<String> deps = e.getValue();
+
+					for (String id : deps) {
+						out.format("%s, %s\n", did, id);
+					}
 				}
 			}
 		}
@@ -105,11 +119,13 @@ public class MirrorTest {
 
 	@Test
 	public void depsAllScopeTest() throws IOException {
-		depsTest("db/maven-invdeps-all.csv", true);
+		depsTest("db/maven-invdeps-all.csv", "db/maven-invdeps-all-list.csv",
+				true);
 	}
 
 	@Test
 	public void depsProductionScopeTest() throws IOException {
-		depsTest("db/maven-invdeps-production.csv", false);
+		depsTest("db/maven-invdeps-production.csv",
+				"db/maven-invdeps-production-list.csv", false);
 	}
 }

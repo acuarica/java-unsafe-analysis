@@ -45,19 +45,35 @@ groups.hclust = function (tree, k= NULL, which=NULL, x=NULL, h=NULL, border=2, c
   retval
 }
 
-df.maven <- load.csv('build/cs.csv');
+df.maven = load.csv('build/cs.csv');
 
-do.hc <- function(classes=NULL) {
-  df <- dcast(df.maven, id+package+classunit~name, value.var='name', fun.aggregate=length);
-  df <- melt(df, id=c('id', 'package', 'classunit'));
+dupcols = function(df, cols) {
+  for (col in cols) {
+    if(col %in% colnames(df)) {
+      df[paste(col, 'W', sep='')] = df[col];
+    }
+  }
+  
+  df;
+}
+
+do.hc = function(classes=NULL) {
+  df = dcast(df.maven, id+package+classunit~name, value.var='name', fun.aggregate=length);
+  df = melt(df, id=c('id', 'package', 'classunit'));
   df[df$value > 0, 'value'] <- 1;
   df <- dcast(df, classunit~variable, value.var='value', fill=-1000, fun.aggregate=max);
   if (!is.null(classes)) {
     df <- df[df$classunit %in% classes,];
   }
   
-  rownames(df) <- df$classunit
-  df$classunit <- NULL
+  get.methods = function(groupname) subset(df.methods, group==groupname)$method;
+  
+  df = dupcols(df, get.methods('CAS'));
+  df = dupcols(df, get.methods('Monitor'));
+  df = dupcols(df, get.methods('Class'));  
+  
+  rownames(df) = df$classunit;
+  df$classunit = NULL;
   
   d <- dist(df, method = "euclidean");
   hc <- hclust(d, method="ward.D");
@@ -65,8 +81,8 @@ do.hc <- function(classes=NULL) {
 };
 
 tree <- do.hc();
-groups = groups.hclust(tree, h=8);
-  
+groups = groups.hclust(tree, h=7);
+
 for (i in 1:length(groups)) {
   groups[[i]] = tree$labels[ tree$order[tree$order %in% groups[[i]]] ]
 }
