@@ -2,24 +2,21 @@
 R=r
 BUILD=build
 
-INS=$(wildcard csv/*.csv)
-CSVS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.csv.r))
-PDFS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.pdf.r))
+OUTS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.*.r))
 
 OVERVIEWPRE=$(BUILD)/overview-pre.pdf
 OVERVIEW=$(BUILD)/overview.pdf
 
 .SECONDARY:
 
-all: $(PDFS) $(OVERVIEW)
+all: $(OUTS) $(OVERVIEW)
+
+$(BUILD)/artifacts.pdf: csv/comments.csv
 
 $(OVERVIEW): $(OVERVIEWPRE)
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
 
-$(BUILD)/%.pdf: %.pdf.r $(CSVS) | $(BUILD)
-	$(R) --slave --vanilla --file=$< --args $@
-
-$(BUILD)/%.csv: %.csv.r $(INS) | $(BUILD)
+$(BUILD)/%: %.r | $(BUILD)
 	$(R) --slave --vanilla --file=$< --args $@
 
 $(BUILD):

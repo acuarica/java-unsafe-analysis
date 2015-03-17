@@ -44,6 +44,6 @@ for (i in 1:nrow(df)) {
 
 df$groupId = NULL;
 df$artifactId = NULL;
-df$className = NULL;
+#df$className = NULL;
 
 save.csv(df, outfile);

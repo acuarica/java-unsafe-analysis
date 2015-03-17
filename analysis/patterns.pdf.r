@@ -41,12 +41,13 @@ rows[[2]] = row('Lock-free data structures/sync', classes);
 classes = c();
 rows[[3]] = row('Foreign data access/Marshalling', classes);
 
-classes = c();
+classes = c('UnsafeFactoryInstantiator*', 'SunReflectionProvider*', 'CommandSerializationUtil*', 'FSTClazzInfo*', 'FastReflector*');
 rows[[4]] = row('Serialization/Deserialization', classes);
 
 classes = c();
 rows[[5]] = row('Update final fields', classes);
 
+#org.xerial:larray
 classes = c('BitLargeArray*', 'ByteLargeArray*', 'StringLargeArray*', 'ShortLargeArray*', 'DoubleLargeArray*', 'FloatLargeArray*', 'IntLargeArray*', 'LongLargeArray*');
 rows[[6]] = row('Large Arrays', classes);
 
