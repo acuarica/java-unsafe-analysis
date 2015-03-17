@@ -11,6 +11,7 @@ OVERVIEW=$(BUILD)/overview.pdf
 
 all: $(OUTS) $(OVERVIEW)
 
+$(BUILD)/artifacts.pdf: $(BUILD)/cs.csv
 $(BUILD)/patterns.pdf: csv/comments.csv
 
 $(OVERVIEW): $(OVERVIEWPRE)
