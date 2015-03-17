@@ -4,7 +4,6 @@ library(reshape2)
 
 source('utils.r')
 
-csv.comments = load.csv('csv/comments.csv');
 df.maven = load.csv('build/cs.csv');
 
 df = df.maven;
@@ -26,8 +25,6 @@ i = 1;
 for (i in (1:nrow(df.artsbyrank)) ) {
   art = df.artsbyrank[i,]$id;
   deps = df.artsbyrank[i,]$depCount;
-  text = as.character(csv.comments[csv.comments$id == as.character(art),]$comment);
-  text = if (length(text) == 0) '' else text;
   
   printf('Processing artifact %s', art);
   
@@ -37,7 +34,7 @@ for (i in (1:nrow(df.artsbyrank)) ) {
     theme(axis.text.x=element_text(angle=45, hjust=1),
           strip.text.x=element_text(angle=90),
           strip.text.y=element_text(angle=0))+
-    labs(x='Methods', y = '# call sites', title=sprintf('%s (%s)\n%s', art, deps, text));
+    labs(x='Methods', y = '# call sites', title=sprintf('%s (%s)', art, deps));
   print(p);
 }
 

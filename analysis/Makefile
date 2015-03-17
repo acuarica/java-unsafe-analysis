@@ -11,7 +11,7 @@ OVERVIEW=$(BUILD)/overview.pdf
 
 all: $(OUTS) $(OVERVIEW)
 
-$(BUILD)/artifacts.pdf: csv/comments.csv
+$(BUILD)/patterns.pdf: csv/comments.csv
 
 $(OVERVIEW): $(OVERVIEWPRE)
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
