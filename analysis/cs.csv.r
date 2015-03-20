@@ -16,8 +16,37 @@ fcls <- function(cls) {
   sprintf("%s*", cls);
 }
 
+replacename = function(df, name, offheapdesc) {
+  df[df$name == name & df$desc==offheapdesc,]$name = sprintf('%s%s', name, ' (Off-Heap)');
+  df[df$name == name,]$name = sprintf('%s%s', name, ' (Heap)');
+  
+  df;
+}
+
 csv = load.csv('csv/unsafe-maven.csv');
-df = dcast(csv, className+name+groupId+artifactId~'cs', value.var='name', fun.aggregate=length);
+
+df = csv;
+df$name = as.character(df$name);
+df = replacename(df, 'copyMemory', '(JJJ)V');
+df = replacename(df, 'setMemory', '(JJB)V');
+#df = replacename(df, 'getBoolean', '(J)B');
+df = replacename(df, 'getByte', '(J)B');
+df = replacename(df, 'getChar', '(J)C');
+df = replacename(df, 'getDouble', '(J)D');
+df = replacename(df, 'getFloat', '(J)F');
+df = replacename(df, 'getInt', '(J)I');
+df = replacename(df, 'getLong', '(J)J');
+df = replacename(df, 'getShort', '(J)S');
+#df = replacename(df, 'putBoolean', '(JB)V');
+df = replacename(df, 'putByte', '(JB)V');
+df = replacename(df, 'putChar', '(JC)V');
+df = replacename(df, 'putDouble', '(JD)V');
+df = replacename(df, 'putFloat', '(JF)V');
+df = replacename(df, 'putInt', '(JI)V');
+df = replacename(df, 'putLong', '(JJ)V');
+df = replacename(df, 'putShort', '(JS)V');
+
+df = dcast(df, className+name+groupId+artifactId~'cs', value.var='name', fun.aggregate=length);
 
 df$methodName = NULL;
 df$methodDesc = NULL;
