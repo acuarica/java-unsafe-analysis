@@ -81,7 +81,7 @@ do.hc = function(classes=NULL) {
 };
 
 tree <- do.hc();
-groups = groups.hclust(tree, h=7);
+groups = groups.hclust(tree, h=10);
 
 for (i in 1:length(groups)) {
   groups[[i]] = tree$labels[ tree$order[tree$order %in% groups[[i]]] ]
@@ -105,24 +105,10 @@ for (classes in groups) {
     theme(axis.text.x=element_text(angle=45, hjust=1),
           strip.text.x=element_text(angle=90),
           strip.text.y=element_text(angle=0))+
-    labs(x="sun.misc.Unsafe methods", y = "# call sites");
+    labs(x="sun.misc.Unsafe members", y = "# call sites");
   
   hc <- do.hc(classes);
   multiplot(ggdendrogram(hc), p, layout=matrix(c(1,2,2,2), nrow=1, byrow=TRUE));
 }
 
 save.plot.close();
-
-#df <- dcast(subset(df.most.used.artifacts.w.unsafe, !is.na(rank)), groupId~., value.var='rank',
-#fun.aggregate=min)
-#df <- df[with(df, order(.) ), ]
-#i <- 'ai.h2o'
-#save.plot.open(csvfilename, 'cs-groups-by-dep');
-#for (i in df$groupId) {
-#  printf('Processing group %s...', i);
-#  print(ggplot(subset(df.maven, groupId==i), aes(x=name, fill=className))+geom_bar(stat="bin")+
-#    facet_grid(artifactId~group, space='free_x', scales="free_x")+
-#    theme(axis.text.x=element_text(angle=45, hjust=1))+
-#    labs(x="sun.misc.Unsafe methods", y = sprintf("# call sites in %s", i) ));
-#}
-#save.plot.close();

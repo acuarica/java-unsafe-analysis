@@ -11,9 +11,10 @@ OVERVIEW=$(BUILD)/overview.pdf
 
 all: $(OUTS) $(OVERVIEW)
 
-$(BUILD)/artifacts.pdf: $(BUILD)/cs.csv csv/unsafe-def-methods.csv csv/unsafe-def-groups.csv
-$(BUILD)/classunit.pdf: $(BUILD)/cs.csv csv/unsafe-def-methods.csv csv/unsafe-def-groups.csv
-$(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv csv/unsafe-def-methods.csv csv/unsafe-def-groups.csv
+$(BUILD)/cs.csv: csv/unsafe-maven.csv
+$(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
+$(BUILD)/artifacts.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
+$(BUILD)/classunit.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
 $(BUILD)/patterns.pdf: csv/comments.csv
 
 $(OVERVIEW): $(OVERVIEWPRE)
