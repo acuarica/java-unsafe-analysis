@@ -85,7 +85,7 @@ df.methods <- (function() {
   csv.groups <- load.csv('csv/unsafe-def-groups.csv');
   csv.methods <- load.csv('csv/unsafe-def-methods.csv');
   
-  df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=FALSE);
+  df.methods <- merge(csv.methods, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
   df.methods$gid <- NULL; 
   
   df.methods

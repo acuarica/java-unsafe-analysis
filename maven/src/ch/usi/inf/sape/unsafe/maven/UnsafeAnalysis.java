@@ -83,6 +83,15 @@ public class UnsafeAnalysis {
 				}
 
 				@Override
+				public void visitFieldInsn(int opcode, String owner,
+						String name, String desc) {
+					if ("sun/misc/Unsafe".equals(owner)) {
+						matches.add(new UnsafeEntry(className, methodName,
+								methodDesc, owner, name, desc, artifact));
+					}
+				};
+
+				@Override
 				public void visitLdcInsn(Object cst) {
 					if (cst instanceof String) {
 						String value = (String) cst;
@@ -99,7 +108,8 @@ public class UnsafeAnalysis {
 		}
 	}
 
-	public static List<UnsafeEntry> searchClassFile(byte[] classFile, MavenArtifact a) {
+	public static List<UnsafeEntry> searchClassFile(byte[] classFile,
+			MavenArtifact a) {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 
 		searchClassFile(classFile, matches, a);
@@ -134,8 +144,8 @@ public class UnsafeAnalysis {
 		return matches;
 	}
 
-	public static List<UnsafeEntry> searchJarFile(String jarFileName, MavenArtifact a)
-			throws IOException {
+	public static List<UnsafeEntry> searchJarFile(String jarFileName,
+			MavenArtifact a) throws IOException {
 		byte[] jarFileBuffer = Files.readAllBytes(Paths.get(jarFileName));
 
 		return searchJarFile(jarFileBuffer, a);
