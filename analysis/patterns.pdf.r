@@ -41,33 +41,6 @@ row = function(name, classes) {
 
 rows = list();
 
-classes = c('UnsignedBytes*');
-rows[[1]] = row('Process byte arrays', classes);
-
-classes = levs(df.cu[df.cu$compareAndSwapInt > 0 | df.cu$compareAndSwapLong > 0 | df.cu$compareAndSwapObject > 0,]$classunit);
-rows[[2]] = row('Lock-free data structures/sync', classes);
-
-classes = c();
-rows[[3]] = row('Foreign data access/Marshalling', classes);
-
-classes = c('UnsafeFactoryInstantiator*', 'SunReflectionProvider*', 'CommandSerializationUtil*', 'FSTClazzInfo*', 'FastReflector*');
-rows[[4]] = row('Serialization/Deserialization', classes);
-
-classes = c();
-rows[[5]] = row('Update final fields', classes);
-
-classes = c('BitLargeArray*', 'ByteLargeArray*', 'StringLargeArray*', 'ShortLargeArray*', 'DoubleLargeArray*', 'FloatLargeArray*', 'IntLargeArray*', 'LongLargeArray*');
-rows[[6]] = row('Large Arrays', classes);
-
-classes = levs(df.cu[df.cu$defineClass > 0,]$classunit);
-rows[[7]] = row('Define class without security checks', classes);
-
-classes = levs(df.cu[df.cu$monitorEnter > 0 & df.cu$monitorExit > 0,]$classunit);
-rows[[8]] = row('Monitor', classes);
-
-classes = levs(df.cu[df.cu$throwException > 0,]$classunit);
-rows[[9]] = row('Throw checked exceptions', classes);
-
 i = 1;
 for (i in 1:length(patterns)) {
   pattern = patterns[i];
