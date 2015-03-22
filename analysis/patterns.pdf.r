@@ -35,6 +35,13 @@ clones = function(classes) {
   sum(df$clones);
 }
 
+mostdeps = function(arts) {
+  df = df.deps[df.deps$depId %in% arts,];
+  df = dcast(df, depId~'value', value.var='depCount', fun.aggregate=length);
+  df = df[order(-df$value),];
+  as.character(df$depId[1]);
+}
+
 row = function(name, classes) {
   list(name, length(classes), clones(classes), deps(classes));
 }
@@ -42,20 +49,24 @@ row = function(name, classes) {
 rows = list();
 
 i = 1;
+rid = 1;
 for (i in 1:length(patterns)) {
   pattern = patterns[i];
-  arts = csv.comments[grepl(pattern, csv.comments$pattern),]$id
   
-  rows[[i]] = list(pattern, length(arts), depsbyarts(arts));
+  if (substr(pattern, 1, 1) != '.') {
+    arts = csv.comments[grepl(pattern, csv.comments$pattern),]$id
+    rows[[rid]] = list(pattern, length(arts), depsbyarts(arts), mostdeps(arts));
+    rid = rid + 1;
+  }
 }
 
-df = data.frame(matrix(unlist(rows), ncol=3, byrow=T));
-colnames(df) = c('pattern', 'artifact.count', 'usedby.count');
+df = data.frame(matrix(unlist(rows), ncol=4, byrow=T));
+colnames(df) = c('pattern', 'artifact.count', 'usedby.count', 'most.deps');
 df$usedby.count = as.numeric(as.character(df$usedby.count));
 df = df[order(-df$usedby.count),];
-rownames(df) = 1:length(patterns);
+rownames(df) = 1:(rid-1);
 
-save.plot.open(outfile, w=6, h=5);
+save.plot.open(outfile, w=7, h=5);
 grid.newpage();
 grid.table(df);
 save.plot.close();
