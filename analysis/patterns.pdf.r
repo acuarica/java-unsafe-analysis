@@ -53,8 +53,9 @@ df = data.frame(matrix(unlist(rows), ncol=3, byrow=T));
 colnames(df) = c('pattern', 'artifact.count', 'usedby.count');
 df$usedby.count = as.numeric(as.character(df$usedby.count));
 df = df[order(-df$usedby.count),];
+rownames(df) = 1:length(patterns);
 
-save.plot.open(outfile, w=6, h=4);
+save.plot.open(outfile, w=6, h=5);
 grid.newpage();
 grid.table(df);
 save.plot.close();
