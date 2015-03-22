@@ -13,7 +13,7 @@ plotoverview = function(df, outfile) {
   p = ggplot(df, aes(x=name, y=cs))+
     geom_bar(stat="identity")+
     facet_grid(.~group, space='free_x', scales="free_x")+
-    theme(axis.text.x=element_text(size=8, angle=90, hjust=1, vjust=0.2),
+    theme(axis.text.x=element_text(size=9, angle=90, hjust=1, vjust=0.2),
           axis.text.y=element_text(angle=90, hjust=1),
           axis.title.x=element_text(angle=180),
           legend.box="horizontal", 
@@ -31,7 +31,7 @@ plotoverview = function(df, outfile) {
           )+
     labs(x="sun.misc.Unsafe members", y = "# call sites/reads");
   
-  save.plot(p, outfile, w=15.4, h=6);
+  save.plot(p, outfile, w=15.47, h=6);
 }
 
 plotoverview(df, suffixfile(outfile, 'all'));
