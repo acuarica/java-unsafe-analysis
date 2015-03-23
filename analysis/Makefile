@@ -6,6 +6,8 @@ OUTS=$(patsubst %.r,$(BUILD)/%,$(wildcard *.*.r))
 
 OVERVIEWPRE=$(BUILD)/overview-pre.pdf
 OVERVIEW=$(BUILD)/overview.pdf
+OVERVIEWSOPRE=$(BUILD)/overview-so-pre.pdf
+OVERVIEWSO=$(BUILD)/overview-so.pdf
 
 .SECONDARY:
 
@@ -16,6 +18,10 @@ $(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe
 $(BUILD)/artifacts.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
 $(BUILD)/classunit.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
 $(BUILD)/patterns.pdf: csv/comments.csv
+
+$(OVERVIEWSO): $(OVERVIEWSOPRE) so.tex
+	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
+	latexmk -view=pdf so.tex
 
 $(OVERVIEW): $(OVERVIEWPRE)
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
