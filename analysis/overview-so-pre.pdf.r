@@ -14,7 +14,7 @@ df = df.methods;
 df$method = as.character(df$method);
 df = replacename(df, 'copyMemory', '(JJJ)V');
 df = replacename(df, 'setMemory', '(JJB)V');
-df = replacename(df, 'getBoolean', '(J)B');
+#df = replacename(df, 'getBoolean', '(J)B');
 df = replacename(df, 'getByte', '(J)B');
 df = replacename(df, 'getChar', '(J)C');
 df = replacename(df, 'getDouble', '(J)D');
@@ -22,7 +22,7 @@ df = replacename(df, 'getFloat', '(J)F');
 df = replacename(df, 'getInt', '(J)I');
 df = replacename(df, 'getLong', '(J)J');
 df = replacename(df, 'getShort', '(J)S');
-df = replacename(df, 'putBoolean', '(JB)V');
+#df = replacename(df, 'putBoolean', '(JB)V');
 df = replacename(df, 'putByte', '(JB)V');
 df = replacename(df, 'putChar', '(JC)V');
 df = replacename(df, 'putDouble', '(JD)V');
@@ -38,6 +38,7 @@ df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
 so = load.csv('csv/so-method-usages.csv');
+so$total = NULL;
 colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 'Usages in both');
 
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);

@@ -20,6 +20,7 @@ all: $(OUTS) $(OVERVIEW) $(OVERVIEWSO) $(OVERVIEWJDK8)
 $(BUILD)/cs.csv: csv/unsafe-maven.csv
 $(BUILD)/cs-jdk8.csv: csv/unsafe-maven-jdk8.csv
 $(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
+$(BUILD)/overview-so-pre.pdf: csv/so-method-usages.csv
 $(BUILD)/overview-jdk8-pre.pdf: $(BUILD)/cs-jdk8.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
 $(BUILD)/artifacts.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
 $(BUILD)/classunit.pdf: $(BUILD)/cs.csv csv/unsafe-def-members.csv csv/unsafe-def-groups.csv
