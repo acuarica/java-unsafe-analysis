@@ -1,7 +1,9 @@
 package ch.usi.inf.sape.unsafe.maven;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintStream;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
@@ -129,6 +131,53 @@ public class Main {
 		}
 	}
 
+	public static class AnalyseJdk8 {
+		public static void main(String[] args) throws Exception {
+
+			ArrayList<String> list = new ArrayList<String>();
+			try (BufferedReader br = new BufferedReader(new FileReader(
+					"jdk8/list.txt"))) {
+				String line;
+				while ((line = br.readLine()) != null) {
+					list.add(line);
+				}
+			}
+
+			List<UnsafeEntry> allMatches = new LinkedList<UnsafeEntry>();
+
+			int i = 0;
+			for (String file : list) {
+				MavenArtifact a = new MavenArtifact("jdk8", "jdk8", file
+						+ "@1.8", 1, "jar", "", "");
+
+				i++;
+
+				String path = a.getPath();
+
+				try {
+					List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
+							"jdk8/" + file, a);
+
+					allMatches.addAll(matches);
+				} catch (NoSuchFileException e) {
+					log.log("File not found %s (%dth)", path, i);
+				} catch (ZipException e) {
+					log.log("Zip exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				} catch (Exception e) {
+					log.log("Exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				}
+			}
+
+			String localPathCsv = "jdk8/unsafe-maven-jdk8.csv";
+
+			try (PrintStream out = new PrintStream(localPathCsv)) {
+				UnsafeAnalysis.printMatchesCsv(out, allMatches);
+			}
+		}
+	}
+
 	public static class Graph {
 		public static void main(String[] args) throws Exception {
 			final MavenIndex index = build(Graph.class);
@@ -184,8 +233,7 @@ public class Main {
 								} else if (dep != null
 										&& qName.equals("version")) {
 									dep.version = value;
-								} else if (dep != null
-										&& qName.equals("scope")) {
+								} else if (dep != null && qName.equals("scope")) {
 									dep.scope = value;
 								}
 							}
