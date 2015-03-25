@@ -12,7 +12,7 @@ replacefield = function(df, fname, toname) {
 csv = load.csv('build/cs.csv');
 csv = merge(csv, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
 
-plotoverview = function(df, outfile) {
+plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
   df = dcast(df, name+group~'cs', value.var='cs', fun.aggregate=sum);
   #df = merge(df, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
   df[is.na(df$cs),]$cs = 0;
@@ -20,7 +20,7 @@ plotoverview = function(df, outfile) {
   p = ggplot(df, aes(x=name, y=cs))+
     geom_bar(stat="identity")+
     facet_grid(.~group, space='free_x', scales="free_x")+
-    theme(axis.text.x=element_text(size=10, angle=90, hjust=1, vjust=0.2),
+    theme(axis.text.x=element_text(size=12, angle=90, hjust=1, vjust=0.2),
           axis.text.y=element_text(angle=90, hjust=1),
           #axis.title.x=element_text(angle=180),
           axis.title.x=element_blank(),
@@ -37,9 +37,9 @@ plotoverview = function(df, outfile) {
           panel.grid.minor=element_blank()
           #axis.ticks=element_blank()
           )+
-    labs(x="sun.misc.Unsafe members", y = "# call sites/reads");
+    labs(x="sun.misc.Unsafe members", y=ylabel);
   
-  save.plot(p, outfile, w=15.47, h=6);
+  save.plot(p, outfile, w=w, h=6);
 }
 
 df = csv;
@@ -47,7 +47,9 @@ plotoverview(df, suffixfile(outfile, 'all'));
 
 df = csv;
 df = df[df$access=='public' & df$name != 'getUnsafe',];
-plotoverview(df, outfile);
+plotoverview(df[df$member=='method',], outfile);
+plotoverview(df[df$member=='field',], suffixfile(outfile, 'field'), ylabel='# Reads', w=5);
+
 
 df = csv;
 df$name = as.character(df$name);

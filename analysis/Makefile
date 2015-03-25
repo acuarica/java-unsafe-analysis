@@ -35,6 +35,7 @@ $(OVERVIEWSO): $(OVERVIEWSOPRE) so.tex
 
 $(OVERVIEW): $(OVERVIEWPRE)
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
+	gs -q -sDEVICE=pdfwrite -sOutputFile="$(BUILD)/overview-field.pdf" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$(BUILD)/overview-pre-field.pdf" -c quit
 
 $(BUILD)/%: %.r | $(BUILD)
 	$(R) --slave --vanilla --file=$< --args $@
