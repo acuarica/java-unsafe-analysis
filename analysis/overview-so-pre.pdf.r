@@ -38,11 +38,11 @@ df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
 so = load.csv('csv/so-method-usages.csv');
-so$total = NULL;
+#so$total = NULL;
 colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 'Usages in both');
 
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);
-so = melt(so, id=c('method', 'access', 'group'));
+so = melt(so, id=c('method', 'access', 'group', 'member'));
 
 p = ggplot(so, aes(x=method, y=value, fill=variable))+
   geom_bar(stat="identity")+

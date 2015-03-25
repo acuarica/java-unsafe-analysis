@@ -18,10 +18,10 @@ invdeps <- function(f, bw) {
   df <- df[with(df, order(rank) ), ]
 
   grid.newpage();
-  grid.table(df.invdeps[1:20,], show.rownames=FALSE);
+  grid.table(df.invdeps[1:50,], show.rownames=FALSE);
   
   grid.newpage();
-  grid.table(df[1:20,c('id', 'depCount', 'rank')], show.rownames=FALSE);
+  grid.table(df[1:50,c('id', 'depCount', 'rank')], show.rownames=FALSE);
   
   ggplot(subset(df, !is.na(depCount)), aes(x=rank))+
     geom_histogram(binwidth=bw)+
@@ -36,7 +36,7 @@ df = data.frame(
   desc=c("# of call sites to Unsafe", "# of artifacts using Unsafe"),
   total=c(nocs, noarts));
 
-save.plot.open(outfile);
+save.plot.open(outfile, w=12, h=16);
 
 grid.newpage();
 grid.table(df);
