@@ -39,7 +39,7 @@ mostdeps = function(arts) {
   df = df.deps[df.deps$depId %in% arts,];
   df = dcast(df, depId~'value', value.var='depCount', fun.aggregate=length);
   df = df[order(-df$value),];
-  as.character(df$depId[1]);
+  as.character(paste(df$depId[1:5], collapse='\n') );
 }
 
 row = function(name, classes) {
@@ -66,7 +66,7 @@ df$usedby.count = as.numeric(as.character(df$usedby.count));
 df = df[order(-df$usedby.count),];
 rownames(df) = 1:(rid-1);
 
-save.plot.open(outfile, w=7, h=5);
+save.plot.open(outfile, w=10, h=25);
 grid.newpage();
 grid.table(df);
 save.plot.close();
