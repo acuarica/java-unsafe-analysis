@@ -66,7 +66,7 @@ df$usedby.count = as.numeric(as.character(df$usedby.count));
 df = df[order(-df$usedby.count),];
 rownames(df) = 1:(rid-1);
 
-save.plot.open(outfile, w=10, h=25);
+save.plot.open(outfile, w=8, h=17);
 grid.newpage();
 grid.table(df);
 save.plot.close();
