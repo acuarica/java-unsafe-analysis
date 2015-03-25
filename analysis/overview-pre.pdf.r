@@ -48,7 +48,7 @@ plotoverview(df, suffixfile(outfile, 'all'));
 df = csv;
 df = df[df$access=='public' & df$name != 'getUnsafe',];
 plotoverview(df[df$member=='method',], outfile);
-plotoverview(df[df$member=='field',], suffixfile(outfile, 'field'), ylabel='# Reads', w=5);
+plotoverview(df[df$member=='field',], suffixfile(outfile, 'field'), ylabel='# Reads', w=4);
 
 
 df = csv;
