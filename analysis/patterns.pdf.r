@@ -24,12 +24,12 @@ depsbyarts = function(arts) {
   length(unique(df.deps[df.deps$depId %in% arts,]$depCount)) + length(arts);
 }
 
-mostdeps = function(arts) {
+mostdeps = function(arts, n) {
   df = df.deps[df.deps$depId %in% arts,];
   df = dcast(df, depId~'value', value.var='depCount', fun.aggregate=length);
   df = df[order(-df$value),];
   
-  df$depId[1:10];
+  df$depId[1:n];
   #as.character(paste(df$depId[1:10], collapse='\n') );
   #paste( c(as.character(df$depId), as.character(arts))[1:10], collapse='\n') ;
 }
@@ -44,21 +44,18 @@ for (i in 1:length(patterns)) {
 }
 
 garts[[length(garts)+1]] = (function() {
-  gs = c('Fence', 'Volatile Get', 'Volatile Put');
-  ms = as.character(subset(df.methods, group %in% gs)$method);
-  arts = unique(subset(df.maven, name %in% ms)$id);
-  list('fence', arts);
+  ms = as.character(subset(df.methods, group %in% c('Fence', 'Volatile Get', 'Volatile Put'))$method);
+  list('fence', unique(subset(df.maven, name %in% ms)$id));
 })();
 
-garts[[length(garts)+1]] = (function() {
-  arts = unique(subset(df.maven, name %in% c('park', 'unpark'))$id);
-  list('park2', arts);
-})();
+#dcast(df.maven, id~name, 
 
-garts[[length(garts)+1]] = (function() {
-  arts = unique(subset(df.maven, name %in% c('monitorEnter', 'monitorExit'))$id);
-  list('monitor2', arts);
-})();
+garts[[length(garts)+1]] = list('park2', unique(subset(df.maven, name %in% c('park', 'unpark'))$id));
+garts[[length(garts)+1]] = list('monitor2', unique(subset(df.maven, name %in% c('monitorEnter', 'monitorExit'))$id));
+garts[[length(garts)+1]] = list('class2', unique(subset(df.maven, name %in% c('defineClass'))$id));
+garts[[length(garts)+1]] = list('throw2', unique(subset(df.maven, name %in% c('throwException'))$id));
+garts[[length(garts)+1]] = list('page2', unique(subset(df.maven, name %in% c('pageSize'))$id));
+garts[[length(garts)+1]] = list('alloc2', unique(subset(df.maven, name %in% c('allocateInstance'))$id));
 
 rows = list();
 txt = '';
@@ -69,7 +66,7 @@ for (i in 1:length(garts)) {
 
   len = length(arts);
   deps = depsbyarts(arts);
-  most = mostdeps(arts);
+  most = mostdeps(arts, 40);
   
   mosttext = as.character(paste(most, collapse='\n') );
   rows[[ length(rows)+1 ]] = list(pattern, len, deps, mosttext);
@@ -90,7 +87,12 @@ df$usedby.count = as.numeric(as.character(df$usedby.count));
 df = df[order(-df$usedby.count),];
 rownames(df) = 1:length(rows);
 
-save.plot.open(outfile, w=10, h=length(rows)*2.5);
-grid.newpage();
-grid.table(df);
+save.plot.open(outfile, w=10, h=10);
+
+i = 1;
+for (i in 1:nrow(df)) {
+  grid.newpage();
+  grid.table(df[i,]);
+}
+
 save.plot.close();
