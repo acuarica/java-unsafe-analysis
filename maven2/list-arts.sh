@@ -13,4 +13,4 @@ while read line; do
 	echo 
 	echo "    out=$path"
 #	echo "    checksum=sha-1=$sha1"
-done < db/artifacts.list
+done < db/index.list
