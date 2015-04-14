@@ -3,6 +3,7 @@ package ch.usi.inf.sape.mavendb.tests;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 
 import org.junit.Test;
@@ -31,15 +32,26 @@ public class MavenDBPropertiesTest {
 
 	@Test
 	public void main() {
-		ArrayList<String> s = new ArrayList<String>();
+//		HashSet<String> sets = new HashSet<String>();
+//		sets.add("");
+//		System.out.println(sets.size());
 
-		Iterator<String> i = s.iterator();
-		s.addAll(Arrays.asList("A", "B", "C", "D"));
+		HashSet<Integer> set = new HashSet<Integer>();
+		set.add(2);
+		set.add(4);
+		set.add(4);
+		set.add(4);
+		System.out.println(set.size());
 
-		// if (i.hasNext()) {
-		String item = i.next();
-		// }
-
-		System.out.println(s);
+		// ArrayList<String> s = new ArrayList<String>();
+		//
+		// Iterator<String> i = s.iterator();
+		// s.addAll(Arrays.asList("A", "B", "C", "D"));
+		//
+		// // if (i.hasNext()) {
+		// String item = i.next();
+		// // }
+		//
+		// System.out.println(s);
 	}
 }
