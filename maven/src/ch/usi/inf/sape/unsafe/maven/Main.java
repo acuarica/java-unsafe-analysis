@@ -23,6 +23,7 @@ import ch.usi.inf.sape.mavendb.MavenArtifact.Dependency;
 import ch.usi.inf.sape.mavendb.MavenDBProperties;
 import ch.usi.inf.sape.mavendb.MavenIndex;
 import ch.usi.inf.sape.mavendb.MavenIndexBuilder;
+import ch.usi.inf.sape.unsafe.maven.CassandraAnalysis.CassandraEntry;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.util.Log;
 import ch.usi.inf.sape.util.Mirror;
@@ -127,6 +128,42 @@ public class Main {
 
 			try (PrintStream out = new PrintStream(localPathCsv)) {
 				UnsafeAnalysis.printMatchesCsv(out, allMatches);
+			}
+		}
+	}
+
+	public static class AnalyseCassandra {
+		public static void main(String[] args) throws Exception {
+			final MavenIndex index = build(AnalyseCassandra.class);
+
+			List<CassandraEntry> allMatches = new LinkedList<CassandraEntry>();
+
+			int i = 0;
+			for (MavenArtifact a : index) {
+				i++;
+
+				String path = a.getPath();
+
+				try {
+					List<CassandraEntry> matches = CassandraAnalysis
+							.searchJarFile("db/" + path, a);
+
+					allMatches.addAll(matches);
+				} catch (NoSuchFileException e) {
+					log.log("File not found %s (%dth)", path, i);
+				} catch (ZipException e) {
+					log.log("Zip exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				} catch (Exception e) {
+					log.log("Exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				}
+			}
+
+			String localPathCsv = "db/cassandra-maven.csv";
+
+			try (PrintStream out = new PrintStream(localPathCsv)) {
+				CassandraAnalysis.printMatchesCsv(out, allMatches);
 			}
 		}
 	}
