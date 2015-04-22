@@ -75,7 +75,12 @@ public class CassandraAnalysis {
 
 		private static boolean contains(String owner) {
 			for (String d : ds) {
+
 				if (owner.startsWith(d)) {
+					return true;
+				}
+
+				if (owner.replace('/', '.').startsWith(d)) {
 					return true;
 				}
 			}
