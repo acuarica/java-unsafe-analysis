@@ -130,26 +130,77 @@ class IndexFile:
             if rootGroups != None:
                 self.rg = rootGroupsList.split('|')
 
+def pg():
+    import psycopg2
+
+    try:
+        conn = psycopg2.connect("dbname='maven' user='luigi' host='localhost' password=''")
+    except:
+        print "I am unable to connect to the database"
+
+    cur = conn.cursor()
+    cur.execute("drop table arts")
+    cur.execute("""
+        CREATE TABLE arts (
+        gid  varchar(255) NOT NULL,
+        aid  varchar(255) NOT NULL,
+        version varchar(255),
+        sat varchar(255), 
+        ext varchar(64), 
+        one varchar(64), 
+        path varchar(512),
+        inrepo boolean
+    )
+    """)
+
+    conn.commit()
+
+    #print "Holaaa!!!"
+
+def inrepo(artpath, one):
+    import os.path
+    relpath = 'db/repo/' + artpath
+    return os.path.exists(relpath)
+
 def main():
     def buildindex(indexfile):
+        import psycopg2
+
         i = IndexFile(indexfile)
+
+        conn = psycopg2.connect("dbname='maven' user='luigi' host='localhost' password=''")
+        cur = conn.cursor()
+        
+        j = 0
 
         with open('db/index.list', 'w') as f:
             for ufs, one, iext in i.check():
                 if len(ufs) == 4:
                     groupid, artifactid, version, kind = ufs
 
-                    line = '{0}/{1}/{2}/{1}-{2}.{3} {4}'.format(groupid.replace('.', '/'), artifactid, version, iext, one)
-                    f.write(line + '\n')
+                    path = '{0}/{1}/{2}/{1}-{2}.{3}'.format(groupid.replace('.', '/'), artifactid, version, iext)
+                    line = path + ' ' + one
+                    f.write(line + '\n')                    
+                    cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', iext, one, path, inrepo(path, one) ) )
 
-                    line = '{0}/{1}/{2}/{1}-{2}.{3} {4}'.format(groupid.replace('.', '/'), artifactid, version, 'pom', one)
+                    path = '{0}/{1}/{2}/{1}-{2}.{3}'.format(groupid.replace('.', '/'), artifactid, version, 'pom')
+                    line = path + ' ' + one
                     f.write(line + '\n')
+                    cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, inrepo(path, one)) )
+
+                    j += 1
+                    if j == 2000:
+                        break
 
                 if len(ufs) == 5:
                     groupid, artifactid, version, satellite, ext = ufs
  
-                    line = '{0}/{1}/{2}/{1}-{2}-{3}.{4} {5}'.format(groupid.replace('.', '/'), artifactid, version, satellite, ext, one)
+                    path = '{0}/{1}/{2}/{1}-{2}-{3}.{4}'.format(groupid.replace('.', '/'), artifactid, version, satellite, ext)
+                    line = path + ' ' + one
                     f.write(line + '\n')
+                    cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, satellite, ext, one, path, inrepo(path, one)) )
+
+        conn.commit()
 
         with open('db/stats.txt', 'w') as f:
             f.write('Nexus Index Timestamp: %s\n' % i.indexdate)
@@ -158,6 +209,7 @@ def main():
             f.write('mmaxdate: %s\n' % i.mmaxdate)
             f.write('mmaxdate: %s\n' % i.rg)
 
+    pg()
     buildindex('db/nexus-maven-repository-index')
 
 if __name__ == '__main__':
