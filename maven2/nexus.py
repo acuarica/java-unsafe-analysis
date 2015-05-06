@@ -153,6 +153,17 @@ def pg():
     )
     """)
 
+    cur.execute("""
+        CREATE TABLE deps (
+        gid  varchar(255) NOT NULL,
+        aid  varchar(255) NOT NULL,
+        ver varchar(255),
+        gid  varchar(255) NOT NULL,
+        aid  varchar(255) NOT NULL,
+        version varchar(255),
+    )
+    """)
+
     conn.commit()
 
     #print "Holaaa!!!"
@@ -189,8 +200,8 @@ def main():
                     cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, inrepo(path, one)) )
 
                     j += 1
-                    #if j == 2000:
-                    #    break
+                    if j == 2000:
+                        break
 
                 if len(ufs) == 5:
                     groupid, artifactid, version, satellite, ext = ufs
