@@ -153,14 +153,16 @@ def pg():
     )
     """)
 
+    cur.execute("drop table deps")
     cur.execute("""
         CREATE TABLE deps (
         gid  varchar(255) NOT NULL,
         aid  varchar(255) NOT NULL,
         ver varchar(255),
-        gid  varchar(255) NOT NULL,
-        aid  varchar(255) NOT NULL,
-        version varchar(255),
+        dgid  varchar(255) ,
+        daid  varchar(255) ,
+        dver varchar(255),
+        dscope varchar(255)
     )
     """)
 
@@ -197,11 +199,30 @@ def main():
                     path = '{0}/{1}/{2}/{1}-{2}.{3}'.format(groupid.replace('.', '/'), artifactid, version, 'pom')
                     line = path + ' ' + one
                     f.write(line + '\n')
-                    cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, inrepo(path, one)) )
+                    ir = inrepo(path, one)
+                    cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, ir) )
+                    if ir:
+                        import xml.etree.ElementTree
+                        proj = xml.etree.ElementTree.parse('db/repo/' + path).getroot()
+                        
+                        def getvalue(elemname):
+                            elem = dep.find(elemname)
+                            return elem.text if elem != None else None
+                        
+                        deps = proj.find('dependencies')
+                        if deps != None:
+                            for dep in deps:
+                                dgid = getvalue('groupId')
+                                daid = getvalue('artifactId')
+                                dver = getvalue('version')
+                                scope = getvalue('scope')
+                                
+                                cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
+                                
 
-                    j += 1
-                    if j == 2000:
-                        break
+                    #   j += 1
+                    #if j == 2000:
+                     #   break
 
                 if len(ufs) == 5:
                     groupid, artifactid, version, satellite, ext = ufs
