@@ -26,27 +26,8 @@ replacename = function(df, name, offheapdesc) {
 }
 
 csv = load.csv('csv/unsafe-maven.csv');
+csv = filterlang(csv);
 
-filterin = function(df, gid, aid) {
-  df[df$groupId == gid | df$artifactId==aid,]
-}
-
-filteroutga = function(df, gid, aid) {
-  df[!(df$groupId == gid & df$artifactId==aid),];
-}
-
-filterout = function(df, gid, aid) {
-  df[df$artifactId!=aid,];
-}
-
-df0 = csv;
-df1 = filterout(df0, 'org.scala-lang', 'scala-library');
-df2 = filterout(df1, 'org.jruby', 'jruby-core');
-df3 = filterout(df2, 'org.codehaus.groovy', 'groovy-all');
-df4 = filterout(df3, 'org.python', 'jython');
-df5 = filterout(df4, 'com.oracle', 'truffle');
-
-csv = df5;
 
 df = csv;
 df$name = as.character(df$name);

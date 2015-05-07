@@ -29,12 +29,29 @@ invdeps <- function(f, bw) {
     labs(x="Ranking by Impact", y = "# Artifacts");
 };
 
+
+total.arts = 75405;
+total.arts.wdeps = 40622;
+
+df.prod = load.csv('build/deps-prod.csv');
+unsart.prod = length(unique(df.prod$depCount))
+porc.prod =  (unsart.prod / total.arts) * 100;
+deps.prod =  (unsart.prod / total.arts.wdeps) * 100;
+
+df.all = load.csv('build/deps-all.csv');
+unsart.all = length(unique(df.all$depCount));
+porc.all =  (unsart.all / total.arts) * 100;
+deps.all =  (unsart.all / total.arts.wdeps) * 100;
+
+
+#(17296 / total.arts.wdeps) * 100;
+
 df = dcast(df.maven, id~'cs', value.var='cs', fun.aggregate=sum);
 nocs = dcast(df, .~'cs', value.var='cs', fun.aggregate=sum)$cs[1];
 noarts = nrow(df);
 df = data.frame(
-  desc=c("# of call sites to Unsafe", "# of artifacts using Unsafe"),
-  total=c(nocs, noarts));
+  desc=c("# of call sites to Unsafe", "# of artifacts using Unsafe", "% prod", "% all", "% prod w/ deps", "% all w/ deps", "# unarts prod", "# unarts all"),
+  total=c(nocs, noarts, porc.prod, porc.all, deps.prod, deps.all, unsart.prod, unsart.all));
 
 save.plot.open(outfile, w=12, h=16);
 

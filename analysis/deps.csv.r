@@ -4,6 +4,8 @@ library(reshape2)
 source('utils.r')
 
 df = load.csv('csv/unsafe-maven.csv');
+df = filterlang(df);
+
 unsarts = levels(factor(paste(df$groupId, df$artifactId, sep=':')));
 
 filtercsv = function(infile, outfile) {
