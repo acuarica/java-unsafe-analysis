@@ -219,7 +219,7 @@ def main():
                                     scope = getvalue('scope')
                                     
                                     cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
-                        except xml.tree.ElementTree.ParseError as err:
+                        except xml.etree.ElementTree.ParseError as err:
                             print(err)
 
 
