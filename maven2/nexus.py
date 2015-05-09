@@ -221,6 +221,8 @@ def main():
                                     cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
                         except xml.etree.ElementTree.ParseError as err:
                             print(err)
+                        except:
+                            print("Error")
 
 
                     #   j += 1
