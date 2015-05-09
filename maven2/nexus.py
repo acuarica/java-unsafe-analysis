@@ -202,23 +202,26 @@ def main():
                     ir = inrepo(path, one)
                     cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, ir) )
                     if ir:
-                        import xml.etree.ElementTree
-                        proj = xml.etree.ElementTree.parse('db/repo/' + path).getroot()
+                        try:
+                            import xml.etree.ElementTree
+                            proj = xml.etree.ElementTree.parse('db/repo/' + path).getroot()
                         
-                        def getvalue(elemname):
-                            elem = dep.find(elemname)
-                            return elem.text if elem != None else None
-                        
-                        deps = proj.find('dependencies')
-                        if deps != None:
-                            for dep in deps:
-                                dgid = getvalue('groupId')
-                                daid = getvalue('artifactId')
-                                dver = getvalue('version')
-                                scope = getvalue('scope')
-                                
-                                cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
-                                
+                            def getvalue(elemname):
+                                elem = dep.find(elemname)
+                                return elem.text if elem != None else None
+                            
+                            deps = proj.find('dependencies')
+                            if deps != None:
+                                for dep in deps:
+                                    dgid = getvalue('groupId')
+                                    daid = getvalue('artifactId')
+                                    dver = getvalue('version')
+                                    scope = getvalue('scope')
+                                    
+                                    cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
+                        except xml.tree.ElementTree.ParseError as err:
+                            print(err)
+
 
                     #   j += 1
                     #if j == 2000:
