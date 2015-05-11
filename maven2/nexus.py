@@ -175,6 +175,28 @@ def inrepo(artpath, one):
     relpath = 'db/repo/' + artpath
     return os.path.exists(relpath)
 
+def extractdeps(path):
+    import xml.dom.minidom
+
+    def getvalue(elemname):
+        elem = dep.getElementsByTagName(elemname)
+        return elem[0].firstChild.nodeValue if len(elem) > 0 and elem[0].firstChild != None else None
+
+    try:
+        proj = xml.dom.minidom.parse(path)
+        deps = proj.getElementsByTagName('dependencies')
+
+        if len(deps) > 0:
+            for dep in deps[0].getElementsByTagName('dependency'):
+                dgid = getvalue('groupId')
+                daid = getvalue('artifactId')
+                dver = getvalue('version')
+                scope = getvalue('scope')
+                
+                yield (dgid, daid, dver, scope)
+    except Exception as err:
+        print path, err
+
 def main():
     def buildindex(indexfile):
         import psycopg2
@@ -202,28 +224,8 @@ def main():
                     ir = inrepo(path, one)
                     cur.execute("INSERT INTO arts (gid, aid, version, sat, ext, one, path, inrepo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, '', 'pom', one, path, ir) )
                     if ir:
-                        try:
-                            import xml.etree.ElementTree
-                            proj = xml.etree.ElementTree.parse('db/repo/' + path).getroot()
-                        
-                            def getvalue(elemname):
-                                elem = dep.find(elemname)
-                                return elem.text if elem != None else None
-                            
-                            deps = proj.find('dependencies')
-                            if deps != None:
-                                for dep in deps:
-                                    dgid = getvalue('groupId')
-                                    daid = getvalue('artifactId')
-                                    dver = getvalue('version')
-                                    scope = getvalue('scope')
-                                    
-                                    cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
-                        except xml.etree.ElementTree.ParseError as err:
-                            print(err)
-                        except:
-                            print("Error")
-
+                        for (dgid, daid, dver, scope) in extractdeps('db/repo/' + path):
+                            cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
 
                     #   j += 1
                     #if j == 2000:
