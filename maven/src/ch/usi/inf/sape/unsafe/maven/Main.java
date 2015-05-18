@@ -24,6 +24,7 @@ import ch.usi.inf.sape.mavendb.MavenDBProperties;
 import ch.usi.inf.sape.mavendb.MavenIndex;
 import ch.usi.inf.sape.mavendb.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafe.maven.CassandraAnalysis.CassandraEntry;
+import ch.usi.inf.sape.unsafe.maven.ExtractAnalysis.ExtractEntry;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.util.Log;
 import ch.usi.inf.sape.util.Mirror;
@@ -282,6 +283,51 @@ public class Main {
 								e.getMessage());
 					}
 				}
+			}
+		}
+	}
+	
+
+	public static class Extract {
+		public static void main(String[] args) throws Exception {
+			int count = Integer.parseInt(args[0]);
+			
+			System.out.format("Extracting %d artifacts...", count);
+			
+			final MavenIndex index = build(Extract.class);
+
+			List<ExtractEntry> allMatches = new LinkedList<ExtractEntry>();
+
+			int i = 0;
+			for (MavenArtifact a : index) {
+				i++;
+
+				String path = a.getPath();
+
+				try {
+					List<ExtractEntry> matches = ExtractAnalysis.searchJarFile(
+							"db/" + path, a);
+
+					allMatches.addAll(matches);
+				} catch (NoSuchFileException e) {
+					log.log("File not found %s (%dth)", path, i);
+				} catch (ZipException e) {
+					log.log("Zip exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				} catch (Exception e) {
+					log.log("Exception for %s (%dth): %s", path, i,
+							e.getMessage());
+				}
+				
+				if (i == count) {
+					break;
+				}
+			}
+
+			String localPathCsv = "db/extract-maven.csv";
+
+			try (PrintStream out = new PrintStream(localPathCsv)) {
+				ExtractAnalysis.printMatchesCsv(out, allMatches);
 			}
 		}
 	}

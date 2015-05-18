@@ -67,6 +67,22 @@
 			</assertions>
 		</java>
 	</target>
+	<target name="extract.small" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Extract" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+	         <arg value="2000"/>
+		</java>
+	</target>
+	<target name="extract.large" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Extract" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+	         <arg value="10000"/>
+		</java>
+	</target>
 	<target name="test" depends="compile-test">
 		<junit>
 			<classpath>

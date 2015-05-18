@@ -227,9 +227,9 @@ def main():
                         for (dgid, daid, dver, scope) in extractdeps('db/repo/' + path):
                             cur.execute("INSERT INTO deps (gid, aid, ver, dgid, daid, dver, dscope) VALUES (%s, %s, %s, %s, %s, %s, %s)", (groupid, artifactid, version, dgid, daid, dver, scope) )
 
-                    #   j += 1
-                    #if j == 2000:
-                     #   break
+                    j += 1
+                    if j == 2000:
+                        break
 
                 if len(ufs) == 5:
                     groupid, artifactid, version, satellite, ext = ufs
@@ -248,8 +248,34 @@ def main():
             f.write('mmaxdate: %s\n' % i.mmaxdate)
             f.write('mmaxdate: %s\n' % i.rg)
 
-    pg()
-    buildindex('db/nexus-maven-repository-index')
+    #pg()
+    #buildindex('db/nexus-maven-repository-index')
+
+    import psycopg2
+
+    conn = psycopg2.connect("dbname='maven' user='luigi' host='localhost' password=''")
+    cur = conn.cursor()
+
+    cur.execute("""
+        CREATE TABLE bytecode (
+            className text, methodName text, methodDesc text, owner text, name text, 
+            descriptor text, groupId text, artifactId text, version text, size integer, ext text
+        )
+    """)
+
+    with open('../maven/db/extract-maven.csv', 'r') as f:
+        print(f.readline())
+
+        i = 0
+        for line in f:
+            values = [ s.strip() for s in line.split(',')]
+            print(values)
+            i = i + 1
+
+            if i == 10:
+                break
+
+
 
 if __name__ == '__main__':
     main()
