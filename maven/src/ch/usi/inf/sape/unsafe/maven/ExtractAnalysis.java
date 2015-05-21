@@ -93,8 +93,8 @@ public class ExtractAnalysis {
 						String name, String desc, boolean itf) {
 					stats.noCallSites++;
 
-					matches.add(new ExtractEntry(className, methodName,
-							methodDesc, owner, name, desc, artifact));
+					// matches.add(new ExtractEntry(className, methodName,
+					// methodDesc, owner, name, desc, artifact));
 
 				}
 
@@ -103,8 +103,8 @@ public class ExtractAnalysis {
 						String name, String desc) {
 					stats.noFieldAcceses++;
 
-					matches.add(new ExtractEntry(className, methodName,
-							methodDesc, owner, name, desc, artifact));
+					// matches.add(new ExtractEntry(className, methodName,
+					// methodDesc, owner, name, desc, artifact));
 
 				};
 
