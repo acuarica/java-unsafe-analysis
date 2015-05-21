@@ -20,6 +20,15 @@ import ch.usi.inf.sape.mavendb.MavenArtifact;
 
 public class ExtractAnalysis {
 
+	public static class Stats {
+		public long noJars;
+		public long noClasses;
+		public long noMethods;
+		public long noCallSites;
+		public long noFieldAcceses;
+		public long noStringLiterals;
+	}
+
 	public static class ExtractEntry {
 		public final String className;
 		public final String methodName;
@@ -53,17 +62,22 @@ public class ExtractAnalysis {
 		private final List<ExtractEntry> matches;
 		private final MavenArtifact artifact;
 		private String className;
+		private Stats stats;
 
-		public ExtractVisitor(List<ExtractEntry> matches, MavenArtifact a) {
+		public ExtractVisitor(List<ExtractEntry> matches, MavenArtifact a,
+				Stats stats) {
 			super(Opcodes.ASM5);
 
 			this.matches = matches;
 			this.artifact = a;
+			this.stats = stats;
 		}
 
 		@Override
 		public void visit(int version, int access, String name,
 				String signature, String superName, String[] interfaces) {
+			stats.noClasses++;
+
 			className = name;
 			super.visit(version, access, name, signature, superName, interfaces);
 		}
@@ -71,35 +85,40 @@ public class ExtractAnalysis {
 		@Override
 		public MethodVisitor visitMethod(int access, final String methodName,
 				final String methodDesc, String signature, String[] exceptions) {
+			stats.noMethods++;
 
 			MethodVisitor mv = new MethodVisitor(Opcodes.ASM5) {
 				@Override
 				public void visitMethodInsn(int opcode, String owner,
 						String name, String desc, boolean itf) {
+					stats.noCallSites++;
 
-						matches.add(new ExtractEntry(className, methodName,
-								methodDesc, owner, name, desc, artifact));
+					matches.add(new ExtractEntry(className, methodName,
+							methodDesc, owner, name, desc, artifact));
 
 				}
 
 				@Override
 				public void visitFieldInsn(int opcode, String owner,
 						String name, String desc) {
+					stats.noFieldAcceses++;
 
-						matches.add(new ExtractEntry(className, methodName,
-								methodDesc, owner, name, desc, artifact));
+					matches.add(new ExtractEntry(className, methodName,
+							methodDesc, owner, name, desc, artifact));
 
 				};
 
 				@Override
 				public void visitLdcInsn(Object cst) {
 					if (cst instanceof String) {
-//						String value = (String) cst;
-//						if ("sun/misc/Unsafe".equals(value)) {
-//							matches.add(new UnsafeEntry(className, methodName,
-//									methodDesc, "sun/misc/Unsafe",
-//									"sun/misc/Unsafe", "literal", artifact));
-//						}
+						stats.noStringLiterals++;
+
+						// String value = (String) cst;
+						// if ("sun/misc/Unsafe".equals(value)) {
+						// matches.add(new UnsafeEntry(className, methodName,
+						// methodDesc, "sun/misc/Unsafe",
+						// "sun/misc/Unsafe", "literal", artifact));
+						// }
 					}
 				}
 			};
@@ -109,16 +128,19 @@ public class ExtractAnalysis {
 	}
 
 	public static List<ExtractEntry> searchClassFile(byte[] classFile,
-			MavenArtifact a) {
+			MavenArtifact a, Stats stats) {
 		List<ExtractEntry> matches = new ArrayList<ExtractEntry>();
 
-		searchClassFile(classFile, matches, a);
+		searchClassFile(classFile, matches, a, stats);
 
 		return matches;
 	}
 
 	public static List<ExtractEntry> searchJarFile(byte[] jarFileBuffer,
-			MavenArtifact a) throws IOException {
+			MavenArtifact a, Stats stats) throws IOException {
+
+		stats.noJars++;
+
 		List<ExtractEntry> matches = new ArrayList<ExtractEntry>();
 
 		ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(
@@ -138,39 +160,49 @@ public class ExtractAnalysis {
 				classfile.write(buffer, 0, len);
 			}
 
-			ExtractAnalysis.searchClassFile(classfile.toByteArray(), matches, a);
+			ExtractAnalysis.searchClassFile(classfile.toByteArray(), matches,
+					a, stats);
 		}
 
 		return matches;
 	}
 
 	public static List<ExtractEntry> searchJarFile(String jarFileName,
-			MavenArtifact a) throws IOException {
+			MavenArtifact a, Stats stats) throws IOException {
 		byte[] jarFileBuffer = Files.readAllBytes(Paths.get(jarFileName));
 
-		return searchJarFile(jarFileBuffer, a);
+		return searchJarFile(jarFileBuffer, a, stats);
 	}
 
 	private static void searchClassFile(byte[] classFile,
-			List<ExtractEntry> matches, MavenArtifact a) {
+			List<ExtractEntry> matches, MavenArtifact a, Stats stats) {
 		ClassReader cr = new ClassReader(classFile);
-		ExtractVisitor uv = new ExtractVisitor(matches, a);
+		ExtractVisitor uv = new ExtractVisitor(matches, a, stats);
 		cr.accept(uv, 0);
+	}
+
+	public static void printStats(PrintStream out, Stats stats) {
+		out.format("noJars: %,d\n", stats.noJars);
+		out.format("noClasses: %,d\n", stats.noClasses);
+		out.format("noMethods: %,d\n", stats.noMethods);
+		out.format("noCallSites: %,d\n", stats.noCallSites);
+		out.format("noFieldAcceses: %,d\n", stats.noFieldAcceses);
+		out.format("noStringLiterals: %,d\n", stats.noStringLiterals);
 	}
 
 	public static void printMatchesCsv(PrintStream out,
 			List<ExtractEntry> matches) {
-		out.println("className, methodName, methodDesc, owner, name, desc, groupId, artifactId, version, size, ext");
-
-		for (ExtractEntry entry : matches) {
-			out.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-					entry.className, entry.methodName, entry.methodDesc,
-					entry.owner, entry.name, entry.desc,
-					entry.artifact == null ? "" : entry.artifact.groupId,
-					entry.artifact == null ? "" : entry.artifact.artifactId,
-					entry.artifact == null ? "" : entry.artifact.version,
-					entry.artifact == null ? "" : entry.artifact.size,
-					entry.artifact == null ? "" : entry.artifact.ext);
-		}
+		// out.println("className, methodName, methodDesc, owner, name, desc, groupId, artifactId, version, size, ext");
+		//
+		// for (ExtractEntry entry : matches) {
+		// out.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
+		// entry.className, entry.methodName, entry.methodDesc,
+		// entry.owner, entry.name, entry.desc,
+		// entry.artifact == null ? "" : entry.artifact.groupId,
+		// entry.artifact == null ? "" : entry.artifact.artifactId,
+		// entry.artifact == null ? "" : entry.artifact.version,
+		// entry.artifact == null ? "" : entry.artifact.size,
+		// entry.artifact == null ? "" : entry.artifact.ext);
+		// }
 	}
 }

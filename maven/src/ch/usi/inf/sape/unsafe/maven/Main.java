@@ -25,6 +25,7 @@ import ch.usi.inf.sape.mavendb.MavenIndex;
 import ch.usi.inf.sape.mavendb.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafe.maven.CassandraAnalysis.CassandraEntry;
 import ch.usi.inf.sape.unsafe.maven.ExtractAnalysis.ExtractEntry;
+import ch.usi.inf.sape.unsafe.maven.ExtractAnalysis.Stats;
 import ch.usi.inf.sape.unsafe.maven.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.util.Log;
 import ch.usi.inf.sape.util.Mirror;
@@ -286,17 +287,18 @@ public class Main {
 			}
 		}
 	}
-	
 
 	public static class Extract {
 		public static void main(String[] args) throws Exception {
 			int count = Integer.parseInt(args[0]);
-			
+
 			System.out.format("Extracting %d artifacts...", count);
-			
+
 			final MavenIndex index = build(Extract.class);
 
 			List<ExtractEntry> allMatches = new LinkedList<ExtractEntry>();
+
+			Stats stats = new Stats();
 
 			int i = 0;
 			for (MavenArtifact a : index) {
@@ -306,7 +308,7 @@ public class Main {
 
 				try {
 					List<ExtractEntry> matches = ExtractAnalysis.searchJarFile(
-							"db/" + path, a);
+							"db/" + path, a, stats);
 
 					allMatches.addAll(matches);
 				} catch (NoSuchFileException e) {
@@ -318,16 +320,18 @@ public class Main {
 					log.log("Exception for %s (%dth): %s", path, i,
 							e.getMessage());
 				}
-				
+
 				if (i == count) {
 					break;
 				}
 			}
 
-			String localPathCsv = "db/extract-maven.csv";
-
-			try (PrintStream out = new PrintStream(localPathCsv)) {
+			try (PrintStream out = new PrintStream("db/extract-maven.csv")) {
 				ExtractAnalysis.printMatchesCsv(out, allMatches);
+			}
+
+			try (PrintStream out = new PrintStream("db/stats-maven.txt")) {
+				ExtractAnalysis.printStats(out, stats);
 			}
 		}
 	}
