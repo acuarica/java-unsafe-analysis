@@ -1,0 +1,98 @@
+<project name="java-unsafe-analysis" default="compile" basedir=".">
+	<description>Java Unsafe Analysis</description>
+	<property name="src" location="src" />
+	<property name="resources" location="src" />
+	<property name="lib" location="lib" />
+	<property name="build" location="@build" />
+	<property name="db" location="@db" />
+	<property name="repo" location="${db}/repo" />
+	<property name="gzindexurl" value="http://mirrors.ibiblio.org/maven2/.index/nexus-maven-repository-index.gz" />
+	<property name="gzindexpath" location="${db}/nexus-maven-repository-index.gz" />
+	<property name="indexpath" location="${db}/nexus-maven-repository-index" />
+	<property name="urilist" location="${db}/uri.list" />
+	<property name="mirror.1" value="http://mirrors.ibiblio.org/maven2" />
+	<property name="mirror.2" value="http://maven.antelink.com/content/repositories/central" />
+	<!-- mavendb.artifactspath=.db/artifacts.csv  -->
+	<path id="lib">
+		<fileset dir="${lib}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="mkdirbuild">
+		<mkdir dir="${build}" />
+	</target>
+	<target name="mkdirdb">
+		<mkdir dir="${db}" />
+	</target>
+	<target name="fetchgzindex" depends="mkdirdb">
+		<get src="${gzindexurl}" dest="${gzindexpath}" />
+	</target>
+	<target name="getindex" depends="fetchgzindex">
+		<gunzip src="${gzindexpath}" dest="${indexpath}" />
+	</target>
+	<target name="buildurilist" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<assertions>
+				<enable />
+			</assertions>
+			<arg value="${indexpath}" />
+			<arg value="${urilist}" />
+			<arg value="${mirror.1}" />
+			<arg value="${mirror.2}" />
+		</java>
+	</target>
+	<target name="getartifacts">
+		<exec executable="aria2c">
+			<arg value="--dir=${repo}" />
+			<arg value="--max-concurrent-downloads=16" />
+			<arg value="--auto-file-renaming=false" />
+			<arg value="--input-file=${urilist}" />
+		</exec>
+	</target>
+	<target name="compile" depends="mkdirbuild">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
+			<classpath refid="lib" />
+		</javac>
+	</target>
+	<target name="build" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="download" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Download" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="analyse" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Analyse" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="jdk8" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$AnalyseJdk8" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="graph" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Graph" classpath="${build}::${resources}:lib/lucene-core-2.4.1.jar:lib" fork="true">
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+	<target name="clean">
+		<delete dir="${build}" />
+	</target>
+</project>
