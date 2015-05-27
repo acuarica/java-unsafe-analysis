@@ -3,13 +3,15 @@
 	<property name="src" location="src" />
 	<property name="resources" location="src" />
 	<property name="lib" location="lib" />
-	<property name="build" location="@build" />
-	<property name="db" location="@db" />
+	<property name="build" location="build" />
+	<property name="db" location="db" />
 	<property name="repo" location="${db}/repo" />
 	<property name="gzindexurl" value="http://mirrors.ibiblio.org/maven2/.index/nexus-maven-repository-index.gz" />
 	<property name="gzindexpath" location="${db}/nexus-maven-repository-index.gz" />
 	<property name="indexpath" location="${db}/nexus-maven-repository-index" />
 	<property name="urilist" location="${db}/uri.list" />
+	<property name="noartifactstodownload.small" value="1000" />
+	<property name="downloadlog" location="${db}/download.log" />
 	<property name="mirror.1" value="http://mirrors.ibiblio.org/maven2" />
 	<property name="mirror.2" value="http://maven.antelink.com/content/repositories/central" />
 	<!-- mavendb.artifactspath=.db/artifacts.csv  -->
@@ -30,6 +32,11 @@
 	<target name="getindex" depends="fetchgzindex">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
+	<target name="compile" depends="mkdirbuild">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
+			<classpath refid="lib" />
+		</javac>
+	</target>
 	<target name="buildurilist" depends="compile">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
@@ -38,6 +45,7 @@
 			</assertions>
 			<arg value="${indexpath}" />
 			<arg value="${urilist}" />
+			<arg value="${noartifactstodownload.small}" />
 			<arg value="${mirror.1}" />
 			<arg value="${mirror.2}" />
 		</java>
@@ -48,12 +56,8 @@
 			<arg value="--max-concurrent-downloads=16" />
 			<arg value="--auto-file-renaming=false" />
 			<arg value="--input-file=${urilist}" />
+			<arg value="--log=${downloadlog}" />
 		</exec>
-	</target>
-	<target name="compile" depends="mkdirbuild">
-		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
-			<classpath refid="lib" />
-		</javac>
 	</target>
 	<target name="build" depends="compile">
 		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:${resources}" fork="true">
