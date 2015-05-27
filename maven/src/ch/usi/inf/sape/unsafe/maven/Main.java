@@ -35,6 +35,7 @@ public class Main {
 	private static final Log log = new Log(System.err);
 
 	private static void showSummary(MavenIndex index) {
+
 		log.log("uniqueArtifactsCount: %,d", index.uniqueArtifactsCount);
 		log.log("totalSize: %,d MB", index.totalSize / (1024 * 1024));
 		log.log("lastVersionJarsSize: %,d MB", index.lastVersionJarsSize
@@ -81,6 +82,7 @@ public class Main {
 
 	public static class Download {
 		public static void main(String[] args) throws Exception {
+
 			MavenIndex index = build(Download.class);
 
 			int r = MavenDBProperties.get().downloaderRetries();

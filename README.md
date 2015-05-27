@@ -23,15 +23,25 @@ If needed, the username and password are the following:
 Our tools and analysis are available online in the BitBucket service as Git repository:
 https://bitbucket.org/acuarica/java-unsafe-analysis
 
-We use the command 
+We used the command 
 
-    git clone git@bitbucket.org:acuarica/java-unsafe-analysis.git
+    git clone https://acuarica@bitbucket.org/acuarica/java-unsafe-analysis.git
 
-to clone the repo inside the virtual machine.
+to clone the repo inside the virtual machine in the user directory (/home/ae denoted as ~).
 
-The repository is located at:
+Thus, the repository is located at:
 
     ~/java-unsafe-analysis
+
+We have installed OpenJDK version 7.
+git
+openjdk-7-jdk
+ant
+
+For convenience we also have installed the following packages:
+vim
+emacs
+
 
 ## Step-by-Step Instructions
 
