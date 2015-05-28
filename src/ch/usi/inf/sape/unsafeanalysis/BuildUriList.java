@@ -15,6 +15,16 @@ public class BuildUriList {
 
 	private static final Logger logger = Logger.getLogger(BuildUriList.class);
 
+	private static void emitDownloadFile(String path, String[] mirrors,
+			PrintStream out) {
+		for (String mirror : mirrors) {
+			out.format("%s/%s\t", mirror, path);
+		}
+
+		out.println();
+		out.format("\tout=%s\n", path);
+	}
+
 	public static void main(String[] args) throws Exception {
 		if (args.length < 4) {
 			throw new Exception(
@@ -47,18 +57,13 @@ public class BuildUriList {
 			int noArtifacts = 0;
 
 			for (MavenArtifact a : index) {
-				for (String mirror : mirrors) {
-					out.format("%s/%s\t", mirror, a.getPath());
-				}
-
-				out.println();
-				out.format("\tout=%s\n", a.getPath());
+				emitDownloadFile(a.getPomPath(), mirrors, out);
 
 				noArtifacts++;
 
-				if (noArtsToDownload != null
-						&& noArtsToDownload.intValue() == noArtifacts) {
-					break;
+				if (noArtsToDownload == null
+						|| noArtsToDownload.intValue() < noArtifacts) {
+					emitDownloadFile(a.getPath(), mirrors, out);
 				}
 			}
 		}
