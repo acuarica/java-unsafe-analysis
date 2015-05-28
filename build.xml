@@ -6,14 +6,18 @@
 	<property name="build" location="build" />
 	<property name="db" location="db" />
 	<property name="repo" location="${db}/repo" />
-	<property name="gzindexurl" value="http://mirrors.ibiblio.org/maven2/.index/nexus-maven-repository-index.gz" />
+	<property name="mirror.1" value="http://mirrors.ibiblio.org/maven2" />
+	<property name="mirror.2" value="http://maven.antelink.com/content/repositories/central" />
+	<property name="mirror.3" value="http://artifactory.theomega.org/artifactory/repo" />
+	<property name="mirror.4" value="http://scalasbt.artifactoryonline.com/scalasbt/repo" />
+	<property name="mirror.5" value="http://repo.jfrog.org/artifactory/simple/libs-release-bintray" />
+	<property name="gzindexurl" value="${mirror.1}/.index/nexus-maven-repository-index.gz" />
 	<property name="gzindexpath" location="${db}/nexus-maven-repository-index.gz" />
 	<property name="indexpath" location="${db}/nexus-maven-repository-index" />
 	<property name="urilist" location="${db}/uri.list" />
-	<property name="noartifactstodownload.small" value="1000" />
+	<property name="sessionlist" location="${db}/session.list" />
+	<property name="noartifactstodownload.small" value="20" />
 	<property name="downloadlog" location="${db}/download.log" />
-	<property name="mirror.1" value="http://mirrors.ibiblio.org/maven2" />
-	<property name="mirror.2" value="http://maven.antelink.com/content/repositories/central" />
 	<!-- mavendb.artifactspath=.db/artifacts.csv  -->
 	<path id="lib">
 		<fileset dir="${lib}">
@@ -26,10 +30,17 @@
 	<target name="mkdirdb">
 		<mkdir dir="${db}" />
 	</target>
-	<target name="fetchgzindex" depends="mkdirdb">
-		<get src="${gzindexurl}" dest="${gzindexpath}" />
+	<target name="getgzindex" depends="mkdirdb">
+		<exec executable="aria2c">
+			<arg value="--dir=/" />
+			<arg value="--max-concurrent-downloads=16" />
+			<arg value="--auto-file-renaming=false" />
+			<arg value="--conditional-get=true" />
+			<arg value="--out=${gzindexpath}" />
+			<arg value="${gzindexurl}" />
+		</exec>
 	</target>
-	<target name="getindex" depends="fetchgzindex">
+	<target name="getindex" depends="getgzindex">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
 	<target name="compile" depends="mkdirbuild">
@@ -48,6 +59,9 @@
 			<arg value="${noartifactstodownload.small}" />
 			<arg value="${mirror.1}" />
 			<arg value="${mirror.2}" />
+			<arg value="${mirror.3}" />
+			<arg value="${mirror.4}" />
+			<arg value="${mirror.5}" />
 		</java>
 	</target>
 	<target name="getartifacts">
@@ -56,9 +70,22 @@
 			<arg value="--max-concurrent-downloads=16" />
 			<arg value="--auto-file-renaming=false" />
 			<arg value="--input-file=${urilist}" />
+			<arg value="--save-session=${sessionlist}" />
+			<arg value="--conditional-get=true" />
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
+	<target name="analyseunsafe" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseUnsafe" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<assertions>
+				<enable />
+			</assertions>
+			<arg value="${indexpath}" />
+		</java>
+	</target>
+
+
 	<target name="build" depends="compile">
 		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />

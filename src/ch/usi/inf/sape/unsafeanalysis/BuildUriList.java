@@ -33,6 +33,11 @@ public class BuildUriList {
 		logger.info("URI list: " + uriListPath);
 		logger.info("# artifact to download: " + noArtsToDownload);
 
+		logger.info("Using " + mirrors.length + " mirrors:");
+		for (String mirror : mirrors) {
+			logger.info("  * " + mirror);
+		}
+
 		NexusIndexParser nip = new NexusIndexParser(indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 

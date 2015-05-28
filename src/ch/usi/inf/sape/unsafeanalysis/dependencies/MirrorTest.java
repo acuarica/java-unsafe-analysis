@@ -1,4 +1,4 @@
-package ch.usi.inf.sape.unsafeanalysis;
+package ch.usi.inf.sape.unsafeanalysis.dependencies;
 
 import java.io.BufferedReader;
 import java.io.File;

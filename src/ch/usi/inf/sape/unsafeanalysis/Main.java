@@ -52,41 +52,6 @@ public class Main {
 ////	}
 ////
 ////
-////	public static class Analyse {
-////		public static void main(String[] args) throws Exception {
-////			final MavenIndex index = build(Analyse.class);
-////
-////			List<UnsafeEntry> allMatches = new LinkedList<UnsafeEntry>();
-////
-////			int i = 0;
-////			for (MavenArtifact a : index) {
-////				i++;
-////
-////				String path = a.getPath();
-////
-////				try {
-////					List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
-////							"db/" + path, a);
-////
-////					allMatches.addAll(matches);
-////				} catch (NoSuchFileException e) {
-////					log.log("File not found %s (%dth)", path, i);
-////				} catch (ZipException e) {
-////					log.log("Zip exception for %s (%dth): %s", path, i,
-////							e.getMessage());
-////				} catch (Exception e) {
-////					log.log("Exception for %s (%dth): %s", path, i,
-////							e.getMessage());
-////				}
-////			}
-////
-////			String localPathCsv = "db/unsafe-maven.csv";
-////
-////			try (PrintStream out = new PrintStream(localPathCsv)) {
-////				UnsafeAnalysis.printMatchesCsv(out, allMatches);
-////			}
-////		}
-////	}
 //
 //	public static class AnalyseJdk8 {
 //		public static void main(String[] args) throws Exception {
