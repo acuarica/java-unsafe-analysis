@@ -37,12 +37,13 @@ public class AnalyseMaven {
 			String path = a.getPath();
 
 			try {
-				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile("db/"
+				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile("db/repo/"
 						+ path, a);
 
 				allMatches.addAll(matches);
 			} catch (NoSuchFileException e) {
-				logger.info("File not found " + path + " (" + i + "th)", e);
+				logger.info("File not found " + path + " (" + i + "th): "
+						+ e.getMessage());
 			} catch (ZipException e) {
 				logger.info("Zip exception for " + path + " (" + i + "th)", e);
 			} catch (Exception e) {
