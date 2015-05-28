@@ -16,7 +16,7 @@
 	<property name="indexpath" location="${db}/nexus-maven-repository-index" />
 	<property name="urilist" location="${db}/uri.list" />
 	<property name="sessionlist" location="${db}/session.list" />
-	<property name="noartifactstodownload.small" value="20" />
+	<property name="noartifactstodownload.small" value="10000" />
 	<property name="downloadlog" location="${db}/download.log" />
 	<!-- mavendb.artifactspath=.db/artifacts.csv  -->
 	<path id="lib">
@@ -27,7 +27,7 @@
 	<target name="mkdirbuild">
 		<mkdir dir="${build}" />
 	</target>
-	<target name="mkdirdb">
+	<target name="mkdirdb" description="create the dir">
 		<mkdir dir="${db}" />
 	</target>
 	<target name="getgzindex" depends="mkdirdb">
@@ -43,12 +43,19 @@
 	<target name="getindex" depends="getgzindex">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
-	<target name="compile" depends="mkdirbuild">
+	<target name="compile" depends="mkdirbuild" description="asdfasdf">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
 			<classpath refid="lib" />
 		</javac>
 	</target>
-	<target name="buildurilist" depends="compile">
+	<target name="buildindexdb" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildIndexDb" classpath="${build}:${resources}">
+			<classpath refid="lib" />
+			<arg value="${indexpath}" />
+			<arg value="${db}/hola.db" />
+		</java>
+	</target>
+	<target name="buildurilist" depends="compile,getindex">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -75,17 +82,17 @@
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
-	<target name="analyseunsafe" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseUnsafe" classpath="${build}:${resources}" fork="true">
+	<target name="analysemaven" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseMaven" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
 			<arg value="${indexpath}" />
 		</java>
 	</target>
-
-
+	<target name="jdk8" depends="compile">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseJdk8" classpath="${build}:${resources}">
+			<classpath refid="lib" />
+		</java>
+	</target>
 	<target name="build" depends="compile">
 		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
@@ -104,13 +111,6 @@
 	</target>
 	<target name="analyse" depends="compile">
 		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Analyse" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
-			<assertions>
-				<enable />
-			</assertions>
-		</java>
-	</target>
-	<target name="jdk8" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main$AnalyseJdk8" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
 			<assertions>
 				<enable />
 			</assertions>

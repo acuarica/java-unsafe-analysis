@@ -1,5 +1,15 @@
 # Java Unsafe Analysis --- Usage and Impact of the Unsafe Java API
 
+## Introduction
+
+We have installed OpenJDK version 7.
+git
+openjdk-7-jdk
+ant
+aria2c
+
+Framework to analyse maven artifacts.
+
 
 ## Getting Started Guide
 
