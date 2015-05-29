@@ -8,7 +8,8 @@ import java.util.zip.ZipException;
 
 import org.apache.log4j.Logger;
 
-import ch.usi.inf.sape.unsafeanalysis.UnsafeAnalysis.UnsafeEntry;
+import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis;
+import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
@@ -37,8 +38,8 @@ public class AnalyseMaven {
 			String path = a.getPath();
 
 			try {
-				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile("db/repo/"
-						+ path, a);
+				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
+						"db/repo/" + path, a);
 
 				allMatches.addAll(matches);
 			} catch (NoSuchFileException e) {

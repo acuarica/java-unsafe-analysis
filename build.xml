@@ -1,5 +1,5 @@
 <project name="java-unsafe-analysis" default="compile" basedir=".">
-	<description>Java Unsafe Analysis</description>
+	<description>Java Unsafe Analysis to study usage and impact of Unsafe API in Java</description>
 	<property name="src" location="src" />
 	<property name="resources" location="src" />
 	<property name="lib" location="lib" />
@@ -23,13 +23,13 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	<target name="-mkdirbuild">
+	<target name="-mkdirbuild" description="Creates the build directory, used for output of compilation">
 		<mkdir dir="${build}" />
 	</target>
-	<target name="-mkdirdb" description="create the dir">
+	<target name="-mkdirdb" description="Creates the db directory, used for cache and intermediate output">
 		<mkdir dir="${db}" />
 	</target>
-	<target name="-getgzindex" depends="-mkdirdb">
+	<target name="-getgzindex" depends="-mkdirdb" description="Gets the index (compressed) from mirror">
 		<exec executable="aria2c">
 			<arg value="--dir=/" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -42,12 +42,12 @@
 	<target name="getindex" depends="-getgzindex" description="Fetches the maven index from a mirror">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
-	<target name="compile" depends="-mkdirbuild">
+	<target name="compile" depends="-mkdirbuild" description="Compiles all java files">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
 			<classpath refid="lib" />
 		</javac>
 	</target>
-	<target name="buildindexdb" depends="compile">
+	<target name="buildindexdb" depends="compile" description="Builds the index database using sqlite">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildIndexDb" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="${indexpath}" />
@@ -92,19 +92,23 @@
 			<classpath refid="lib" />
 		</java>
 	</target>
-	<target name="graph" depends="compile" description="Extract the dependency information from POM files">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.ExtractGraph" classpath="${build}:${resources}">
+	<target name="extractdepgraph" depends="compile" description="Extract the dependency information from POM files">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.ExtractDepGraph" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="${indexpath}" />
 		</java>
 	</target>
-	<target name="builddeps" depends="compile" description="Computes the transitive dependencies">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildDeps" classpath="${build}:${resources}">
+	<target name="computedeps" depends="compile" description="Computes the transitive dependencies">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.ComputeDeps" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 		</java>
 	</target>
 	<target name="cp" description="Copies the output from java to be analyzed by R">
-		<copy file="${db}/unsafe-maven.csv" todir="analysis/csv" />
+		<copy todir="analysis/csv">
+			<fileset dir="${db}/">
+				<include name="*.csv" />
+			</fileset>
+		</copy>
 	</target>
 	<target name="clean" description="Removes the build directory">
 		<delete dir="${build}" />

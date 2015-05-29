@@ -11,7 +11,8 @@ import java.util.zip.ZipException;
 
 import org.apache.log4j.Logger;
 
-import ch.usi.inf.sape.unsafeanalysis.UnsafeAnalysis.UnsafeEntry;
+import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis;
+import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 
 public class AnalyseJdk8 {
@@ -54,7 +55,7 @@ public class AnalyseJdk8 {
 			}
 		}
 
-		String localPathCsv = "jdk8/unsafe-maven-jdk8.csv";
+		String localPathCsv = "db/unsafe-maven-jdk8.csv";
 
 		try (PrintStream out = new PrintStream(localPathCsv)) {
 			UnsafeAnalysis.printMatchesCsv(out, allMatches);
