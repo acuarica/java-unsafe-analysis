@@ -23,13 +23,13 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	<target name="mkdirbuild">
+	<target name="-mkdirbuild">
 		<mkdir dir="${build}" />
 	</target>
-	<target name="mkdirdb" description="create the dir">
+	<target name="-mkdirdb" description="create the dir">
 		<mkdir dir="${db}" />
 	</target>
-	<target name="getgzindex" depends="mkdirdb">
+	<target name="-getgzindex" depends="-mkdirdb">
 		<exec executable="aria2c">
 			<arg value="--dir=/" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -39,10 +39,10 @@
 			<arg value="${gzindexurl}" />
 		</exec>
 	</target>
-	<target name="getindex" depends="getgzindex">
+	<target name="getindex" depends="-getgzindex" description="Fetches the maven index from a mirror">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
-	<target name="compile" depends="mkdirbuild" description="asdfasdf">
+	<target name="compile" depends="-mkdirbuild">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
 			<classpath refid="lib" />
 		</javac>
@@ -54,7 +54,7 @@
 			<arg value="${db}/hola.db" />
 		</java>
 	</target>
-	<target name="buildurilist" depends="compile,getindex">
+	<target name="buildurilist" depends="compile,getindex" description="Builds the list of artifacts to download">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -70,7 +70,7 @@
 			<arg value="${mirror.5}" />
 		</java>
 	</target>
-	<target name="getartifacts">
+	<target name="getartifacts" description="Downloads all artifacts specified by the URI list">
 		<exec executable="aria2c">
 			<arg value="--dir=${repo}" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -81,51 +81,32 @@
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
-	<target name="analysemaven" depends="compile">
+	<target name="analysemaven" depends="compile" description="Analyse the Maven repository">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseMaven" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="${indexpath}" />
 		</java>
 	</target>
-	<target name="jdk8" depends="compile">
+	<target name="jdk8" depends="compile" description="Analyse the JDK jars">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseJdk8" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 		</java>
 	</target>
-	<target name="build" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Build" classpath="${build}:${resources}" fork="true">
+	<target name="graph" depends="compile" description="Extract the dependency information from POM files">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.ExtractGraph" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
+			<arg value="${indexpath}" />
 		</java>
 	</target>
-	<target name="download" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Download" classpath="${build}:${resources}" fork="true">
+	<target name="builddeps" depends="compile" description="Computes the transitive dependencies">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildDeps" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
 		</java>
 	</target>
-	<target name="analyse" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Analyse" classpath="${build}:${resources}:lib/lucene-core-2.4.1.jar:lib/asm-all-5.0.3.jar" fork="true">
-			<assertions>
-				<enable />
-			</assertions>
-		</java>
-	</target>
-	<target name="graph" depends="compile">
-		<java classname="ch.usi.inf.sape.unsafe.maven.Main$Graph" classpath="${build}::${resources}:lib/lucene-core-2.4.1.jar:lib" fork="true">
-			<assertions>
-				<enable />
-			</assertions>
-		</java>
-	</target>
-	<target name="cp">
+	<target name="cp" description="Copies the output from java to be analyzed by R">
 		<copy file="${db}/unsafe-maven.csv" todir="analysis/csv" />
 	</target>
-	<target name="clean">
+	<target name="clean" description="Removes the build directory">
 		<delete dir="${build}" />
 	</target>
 </project>

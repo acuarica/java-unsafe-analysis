@@ -1,4 +1,4 @@
-package ch.usi.inf.sape.unsafeanalysis.dependencies;
+package ch.usi.inf.sape.unsafeanalysis;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,9 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.junit.Test;
-
-public class MirrorTest {
+public class BuildDeps {
 
 	private static Set<String> doDeps(String did, Map<String, Set<String>> ds,
 			Map<String, Set<String>> bs) {
@@ -40,7 +38,7 @@ public class MirrorTest {
 		Map<String, Set<String>> ds = new HashMap<String, Set<String>>();
 		Map<String, Set<String>> bs = new HashMap<String, Set<String>>();
 
-		File file = new File("db/maven-depgraph.csv");
+		File file = new File("db/depgraph.csv");
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			reader.readLine();
@@ -99,15 +97,18 @@ public class MirrorTest {
 		}
 	}
 
-	@Test
-	public void depsAllScopeTest() throws IOException {
+	private static void depsAllScopeTest() throws IOException {
 		depsTest("db/maven-invdeps-all.csv", "db/maven-invdeps-all-list.csv",
 				true);
 	}
 
-	@Test
-	public void depsProductionScopeTest() throws IOException {
+	private static void depsProductionScopeTest() throws IOException {
 		depsTest("db/maven-invdeps-production.csv",
 				"db/maven-invdeps-production-list.csv", false);
+	}
+
+	public static void main(String[] args) throws IOException {
+		depsAllScopeTest();
+		depsProductionScopeTest();
 	}
 }
