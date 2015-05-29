@@ -26,6 +26,8 @@ public class AnalyseMaven {
 
 		String indexPath = args[0];
 
+		logger.info("Index: " + indexPath);
+
 		NexusIndexParser nip = new NexusIndexParser(indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 
@@ -36,6 +38,8 @@ public class AnalyseMaven {
 			i++;
 
 			String path = a.getPath();
+
+			logger.info("Analyzing artifact " + a.getId() + " (#" + i + ")");
 
 			try {
 				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
