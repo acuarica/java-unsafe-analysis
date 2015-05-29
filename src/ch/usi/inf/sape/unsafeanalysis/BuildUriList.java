@@ -62,7 +62,7 @@ public class BuildUriList {
 				noArtifacts++;
 
 				if (noArtsToDownload == null
-						|| noArtsToDownload.intValue() < noArtifacts) {
+						|| noArtifacts < noArtsToDownload.intValue()) {
 					emitDownloadFile(a.getPath(), mirrors, out);
 				}
 			}
