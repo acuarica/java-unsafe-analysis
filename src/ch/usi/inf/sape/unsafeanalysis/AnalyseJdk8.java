@@ -34,12 +34,15 @@ public class AnalyseJdk8 {
 
 		int i = 0;
 		for (String file : list) {
-			MavenArtifact a = new MavenArtifact("jdk8", "jdk8", file + "@1.8",
-					1, "jar", "", "");
+			String aid = file.substring(0, file.lastIndexOf("."));
+			MavenArtifact a = new MavenArtifact("jdk8", aid, file + "@1.8", 1,
+					"jar", "", "");
 
 			i++;
 
 			String path = a.getPath();
+
+			logger.info("Analyzing artifact " + a.getId() + " (#" + i + ")");
 
 			try {
 				List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(
