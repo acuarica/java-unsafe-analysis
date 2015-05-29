@@ -14,9 +14,9 @@ public class MavenIndexBuilder {
 		Date imindate = null;
 		Date imaxdate = null;
 
-		int docIndex = 0;
+		// int docIndex = 0;
 		for (NexusRecord doc : nip) {
-			docIndex++;
+			// docIndex++;
 
 			String allGroups = doc.get("allGroups");
 			String allGroupsList = doc.get("allGroupsList");
@@ -115,8 +115,7 @@ public class MavenIndexBuilder {
 				}
 
 				String sizeText = is[2];
-				assert sizeText.matches("-?[0-9]+") : "Invalid i.size: "
-						+ doc;
+				assert sizeText.matches("-?[0-9]+") : "Invalid i.size: " + doc;
 				long size = Long.parseLong(sizeText);
 
 				assert size >= -1 : "Size more negative: " + doc;
@@ -125,12 +124,9 @@ public class MavenIndexBuilder {
 						|| (size == -1 && is[6].equals("pom")) : "size/no jar and null: "
 						+ doc;
 
-				assert is[3].matches("[0-9]") : "Invalid i subfield 3: "
-						+ doc;
-				assert is[4].matches("[0-9]") : "Invalid i subfield 4: "
-						+ doc;
-				assert is[5].matches("[0-9]") : "Invalid i subfield 5: "
-						+ doc;
+				assert is[3].matches("[0-9]") : "Invalid i subfield 3: " + doc;
+				assert is[4].matches("[0-9]") : "Invalid i subfield 4: " + doc;
+				assert is[5].matches("[0-9]") : "Invalid i subfield 5: " + doc;
 
 				// assert (us.length == 4) == size > 0 :
 				// "size for kind jar/pom: "
