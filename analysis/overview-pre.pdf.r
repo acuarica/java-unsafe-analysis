@@ -13,7 +13,7 @@ csv = load.csv('out/cs.csv');
 csv = merge(csv, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
 
 plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
-  df = dcast(df, name+group~'cs', value.var='cs', fun.aggregate=sum);
+  df = dcast(df, name+group+tag~'cs', value.var='cs', fun.aggregate=sum);
   #df = merge(df, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
   df[is.na(df$cs),]$cs = 0;
 
@@ -25,7 +25,7 @@ plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
     df[df$name == 'ARRAY_BYTE_BASE_OFFSET',]$vjust = 1.8;
   }
   
-  p = ggplot(df, aes(x=name, y=cs, label=cs))+
+  p = ggplot(df, aes(x=name, y=cs, label=cs, fill=tag))+
     geom_bar(stat="identity")+
     facet_grid(.~group, space='free_x', scales="free_x")+
     geom_text(aes(hjust=hjust, vjust=vjust), angle=90, color='#444444', size=4)+

@@ -1,5 +1,5 @@
 
-library(reshape2)
+library(reshape2);
 
 source('analysis/utils.r')
 
@@ -25,9 +25,30 @@ replacename = function(df, name, offheapdesc) {
   df;
 }
 
-csv = load.csv('out/unsafe-maven.csv');
-csv = filterlang(csv);
+taglangart = function(df, gid, aid) {
+  if (nrow(df[df$artifactId==aid,]) > 0) {
+    df[df$artifactId==aid,]$tag = 'lang';
+  }
+  
+  df;
+}
 
+taglang = function(df) {
+  df0 = df;
+  
+  df0$tag = 'app';
+  df1 = taglangart(df0, 'org.scala-lang', 'scala-library');
+  df2 = taglangart(df1, 'org.jruby', 'jruby-core');
+  df3 = taglangart(df2, 'org.codehaus.groovy', 'groovy-all');
+  df4 = taglangart(df3, 'org.python', 'jython');
+  df5 = taglangart(df4, 'com.oracle', 'truffle');
+  df6 = taglangart(df5, 'jdk8', 'rt');
+  
+  df6;
+}
+
+csv = load.csv('out/unsafe-maven.csv');
+csv = taglang(csv);
 
 df = csv;
 df$name = as.character(df$name);
@@ -50,7 +71,7 @@ df = replacename(df, 'putInt', '(JI)V');
 df = replacename(df, 'putLong', '(JJ)V');
 df = replacename(df, 'putShort', '(JS)V');
 
-df = dcast(df, className+name+groupId+artifactId~'cs', value.var='name', fun.aggregate=length);
+df = dcast(df, className+name+groupId+artifactId+tag~'cs', value.var='name', fun.aggregate=length);
 
 df$methodName = NULL;
 df$methodDesc = NULL;

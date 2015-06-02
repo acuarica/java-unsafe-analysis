@@ -17,7 +17,8 @@
 	<property name="indexpath" location="${cache}/nexus-maven-repository-index" />
 	<property name="urilist" location="${out}/uri.list" />
 	<property name="sessionlist" location="${out}/session.list" />
-	<property name="noartifactstodownload.small" value="5000" />
+	<property name="noartifactstodownload.debug" value="5000" />
+	<property name="noartifactstodownload.release" value="100000" />
 	<property name="downloadlog" location="${out}/download.log" />
 	<property name="mavenunsafe" location="${out}/unsafe-maven.csv" />
 	<property name="mavendepgraph" location="${out}/maven-depgraph.csv" />
@@ -54,16 +55,25 @@
 			<classpath refid="lib" />
 		</javac>
 	</target>
-	<target name="buildurilist" depends="compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
+	<target name="buildurilist.debug" depends="compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<arg value="--index=${indexpath}" />
 			<arg value="--urilist=${urilist}" />
-			<arg value="--artscount=${noartifactstodownload.small}" />
+			<arg value="--artscount=${noartifactstodownload.debug}" />
 			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
-	<target name="getartifacts" description="Downloads all artifacts specified by the URI list.">
+	<target name="buildurilist.release" depends="compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--urilist=${urilist}" />
+			<arg value="--artscount=${noartifactstodownload.release}" />
+			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
+		</java>
+	</target>
+	<target name="fetchartifacts" description="Fetches all artifacts specified by the URI list.">
 		<exec executable="aria2c">
 			<arg value="--dir=${repo}" />
 			<arg value="--max-concurrent-downloads=16" />
