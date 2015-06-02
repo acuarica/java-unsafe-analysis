@@ -1,9 +1,9 @@
 
 library(reshape2)
 
-source('utils.r')
+source('analysis/utils.r')
 
-df = load.csv('csv/unsafe-maven.csv');
+df = load.csv('out/unsafe-maven.csv');
 df = filterlang(df);
 
 unsarts = levels(factor(paste(df$groupId, df$artifactId, sep=':')));
@@ -17,5 +17,5 @@ filtercsv = function(infile, outfile) {
 }
 
 save.csv(NULL, outfile);
-filtercsv('csv/maven-invdeps-all-list.csv', suffixfile(outfile, 'all'));
-filtercsv('csv/maven-invdeps-production-list.csv', suffixfile(outfile, 'prod'));
+filtercsv('out/maven-invdeps-all-list.csv', suffixfile(outfile, 'all'));
+filtercsv('out/maven-invdeps-production-list.csv', suffixfile(outfile, 'prod'));

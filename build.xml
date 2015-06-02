@@ -4,66 +4,66 @@
 	<property name="resources" location="src" />
 	<property name="lib" location="lib" />
 	<property name="build" location="build" />
-	<property name="db" location="db" />
-	<property name="repo" location="${db}/repo" />
+	<property name="cache" location="cache" />
+	<property name="out" location="out" />
+	<property name="repo" location="${cache}/repo" />
 	<property name="mirror.1" value="http://mirrors.ibiblio.org/maven2" />
 	<property name="mirror.2" value="http://maven.antelink.com/content/repositories/central" />
 	<property name="mirror.3" value="http://artifactory.theomega.org/artifactory/repo" />
 	<property name="mirror.4" value="http://scalasbt.artifactoryonline.com/scalasbt/repo" />
 	<property name="mirror.5" value="http://repo.jfrog.org/artifactory/simple/libs-release-bintray" />
 	<property name="gzindexurl" value="${mirror.1}/.index/nexus-maven-repository-index.gz" />
-	<property name="gzindexpath" location="${db}/nexus-maven-repository-index.gz" />
-	<property name="indexpath" location="${db}/nexus-maven-repository-index" />
-	<property name="urilist" location="${db}/uri.list" />
-	<property name="sessionlist" location="${db}/session.list" />
+	<property name="gzindexpath" location="${cache}/nexus-maven-repository-index.gz" />
+	<property name="indexpath" location="${cache}/nexus-maven-repository-index" />
+	<property name="urilist" location="${out}/uri.list" />
+	<property name="sessionlist" location="${out}/session.list" />
 	<property name="noartifactstodownload.small" value="5000" />
-	<property name="downloadlog" location="${db}/download.log" />
+	<property name="downloadlog" location="${out}/download.log" />
+	<property name="mavenunsafe" location="${out}/unsafe-maven.csv" />
+	<property name="mavendepgraph" location="${out}/maven-depgraph.csv" />
 	<path id="lib">
 		<fileset dir="${lib}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	<target name="-mkdirbuild" description="Creates the build directory, used for output of compilation">
+	<target name="-mkbuilddir" description="Creates the build directory, used for output of compilation.">
 		<mkdir dir="${build}" />
 	</target>
-	<target name="-mkdirdb" description="Creates the db directory, used for cache and intermediate output">
-		<mkdir dir="${db}" />
+	<target name="-mkcachedir" description="Creates the cache directory, used to cache downloaded files.">
+		<mkdir dir="${cache}" />
 	</target>
-	<target name="-getgzindex" depends="-mkdirdb" description="Gets the index (compressed) from mirror">
+	<target name="-mkoutdir" description="Creates the output directory, used for output files.">
+		<mkdir dir="${out}" />
+	</target>
+	<target name="-fetchgzindex" depends="-mkcachedir" description="Fetches the Maven Index (compressed) from mirror.">
 		<exec executable="aria2c">
 			<arg value="--dir=/" />
 			<arg value="--max-concurrent-downloads=16" />
 			<arg value="--auto-file-renaming=false" />
 			<arg value="--conditional-get=true" />
+			<arg value="--file-allocation=falloc" />
 			<arg value="--out=${gzindexpath}" />
 			<arg value="${gzindexurl}" />
 		</exec>
 	</target>
-	<target name="getindex" depends="-getgzindex" description="Fetches the maven index from a mirror">
+	<target name="fetchindex" depends="-fetchgzindex" description="Fetches and uncompress the Maven Index from a mirror.">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
-	<target name="compile" depends="-mkdirbuild" description="Compiles all java files">
+	<target name="compile" depends="-mkbuilddir" description="Compiles all java files.">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
 			<classpath refid="lib" />
 		</javac>
 	</target>
-	<target name="buildurilist" depends="compile,getindex" description="Builds the list of artifacts to download">
+	<target name="buildurilist" depends="compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
-			<arg value="${indexpath}" />
-			<arg value="${urilist}" />
-			<arg value="${noartifactstodownload.small}" />
-			<arg value="${mirror.1}" />
-			<arg value="${mirror.2}" />
-			<arg value="${mirror.3}" />
-			<arg value="${mirror.4}" />
-			<arg value="${mirror.5}" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--urilist=${urilist}" />
+			<arg value="--artscount=${noartifactstodownload.small}" />
+			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
-	<target name="getartifacts" description="Downloads all artifacts specified by the URI list">
+	<target name="getartifacts" description="Downloads all artifacts specified by the URI list.">
 		<exec executable="aria2c">
 			<arg value="--dir=${repo}" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -74,36 +74,29 @@
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
-	<target name="analysemaven" depends="compile" description="Analyse the Maven repository">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseMaven" classpath="${build}:${resources}">
+	<target name="analyse" depends="compile,-mkoutdir" description="Analyse the Maven repository and JDK8 runtime.">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyse" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<arg value="${indexpath}" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--repo=${repo}" />
+			<arg value="--output=${mavenunsafe}" />
 		</java>
 	</target>
-	<target name="jdk8" depends="compile" description="Analyse the JDK jars">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.AnalyseJdk8" classpath="${build}:${resources}">
-			<classpath refid="lib" />
-		</java>
-	</target>
-	<target name="extractdepgraph" depends="compile" description="Extract the dependency information from POM files">
+	<target name="extractdepgraph" depends="compile" description="Extract the dependency information from POM files.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.ExtractDepGraph" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<arg value="${indexpath}" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--repo=${repo}" />
+			<arg value="--output=${mavendepgraph}" />
 		</java>
 	</target>
-	<target name="computedeps" depends="compile" description="Computes the transitive dependencies">
+	<target name="computedeps" depends="compile" description="Computes the inverse transitive dependencies.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.ComputeDeps" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 		</java>
 	</target>
-	<target name="cp" description="Copies the output from java to be analyzed by R">
-		<copy todir="analysis/csv">
-			<fileset dir="${db}/">
-				<include name="*.csv" />
-			</fileset>
-		</copy>
-	</target>
-	<target name="clean" description="Removes the build directory">
+	<target name="clean" description="Removes the build and out directories.">
 		<delete dir="${build}" />
+		<delete dir="${out}" />
 	</target>
 </project>

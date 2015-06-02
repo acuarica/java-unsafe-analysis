@@ -2,14 +2,14 @@
 library(reshape2)
 library(ggplot2)
 
-source('utils.r')
+source('analysis/utils.r')
 
 replacefield = function(df, fname, toname) {
     df[df$name == fname,]$name = toname;
     df;
 }
 
-csv = load.csv('build/cs.csv');
+csv = load.csv('out/cs.csv');
 csv = merge(csv, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
 
 plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {

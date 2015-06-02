@@ -1,7 +1,7 @@
 
 library(reshape2)
 
-source('utils.r')
+source('analysis/utils.r')
 
 fcls <- function(cls) {    
   if (substr(cls, 1, 1) == '$') {
@@ -25,7 +25,7 @@ replacename = function(df, name, offheapdesc) {
   df;
 }
 
-csv = load.csv('csv/unsafe-maven.csv');
+csv = load.csv('out/unsafe-maven.csv');
 csv = filterlang(csv);
 
 

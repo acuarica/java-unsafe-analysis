@@ -4,11 +4,11 @@ library(reshape2)
 library(grid)
 library(gridExtra)
 
-source('utils.r')
+source('analysis/utils.r')
 
-df.maven <- load.csv('build/cs.csv');
+df.maven <- load.csv('out/cs.csv');
 
-f = 'csv/maven-invdeps-production.csv';
+f = 'out/maven-invdeps-production.csv';
 invdeps <- function(f, bw) {
   csv.invdeps <- read.csv(f, strip.white=TRUE, sep=',', header=TRUE);
   df.invdeps <- csv.invdeps[with(csv.invdeps, order(-depCount) ), ]
@@ -33,12 +33,12 @@ invdeps <- function(f, bw) {
 total.arts = 75405;
 total.arts.wdeps = 40622;
 
-df.prod = load.csv('build/deps-prod.csv');
+df.prod = load.csv('out/deps-prod.csv');
 unsart.prod = length(unique(df.prod$depCount))
 porc.prod =  (unsart.prod / total.arts) * 100;
 deps.prod =  (unsart.prod / total.arts.wdeps) * 100;
 
-df.all = load.csv('build/deps-all.csv');
+df.all = load.csv('out/deps-all.csv');
 unsart.all = length(unique(df.all$depCount));
 porc.all =  (unsart.all / total.arts) * 100;
 deps.all =  (unsart.all / total.arts.wdeps) * 100;
@@ -58,8 +58,8 @@ save.plot.open(outfile, w=12, h=16);
 grid.newpage();
 grid.table(df);
 
-pp = invdeps('csv/maven-invdeps-production.csv', 1000);
-pa = invdeps('csv/maven-invdeps-all.csv', 1000);
+pp = invdeps('out/maven-invdeps-production.csv', 1000);
+pa = invdeps('out/maven-invdeps-all.csv', 1000);
 
 save.plot.close();
 

@@ -7,12 +7,26 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Iterator;
 
+/**
+ * Iterator interface to parse a Nexus Index.
+ * 
+ * @author Luis Mastragelo
+ *
+ */
 public class NexusIndexParser implements Iterable<NexusRecord>, Closeable {
 
 	private RandomAccessFile raf;
 	private FileChannel fc;
 	private MappedByteBuffer mbb;
 
+	/**
+	 * Creates a new parser with the specified path. The indexPath must be a
+	 * valid Nexus Index.
+	 * 
+	 * @param indexPath
+	 *            Path to the Nexus Index to parse.
+	 * @throws IOException
+	 */
 	public NexusIndexParser(String indexPath) throws IOException {
 		raf = new RandomAccessFile(indexPath, "r");
 		fc = raf.getChannel();

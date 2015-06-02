@@ -1,17 +1,33 @@
 package ch.usi.inf.sape.unsafeanalysis;
 
-import java.io.File;
 import java.io.PrintStream;
-import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
+import ch.usi.inf.sape.unsafeanalysis.argsparser.Arg;
+import ch.usi.inf.sape.unsafeanalysis.argsparser.ArgsParser;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafeanalysis.index.NexusIndexParser;
 
 public class BuildUriList {
+
+	public static class Args {
+
+		@Arg(shortkey = "i", longkey = "index", desc = "Specifies the path of the Nexus Index.")
+		public String indexPath;
+
+		@Arg(shortkey = "u", longkey = "urilist", desc = "Specifies the output uri list.")
+		public String uriListPath;
+
+		@Arg(shortkey = "n", longkey = "artscount", desc = "Specifies the number of artifacts to download.")
+		public Integer noArtsToDownload;
+
+		@Arg(shortkey = "m", longkey = "mirrors", desc = "Comma separated list of mirrors.")
+		public String[] mirrors;
+
+	}
 
 	private static final Logger logger = Logger.getLogger(BuildUriList.class);
 
@@ -26,44 +42,31 @@ public class BuildUriList {
 	}
 
 	public static void main(String[] args) throws Exception {
-		if (args.length < 4) {
-			throw new Exception(
-					"Invalid arguments: needed index path, uri list, number of artifacts to download (or - for no limit), and at least on mirror");
-		}
+		Args ar = ArgsParser.parse(args, Args.class);
 
-		String indexPath = args[0];
-		String uriListPath = args[1];
-		String arts = args[2];
-		Integer noArtsToDownload = "-".equals(arts) ? null : Integer
-				.parseInt(arts);
+		logger.info("Using Index: " + ar.indexPath);
+		logger.info("URI list: " + ar.uriListPath);
+		logger.info("# artifact to download: " + ar.noArtsToDownload);
 
-		String[] mirrors = Arrays.copyOfRange(args, 3, args.length);
-
-		logger.info("Index: " + indexPath);
-		logger.info("URI list: " + uriListPath);
-		logger.info("# artifact to download: " + noArtsToDownload);
-
-		logger.info("Using " + mirrors.length + " mirrors:");
-		for (String mirror : mirrors) {
+		logger.info("Using " + ar.mirrors.length + " mirrors:");
+		for (String mirror : ar.mirrors) {
 			logger.info("  * " + mirror);
 		}
 
-		NexusIndexParser nip = new NexusIndexParser(indexPath);
+		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 
-		new File(new File(uriListPath).getParent()).mkdirs();
-
-		try (PrintStream out = new PrintStream(uriListPath)) {
+		try (PrintStream out = new PrintStream(ar.uriListPath)) {
 			int noArtifacts = 0;
 
 			for (MavenArtifact a : index) {
-				emitDownloadFile(a.getPomPath(), mirrors, out);
+				emitDownloadFile(a.getPomPath(), ar.mirrors, out);
 
 				noArtifacts++;
 
-				if (noArtsToDownload == null
-						|| noArtifacts < noArtsToDownload.intValue()) {
-					emitDownloadFile(a.getPath(), mirrors, out);
+				if (ar.noArtsToDownload == null
+						|| noArtifacts < ar.noArtsToDownload.intValue()) {
+					emitDownloadFile(a.getPath(), ar.mirrors, out);
 				}
 			}
 		}

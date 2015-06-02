@@ -82,8 +82,8 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 outfile <- commandArgs(trailingOnly = TRUE)[1];
 
 df.methods = (function() {
-  csv.members = load.csv('csv/unsafe-def-members.csv');
-  csv.groups = load.csv('csv/unsafe-def-groups.csv');
+  csv.members = load.csv('analysis/unsafe-def-members.csv');
+  csv.groups = load.csv('analysis/unsafe-def-groups.csv');
   
   df.members = merge(csv.members, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
   df.members$gid = NULL; 

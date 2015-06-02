@@ -3,7 +3,6 @@ package ch.usi.inf.sape.unsafeanalysis.analysis;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -156,21 +155,5 @@ public class UnsafeAnalysis {
 		ClassReader cr = new ClassReader(classFile);
 		UnsafeVisitor uv = new UnsafeVisitor(matches, a);
 		cr.accept(uv, 0);
-	}
-
-	public static void printMatchesCsv(PrintStream out,
-			List<UnsafeEntry> matches) {
-		out.println("className, methodName, methodDesc, owner, name, desc, groupId, artifactId, version, size, ext");
-
-		for (UnsafeEntry entry : matches) {
-			out.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n",
-					entry.className, entry.methodName, entry.methodDesc,
-					entry.owner, entry.name, entry.desc,
-					entry.artifact == null ? "" : entry.artifact.groupId,
-					entry.artifact == null ? "" : entry.artifact.artifactId,
-					entry.artifact == null ? "" : entry.artifact.version,
-					entry.artifact == null ? "" : entry.artifact.size,
-					entry.artifact == null ? "" : entry.artifact.ext);
-		}
 	}
 }

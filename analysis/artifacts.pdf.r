@@ -2,15 +2,15 @@
 library(ggplot2)
 library(reshape2)
 
-source('utils.r')
+source('analysis/utils.r')
 
-df.maven = load.csv('build/cs.csv');
+df.maven = load.csv('out/cs.csv');
 
 df = df.maven;
 df = merge(df, df.methods, by.x='name', by.y='method', all.x=TRUE);
 
 df.artsbyrank <- (function() {
-  csv.invdeps <- load.csv('csv/maven-invdeps-production.csv');
+  csv.invdeps <- load.csv('out/maven-invdeps-production.csv');
 
   df <- dcast(df.maven, id~., value.var='name', fun.aggregate=length);
   df <- merge(df, csv.invdeps, by.x='id', by.y='depId', all.x=TRUE);

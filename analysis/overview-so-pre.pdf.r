@@ -2,7 +2,7 @@
 library(reshape2)
 library(ggplot2)
 
-source('utils.r')
+source('analysis/utils.r')
 
 replacename = function(df, name, offheapdesc) {
   df[df$method == sprintf('%s (Heap)', name),]$method = name;
@@ -37,7 +37,7 @@ df[df$group == 'Off-Heap Get',]$group = 'Get';
 df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
-so = load.csv('csv/so-method-usages.csv');
+so = load.csv('analysis/so-method-usages.csv');
 #so$total = NULL;
 colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 'Usages in both');
 

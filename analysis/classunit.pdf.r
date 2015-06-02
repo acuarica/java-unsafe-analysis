@@ -5,7 +5,7 @@ library(reshape2)
 library(grid)
 library(gridExtra)
 
-source('utils.r')
+source('analysis/utils.r')
 
 groups.hclust = function (tree, k= NULL, which=NULL, x=NULL, h=NULL, border=2, cluster=NULL) {
   if (length(h) > 1L | length(k) > 1L) 
@@ -45,7 +45,7 @@ groups.hclust = function (tree, k= NULL, which=NULL, x=NULL, h=NULL, border=2, c
   retval
 }
 
-df.maven = load.csv('build/cs.csv');
+df.maven = load.csv('out/cs.csv');
 
 dupcols = function(df, cols) {
   for (col in cols) {

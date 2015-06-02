@@ -4,15 +4,15 @@ library(reshape2)
 library(grid)
 library(gridExtra)
 
-source('utils.r')
+source('analysis/utils.r')
 
-csv.comments = load.csv('csv/comments.csv');
+csv.comments = load.csv('analysis/comments.csv');
 
 patterns = unique(strsplit(paste(levels(csv.comments$patterns), collapse='&'), split='&')[[1]]);
 patterns = patterns[2:length(patterns)];
 
-df.maven = load.csv('build/cs.csv');
-df.deps = load.csv('build/deps-prod.csv');
+df.maven = load.csv('out/cs.csv');
+df.deps = load.csv('out/deps-prod.csv');
 df.cu = dcast(df.maven, id+package+classunit~name, value.var='cs', fun.aggregate=sum);
 df.clones = dcast(df.cu, classunit~'clones', value.var='id', fun.aggregate=length);
 
@@ -77,7 +77,7 @@ for (i in 1:length(garts)) {
   txt = sprintf('%s\n', txt);
 }
 
-f = file('build/patterns-stats.tex');
+f = file('out/patterns-stats.tex');
 writeLines(txt, f);
 close(f);
 
