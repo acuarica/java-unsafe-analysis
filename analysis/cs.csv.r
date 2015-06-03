@@ -3,7 +3,7 @@ library(reshape2);
 
 source('analysis/utils.r');
 
-fcls <- function(cls) {    
+fcls <- function(cls) {
   if (substr(cls, 1, 1) == '$') {
     cls <- substring(cls, 2);
   }

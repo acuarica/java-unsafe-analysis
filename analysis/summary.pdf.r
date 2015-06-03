@@ -21,14 +21,8 @@ invdeps <- function(f, bw) {
   grid.table(df.invdeps[1:50,], show.rownames=FALSE);
   
   grid.newpage();
-  grid.table(df[1:50,c('id', 'depCount', 'rank')], show.rownames=FALSE);
-  
-  ggplot(subset(df, !is.na(depCount)), aes(x=rank))+
-    geom_histogram(binwidth=bw)+
-    theme(legend.title=element_blank())+
-    labs(x="Ranking by Impact", y = "# Artifacts");
+  grid.table(df[1:50,c('id', 'depCount', 'rank')], show.rownames=FALSE);  
 };
-
 
 total.arts = 75405;
 total.arts.wdeps = 40622;
@@ -58,10 +52,7 @@ save.plot.open(outfile, w=12, h=16);
 grid.newpage();
 grid.table(df);
 
-pp = invdeps('out/maven-invdeps-production.csv', 1000);
-pa = invdeps('out/maven-invdeps-all.csv', 1000);
+invdeps('out/maven-invdeps-production.csv', 1000);
+invdeps('out/maven-invdeps-all.csv', 1000);
 
 save.plot.close();
-
-save.plot(pp, suffixfile(outfile, 'prod'), w=6, h=3);
-save.plot(pa, suffixfile(outfile, 'all'), w=6, h=3);

@@ -29,7 +29,7 @@ plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
   p = ggplot(df, aes(x=name, y=cs, label=cs, fill=tag))+
     geom_bar(stat="identity")+
     facet_grid(.~group, space='free_x', scales="free_x")+
-    geom_text(aes(hjust=hjust, vjust=vjust), angle=90, color=lang, size=4)+
+    geom_text(aes(hjust=hjust, vjust=vjust, color=tag), angle=90, size=4)+
     theme(axis.text.x=element_text(size=12, angle=90, hjust=1, vjust=0.2),
           axis.text.y=element_text(angle=90, hjust=1),
           #axis.title.x=element_text(angle=180),

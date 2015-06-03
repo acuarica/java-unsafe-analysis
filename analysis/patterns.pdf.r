@@ -1,8 +1,8 @@
 
-library(ggplot2)
-library(reshape2)
-library(grid)
-library(gridExtra)
+library(ggplot2);
+library(reshape2);
+library(grid);
+library(gridExtra);
 
 source('analysis/utils.r')
 
@@ -58,7 +58,7 @@ garts[[length(garts)+1]] = list('page2', unique(subset(df.maven, name %in% c('pa
 garts[[length(garts)+1]] = list('alloc2', unique(subset(df.maven, name %in% c('allocateInstance'))$id));
 
 rows = list();
-txt = '';
+#txt = '';
 
 for (i in 1:length(garts)) {
   pattern = garts[[i]][[1]];
@@ -71,15 +71,15 @@ for (i in 1:length(garts)) {
   mosttext = as.character(paste(most, collapse='\n') );
   rows[[ length(rows)+1 ]] = list(pattern, len, deps, mosttext);
   
-  txt = sprintf('%s\\newcommand{\\%slen}{%s}\n', txt, pattern, len);
-  txt = sprintf('%s\\newcommand{\\%sdeps}{%s}\n', txt, pattern, deps);
-  txt = sprintf('%s\\newcommand{\\%smost}{%s}\n', txt, pattern, mosttext);
-  txt = sprintf('%s\n', txt);
+  #txt = sprintf('%s\\newcommand{\\%slen}{%s}\n', txt, pattern, len);
+  #txt = sprintf('%s\\newcommand{\\%sdeps}{%s}\n', txt, pattern, deps);
+  #txt = sprintf('%s\\newcommand{\\%smost}{%s}\n', txt, pattern, mosttext);
+  #txt = sprintf('%s\n', txt);
 }
 
-f = file('out/patterns-stats.tex');
-writeLines(txt, f);
-close(f);
+#f = file('out/patterns-stats.tex');
+#writeLines(txt, f);
+#close(f);
 
 df = data.frame(matrix(unlist(rows), ncol=4, byrow=T));
 colnames(df) = c('pattern', 'artifact.count', 'usedby.count', 'most.deps');
