@@ -27,8 +27,12 @@ public class Analyse {
 		@Arg(shortkey = "r", longkey = "repo", desc = "Specifies the path of the Maven repository.")
 		public String repoPath;
 
+		@Arg(shortkey = "n", longkey = "artscount", desc = "Specifies the number of artifacts to analyse.")
+		public Integer noArtsToAnalyse;
+
 		@Arg(shortkey = "o", longkey = "output", desc = "Specifies the path of the output file.")
 		public String outputPath;
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -47,6 +51,11 @@ public class Analyse {
 				i++;
 				String path = ar.repoPath + "/" + a.getPath();
 				analyseArtifact(path, a, i, out);
+
+				if (ar.noArtsToAnalyse == null
+						|| i == ar.noArtsToAnalyse.intValue()) {
+					break;
+				}
 			}
 
 			for (String file : new String[] { "rt.jar" }) {

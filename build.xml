@@ -17,8 +17,8 @@
 	<property name="indexpath" location="${cache}/nexus-maven-repository-index" />
 	<property name="urilist" location="${out}/uri.list" />
 	<property name="sessionlist" location="${out}/session.list" />
-	<property name="noartifactstodownload.debug" value="5000" />
-	<property name="noartifactstodownload.release" value="100000" />
+	<property name="noartifacts.debug" value="5000" />
+	<property name="noartifacts.release" value="100000" />
 	<property name="downloadlog" location="${out}/download.log" />
 	<property name="mavenunsafe" location="${out}/unsafe-maven.csv" />
 	<property name="mavendepgraph" location="${out}/maven-depgraph.csv" />
@@ -67,7 +67,7 @@
 			<test name="ch.usi.inf.sape.unsafeanalysis.tests.UnsafeAnalysisTests" />
 		</junit>
 	</target>
-	<target name="buildurilist-debug" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
+	<target name="buildurilist-debug" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download using Debug configuration.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -75,11 +75,11 @@
 			</assertions>
 			<arg value="--index=${indexpath}" />
 			<arg value="--urilist=${urilist}" />
-			<arg value="--artscount=${noartifactstodownload.debug}" />
+			<arg value="--artscount=${noartifacts.debug}" />
 			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
-	<target name="buildurilist-release" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download.">
+	<target name="buildurilist-release" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download using Release configuration.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -87,7 +87,7 @@
 			</assertions>
 			<arg value="--index=${indexpath}" />
 			<arg value="--urilist=${urilist}" />
-			<arg value="--artscount=${noartifactstodownload.release}" />
+			<arg value="--artscount=${noartifacts.release}" />
 			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
@@ -102,11 +102,21 @@
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
-	<target name="analyse" depends="-compile,-mkoutdir" description="Analyse the Maven repository and JDK8 runtime.">
+	<target name="analyse.debug" depends="-compile,-mkoutdir" description="Analyse the Maven repository and JDK8 runtime using Debug configuration.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyse" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="--index=${indexpath}" />
 			<arg value="--repo=${repo}" />
+			<arg value="--artscount=${noartifacts.debug}" />
+			<arg value="--output=${mavenunsafe}" />
+		</java>
+	</target>
+	<target name="analyse.release" depends="-compile,-mkoutdir" description="Analyse the Maven repository and JDK8 runtime using Release configuration.">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyse" classpath="${build}:${resources}">
+			<classpath refid="lib" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--repo=${repo}" />
+			<arg value="--artscount=${noartifacts.release}" />
 			<arg value="--output=${mavenunsafe}" />
 		</java>
 	</target>
