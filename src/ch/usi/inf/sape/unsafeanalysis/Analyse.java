@@ -64,10 +64,9 @@ public class Analyse {
 						1, "jar", "", "");
 
 				i++;
-				String path = "jdk8/" + file;
+				String path = "lib/" + file;
 				analyseArtifact(path, a, i, out);
 			}
-
 		}
 	}
 
@@ -81,7 +80,6 @@ public class Analyse {
 			for (UnsafeEntry entry : matches) {
 				printMatchCsv(out, entry);
 			}
-
 		} catch (NoSuchFileException e) {
 			log.info("File not found %s: (# %d): %s", path, i, e.getMessage());
 		} catch (ZipException e) {
@@ -100,6 +98,5 @@ public class Analyse {
 				entry.artifact == null ? "" : entry.artifact.version,
 				entry.artifact == null ? "" : entry.artifact.size,
 				entry.artifact == null ? "" : entry.artifact.ext);
-
 	}
 }
