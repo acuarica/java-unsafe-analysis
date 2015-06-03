@@ -2,16 +2,17 @@ package ch.usi.inf.sape.unsafeanalysis;
 
 import java.io.PrintStream;
 
-import org.apache.log4j.Logger;
-
 import ch.usi.inf.sape.unsafeanalysis.argsparser.Arg;
 import ch.usi.inf.sape.unsafeanalysis.argsparser.ArgsParser;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafeanalysis.index.NexusIndexParser;
+import ch.usi.inf.sape.unsafeanalysis.log.Log;
 
 public class BuildUriList {
+
+	private static final Log log = new Log(System.out);
 
 	public static class Args {
 
@@ -29,8 +30,6 @@ public class BuildUriList {
 
 	}
 
-	private static final Logger logger = Logger.getLogger(BuildUriList.class);
-
 	private static void emitDownloadFile(String path, String[] mirrors,
 			PrintStream out) {
 		for (String mirror : mirrors) {
@@ -44,13 +43,13 @@ public class BuildUriList {
 	public static void main(String[] args) throws Exception {
 		Args ar = ArgsParser.parse(args, Args.class);
 
-		logger.info("Using Index: " + ar.indexPath);
-		logger.info("URI list: " + ar.uriListPath);
-		logger.info("# artifact to download: " + ar.noArtsToDownload);
+		log.info("Using Index: %s", ar.indexPath);
+		log.info("URI list: %s", ar.uriListPath);
+		log.info("# artifact to download: %s", ar.noArtsToDownload);
 
-		logger.info("Using " + ar.mirrors.length + " mirrors:");
+		log.info("Using %d mirrors:", ar.mirrors.length);
 		for (String mirror : ar.mirrors) {
-			logger.info("  * " + mirror);
+			log.info("  * %s", mirror);
 		}
 
 		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);

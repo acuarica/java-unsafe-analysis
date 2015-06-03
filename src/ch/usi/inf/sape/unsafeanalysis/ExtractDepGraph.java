@@ -6,7 +6,6 @@ import java.io.PrintStream;
 
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -18,11 +17,11 @@ import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact.Dependency;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafeanalysis.index.NexusIndexParser;
+import ch.usi.inf.sape.unsafeanalysis.log.Log;
 
 public class ExtractDepGraph {
 
-	private static final Logger logger = Logger
-			.getLogger(ExtractDepGraph.class);
+	private static final Log log = new Log(System.out);
 
 	public static class Args {
 
@@ -96,9 +95,9 @@ public class ExtractDepGraph {
 						}
 					});
 				} catch (FileNotFoundException e) {
-					logger.info("POM not found " + path + " " + i);
+					log.info("POM not found %s (# %d)", path, i);
 				} catch (Exception e) {
-					logger.info("Exception in " + path, e);
+					log.info("Exception in %s (# %d): %s", path, i, e);
 				}
 			}
 		}

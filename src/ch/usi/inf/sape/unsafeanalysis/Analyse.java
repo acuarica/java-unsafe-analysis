@@ -5,8 +5,6 @@ import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.util.zip.ZipException;
 
-import org.apache.log4j.Logger;
-
 import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis;
 import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis.UnsafeEntry;
 import ch.usi.inf.sape.unsafeanalysis.argsparser.Arg;
@@ -15,10 +13,11 @@ import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafeanalysis.index.NexusIndexParser;
+import ch.usi.inf.sape.unsafeanalysis.log.Log;
 
 public class Analyse {
 
-	private static final Logger logger = Logger.getLogger(Analyse.class);
+	private static final Log log = new Log(System.out);
 
 	public static class Args {
 
@@ -35,7 +34,7 @@ public class Analyse {
 	public static void main(String[] args) throws Exception {
 		Args ar = ArgsParser.parse(args, Args.class);
 
-		logger.info("Parsing Index: " + ar.indexPath);
+		log.info("Parsing Index: %s", ar.indexPath);
 
 		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
@@ -65,7 +64,7 @@ public class Analyse {
 
 	private static void analyseArtifact(String path, MavenArtifact a, int i,
 			PrintStream out) {
-		logger.info("Analyzing artifact " + a.getId() + " (#" + i + ")");
+		log.info("Analyzing artifact %s (# %d)", a.getId(), i);
 
 		try {
 			List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(path, a);
@@ -75,12 +74,11 @@ public class Analyse {
 			}
 
 		} catch (NoSuchFileException e) {
-			logger.info("File not found " + path + " (" + i + "th): "
-					+ e.getMessage());
+			log.info("File not found %s: (# %d): %s", path, i, e.getMessage());
 		} catch (ZipException e) {
-			logger.info("Zip exception for " + path + " (" + i + "th)", e);
+			log.info("Zip exception for %s (# %d): %s", path, i, e.getMessage());
 		} catch (Exception e) {
-			logger.info("Exception for " + path + " (" + i + "th): %s", e);
+			log.info("Exception for %s (# %d): %s", path, i, e);
 		}
 	}
 
