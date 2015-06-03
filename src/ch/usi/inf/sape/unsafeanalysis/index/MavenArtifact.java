@@ -1,8 +1,11 @@
 package ch.usi.inf.sape.unsafeanalysis.index;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Represents a Maven Artifact with a Maven Index.
+ * 
+ * @author Luis Mastrangelo
+ *
+ */
 public class MavenArtifact {
 
 	public final String groupId;
@@ -12,18 +15,7 @@ public class MavenArtifact {
 	public final String ext;
 	public final String groupDesc;
 	public final String artifactDesc;
-	public final List<Dependency> dependencies = new ArrayList<Dependency>();
 	public boolean sources = false;
-
-	public static class Dependency {
-		public String groupId;
-		public String artifactId;
-		public String version;
-		public String scope;
-
-		public Dependency() {
-		}
-	}
 
 	public MavenArtifact(String groupId, String artifactId, String version,
 			long size, String ext, String groupDesc, String artifactDesc) {

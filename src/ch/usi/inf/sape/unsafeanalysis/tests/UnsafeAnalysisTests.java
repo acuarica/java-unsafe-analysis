@@ -13,17 +13,12 @@ import ch.usi.inf.sape.unsafeanalysis.analysis.UnsafeAnalysis.UnsafeEntry;
 
 public class UnsafeAnalysisTests {
 
-	private static final String testJars = "tests/";
-
 	private static List<UnsafeEntry> testJar(String jarFileName,
 			boolean expected) throws IOException {
-
-		List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile(testJars
+		List<UnsafeEntry> matches = UnsafeAnalysis.searchJarFile("tests/jars/"
 				+ jarFileName, null);
 
 		assertEquals(expected, matches.size() > 0);
-
-		// UnsafeAnalysis.printMatchesCsv(System.out, matches);
 
 		return matches;
 	}
