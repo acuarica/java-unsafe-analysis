@@ -1,4 +1,4 @@
-<project name="java-unsafe-analysis" default="tests" basedir=".">
+<project name="java-unsafe-analysis" default="check" basedir=".">
 	<description>Java Unsafe Analysis to study usage and impact of Unsafe API in Java</description>
 	<property name="src" location="src" />
 	<property name="resources" location="src" />
@@ -27,16 +27,16 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	<target name="-mkbuilddir" description="Creates the build directory, used for output of compilation.">
+	<target name="mkbuilddir" description="Creates the build directory, used for output of compilation.">
 		<mkdir dir="${build}" />
 	</target>
-	<target name="-mkcachedir" description="Creates the cache directory, used to cache downloaded files.">
+	<target name="mkcachedir" description="Creates the cache directory, used to cache downloaded files.">
 		<mkdir dir="${cache}" />
 	</target>
-	<target name="-mkoutdir" description="Creates the output directory, used for output files.">
+	<target name="mkoutdir" description="Creates the output directory, used for output files.">
 		<mkdir dir="${out}" />
 	</target>
-	<target name="-fetchgzindex" depends="-mkcachedir" description="Fetches the Maven Index (compressed) from mirror.">
+	<target name="fetchgzindex" depends="mkcachedir" description="Fetches the Maven Index (compressed) from a mirror using aria2.">
 		<exec executable="aria2c">
 			<arg value="--dir=/" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -47,15 +47,15 @@
 			<arg value="${gzindexurl}" />
 		</exec>
 	</target>
-	<target name="fetchindex" depends="-fetchgzindex" description="Fetches and uncompress the Maven Index from a mirror.">
+	<target name="fetchindex" depends="fetchgzindex" description="Fetches and uncompress the Maven Index from a mirror using aria2.">
 		<gunzip src="${gzindexpath}" dest="${indexpath}" />
 	</target>
-	<target name="-compile" depends="-mkbuilddir" description="Compiles all java files.">
+	<target name="compile" depends="mkbuilddir" description="Compiles all Java files.">
 		<javac includeantruntime="false" srcdir="${src}" destdir="${build}">
 			<classpath refid="lib" />
 		</javac>
 	</target>
-	<target name="buildurilist-debug" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download using Debug configuration.">
+	<target name="buildurilist-debug" depends="compile,fetchindex,mkoutdir" description="Builds the list of artifacts to download in Debug mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -67,7 +67,7 @@
 			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
-	<target name="buildurilist-release" depends="-compile,fetchindex,-mkoutdir" description="Builds the list of artifacts to download using Release configuration.">
+	<target name="buildurilist-release" depends="compile,fetchindex,mkoutdir" description="Builds the list of artifacts to download in Release mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />
 			<assertions>
@@ -79,7 +79,7 @@
 			<arg value="--mirrors=${mirror.1},${mirror.2},${mirror.3},${mirror.4},${mirror.5}" />
 		</java>
 	</target>
-	<target name="fetchartifacts" description="Fetches all artifacts specified by the URI list.">
+	<target name="fetchartifacts" description="Fetches all artifacts specified by the URI list using aria2.">
 		<exec executable="aria2c">
 			<arg value="--dir=${repo}" />
 			<arg value="--max-concurrent-downloads=16" />
@@ -90,7 +90,7 @@
 			<arg value="--log=${downloadlog}" />
 		</exec>
 	</target>
-	<target name="analyze-debug" depends="-compile,-mkoutdir" description="Analyze the Maven repository and JDK8 runtime using Debug configuration.">
+	<target name="analyze-debug" depends="compile,mkoutdir" description="Analyze the Maven repository and JDK8 runtime in Debug mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyze" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="--index=${indexpath}" />
@@ -99,7 +99,7 @@
 			<arg value="--output=${mavenunsafe}" />
 		</java>
 	</target>
-	<target name="analyze-release" depends="-compile,-mkoutdir" description="Analyze the Maven repository and JDK8 runtime using Release configuration.">
+	<target name="analyze-release" depends="compile,mkoutdir" description="Analyze the Maven repository and JDK8 runtime in Release mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyze" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="--index=${indexpath}" />
@@ -108,7 +108,7 @@
 			<arg value="--output=${mavenunsafe}" />
 		</java>
 	</target>
-	<target name="extractdeps" depends="-compile" description="Extract the dependency information from POM files.">
+	<target name="extractdeps" depends="compile" description="Extract the dependency information from POM files.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.ExtractDeps" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 			<arg value="--index=${indexpath}" />
@@ -116,12 +116,12 @@
 			<arg value="--output=${mavendepgraph}" />
 		</java>
 	</target>
-	<target name="computedeps" depends="-compile" description="Computes the inverse transitive dependencies.">
+	<target name="computedeps" depends="compile" description="Computes the inverse transitive dependencies.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.ComputeDeps" classpath="${build}:${resources}">
 			<classpath refid="lib" />
 		</java>
 	</target>
-	<target name="analyse-tests" depends="-compile" description="Run the tests for Unsafe analysis.">
+	<target name="analyse-tests" depends="compile" description="Run tests for Unsafe analysis.">
 		<junit>
 			<classpath>
 				<pathelement location="lib/asm-all-5.0.3.jar" />
@@ -133,7 +133,7 @@
 			<test name="ch.usi.inf.sape.unsafeanalysis.tests.UnsafeAnalysisTests" />
 		</junit>
 	</target>
-	<target name="extract-tests" depends="-compile" description="Run the tests for the dependency extraction.">
+	<target name="extractdeps-tests" depends="compile" description="Run tests for the dependency extraction.">
 		<junit>
 			<classpath>
 				<pathelement location="lib/asm-all-5.0.3.jar" />
@@ -145,13 +145,13 @@
 			<test name="ch.usi.inf.sape.unsafeanalysis.tests.DepsManagerTests" />
 		</junit>
 	</target>
-	<target name="tests">
+	<target name="check" description="Run tests for Unsafe analysis, dependency extraction and aria2.">
 		<exec executable="aria2c">
 			<arg value="http://www.google.com/index.html" />
 			<arg value="--out=out/index.html" />
 		</exec>
 		<antcall target="analyse-tests" />
-		<antcall target="extract-tests" />
+		<antcall target="extractdeps-tests" />
 	</target>
 	<target name="clean" description="Removes the build and out directories.">
 		<delete dir="${build}" />

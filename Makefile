@@ -24,14 +24,15 @@ $(BUILD)/patterns.pdf: analysis/comments.csv
 
 $(OVERVIEWSO): $(OVERVIEWSOPRE) analysis/so.tex
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
-	latexmk -view=pdf -output-directory=out analysis/so.tex
+	latexmk -quiet -view=pdf -output-directory=out analysis/so.tex
 
 $(OVERVIEW): $(OVERVIEWPRE)
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
 	gs -q -sDEVICE=pdfwrite -sOutputFile="$(BUILD)/overview-field.pdf" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$(BUILD)/overview-pre-field.pdf" -c quit
 
-test: $(SRC)/test.r
+check: $(SRC)/check.r
 	$(R) --slave --vanilla --file=$<
+	latexmk -quiet -view=pdf -output-directory=out analysis/check.tex
 
 $(BUILD)/%: $(SRC)/%.r
 	$(R) --slave --vanilla --file=$< --args $@
