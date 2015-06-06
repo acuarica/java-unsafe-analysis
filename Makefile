@@ -33,6 +33,7 @@ $(OVERVIEW): $(OVERVIEWPRE)
 check: $(SRC)/check.r
 	$(R) --slave --vanilla --file=$<
 	latexmk -quiet -view=pdf -output-directory=out analysis/check.tex
+	gs -q -sDEVICE=pdfwrite -sOutputFile="out/check-land.pdf" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "out/check.pdf" -c quit
 
 $(BUILD)/%: $(SRC)/%.r
 	$(R) --slave --vanilla --file=$< --args $@

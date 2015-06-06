@@ -13,7 +13,7 @@ csv = load.csv('out/cs.csv');
 csv = merge(csv, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
 
 plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
-  df = dcast(df, name+group+tag~'cs', value.var='cs', fun.aggregate=sum);
+  df = dcast(df, name+group~'cs', value.var='cs', fun.aggregate=sum);
   #df = merge(df, df.methods, by.x='name', by.y='method', all.x=TRUE, all.y=TRUE);
   df[is.na(df$cs),]$cs = 0;
 
@@ -25,11 +25,10 @@ plotoverview = function(df, outfile, ylabel='# Call Sites', w=15.47) {
     df[df$name == 'ARRAY_BYTE_BASE_OFFSET',]$vjust = 1.8;
   }
   
-  #'#444444'
-  p = ggplot(df, aes(x=name, y=cs, label=cs, fill=tag))+
+  p = ggplot(df, aes(x=name, y=cs, label=cs))+
     geom_bar(stat="identity")+
     facet_grid(.~group, space='free_x', scales="free_x")+
-    geom_text(aes(hjust=hjust, vjust=vjust, color=tag), angle=90, size=4)+
+    geom_text(aes(hjust=hjust, vjust=vjust), angle=90, color='#444444', size=4)+
     theme(axis.text.x=element_text(size=12, angle=90, hjust=1, vjust=0.2),
           axis.text.y=element_text(angle=90, hjust=1),
           #axis.title.x=element_text(angle=180),
