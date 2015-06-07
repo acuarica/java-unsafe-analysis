@@ -33,6 +33,11 @@ public class ExtractDeps {
 	public static void main(String[] args) throws Exception {
 		Args ar = ArgsParser.parse(args, Args.class);
 
+		log.info("Using Index: %s", ar.indexPath);
+		log.info("Output: %s", ar.outputPath);
+
+		log.info("Parsing Index...");
+
 		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 

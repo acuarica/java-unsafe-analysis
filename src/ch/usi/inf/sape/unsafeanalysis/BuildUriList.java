@@ -52,6 +52,8 @@ public class BuildUriList {
 			log.info("  * %s", mirror);
 		}
 
+		log.info("Parsing Index ...");
+
 		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 
