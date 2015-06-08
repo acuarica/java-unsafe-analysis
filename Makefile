@@ -1,5 +1,14 @@
 
-R=r
+UNAME=$(shell uname)
+
+ifeq ($(UNAME), Darwin)
+  R=r
+else ifeq ($(UNAME), Linux)
+  R=R
+else
+  $(error Unrecognized environment. Only supported Darwin and Linux)
+endif
+
 SRC=analysis
 BUILD=out
 
