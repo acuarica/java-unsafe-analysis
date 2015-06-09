@@ -12,7 +12,9 @@ endif
 SRC=analysis
 BUILD=out
 
-OUTS=$(patsubst $(SRC)/%.r,$(BUILD)/%,$(wildcard $(SRC)/*.*.r))
+#OUTS=$(patsubst $(SRC)/%.r,$(BUILD)/%,$(wildcard $(SRC)/*.*.r))
+OUTS=$(BUILD)/artifacts.pdf $(BUILD)/classunit.pdf $(BUILD)/cs.csv \
+     $(BUILD)/deps.csv $(BUILD)/overview-pre.pdf $(BUILD)/patterns.pdf $(BUILD)/summary.pdf
 
 OVERVIEWPRE=$(BUILD)/overview-pre.pdf
 OVERVIEW=$(BUILD)/overview.pdf
@@ -22,7 +24,9 @@ OVERVIEWSO=$(BUILD)/overview-so.pdf
 
 .SECONDARY:
 
-all: $(OUTS) $(OVERVIEW) $(OVERVIEWSO)
+all: $(OUTS) $(OVERVIEW)
+
+so: $(OVERVIEWSO)
 
 $(BUILD)/cs.csv: out/unsafe-maven.csv
 $(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
