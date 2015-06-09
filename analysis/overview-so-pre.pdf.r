@@ -44,6 +44,8 @@ colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);
 so = melt(so, id=c('method', 'access', 'group', 'member'));
 
+so = so[so$value > 0, ];
+
 p = ggplot(so, aes(x=method, y=value, fill=variable))+
   geom_bar(stat="identity")+
   facet_grid(.~group, space='free_x', scales="free_x")+
