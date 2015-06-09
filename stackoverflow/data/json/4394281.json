@@ -1,0 +1,3663 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":4394281,
+    "title":"Do I need synchronise on objects which guarantee happen-before?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "synchronization",
+      "locking",
+      "thread-safety"
+    ],
+    "creationDate":"2010-12-09",
+    "lastActivityDate":"2010-12-09",
+    "score":0,
+    "viewCount":128,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":519539,
+      "displayName":"Petro Semeniuk",
+      "reputation":2823
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have a collection which guaranteed to be visible across threads. However that doesn't guarantee visibility of states of items which are stored in this collection(eg. if I have collection of StringBuilder(mutable, not thread safe) then I have to synchronize on each item in collection during write/read, right?). So, what happens when I have collection of objects which are used for guaranteeing happen-before by themselves(eg. countdownlatch). Do I need to synchronize on each item somehow when calling await/countDown? Code below roughly illustrate this dilemma:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[4394281]-[1338237380]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have a collection which guaranteed to be visible across threads. However that doesn't guarantee visibility of states of items which are stored in this collection(eg. if I have collection of StringBuilder(mutable, not thread safe) then I have to synchronize on each item in collection during write/read, right?). So, what happens when I have collection of objects which are used for guaranteeing happen-before by themselves(eg. countdownlatch). Do I need to synchronize on each item somehow when calling await/countDown? Code below roughly illustrate this dilemma:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"StringBuilder",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"countDown",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "count":1,
+                  "await":1,
+                  "state":1,
+                  "happen":1,
+                  "dilemma":1,
+                  "store":1,
+                  "builder":1,
+                  "visibl":2,
+                  "illustr":1,
+                  "safe":1,
+                  "object":1,
+                  "code":1,
+                  "guarante":3,
+                  "thread":2,
+                  "countdownlatch":1,
+                  "rough":1,
+                  "collect":5,
+                  "call":1,
+                  "write":1,
+                  "synchron":2,
+                  "mutabl":1,
+                  "item":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"StringBuilder",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class SyncQuestion { final List&lt;CountDownLatch&gt; lathces = new ArrayList&lt;CountDownLatch&gt;(); SyncQuestion() { lathces.add(new CountDownLatch(1)); } public static void main(String[] args) throws InterruptedException { final SyncQuestion sync = new SyncQuestion(); final Thread sleepingThread = new Thread() { public void run() { for (CountDownLatch latch : sync.lathces) { try { latch.await(); } catch (InterruptedException e) { throw new RuntimeException(e); } } }; }; final Thread wakingThread = new Thread() { public void run() { for (CountDownLatch latch : sync.lathces) { latch.countDown(); } }; }; sleepingThread.start(); wakingThread.start(); sleepingThread.join(); wakingThread.join(); } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[4394281]-[332194453]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"SyncQuestion",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"lathces",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"ConstructorCreatorNode",
+                                        "creatorType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"ArrayList",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "typeArguments":{
+                                                "type":"TypeArgumentsNode",
+                                                "types":[
+                                                  {
+                                                    "type":"ReferenceTypeNode",
+                                                    "ids":[
+                                                      {
+                                                        "type":"ParameterizedTypeNode",
+                                                        "identifier":{
+                                                          "type":"IdentifierNode",
+                                                          "name":"CountDownLatch",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        },
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "expressionArgs":{
+                                          "type":"ExpressionListNode",
+                                          "arguments":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"List",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "typeArguments":{
+                                          "type":"TypeArgumentsNode",
+                                          "types":[
+                                            {
+                                              "type":"ReferenceTypeNode",
+                                              "ids":[
+                                                {
+                                                  "type":"ParameterizedTypeNode",
+                                                  "identifier":{
+                                                    "type":"IdentifierNode",
+                                                    "name":"CountDownLatch",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              
+                            ],
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"SyncQuestion",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"lathces",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"add",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"ConstructorCreatorNode",
+                                          "creatorType":{
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"CountDownLatch",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "expressionArgs":{
+                                            "type":"ExpressionListNode",
+                                            "arguments":[
+                                              {
+                                                "type":"LiteralNode",
+                                                "node":{
+                                                  "type":"IntegerLiteralNode",
+                                                  "valueRep":"1"
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "returnType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"void",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"main",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "parameters":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"ArrayTypeNode",
+                                  "typeNode":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "depth":[
+                                    {
+                                      "type":"ArrayDimensionNode",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"args",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "thrownExceptions":{
+                              "type":"ThrownExceptionsNode",
+                              "qualifiedIdentifierList":{
+                                "type":"QualifiedIdentifierListNode",
+                                "qualifiedNames":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"InterruptedException",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"final",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"sync",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"SyncQuestion",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"SyncQuestion",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"final",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"sleepingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"Thread",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "classBody":{
+                                                "type":"ClassBodyNode",
+                                                "declarations":[
+                                                  {
+                                                    "type":"MethodDeclaratorNode",
+                                                    "modifiers":[
+                                                      {
+                                                        "type":"KeywordModifierNode",
+                                                        "value":"public",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "returnType":{
+                                                      "type":"PrimitiveTypeNode",
+                                                      "name":"void",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"run",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "parameters":{
+                                                      "type":"FormalParametersNode",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "arrayReturnType":[
+                                                      
+                                                    ],
+                                                    "body":{
+                                                      "type":"BlockNode",
+                                                      "statements":[
+                                                        {
+                                                          "type":"ForLoopStatementNode",
+                                                          "forControl":{
+                                                            "type":"ForEachControlNode",
+                                                            "variable":{
+                                                              "type":"LocalVariableDeclarationStatementNode",
+                                                              "modifiers":[
+                                                                
+                                                              ],
+                                                              "declarators":{
+                                                                "type":"VariableDeclaratorsNode",
+                                                                "declarators":[
+                                                                  {
+                                                                    "type":"VariableDeclaratorNode",
+                                                                    "identifier":{
+                                                                      "type":"IdentifierNode",
+                                                                      "name":"latch",
+                                                                      "comments":[
+                                                                        
+                                                                      ]
+                                                                    },
+                                                                    "arrayDepth":[
+                                                                      
+                                                                    ]
+                                                                  }
+                                                                ],
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              },
+                                                              "labels":[
+                                                                
+                                                              ],
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            },
+                                                            "expression":{
+                                                              "type":"QualifiedIdentifierNode",
+                                                              "identifiers":[
+                                                                {
+                                                                  "type":"IdentifierNode",
+                                                                  "name":"sync",
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type":"IdentifierNode",
+                                                                  "name":"lathces",
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                }
+                                                              ],
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            },
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          },
+                                                          "statement":{
+                                                            "type":"BlockNode",
+                                                            "statements":[
+                                                              {
+                                                                "type":"TryCatchStatementNode",
+                                                                "block":{
+                                                                  "type":"BlockNode",
+                                                                  "statements":[
+                                                                    {
+                                                                      "type":"ExpressionStatement",
+                                                                      "expression":{
+                                                                        "type":"MethodInvocationNode",
+                                                                        "qualifiedIdentifier":{
+                                                                          "type":"QualifiedIdentifierNode",
+                                                                          "identifiers":[
+                                                                            {
+                                                                              "type":"IdentifierNode",
+                                                                              "name":"latch",
+                                                                              "comments":[
+                                                                                
+                                                                              ]
+                                                                            }
+                                                                          ],
+                                                                          "comments":[
+                                                                            
+                                                                          ]
+                                                                        },
+                                                                        "identifier":{
+                                                                          "type":"IdentifierNode",
+                                                                          "name":"await",
+                                                                          "comments":[
+                                                                            
+                                                                          ]
+                                                                        },
+                                                                        "args":{
+                                                                          "type":"ExpressionListNode",
+                                                                          "arguments":[
+                                                                            
+                                                                          ],
+                                                                          "comments":[
+                                                                            
+                                                                          ]
+                                                                        },
+                                                                        "comments":[
+                                                                          
+                                                                        ]
+                                                                      },
+                                                                      "labels":[
+                                                                        
+                                                                      ]
+                                                                    }
+                                                                  ],
+                                                                  "labels":[
+                                                                    
+                                                                  ],
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                },
+                                                                "catches":[
+                                                                  {
+                                                                    "type":"CatchClauseNode",
+                                                                    "modifiers":[
+                                                                      
+                                                                    ],
+                                                                    "catchType":{
+                                                                      "type":"CatchTypeNode",
+                                                                      "identifiers":[
+                                                                        {
+                                                                          "type":"QualifiedIdentifierNode",
+                                                                          "identifiers":[
+                                                                            {
+                                                                              "type":"IdentifierNode",
+                                                                              "name":"InterruptedException",
+                                                                              "comments":[
+                                                                                
+                                                                              ]
+                                                                            }
+                                                                          ],
+                                                                          "comments":[
+                                                                            
+                                                                          ]
+                                                                        }
+                                                                      ],
+                                                                      "comments":[
+                                                                        
+                                                                      ]
+                                                                    },
+                                                                    "identifier":{
+                                                                      "type":"IdentifierNode",
+                                                                      "name":"e",
+                                                                      "comments":[
+                                                                        
+                                                                      ]
+                                                                    },
+                                                                    "block":{
+                                                                      "type":"BlockNode",
+                                                                      "statements":[
+                                                                        {
+                                                                          "type":"ThrowStatementNode",
+                                                                          "expression":{
+                                                                            "type":"ConstructorCreatorNode",
+                                                                            "creatorType":{
+                                                                              "type":"ReferenceTypeNode",
+                                                                              "ids":[
+                                                                                {
+                                                                                  "type":"ParameterizedTypeNode",
+                                                                                  "identifier":{
+                                                                                    "type":"IdentifierNode",
+                                                                                    "name":"RuntimeException",
+                                                                                    "comments":[
+                                                                                      
+                                                                                    ]
+                                                                                  },
+                                                                                  "comments":[
+                                                                                    
+                                                                                  ]
+                                                                                }
+                                                                              ],
+                                                                              "comments":[
+                                                                                
+                                                                              ]
+                                                                            },
+                                                                            "expressionArgs":{
+                                                                              "type":"ExpressionListNode",
+                                                                              "arguments":[
+                                                                                {
+                                                                                  "type":"QualifiedIdentifierNode",
+                                                                                  "identifiers":[
+                                                                                    {
+                                                                                      "type":"IdentifierNode",
+                                                                                      "name":"e",
+                                                                                      "comments":[
+                                                                                        
+                                                                                      ]
+                                                                                    }
+                                                                                  ],
+                                                                                  "comments":[
+                                                                                    
+                                                                                  ]
+                                                                                }
+                                                                              ],
+                                                                              "comments":[
+                                                                                
+                                                                              ]
+                                                                            },
+                                                                            "comments":[
+                                                                              
+                                                                            ]
+                                                                          },
+                                                                          "labels":[
+                                                                            
+                                                                          ],
+                                                                          "comments":[
+                                                                            
+                                                                          ]
+                                                                        }
+                                                                      ],
+                                                                      "labels":[
+                                                                        
+                                                                      ],
+                                                                      "comments":[
+                                                                        
+                                                                      ]
+                                                                    },
+                                                                    "comments":[
+                                                                      
+                                                                    ]
+                                                                  }
+                                                                ],
+                                                                "labels":[
+                                                                  
+                                                                ],
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              }
+                                                            ],
+                                                            "labels":[
+                                                              
+                                                            ],
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          },
+                                                          "labels":[
+                                                            
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "labels":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  {
+                                                    "type":"EmptyDeclarationNode",
+                                                    "comments":[
+                                                      
+                                                    ],
+                                                    "labels":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Thread",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"final",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"wakingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"Thread",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "classBody":{
+                                                "type":"ClassBodyNode",
+                                                "declarations":[
+                                                  {
+                                                    "type":"MethodDeclaratorNode",
+                                                    "modifiers":[
+                                                      {
+                                                        "type":"KeywordModifierNode",
+                                                        "value":"public",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "returnType":{
+                                                      "type":"PrimitiveTypeNode",
+                                                      "name":"void",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"run",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "parameters":{
+                                                      "type":"FormalParametersNode",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "arrayReturnType":[
+                                                      
+                                                    ],
+                                                    "body":{
+                                                      "type":"BlockNode",
+                                                      "statements":[
+                                                        {
+                                                          "type":"ForLoopStatementNode",
+                                                          "forControl":{
+                                                            "type":"ForEachControlNode",
+                                                            "variable":{
+                                                              "type":"LocalVariableDeclarationStatementNode",
+                                                              "modifiers":[
+                                                                
+                                                              ],
+                                                              "declarators":{
+                                                                "type":"VariableDeclaratorsNode",
+                                                                "declarators":[
+                                                                  {
+                                                                    "type":"VariableDeclaratorNode",
+                                                                    "identifier":{
+                                                                      "type":"IdentifierNode",
+                                                                      "name":"latch",
+                                                                      "comments":[
+                                                                        
+                                                                      ]
+                                                                    },
+                                                                    "arrayDepth":[
+                                                                      
+                                                                    ]
+                                                                  }
+                                                                ],
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              },
+                                                              "labels":[
+                                                                
+                                                              ],
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            },
+                                                            "expression":{
+                                                              "type":"QualifiedIdentifierNode",
+                                                              "identifiers":[
+                                                                {
+                                                                  "type":"IdentifierNode",
+                                                                  "name":"sync",
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "type":"IdentifierNode",
+                                                                  "name":"lathces",
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                }
+                                                              ],
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            },
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          },
+                                                          "statement":{
+                                                            "type":"BlockNode",
+                                                            "statements":[
+                                                              {
+                                                                "type":"ExpressionStatement",
+                                                                "expression":{
+                                                                  "type":"MethodInvocationNode",
+                                                                  "qualifiedIdentifier":{
+                                                                    "type":"QualifiedIdentifierNode",
+                                                                    "identifiers":[
+                                                                      {
+                                                                        "type":"IdentifierNode",
+                                                                        "name":"latch",
+                                                                        "comments":[
+                                                                          
+                                                                        ]
+                                                                      }
+                                                                    ],
+                                                                    "comments":[
+                                                                      
+                                                                    ]
+                                                                  },
+                                                                  "identifier":{
+                                                                    "type":"IdentifierNode",
+                                                                    "name":"countDown",
+                                                                    "comments":[
+                                                                      
+                                                                    ]
+                                                                  },
+                                                                  "args":{
+                                                                    "type":"ExpressionListNode",
+                                                                    "arguments":[
+                                                                      
+                                                                    ],
+                                                                    "comments":[
+                                                                      
+                                                                    ]
+                                                                  },
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                },
+                                                                "labels":[
+                                                                  
+                                                                ]
+                                                              }
+                                                            ],
+                                                            "labels":[
+                                                              
+                                                            ],
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          },
+                                                          "labels":[
+                                                            
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "labels":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  {
+                                                    "type":"EmptyDeclarationNode",
+                                                    "comments":[
+                                                      
+                                                    ],
+                                                    "labels":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Thread",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"sleepingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"start",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"wakingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"start",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"sleepingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"join",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"wakingThread",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"join",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class SyncQuestion { final List<CountDownLatch> lathces = new ArrayList<CountDownLatch>(); SyncQuestion() { lathces.add(new CountDownLatch(1)); } public static void main(String[] args) throws InterruptedException { final SyncQuestion sync = new SyncQuestion(); final Thread sleepingThread = new Thread() { public void run() { for (CountDownLatch latch : sync.lathces) { try { latch.await(); } catch (InterruptedException e) { throw new RuntimeException(e); } } }; }; final Thread wakingThread = new Thread() { public void run() { for (CountDownLatch latch : sync.lathces) { latch.countDown(); } }; }; sleepingThread.start(); wakingThread.start(); sleepingThread.join(); wakingThread.join(); } ...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":4,
+                  "count":6,
+                  "await":1,
+                  "runtim":1,
+                  "join":2,
+                  "run":2,
+                  "wake":3,
+                  "sleep":3,
+                  "main":1,
+                  "array":1,
+                  "thread":10,
+                  "lathc":4,
+                  "sync":7,
+                  "latch":9,
+                  "start":2,
+                  "add":1,
+                  "interrupt":2,
+                  "arg":1,
+                  "list":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SyncQuestion",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"CountDownLatch",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"RuntimeException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"List",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"CountDownLatch",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Thread",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ArrayList",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"CountDownLatch",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"lathces",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"add",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"CountDownLatch",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"IntegerLiteralNode",
+                                  "valueRep":"1"
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"latch",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"await",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"wakingThread",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"join",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"wakingThread",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"start",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"latch",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"countDown",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"sleepingThread",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"join",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"sleepingThread",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"start",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"sync",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"SyncQuestion",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"SyncQuestion",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"latch",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"args",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"wakingThread",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Thread",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "classBody":{
+                            "type":"ClassBodyNode",
+                            "declarations":[
+                              {
+                                "type":"MethodDeclaratorNode",
+                                "modifiers":[
+                                  {
+                                    "type":"KeywordModifierNode",
+                                    "value":"public",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "returnType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"void",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"run",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "parameters":{
+                                  "type":"FormalParametersNode",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayReturnType":[
+                                  
+                                ],
+                                "body":{
+                                  "type":"BlockNode",
+                                  "statements":[
+                                    {
+                                      "type":"ForLoopStatementNode",
+                                      "forControl":{
+                                        "type":"ForEachControlNode",
+                                        "variable":{
+                                          "type":"LocalVariableDeclarationStatementNode",
+                                          "modifiers":[
+                                            
+                                          ],
+                                          "declarators":{
+                                            "type":"VariableDeclaratorsNode",
+                                            "declarators":[
+                                              {
+                                                "type":"VariableDeclaratorNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"latch",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "arrayDepth":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "labels":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "expression":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"sync",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"lathces",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "statement":{
+                                        "type":"BlockNode",
+                                        "statements":[
+                                          {
+                                            "type":"ExpressionStatement",
+                                            "expression":{
+                                              "type":"MethodInvocationNode",
+                                              "qualifiedIdentifier":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"latch",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"countDown",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "labels":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "labels":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"EmptyDeclarationNode",
+                                "comments":[
+                                  
+                                ],
+                                "labels":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Thread",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"lathces",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ArrayList",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "typeArguments":{
+                                  "type":"TypeArgumentsNode",
+                                  "types":[
+                                    {
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"CountDownLatch",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"List",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "typeArguments":{
+                            "type":"TypeArgumentsNode",
+                            "types":[
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"CountDownLatch",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"sleepingThread",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Thread",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "classBody":{
+                            "type":"ClassBodyNode",
+                            "declarations":[
+                              {
+                                "type":"MethodDeclaratorNode",
+                                "modifiers":[
+                                  {
+                                    "type":"KeywordModifierNode",
+                                    "value":"public",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "returnType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"void",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"run",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "parameters":{
+                                  "type":"FormalParametersNode",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayReturnType":[
+                                  
+                                ],
+                                "body":{
+                                  "type":"BlockNode",
+                                  "statements":[
+                                    {
+                                      "type":"ForLoopStatementNode",
+                                      "forControl":{
+                                        "type":"ForEachControlNode",
+                                        "variable":{
+                                          "type":"LocalVariableDeclarationStatementNode",
+                                          "modifiers":[
+                                            
+                                          ],
+                                          "declarators":{
+                                            "type":"VariableDeclaratorsNode",
+                                            "declarators":[
+                                              {
+                                                "type":"VariableDeclaratorNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"latch",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "arrayDepth":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "labels":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "expression":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"sync",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"lathces",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "statement":{
+                                        "type":"BlockNode",
+                                        "statements":[
+                                          {
+                                            "type":"TryCatchStatementNode",
+                                            "block":{
+                                              "type":"BlockNode",
+                                              "statements":[
+                                                {
+                                                  "type":"ExpressionStatement",
+                                                  "expression":{
+                                                    "type":"MethodInvocationNode",
+                                                    "qualifiedIdentifier":{
+                                                      "type":"QualifiedIdentifierNode",
+                                                      "identifiers":[
+                                                        {
+                                                          "type":"IdentifierNode",
+                                                          "name":"latch",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"await",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "args":{
+                                                      "type":"ExpressionListNode",
+                                                      "arguments":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "labels":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "labels":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "catches":[
+                                              {
+                                                "type":"CatchClauseNode",
+                                                "modifiers":[
+                                                  
+                                                ],
+                                                "catchType":{
+                                                  "type":"CatchTypeNode",
+                                                  "identifiers":[
+                                                    {
+                                                      "type":"QualifiedIdentifierNode",
+                                                      "identifiers":[
+                                                        {
+                                                          "type":"IdentifierNode",
+                                                          "name":"InterruptedException",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"e",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "block":{
+                                                  "type":"BlockNode",
+                                                  "statements":[
+                                                    {
+                                                      "type":"ThrowStatementNode",
+                                                      "expression":{
+                                                        "type":"ConstructorCreatorNode",
+                                                        "creatorType":{
+                                                          "type":"ReferenceTypeNode",
+                                                          "ids":[
+                                                            {
+                                                              "type":"ParameterizedTypeNode",
+                                                              "identifier":{
+                                                                "type":"IdentifierNode",
+                                                                "name":"RuntimeException",
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              },
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            }
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        },
+                                                        "expressionArgs":{
+                                                          "type":"ExpressionListNode",
+                                                          "arguments":[
+                                                            {
+                                                              "type":"QualifiedIdentifierNode",
+                                                              "identifiers":[
+                                                                {
+                                                                  "type":"IdentifierNode",
+                                                                  "name":"e",
+                                                                  "comments":[
+                                                                    
+                                                                  ]
+                                                                }
+                                                              ],
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            }
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        },
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "labels":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "labels":[
+                                                    
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "labels":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "labels":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"EmptyDeclarationNode",
+                                "comments":[
+                                  
+                                ],
+                                "labels":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Thread",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>}</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[4394281]-[-297114188]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>}</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Please correct me in my assumptions, if they are wrong.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[4394281]-[61071424]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Please correct me in my assumptions, if they are wrong.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "wrong":1,
+                  "assumpt":1,
+                  "correct":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":4400765,
+      "questionId":4394281,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":4802526,
+          "postId":4400765,
+          "creationDate":"2010-12-09",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":519539,
+            "displayName":"Petro Semeniuk",
+            "reputation":2823
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks Cameron. Though your answer is correct I accepted one from Matt because of more detailed explanation(really helps me)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[4400765-cu4802526]-[-1763068921]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks Cameron. Though your answer is correct I accepted one from Matt because of more detailed explanation(really helps me)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "accept":1,
+                        "correct":1,
+                        "matt":1,
+                        "cameron":1,
+                        "help":1,
+                        "explan":1,
+                        "answer":1,
+                        "detail":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2010-12-09",
+      "lastActivityDate":"2010-12-09",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":474283,
+        "displayName":"Cameron Skinner",
+        "reputation":21506
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I don't believe you need to manually synchronize in this case because the latches are internally thread-safe.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4400765]-[245174061]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I don't believe you need to manually synchronize in this case because the latches are internally thread-safe.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "safe":1,
+                    "thread":1,
+                    "latch":1,
+                    "manual":1,
+                    "intern":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":4400889,
+      "questionId":4394281,
+      "comments":[
+        
+      ],
+      "creationDate":"2010-12-09",
+      "lastActivityDate":"2010-12-09",
+      "score":3,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":123054,
+        "displayName":"Matt",
+        "reputation":5095
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A <code>CountDownLatch</code> is basically a wrapper on <code>AbstractQueuedSynchronizer</code> whose state is a volatile int that is mutated via <code>Unsafe.compareAndSwapInt</code> (which is an atomic operation).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4400889]-[962112849]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A <code>CountDownLatch</code> is basically a wrapper on <code>AbstractQueuedSynchronizer</code> whose state is a volatile int that is mutated via <code>Unsafe.compareAndSwapInt</code> (which is an atomic operation).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"CountDownLatch",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AbstractQueuedSynchronizer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSwapInt",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "count":1,
+                    "state":1,
+                    "mutat":1,
+                    "code":6,
+                    "oper":1,
+                    "compar":1,
+                    "wrapper":1,
+                    "queu":1,
+                    "latch":1,
+                    "swap":1,
+                    "atom":1,
+                    "unsaf":1,
+                    "basic":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"CountDownLatch",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AbstractQueuedSynchronizer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Therefore in this specific case, as Cameron Skinner said, there is no need to synchronize because it enforces that happens-before for you. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4400889]-[-1630177798]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Therefore in this specific case, as Cameron Skinner said, there is no need to synchronize because it enforces that happens-before for you. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "enforc":1,
+                    "skinner":1,
+                    "cameron":1,
+                    "specif":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

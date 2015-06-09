@@ -1,0 +1,3708 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":25694360,
+    "title":"Spring Integration: Application leaking SimpleAsyncTaskExecutor threads?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "spring",
+      "integration"
+    ],
+    "creationDate":"2014-09-05",
+    "lastActivityDate":"2014-09-06",
+    "score":0,
+    "viewCount":138,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":4013276,
+      "displayName":"Sebastien Dubois",
+      "reputation":1
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>We are having a spring application in production and it seems that it is leaking threads.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[-5270601]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>We are having a spring application in production and it seems that it is leaking threads.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "leak":1,
+                  "spring":1,
+                  "thread":1,
+                  "applic":1,
+                  "product":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>When I do a thread dump, I see the following threads that seems to be waiting. Here's an example below, but there are thousands of them</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[-2103157167]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>When I do a thread dump, I see the following threads that seems to be waiting. Here's an example below, but there are thousands of them</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "dump":1,
+                  "wait":1,
+                  "thread":2,
+                  "thousand":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":" &quot;SimpleAsyncTaskExecutor-1801&quot; prio=10 tid=0x00007fa668413800 nid=0x376c waiting on condition [0x00007fa4fbaff000] java.lang.Thread.State: WAITING (parking) at sun.misc.Unsafe.park(Native Method) - parking to wait for &lt;0x00000007777e2ba8&gt; (a java.util.concurrent.CountDownLatch$Sync) at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186) at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:834) at java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedInterruptibly(AbstractQueuedSynchronizer.java:994) at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(AbstractQueuedSynchronizer.java:1303) at java.util.concurrent.CountDownLatch.await(CountDownLatch.java:236) at org.springframework.integration.core.MessagingTemplate$TemporaryReplyChannel.receive(MessagingTemplate.java:415) at org.springframework.integration.core.MessagingTemplate$TemporaryReplyChannel.receive(MessagingTemplate.java:409) at org.springframework.integration.core.MessagingTemplate.doReceive(MessagingTemplate.java:317) at org.springframework.integration.core.MessagingTemplate.doSendAndReceive(MessagingTemplate.java:341) at org.springframework.integration.core.MessagingTemplate.sendAndReceive(MessagingTemplate.java:255) at org.springframework.integration.core.MessagingTemplate.convertSendAndReceive(MessagingTemplate.java:290) at org.springframework.integration.gateway.MessagingGatewaySupport.doSendAndReceive(MessagingGatewaySupport.java:224) at org.springframework.integration.gateway.MessagingGatewaySupport.sendAndReceive(MessagingGatewaySupport.java:203) at org.springframework.integration.gateway.GatewayProxyFactoryBean.invokeGatewayMethod(GatewayProxyFactoryBean.java:306) at org.springframework.integration.gateway.GatewayProxyFactoryBean.doInvoke(GatewayProxyFactoryBean.java:269) at org.springframework.integration.gateway.GatewayProxyFactoryBean.access$200(GatewayProxyFactoryBean.java:71) at org.springframework.integration.gateway.GatewayProxyFactoryBean$AsyncInvocationTask.call(GatewayProxyFactoryBean.java:499) at java.util.concurrent.FutureTask.run(FutureTask.java:262) at java.lang.Thread.run(Thread.java:745) "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[25694360]-[-1112682789]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":" \""
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"SimpleAsyncTaskExecutor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"-1801\" prio=10 tid=0x00007fa668413800 nid=0x376c waiting on condition [0x00007fa4fbaff000] "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"State",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": WAITING (parking) "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"park",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Native Method"
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"- parking to wait for <0x00000007777e2ba8> (a "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"CountDownLatch$Sync",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":") "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LockSupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"park",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LockSupport.java",
+                    "lineNumber":186
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"parkAndCheckInterrupt",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":834
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doAcquireSharedInterruptibly",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":994
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"acquireSharedInterruptibly",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":1303
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"CountDownLatch",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"await",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"CountDownLatch.java",
+                    "lineNumber":236
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate$TemporaryReplyChannel",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"receive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":415
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate$TemporaryReplyChannel",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"receive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":409
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":317
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doSendAndReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":341
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sendAndReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":255
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"core",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingTemplate",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"convertSendAndReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingTemplate.java",
+                    "lineNumber":290
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingGatewaySupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doSendAndReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingGatewaySupport.java",
+                    "lineNumber":224
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"MessagingGatewaySupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sendAndReceive",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"MessagingGatewaySupport.java",
+                    "lineNumber":203
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"GatewayProxyFactoryBean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invokeGatewayMethod",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"GatewayProxyFactoryBean.java",
+                    "lineNumber":306
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"GatewayProxyFactoryBean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doInvoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"GatewayProxyFactoryBean.java",
+                    "lineNumber":269
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"GatewayProxyFactoryBean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"access$200",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"GatewayProxyFactoryBean.java",
+                    "lineNumber":71
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"springframework",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"integration",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"gateway",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"GatewayProxyFactoryBean$AsyncInvocationTask",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"call",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"GatewayProxyFactoryBean.java",
+                    "lineNumber":499
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"FutureTask",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"FutureTask.java",
+                    "lineNumber":262
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Thread.java",
+                    "lineNumber":745
+                  }
+                }
+              ]
+            },
+            "rawText":" \"SimpleAsyncTaskExecutor-1801\" prio=10 tid=0x00007fa668413800 nid=0x376c waiting on condition [0x00007fa4fbaff000] java.lang.Thread.State: WAITING (parking) at sun.misc.Unsafe.park(Native Method)- parking to wait for <0x00000007777e2ba8> (a java.util.concurrent.CountDownLatch$Sync) at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:834)at java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedInterruptibly(AbstractQueuedSynchronizer.java:994)at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(AbstractQueuedSynchronizer.java:1303)at java.util.concurrent.CountDownLatch.await(CountDownLatch.java:236)at org.springframework.integration.core.MessagingTemplate$TemporaryReplyChannel.receive(MessagingTemplate.java:415)at org.springframework.integration.core.MessagingTemplate$TemporaryReplyChannel.receive(MessagingTemplate.java:409)at org.springframework.integration.core.MessagingTemplate.doReceive(MessagingTemplate.java:317)at org.springframework.integration.core.MessagingTemplate.doSendAndReceive(MessagingTemplate.java:341)at org.springframework.integration.core.MessagingTemplate.sendAndReceive(MessagingTemplate.java:255)at org.springframework.integration.core.MessagingTemplate.convertSendAndReceive(MessagingTemplate.java:290)at org.springframework.integration.gateway.MessagingGatewaySupport.doSendAndReceive(MessagingGatewaySupport.java:224)at org.springframework.integration.gateway.MessagingGatewaySupport.sendAndReceive(MessagingGatewaySupport.java:203)at org.springframework.integration.gateway.GatewayProxyFactoryBean.invokeGatewayMethod(GatewayProxyFactoryBean.java:306)at org.springframework.integration.gateway.GatewayProxyFactoryBean.doInvoke(GatewayProxyFactoryBean.java:269)at org.springframework.integration.gateway.GatewayProxyFactoryBean.access$200(GatewayProxyFactoryBean.java:71)at org.springframework.integration.gateway.GatewayProxyFactoryBean$AsyncInvocationTask.call(GatewayProxyFactoryBean.java:499)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.lang.Thread.run(Thread.java:745)",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "fbaff":1,
+                  "support":6,
+                  "method":2,
+                  "count":3,
+                  "await":1,
+                  "receiv":8,
+                  "channel":2,
+                  "wait":3,
+                  "task":4,
+                  "concurr":7,
+                  "simpl":1,
+                  "util":7,
+                  "state":1,
+                  "invoc":1,
+                  "condit":1,
+                  "run":2,
+                  "sun":1,
+                  "invok":2,
+                  "templat":12,
+                  "lock":6,
+                  "integr":12,
+                  "springframework":12,
+                  "gateway":19,
+                  "factori":8,
+                  "share":2,
+                  "thread":3,
+                  "temporari":2,
+                  "async":2,
+                  "bean":8,
+                  "check":1,
+                  "futur":2,
+                  "repli":2,
+                  "queu":6,
+                  "park":5,
+                  "sync":1,
+                  "misc":1,
+                  "latch":3,
+                  "unsaf":1,
+                  "messag":16,
+                  "lang":2,
+                  "proxi":8,
+                  "acquir":2,
+                  "tid":1,
+                  "org":12,
+                  "core":6,
+                  "nid":1,
+                  "executor":1,
+                  "prio":1,
+                  "call":1,
+                  "interrupt":3,
+                  "convert":1,
+                  "access":1,
+                  "synchron":6,
+                  "send":5
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Thread",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"State",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"CountDownLatch$Sync",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SimpleAsyncTaskExecutor",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Eventually, it reaches a point where this causes the server to become unresponsive and only a restart will bring it back.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[2896164]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Eventually, it reaches a point where this causes the server to become unresponsive and only a restart will bring it back.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "unrespons":1,
+                  "reach":1,
+                  "point":1,
+                  "server":1,
+                  "eventu":1,
+                  "back":1,
+                  "bring":1,
+                  "restart":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This seems to be involving a Spring Integration Gateway that sent a message and is waiting for some answer that it never gets. The only place in our application that uses this is a notification channel that sends (publishes) these messages to a RabbitMQ exchange, using a service interface</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[-1584770875]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This seems to be involving a Spring Integration Gateway that sent a message and is waiting for some answer that it never gets. The only place in our application that uses this is a notification channel that sends (publishes) these messages to a RabbitMQ exchange, using a service interface</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "notif":1,
+                  "involv":1,
+                  "channel":1,
+                  "wait":1,
+                  "exchang":1,
+                  "spring":1,
+                  "integr":1,
+                  "gateway":1,
+                  "publish":1,
+                  "applic":1,
+                  "answer":1,
+                  "place":1,
+                  "messag":2,
+                  "servic":1,
+                  "rabbit":1,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This is the service interface code:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[1579117071]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This is the service interface code:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "servic":1,
+                  "code":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"@Component public interface INotificationSender { Future&lt;Void&gt; sendNotification(@Payload Object notification, @Header(&quot;routingKey&quot;) String routingKey, @Header(&quot;notificationType&quot;) String type); } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[25694360]-[1631447981]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"InterfaceDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"AnnotationNode",
+                          "identifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"Component",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"INotificationSender",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              
+                            ],
+                            "returnType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Future",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "typeArguments":{
+                                    "type":"TypeArgumentsNode",
+                                    "types":[
+                                      {
+                                        "type":"ReferenceTypeNode",
+                                        "ids":[
+                                          {
+                                            "type":"ParameterizedTypeNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"Void",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"sendNotification",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "parameters":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  {
+                                    "type":"AnnotationNode",
+                                    "identifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"Payload",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "parameterType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Object",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"notification",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "formalParameterDeclarator":{
+                                    "type":"FormalParameterDeclsNode",
+                                    "modifiers":[
+                                      {
+                                        "type":"AnnotationNode",
+                                        "identifier":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"Header",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "element":{
+                                          "type":"ElementValueNode",
+                                          "value":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"StringLiteralNode",
+                                              "valueRep":"\"routingKey\""
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "parameterType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"String",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "nextDeclarator":{
+                                      "type":"AdditionalFormalParameterDeclNode",
+                                      "variableDeclarator":{
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"routingKey",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ]
+                                      },
+                                      "formalParameterDeclarator":{
+                                        "type":"FormalParameterDeclsNode",
+                                        "modifiers":[
+                                          {
+                                            "type":"AnnotationNode",
+                                            "identifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"Header",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "element":{
+                                              "type":"ElementValueNode",
+                                              "value":{
+                                                "type":"LiteralNode",
+                                                "node":{
+                                                  "type":"StringLiteralNode",
+                                                  "valueRep":"\"notificationType\""
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "parameterType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"String",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "nextDeclarator":{
+                                          "type":"AdditionalFormalParameterDeclNode",
+                                          "variableDeclarator":{
+                                            "type":"VariableDeclaratorNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"type",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "arrayDepth":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"@Component public interface INotificationSender { Future<Void> sendNotification(@Payload Object notification, @Header(\"routingKey\") String routingKey, @Header(\"notificationType\") String type); } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "notif":3,
+                  "payload":1,
+                  "inotif":1,
+                  "rout":2,
+                  "compon":1,
+                  "object":1,
+                  "key":2,
+                  "futur":1,
+                  "header":2,
+                  "sender":1,
+                  "type":2,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Future",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Void",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Void",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Object",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"notification",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"routingKey",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"type",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>And this is the relevant spring configuration:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[-190574965]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>And this is the relevant spring configuration:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "configur":1,
+                  "spring":1,
+                  "relev":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"&lt;!-- Spring Integration RabbitMQ adapter --&gt; &lt;rabbit:template id=&quot;amqpTemplate&quot; connection-factory=&quot;notificationConnectionFactory&quot; /&gt; &lt;rabbit:connection-factory id=&quot;notificationConnectionFactory&quot; addresses=&quot;${notificationChannel.rabbitHost1}:${notificationChannel.rabbitPort}, ${notificationChannel.rabbitHost2}:${notificationChannel.rabbitPort}&quot; username=&quot;${notificationChannel.rabbitUsername}&quot; password=&quot;${notificationChannel.rabbitPassword}&quot; virtual-host=&quot;${notificationChannel.rabbitVirtualHost}&quot;/&gt; &lt;rabbit:topic-exchange name=&quot;notificationExchange&quot;/&gt; &lt;!-- Spring Integration AMQP --&gt; &lt;int-amqp:outbound-channel-adapter id=&quot;notificationChannelAdapter&quot; channel=&quot;notificationChannelEnc&quot; exchange-name=&quot;notificationExchange&quot; routing-key-expression=&quot;headers['routingKey']&quot; mapped-request-headers=&quot;STANDARD_REQUEST_HEADERS, notificationType&quot;/&gt; &lt;!-- Spring Integration Core --&gt; &lt;int:channel id=&quot;notificationChannelEnc&quot;&gt; &lt;int:interceptors&gt; &lt;int:wire-tap channel=&quot;loggingChannel&quot; /&gt; &lt;/int:interceptors&gt; &lt;/int:channel&gt; &lt;int:channel id=&quot;notificationChannel&quot;/&gt; &lt;int:object-to-json-transformer id=&quot;NotificationEncoder&quot; content-type=&quot;text/x-json&quot; input-channel=&quot;notificationChannel&quot; output-channel=&quot;notificationChannelEnc&quot;/&gt; &lt;int:gateway id=&quot;notificationGateway&quot; default-request-channel=&quot;notificationChannel&quot; service-interface=&quot;com.ericsson.ericloud.commander.notification.sender.INotificationSender&quot;/&gt; "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[25694360]-[-1859613745]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"XmlCommentNode",
+                  "contents":" Spring Integration RabbitMQ adapter "
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"rabbit:template"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"amqpTemplate\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"connection-factory"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationConnectionFactory\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"rabbit:connection-factory"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationConnectionFactory\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"addresses"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"${notificationChannel.rabbitHost1}:${notificationChannel.rabbitPort}, ${notificationChannel.rabbitHost2}:${notificationChannel.rabbitPort}\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"username"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"${notificationChannel.rabbitUsername}\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"password"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"${notificationChannel.rabbitPassword}\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"virtual-host"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"${notificationChannel.rabbitVirtualHost}\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"rabbit:topic-exchange"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"name"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationExchange\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlCommentNode",
+                  "contents":" Spring Integration AMQP "
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"int-amqp:outbound-channel-adapter"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannelAdapter\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"channel"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannelEnc\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"exchange-name"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationExchange\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"routing-key-expression"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"headers['routingKey']\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"mapped-request-headers"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"STANDARD_REQUEST_HEADERS, notificationType\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlCommentNode",
+                  "contents":" Spring Integration Core "
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"int:channel"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannelEnc\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    {
+                      "type":"XmlTextNode",
+                      "contents":" "
+                    },
+                    {
+                      "type":"XmlNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"int:interceptors"
+                      },
+                      "attributes":[
+                        
+                      ],
+                      "elements":[
+                        {
+                          "type":"XmlTextNode",
+                          "contents":" "
+                        },
+                        {
+                          "type":"XmlNode",
+                          "name":{
+                            "type":"XmlNameNode",
+                            "value":"int:wire-tap"
+                          },
+                          "attributes":[
+                            {
+                              "type":"XmlAttributeNode",
+                              "name":{
+                                "type":"XmlNameNode",
+                                "value":"channel"
+                              },
+                              "value":{
+                                "type":"StringLiteralNode",
+                                "valueRep":"\"loggingChannel\""
+                              }
+                            }
+                          ],
+                          "elements":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"XmlTextNode",
+                          "contents":" "
+                        }
+                      ]
+                    },
+                    {
+                      "type":"XmlTextNode",
+                      "contents":" "
+                    }
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"int:channel"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannel\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"int:object-to-json-transformer"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"NotificationEncoder\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"content-type"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"text/x-json\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"input-channel"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannel\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"output-channel"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannelEnc\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"int:gateway"
+                  },
+                  "attributes":[
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"id"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationGateway\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"default-request-channel"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"notificationChannel\""
+                      }
+                    },
+                    {
+                      "type":"XmlAttributeNode",
+                      "name":{
+                        "type":"XmlNameNode",
+                        "value":"service-interface"
+                      },
+                      "value":{
+                        "type":"StringLiteralNode",
+                        "valueRep":"\"com.ericsson.ericloud.commander.notification.sender.INotificationSender\""
+                      }
+                    }
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                }
+              ]
+            },
+            "rawText":"<!-- Spring Integration RabbitMQ adapter --> <rabbit:template id=\"amqpTemplate\"connection-factory=\"notificationConnectionFactory\"/> <rabbit:connection-factory id=\"notificationConnectionFactory\"addresses=\"${notificationChannel.rabbitHost1}:${notificationChannel.rabbitPort}, ${notificationChannel.rabbitHost2}:${notificationChannel.rabbitPort}\"username=\"${notificationChannel.rabbitUsername}\"password=\"${notificationChannel.rabbitPassword}\"virtual-host=\"${notificationChannel.rabbitVirtualHost}\"/> <rabbit:topic-exchange name=\"notificationExchange\"/> <!-- Spring Integration AMQP --> <int-amqp:outbound-channel-adapter id=\"notificationChannelAdapter\"channel=\"notificationChannelEnc\"exchange-name=\"notificationExchange\"routing-key-expression=\"headers['routingKey']\"mapped-request-headers=\"STANDARD_REQUEST_HEADERS, notificationType\"/> <!-- Spring Integration Core --> <int:channel id=\"notificationChannelEnc\"> <int:interceptors> <int:wire-tap channel=\"loggingChannel\"/> </int:interceptors> </int:channel> <int:channel id=\"notificationChannel\"/> <int:object-to-json-transformer id=\"NotificationEncoder\"content-type=\"text/x-json\"input-channel=\"notificationChannel\"output-channel=\"notificationChannelEnc\"/> <int:gateway id=\"notificationGateway\"default-request-channel=\"notificationChannel\"service-interface=\"com.ericsson.ericloud.commander.notification.sender.INotificationSender\"/> ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "adapt":3,
+                  "notif":22,
+                  "enc":3,
+                  "channel":24,
+                  "request":3,
+                  "connect":4,
+                  "standard":1,
+                  "map":1,
+                  "json":2,
+                  "amqp":3,
+                  "host":4,
+                  "inotif":1,
+                  "tap":1,
+                  "exchang":4,
+                  "spring":3,
+                  "templat":2,
+                  "text":1,
+                  "integr":3,
+                  "interceptor":2,
+                  "command":1,
+                  "gateway":2,
+                  "factori":4,
+                  "rout":2,
+                  "virtual":2,
+                  "wire":1,
+                  "object":1,
+                  "key":2,
+                  "encod":1,
+                  "outbound":1,
+                  "port":2,
+                  "content":1,
+                  "express":1,
+                  "address":1,
+                  "header":3,
+                  "sender":2,
+                  "ericloud":1,
+                  "topic":1,
+                  "output":1,
+                  "type":2,
+                  "core":1,
+                  "ericsson":1,
+                  "usernam":2,
+                  "transform":1,
+                  "input":1,
+                  "servic":1,
+                  "log":1,
+                  "rabbit":11,
+                  "password":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>We are using Spring version 3.2.3.RELEASE and Spring Integration version 3.0.0.M2</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[-1893746875]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>We are using Spring version 3.2.3.RELEASE and Spring Integration version 3.0.0.M2</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "integr":1,
+                  "spring":2,
+                  "releas":1,
+                  "version":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Anybody has any idea how to handle this and have these threads terminate properly?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[918603629]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Anybody has any idea how to handle this and have these threads terminate properly?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "proper":1,
+                  "idea":1,
+                  "thread":1,
+                  "handl":1,
+                  "termin":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thanks, /Sebastien</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[25694360]-[1975141593]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thanks, /Sebastien</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "sebastien":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":25697013,
+      "questionId":25694360,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-09-06",
+      "lastActivityDate":"2014-09-06",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":2756547,
+        "displayName":"Artem Bilan",
+        "reputation":11598
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Your <code>Future&lt;Void&gt;</code> is a bottleneck.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[25697013]-[-753478085]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Your <code>Future&lt;Void&gt;</code> is a bottleneck.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Future",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Void",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bottleneck":1,
+                    "futur":1,
+                    "code":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Future",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "typeArguments":{
+                            "type":"TypeArgumentsNode",
+                            "types":[
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Void",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Void",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I can guess that you want to send notification asynchronously and don't wait any reply. But anyway <code>Gateway</code> try to wait reply because it sees <code>Future</code> as a hint to initiate an async process.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[25697013]-[-751022489]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I can guess that you want to send notification asynchronously and don't wait any reply. But anyway <code>Gateway</code> try to wait reply because it sees <code>Future</code> as a hint to initiate an async process.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "notif":1,
+                    "asynchron":1,
+                    "wait":2,
+                    "process":1,
+                    "gateway":1,
+                    "code":4,
+                    "async":1,
+                    "futur":1,
+                    "repli":2,
+                    "hint":1,
+                    "initi":1,
+                    "guess":1,
+                    "see":1,
+                    "send":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>To overcome it you have to change the return to the simple <code>void</code> and use <code>ExecutorChannel</code> as a gateway's <code>default-request-channel</code>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[25697013]-[44614695]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>To overcome it you have to change the return to the simple <code>void</code> and use <code>ExecutorChannel</code> as a gateway's <code>default-request-channel</code>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ExecutorChannel",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "chang":1,
+                    "channel":2,
+                    "request":1,
+                    "simpl":1,
+                    "gateway":1,
+                    "code":6,
+                    "overcom":1,
+                    "executor":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ExecutorChannel",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>See more info in the <a href=\"http://docs.spring.io/spring-integration/docs/latest-ga/reference/html/messaging-endpoints-chapter.html#d4e4165\"rel=\"nofollow\">Reference Manual</a>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[25697013]-[1261351064]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>See more info in the <a href=\"http://docs.spring.io/spring-integration/docs/latest-ga/reference/html/messaging-endpoints-chapter.html#d4e4165\"rel=\"nofollow\">Reference Manual</a>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rel":1,
+                    "spring":2,
+                    "integr":1,
+                    "doc":2,
+                    "info":1,
+                    "chapter":1,
+                    "nofollow":1,
+                    "refer":2,
+                    "endpoint":1,
+                    "latest":1,
+                    "messag":1,
+                    "html":2,
+                    "href":1,
+                    "manual":1,
+                    "http":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5755 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":12198982,
+    "title":"Can't shrink flurry with proguard",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "android",
+      "obfuscation",
+      "proguard",
+      "flurry"
+    ],
+    "creationDate":"2012-08-30",
+    "lastActivityDate":"2015-03-02",
+    "lastEditDate":"2012-08-30",
+    "score":14,
+    "viewCount":4538,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1321940,
+      "displayName":"Korniltsev Anatoly",
+      "reputation":1701
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Here is my proguard config ( i copied it from android tools folder and added some lines </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[12198982]-[-147033123]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Here is my proguard config ( i copied it from android tools folder and added some lines </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "proguard":1,
+                  "line":1,
+                  "tool":1,
+                  "config":1,
+                  "folder":1,
+                  "ad":1,
+                  "copi":1,
+                  "android":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/* -optimizationpasses 5 -allowaccessmodification -dontpreverify # The remainder of this file is identical to the non-optimized version # of the Proguard configuration file (except that the other file has # flags to turn off optimization). -dontusemixedcaseclassnames -dontskipnonpubliclibraryclasses -verbose -keepattributes *Annotation* -keep public class com.google.vending.licensing.ILicensingService -keep public class com.android.vending.licensing.ILicensingService # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native -keepclasseswithmembernames class * { native &lt;methods&gt;; } # keep setters in Views so that animations can still work. # see http://proguard.sourceforge.net/manual/examples.html#beans -keepclassmembers public class * extends android.view.View { void set*(***); *** get*(); } # We want to keep methods in Activity that could be used in the XML attribute onClick -keepclassmembers class * extends android.app.Activity { public void *(android.view.View); } # For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations -keepclassmembers enum * { public static **[] values(); public static ** valueOf(java.lang.String); } -keep class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *; } -keepclassmembers class **.R$* { public static &lt;fields&gt;; } # The support library contains references to newer platform versions. # Don't warn about those in case this app is linking against an older # platform version. We know about them, and they are safe. -dontwarn android.support.** ###################### # added by me ######################## # guava -keepclasseswithmembers class com.google.common.base.internal.Finalizer{ &lt;methods&gt;; } -dontwarn sun.misc.Unsafe -dontwarn com.google.common.collect.MinMaxPriorityQueue # #Action Bar Sherlock -keep class android.support.v4.app.** { *; } -keep interface android.support.v4.app.** { *; } -keep class com.actionbarsherlock.** { *; } -keep interface com.actionbarsherlock.** { *; } #-dontobfuscate #-libraryjars libs/FlurryAgent.jar "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[12198982]-[21226068]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/* -optimizationpasses 5 -allowaccessmodification -dontpreverify # The remainder of this file is identical to the non-optimized version # of the Proguard configuration file (except that the other file has # flags to turn off optimization). -dontusemixedcaseclassnames -dontskipnonpubliclibraryclasses -verbose -keepattributes *Annotation* -keep "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"com",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"."
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"google",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"vending",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"licensing",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ILicensingService",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"-keep "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"com",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"."
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"vending",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"licensing",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ILicensingService",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"# For native methods, see http://proguard.sourceforge.net/manual/examples.html#native -keepclasseswithmembernames class * { native "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"methods"
+                  },
+                  "attributes":[
+                    
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"; } # keep setters in Views so that animations can still work. # see http://proguard.sourceforge.net/manual/examples.html#beans -keepclassmembers public class * extends "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"view",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"View",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"{ void set*(***); *** get*(); } # We want to keep methods in Activity that could be used in the XML attribute "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"onClick",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" -keepclassmembers class * extends "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"app",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Activity",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"{ public void *("
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"view",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"View",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"); } # For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations -keepclassmembers enum * { public static **[] "
+                },
+                {
+                  "type":"MethodInvocationNode",
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"values",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "args":{
+                    "type":"ExpressionListNode",
+                    "arguments":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"public static ** "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"valueOf",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"("
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"String",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"); } -keep class * implements "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"os",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Parcelable",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"{ public static final "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"android",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"os",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Parcelable$Creator",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"*; } -keepclassmembers class **.R$* { public static "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"fields"
+                  },
+                  "attributes":[
+                    
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"; } # The support library contains references to newer platform versions. # Don't warn about those in case this app is linking against an older # platform version. We know about them, and they are safe. -dontwarn android.support.** ###################### # added by me ######################## # guava -keepclasseswithmembers "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"com",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"."
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"google",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"common",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"base",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Finalizer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"{ "
+                },
+                {
+                  "type":"XmlNode",
+                  "name":{
+                    "type":"XmlNameNode",
+                    "value":"methods"
+                  },
+                  "attributes":[
+                    
+                  ],
+                  "elements":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"; } -dontwarn "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"-dontwarn "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"google",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"common",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"collect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MinMaxPriorityQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"# #Action Bar Sherlock -keep "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"android",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":".support.v4.app.** { *; } -keep interface android.support.v4.app.** { *; } -keep "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"com",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":".actionbarsherlock.** { *; } -keep interface com.actionbarsherlock.** { *; } #-dontobfuscate #-libraryjars libs/FlurryAgent.jar "
+                }
+              ]
+            },
+            "rawText":"-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/* -optimizationpasses 5 -allowaccessmodification -dontpreverify # The remainder of this file is identical to the non-optimized version # of the Proguard configuration file (except that the other file has # flags to turn off optimization). -dontusemixedcaseclassnames -dontskipnonpubliclibraryclasses -verbose -keepattributes *Annotation* -keep public class com.google.vending.licensing.ILicensingService -keep public class com.android.vending.licensing.ILicensingService # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native -keepclasseswithmembernames class * { native <methods>; } # keep setters in Views so that animations can still work. # see http://proguard.sourceforge.net/manual/examples.html#beans -keepclassmembers public class * extends android.view.View { void set*(***); *** get*(); } # We want to keep methods in Activity that could be used in the XML attribute onClick -keepclassmembers class * extends android.app.Activity { public void *(android.view.View); } # For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations -keepclassmembers enum * { public static **[] values(); public static ** valueOf(java.lang.String); } -keep class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *; } -keepclassmembers class **.R$* { public static <fields>; } # The support library contains references to newer platform versions. # Don't warn about those in case this app is linking against an older # platform version. We know about them, and they are safe. -dontwarn android.support.** ###################### # added by me ######################## # guava -keepclasseswithmembers class com.google.common.base.internal.Finalizer{ <methods>; } -dontwarn sun.misc.Unsafe -dontwarn com.google.common.collect.MinMaxPriorityQueue # #Action Bar Sherlock -keep class android.support.v4.app.** { *; } -keep interface android.support.v4.app.** { *; } -keep class com.actionbarsherlock.** { *; } -keep interface com.actionbarsherlock.** { *; } #-dontobfuscate #-libraryjars libs/FlurryAgent.jar ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "verbos":1,
+                  "sourceforg":3,
+                  "support":4,
+                  "anim":1,
+                  "method":4,
+                  "dontpreverifi":1,
+                  "vend":2,
+                  "enumer":2,
+                  "proguard":4,
+                  "warn":1,
+                  "googl":3,
+                  "field":2,
+                  "actionbarsherlock":2,
+                  "queue":1,
+                  "exampl":3,
+                  "keepattribut":1,
+                  "remaind":1,
+                  "set":1,
+                  "setter":1,
+                  "sun":1,
+                  "newer":1,
+                  "min":1,
+                  "librari":1,
+                  "sherlock":1,
+                  "agent":1,
+                  "configur":1,
+                  "safe":1,
+                  "creator":1,
+                  "work":1,
+                  "net":3,
+                  "ilicens":2,
+                  "base":1,
+                  "code":2,
+                  "attribut":1,
+                  "simplif":2,
+                  "version":3,
+                  "optim":3,
+                  "ident":1,
+                  "older":1,
+                  "lib":1,
+                  "activ":2,
+                  "cast":1,
+                  "max":1,
+                  "common":2,
+                  "bean":1,
+                  "keepclassmemb":4,
+                  "click":1,
+                  "annot":1,
+                  "arithmet":1,
+                  "xml":1,
+                  "final":1,
+                  "libraryjar":1,
+                  "parcel":2,
+                  "optimizationpass":1,
+                  "link":1,
+                  "merg":1,
+                  "dontobfusc":1,
+                  "valu":1,
+                  "refer":1,
+                  "bar":1,
+                  "misc":1,
+                  "turn":1,
+                  "flag":1,
+                  "app":4,
+                  "flurri":1,
+                  "ad":1,
+                  "class":1,
+                  "file":3,
+                  "unsaf":1,
+                  "collect":1,
+                  "lang":1,
+                  "html":3,
+                  "platform":2,
+                  "licens":2,
+                  "manual":3,
+                  "prioriti":1,
+                  "http":3,
+                  "dontwarn":3,
+                  "jar":1,
+                  "intern":1,
+                  "guava":1,
+                  "action":1,
+                  "servic":2,
+                  "android":9,
+                  "view":5
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"vending",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"licensing",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ILicensingService",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"common",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"collect",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MinMaxPriorityQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"view",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"View",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"os",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Parcelable$Creator",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"os",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Parcelable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"vending",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"licensing",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ILicensingService",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"common",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"base",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"internal",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Finalizer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"app",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Activity",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"values",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I would like to use Flurry in my app, but when i try to obfuscate my app with FlurryAgen.jar the proguard fails saying a dosens of errors like this:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[12198982]-[-1494036144]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I would like to use Flurry in my app, but when i try to obfuscate my app with FlurryAgen.jar the proguard fails saying a dosens of errors like this:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "fail":1,
+                  "proguard":1,
+                  "dosen":1,
+                  "obfusc":1,
+                  "error":1,
+                  "app":2,
+                  "flurri":2,
+                  "jar":1,
+                  "agen":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"Warning: com.flurry.android.ay: can't find referenced class com.google.ads.AdListener "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[12198982]-[1876098432]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"Warning: com.flurry.android.ay: can't find referenced "
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"com",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"."
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"google",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AdListener",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"Warning: com.flurry.android.ay: can't find referenced class com.google.ads.AdListener ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "warn":1,
+                  "googl":1,
+                  "listen":1,
+                  "flurri":1,
+                  "ad":1,
+                  "referenc":1,
+                  "android":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ads",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AdListener",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Also proguard fails when i try not to obfuscate the sources.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[12198982]-[-99431168]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Also proguard fails when i try not to obfuscate the sources.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "sourc":1,
+                  "obfusc":1,
+                  "proguard":1,
+                  "fail":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>How to use flurry with proguard? And how to make proguard not to obfuscate my sources?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[12198982]-[761215877]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>How to use flurry with proguard? And how to make proguard not to obfuscate my sources?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "proguard":2,
+                  "obfusc":1,
+                  "make":1,
+                  "flurri":1,
+                  "sourc":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>UPDATE</strong> Also i mentioned that the FlurryAgent.jar seems already obfuscated - <a href=\"http://korniltsev.ru/p/jBU0f1c.png\">http://korniltsev.ru/p/jBU0f1c.png</a> . May be we can ignore shrinking the whole jar? </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[12198982]-[-553879412]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>UPDATE</strong> Also i mentioned that the FlurryAgent.jar seems already obfuscated - <a href=\"http://korniltsev.ru/p/jBU0f1c.png\">http://korniltsev.ru/p/jBU0f1c.png</a> . May be we can ignore shrinking the whole jar? </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"IdentifierNode",
+                  "name":"jBU0f1c",
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "korniltsev":2,
+                  "ignor":1,
+                  "png":2,
+                  "updat":1,
+                  "strong":2,
+                  "agent":1,
+                  "shrink":1,
+                  "obfusc":1,
+                  "mention":1,
+                  "flurri":1,
+                  "href":1,
+                  "http":2,
+                  "jar":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":12199258,
+      "questionId":12198982,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":16338037,
+          "postId":12199258,
+          "creationDate":"2012-08-30",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1321940,
+            "displayName":"Korniltsev Anatoly",
+            "reputation":1701
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thank you for reply! I have a lot of warnings (http://korniltsev.ru/p/jBU05Go.png), so in my opinion ignoring them is not he solution. Also i mentioned that the FlurryAgent.jar seems already obfuscated - http://korniltsev.ru/p/jBU0f1c.png . May be we can ignore shrinking the whole jar?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12199258-cu16338037]-[527565521]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thank you for reply! I have a lot of warnings (http://korniltsev.ru/p/jBU05Go.png), so in my opinion ignoring them is not he solution. Also i mentioned that the FlurryAgent.jar seems already obfuscated - http://korniltsev.ru/p/jBU0f1c.png . May be we can ignore shrinking the whole jar?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jBU05Go",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jBU0f1c",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "korniltsev":2,
+                        "ignor":2,
+                        "png":2,
+                        "warn":1,
+                        "agent":1,
+                        "shrink":1,
+                        "obfusc":1,
+                        "mention":1,
+                        "opinion":1,
+                        "repli":1,
+                        "lot":1,
+                        "flurri":1,
+                        "http":2,
+                        "jar":2,
+                        "solut":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":16339601,
+          "postId":12199258,
+          "creationDate":"2012-08-30",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1382195,
+            "displayName":"SD_Guru",
+            "reputation":169
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yeah, I've used Flurry without any specific exceptions in proguard and it works just fine so long as it's in the build path. With that many exceptions, you need to preserve the names of a good many classes. Perhaps something along the lines of `-keep public class com.google.ads.** { public protected *; }` would work?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12199258-cu16339601]-[779053868]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yeah, I've used Flurry without any specific exceptions in proguard and it works just fine so long as it's in the build path. With that many exceptions, you need to preserve the names of a good many classes. Perhaps something along the lines of `-keep public class com.google.ads.** { public protected *; }` would work?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          {
+                            "type":"KeywordModifierNode",
+                            "value":"public",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "name":1,
+                        "proguard":1,
+                        "path":1,
+                        "googl":1,
+                        "line":1,
+                        "good":1,
+                        "build":1,
+                        "work":2,
+                        "preserv":1,
+                        "yeah":1,
+                        "specif":1,
+                        "flurri":1,
+                        "ad":1,
+                        "class":1,
+                        "fine":1,
+                        "except":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":16340264,
+          "postId":12199258,
+          "creationDate":"2012-08-30",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1382195,
+            "displayName":"SD_Guru",
+            "reputation":169
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"And yes, I'd go ahead and ignore shrinking the FlurryAgent.jar :-)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12199258-cu16340264]-[-1035499058]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"And yes, I'd go ahead and ignore shrinking the FlurryAgent.jar :-)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "ignor":1,
+                        "agent":1,
+                        "shrink":1,
+                        "flurri":1,
+                        "ahead":1,
+                        "jar":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":16345103,
+          "postId":12199258,
+          "creationDate":"2012-08-30",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1382195,
+            "displayName":"SD_Guru",
+            "reputation":169
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Well, at the moment your Proguard configuration isn't doing anything to FlurryAgent.jar, so you _are_ ignoring it. I suspect that the issue is that Proguard is changing the method calls that Flurry is trying to call in the above classes."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12199258-cu16345103]-[1581664213]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Well, at the moment your Proguard configuration isn't doing anything to FlurryAgent.jar, so you _are_ ignoring it. I suspect that the issue is that Proguard is changing the method calls that Flurry is trying to call in the above classes."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_are_",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "ignor":1,
+                        "method":1,
+                        "proguard":2,
+                        "issu":1,
+                        "agent":1,
+                        "configur":1,
+                        "moment":1,
+                        "suspect":1,
+                        "isn":1,
+                        "flurri":2,
+                        "class":1,
+                        "call":2,
+                        "jar":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":16342725,
+          "postId":12199258,
+          "creationDate":"2012-08-30",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1321940,
+            "displayName":"Korniltsev Anatoly",
+            "reputation":1701
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"do you know how to ignore the wfole jar?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12199258-cu16342725]-[1126777650]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"do you know how to ignore the wfole jar?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "ignor":1,
+                        "jar":1,
+                        "wfole":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-08-30",
+      "lastActivityDate":"2013-11-02",
+      "lastEditDate":"2013-11-02",
+      "score":4,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1382195,
+        "displayName":"SD_Guru",
+        "reputation":169
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I'm not sure how Flurry is specifically interacting with the AdListener, but the name of Google's class is what's being obfuscated. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[12199258]-[-1461594954]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I'm not sure how Flurry is specifically interacting with the AdListener, but the name of Google's class is what's being obfuscated. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AdListener",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"is",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "googl":1,
+                    "interact":1,
+                    "obfusc":1,
+                    "listen":1,
+                    "specif":1,
+                    "flurri":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AdListener",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Try adding the line <code>-keep public class com.google.ads.AdListener</code> to the proguard file. You may need to add a few more class exceptions if Flurry uses other com.google.ads classes, but that line should solve your immediate warning.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[12199258]-[772459694]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Try adding the line <code>-keep public class com.google.ads.AdListener</code> to the proguard file. You may need to add a few more class exceptions if Flurry uses other com.google.ads classes, but that line should solve your immediate warning.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ads",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AdListener",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"exceptions",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "solv":1,
+                    "proguard":1,
+                    "warn":1,
+                    "googl":2,
+                    "line":2,
+                    "code":2,
+                    "listen":1,
+                    "flurri":1,
+                    "ad":3,
+                    "class":1,
+                    "file":1,
+                    "except":1,
+                    "add":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"google",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ads",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AdListener",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>UPDATE:</strong> The problem is that the public class method names are being obfuscated for the various ad libraries. So, you may need to include additional proguard settings to include these methods:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[12199258]-[-1785662870]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>UPDATE:</strong> The problem is that the public class method names are being obfuscated for the various ad libraries. So, you may need to include additional proguard settings to include these methods:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"method",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":2,
+                    "name":1,
+                    "proguard":1,
+                    "addit":1,
+                    "problem":1,
+                    "set":1,
+                    "updat":1,
+                    "librari":1,
+                    "strong":2,
+                    "obfusc":1,
+                    "includ":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"-keep public class com.google.ads.** { public protected *; } -keep public class com.inmobi.androidsdk.** { public protected *; } -keep public class com.millenialmedia.android.** { public protected *; } -keep public class com.mobclix.android.sdk.** { public protected *; } -keep public class com.jumptap.adtag.** { public protected *; } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[12199258]-[288867253]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"-keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".google.ads.** { public protected *; } -keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".inmobi.androidsdk.** { public protected *; } -keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".millenialmedia.android.** { public protected *; } -keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".mobclix.android.sdk.** { public protected *; } -keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".jumptap.adtag.** { public protected *; } "
+                  }
+                ]
+              },
+              "rawText":"-keep public class com.google.ads.** { public protected *; } -keep public class com.inmobi.androidsdk.** { public protected *; } -keep public class com.millenialmedia.android.** { public protected *; } -keep public class com.mobclix.android.sdk.** { public protected *; } -keep public class com.jumptap.adtag.** { public protected *; } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "millenialmedia":1,
+                    "googl":1,
+                    "adtag":1,
+                    "sdk":1,
+                    "inmobi":1,
+                    "jumptap":1,
+                    "ad":1,
+                    "androidsdk":1,
+                    "android":2,
+                    "mobclix":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Having worked with Flurry and proguard myself, do be sure to test the apk thoroughly before uploading to your app market(s) of choice. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[12199258]-[1033219678]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Having worked with Flurry and proguard myself, do be sure to test the apk thoroughly before uploading to your app market(s) of choice. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "test":1,
+                    "proguard":1,
+                    "market":1,
+                    "apk":1,
+                    "work":1,
+                    "upload":1,
+                    "choic":1,
+                    "app":1,
+                    "flurri":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":12213412,
+      "questionId":12198982,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":18908090,
+          "postId":12213412,
+          "creationDate":"2012-12-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":129475,
+            "displayName":"Bryce Thomas",
+            "reputation":2567
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"have you been able to verify that Flurry is still collecting statistics correctly in practice, given the `-dontwarn com.flurry.**`? I'm in the same situation trying to use Proguard on an application that makes uses of Flurry, but am a little cautious when it comes to using `dontwarn` given that I don't really understand what's going on."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12213412-cu18908090]-[-1406862123]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"have you been able to verify that Flurry is still collecting statistics correctly in practice, given the `-dontwarn com.flurry.**`? I'm in the same situation trying to use Proguard on an application that makes uses of Flurry, but am a little cautious when it comes to using `dontwarn` given that I don't really understand what's going on."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "cautious":1,
+                        "proguard":1,
+                        "correct":1,
+                        "understand":1,
+                        "verifi":1,
+                        "statist":1,
+                        "situat":1,
+                        "applic":1,
+                        "make":1,
+                        "flurri":3,
+                        "collect":1,
+                        "practic":1,
+                        "dontwarn":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":18909539,
+          "postId":12213412,
+          "creationDate":"2012-12-07",
+          "score":7,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":129475,
+            "displayName":"Bryce Thomas",
+            "reputation":2567
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Follow up: just to add a little authority to your answer, I have just re-downloaded the Flurry Android SDK and in the file *FlurryAds-READMEv3.0.5.pdf*, at the very end, there is a very brief section which reads: *7. Using ProGuard (Optional) If you plan to run ProGuard on your APK before releasing your app, you will need to add the following to your &quot;proguard.cfg&quot; file: -keep class com.flurry.** { *; } -dontwarn com.flurry.** * So I guess I'll use this method, even though ignoring this many warnings makes me somewhat uncomfortable."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[12213412-cu18909539]-[-887555091]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Follow up: just to add a little authority to your answer, I have just re-downloaded the Flurry Android SDK and in the file *FlurryAds-READMEv3.0.5.pdf*, at the very end, there is a very brief section which reads: *7. Using ProGuard (Optional) If you plan to run ProGuard on your APK before releasing your app, you will need to add the following to your &quot;proguard.cfg&quot; file: -keep class com.flurry.** { *; } -dontwarn com.flurry.** * So I guess I'll use this method, even though ignoring this many warnings makes me somewhat uncomfortable."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"FlurryAds",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ProGuard",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ProGuard",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "ignor":1,
+                        "method":1,
+                        "author":1,
+                        "proguard":1,
+                        "warn":1,
+                        "pdf":1,
+                        "run":1,
+                        "apk":1,
+                        "option":1,
+                        "sdk":1,
+                        "section":1,
+                        "releas":1,
+                        "readmev":1,
+                        "cfg":1,
+                        "make":1,
+                        "answer":1,
+                        "app":1,
+                        "end":1,
+                        "flurri":4,
+                        "ad":1,
+                        "file":2,
+                        "quot":2,
+                        "uncomfort":1,
+                        "guard":2,
+                        "guess":1,
+                        "pro":2,
+                        "dontwarn":1,
+                        "add":2,
+                        "download":1,
+                        "plan":1,
+                        "android":1,
+                        "follow":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"FlurryAds",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ProGuard",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-08-31",
+      "lastActivityDate":"2012-08-31",
+      "score":38,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1321940,
+        "displayName":"Korniltsev Anatoly",
+        "reputation":1701
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Finally I managed to do that like this:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[12213412]-[-1144091266]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Finally I managed to do that like this:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "manag":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"-keep class com.flurry.** { *; } -dontwarn com.flurry.** "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[12213412]-[-828425549]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"-keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".flurry.** { *; } -dontwarn com.flurry.** "
+                  }
+                ]
+              },
+              "rawText":"-keep class com.flurry.** { *; } -dontwarn com.flurry.** ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "dontwarn":1,
+                    "flurri":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":19393284,
+      "questionId":12198982,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":42854649,
+          "postId":19393284,
+          "creationDate":"2014-11-28",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":540639,
+            "displayName":"deko",
+            "reputation":572
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"This answer is valid for Flurry 4.2.0"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[19393284-cu42854649]-[-1569339083]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"This answer is valid for Flurry 4.2.0"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "flurri":1,
+                        "valid":1,
+                        "answer":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-10-16",
+      "lastActivityDate":"2013-10-16",
+      "score":4,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":135465,
+        "displayName":"Daniel Schuler",
+        "reputation":1077
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Korniltsev's answer works for me, however the new flurry SDK (3.2.2) suggests to add the following:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[19393284]-[-1753362395]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Korniltsev's answer works for me, however the new flurry SDK (3.2.2) suggests to add the following:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "korniltsev":1,
+                    "suggest":1,
+                    "sdk":1,
+                    "work":1,
+                    "answer":1,
+                    "flurri":1,
+                    "add":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"-keep class com.flurry.** { *; } -dontwarn com.flurry.** -keepattributes *Annotation*,EnclosingMethod -keepclasseswithmembers class * { public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int); } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[19393284]-[1413968673]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"-keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".flurry.** { *; } -dontwarn com.flurry.** -keepattributes *Annotation*,"
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EnclosingMethod",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"-keepclasseswithmembers class * { public "
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"init"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"("
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"content",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Context",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AttributeSet",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", int); } "
+                  }
+                ]
+              },
+              "rawText":"-keep class com.flurry.** { *; } -dontwarn com.flurry.** -keepattributes *Annotation*,EnclosingMethod -keepclasseswithmembers class * { public <init>(android.content.Context, android.util.AttributeSet, int); } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "util":1,
+                    "keepattribut":1,
+                    "context":1,
+                    "set":1,
+                    "attribut":1,
+                    "annot":1,
+                    "enclos":1,
+                    "content":1,
+                    "flurri":2,
+                    "dontwarn":1,
+                    "init":1,
+                    "android":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"content",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Context",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AttributeSet",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"EnclosingMethod",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There may be some corner cases where the new lines are required, so I ended up going with their README.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[19393284]-[798878475]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There may be some corner cases where the new lines are required, so I ended up going with their README.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "line":1,
+                    "requir":1,
+                    "readm":1,
+                    "corner":1,
+                    "end":1,
+                    "case":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":28815900,
+      "questionId":12198982,
+      "comments":[
+        
+      ],
+      "creationDate":"2015-03-02",
+      "lastActivityDate":"2015-03-02",
+      "lastEditDate":"2015-03-02",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":276949,
+        "displayName":"Martin Konecny",
+        "reputation":8969
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The official recommended proguard file from Flurry (now owned by Yahoo) is available here:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[28815900]-[741562812]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The official recommended proguard file from Flurry (now owned by Yahoo) is available here:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "recommend":1,
+                    "proguard":1,
+                    "offici":1,
+                    "own":1,
+                    "flurri":1,
+                    "file":1,
+                    "yahoo":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><a href=\"https://developer.yahoo.com/flurry/docs/publisher/code/android/\"rel=\"nofollow\">https://developer.yahoo.com/flurry/docs/publisher/code/android/</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[28815900]-[736893320]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><a href=\"https://developer.yahoo.com/flurry/docs/publisher/code/android/\"rel=\"nofollow\">https://developer.yahoo.com/flurry/docs/publisher/code/android/</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rel":1,
+                    "https":2,
+                    "doc":2,
+                    "code":2,
+                    "publish":2,
+                    "nofollow":1,
+                    "flurri":2,
+                    "yahoo":2,
+                    "href":1,
+                    "develop":2,
+                    "android":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"-&shy;keep class com.flurry.** { *; } -&shy;dontwarn com.flurry.** -&shy;keepattributes *Annotation*,EnclosingMethod,Signature -&shy;keepclasseswithmembers class * { public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int); } # Google Play Services library -&shy;keep class * extends java.util.ListResourceBundle {￼ protected Object[][] getContents(); } -&shy;keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL; } -&shy;keepnames @com.google.android.gms.common.annotation.KeepName class * &shy;keepclassmembernames class * { @com.google.android.gms.common.annotation.KeepName *; } -&shy;keepnames class * implements android.os.Parcelable { public static final ** CREATOR; } #If you are using the Google Mobile Ads SDK, add the following: # Preserve GMS ads classes -&shy;keep class com.google.android.gms.ads.** { *; } -&shy;dontwarn com.google.android.gms.ads.** #If you are using the InMobi SDK, add the following: # Preserve InMobi Ads classes -&shy;keep class com.inmobi.** { *; } -&shy;dontwarn com.inmobi.** #If you are using the Millennial Media SDK, add the following: # Preserve Millennial Ads classes -&shy;keep class com.millennialmedia.** { *; } -&shy;dontwarn com.millennialmedia.** "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[28815900]-[2127247202]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"-­keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".flurry.** { *; } -­dontwarn com.flurry.** -­keepattributes *Annotation*,"
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EnclosingMethod",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":",Signature -­keepclasseswithmembers class * { public "
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"init"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"("
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"content",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Context",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AttributeSet",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", int); } # Google Play Services library -­keep class * extends "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ListResourceBundle",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"{￼ "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"protected",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"ArrayTypeNode",
+                      "typeNode":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Object",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "depth":[
+                        {
+                          "type":"ArrayDimensionNode",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ArrayDimensionNode",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getContents",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"} -­keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"."
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"gms",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"common",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"internal",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"safeparcel",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SafeParcelable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"{ public static final *** NULL; } -­keepnames "
+                  },
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"gms",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"common",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"annotation",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"KeepName",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" class * ­keepclassmembernames class * { "
+                  },
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"google",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"gms",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"common",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"annotation",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"KeepName",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" *; } -­keepnames class * implements "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"android",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"os",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Parcelable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"{ public static final ** CREATOR; } #If you are using the Google Mobile Ads SDK, add the following: # Preserve GMS ads classes -­keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".google.android.gms.ads.** { *; } -­dontwarn com.google.android.gms.ads.** #If you are using the "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"InMobi",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"SDK, add the following: # Preserve "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"InMobi",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"Ads classes -­keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".inmobi.** { *; } -­dontwarn com.inmobi.** #If you are using the Millennial Media SDK, add the following: # Preserve Millennial Ads classes -­keep "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"com",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".millennialmedia.** { *; } -­dontwarn com.millennialmedia.** "
+                  }
+                ]
+              },
+              "rawText":"-­keep class com.flurry.** { *; } -­dontwarn com.flurry.** -­keepattributes *Annotation*,EnclosingMethod,Signature -­keepclasseswithmembers class * { public <init>(android.content.Context, android.util.AttributeSet, int); } # Google Play Services library -­keep class * extends java.util.ListResourceBundle {￼ protected Object[][] getContents(); } -­keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable { public static final *** NULL; } -­keepnames @comgoogleandroidgmscommonannotationKeepName class * ­keepclassmembernames class * { @comgoogleandroidgmscommonannotationKeepName *; } -­keepnames class * implements android.os.Parcelable { public static final ** CREATOR; } #If you are using the Google Mobile Ads SDK, add the following: # Preserve GMS ads classes -­keep class com.google.android.gms.ads.** { *; } -­dontwarn com.google.android.gms.ads.** #If you are using the InMobi SDK, add the following: # Preserve InMobi Ads classes -­keep class com.inmobi.** { *; } -­dontwarn com.inmobi.** #If you are using the Millennial Media SDK, add the following: # Preserve Millennial Ads classes -­keep class com.millennialmedia.** { *; } -­dontwarn com.millennialmedia.** ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "googl":5,
+                    "util":2,
+                    "signatur":1,
+                    "millenni":2,
+                    "gms":4,
+                    "play":1,
+                    "keepattribut":1,
+                    "context":1,
+                    "safeparcel":1,
+                    "set":1,
+                    "resourc":1,
+                    "sdk":3,
+                    "keepnam":2,
+                    "librari":1,
+                    "safe":1,
+                    "creator":1,
+                    "bundl":1,
+                    "object":1,
+                    "attribut":1,
+                    "inmobi":2,
+                    "keepclassmembernam":1,
+                    "preserv":3,
+                    "common":1,
+                    "annot":1,
+                    "parcel":2,
+                    "enclos":1,
+                    "content":2,
+                    "media":1,
+                    "flurri":2,
+                    "ad":6,
+                    "class":3,
+                    "mobi":2,
+                    "dontwarn":4,
+                    "add":3,
+                    "init":1,
+                    "intern":1,
+                    "mobil":1,
+                    "servic":1,
+                    "list":1,
+                    "millennialmedia":2,
+                    "android":6
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ListResourceBundle",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"os",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Parcelable",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"content",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Context",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"google",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"gms",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"common",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"internal",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"safeparcel",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"SafeParcelable",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"android",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AttributeSet",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"EnclosingMethod",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Object",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"InMobi",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

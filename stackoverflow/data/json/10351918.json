@@ -1,0 +1,848 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":10351918,
+    "title":"How does ReentrantLock synchronize?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "synchronization",
+      "reentrantlock"
+    ],
+    "creationDate":"2012-04-27",
+    "lastActivityDate":"2012-04-27",
+    "lastEditDate":"2012-04-27",
+    "score":0,
+    "viewCount":403,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1008572,
+      "displayName":"Rox",
+      "reputation":338
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have looked at the Java API for ReentrantLock and what I can see is that no synchronization is used with the <code>synchronized</code> keyword. Is it in the below method in AbstractQueuedSynchronizer (that ReentrantLock is refering to when trying to aquire a lock) that synchronizes the object? Since the <code>compareAndSwapInt</code> is a native method, is the synchronization made at the native level/code?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10351918]-[77650923]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have looked at the Java API for ReentrantLock and what I can see is that no synchronization is used with the <code>synchronized</code> keyword. Is it in the below method in AbstractQueuedSynchronizer (that ReentrantLock is refering to when trying to aquire a lock) that synchronizes the object? Since the <code>compareAndSwapInt</code> is a native method, is the synchronization made at the native level/code?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ReentrantLock",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ReentrantLock",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"compareAndSwapInt",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":2,
+                  "look":1,
+                  "lock":3,
+                  "reentrant":2,
+                  "keyword":1,
+                  "object":1,
+                  "code":5,
+                  "compar":1,
+                  "aquir":1,
+                  "queu":1,
+                  "refer":1,
+                  "swap":1,
+                  "api":1,
+                  "made":1,
+                  "level":1,
+                  "synchron":4
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ReentrantLock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AbstractQueuedSynchronizer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"protected final boolean compareAndSetState(int expect, int update) { // See below for intrinsics setup to support this return unsafe.compareAndSwapInt(this, stateOffset, expect, update); } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[10351918]-[-1858103081]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"protected",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"final",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"boolean",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"compareAndSetState",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "parameters":{
+                      "type":"FormalParameterDeclsNode",
+                      "modifiers":[
+                        
+                      ],
+                      "parameterType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "nextDeclarator":{
+                        "type":"AdditionalFormalParameterDeclNode",
+                        "variableDeclarator":{
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"expect",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ]
+                        },
+                        "formalParameterDeclarator":{
+                          "type":"FormalParameterDeclsNode",
+                          "modifiers":[
+                            
+                          ],
+                          "parameterType":{
+                            "type":"PrimitiveTypeNode",
+                            "name":"int",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "nextDeclarator":{
+                            "type":"AdditionalFormalParameterDeclNode",
+                            "variableDeclarator":{
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"update",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"// See below for intrinsics setup to support this return unsafe.compareAndSwapInt(this, stateOffset, expect, update); } \n"
+                      }
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"protected final boolean compareAndSetState(int expect, int update) { // See below for intrinsics setup to support this return unsafe.compareAndSwapInt(this, stateOffset, expect, update); } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "support":1,
+                  "state":2,
+                  "set":1,
+                  "updat":2,
+                  "offset":1,
+                  "compar":2,
+                  "expect":2,
+                  "swap":1,
+                  "intrins":1,
+                  "unsaf":1,
+                  "setup":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"boolean",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"expect",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"update",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":10352014,
+      "questionId":10351918,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-04-27",
+      "lastActivityDate":"2012-04-27",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":367273,
+        "displayName":"NPE",
+        "reputation":198024
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You're correct: in Oracle's JDK, <code>ReentrantLock</code> is implemented in terms of the native <a href=\"http://en.wikipedia.org/wiki/Compare-and-swap\"rel=\"nofollow\">compare-and-swap</a> primitive (plus a fair amount of Java code on top of it), and not in terms of the <code>synchronized</code> keyword.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10352014]-[337684520]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You're correct: in Oracle's JDK, <code>ReentrantLock</code> is implemented in terms of the native <a href=\"http://en.wikipedia.org/wiki/Compare-and-swap\"rel=\"nofollow\">compare-and-swap</a> primitive (plus a fair amount of Java code on top of it), and not in terms of the <code>synchronized</code> keyword.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ReentrantLock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fair":1,
+                    "correct":1,
+                    "rel":1,
+                    "term":2,
+                    "oracl":1,
+                    "lock":1,
+                    "reentrant":1,
+                    "keyword":1,
+                    "amount":1,
+                    "code":5,
+                    "wikipedia":1,
+                    "nofollow":1,
+                    "compar":2,
+                    "implement":1,
+                    "swap":2,
+                    "wiki":1,
+                    "org":1,
+                    "href":1,
+                    "primit":1,
+                    "http":1,
+                    "top":1,
+                    "jdk":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ReentrantLock",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":10352017,
+      "questionId":10351918,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-04-27",
+      "lastActivityDate":"2012-04-27",
+      "score":2,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":437282,
+        "displayName":"Pavel Veller",
+        "reputation":3597
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The implementation will likely be different per JDK. Sun (now Oracle) implementation, for example, does it via <code>sun.misc.Unsafe</code> ( <a href=\"http://www.docjar.com/docs/api/sun/misc/Unsafe.html\"rel=\"nofollow\">http://www.docjar.com/docs/api/sun/misc/Unsafe.html</a> )</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10352017]-[-1284789347]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The implementation will likely be different per JDK. Sun (now Oracle) implementation, for example, does it via <code>sun.misc.Unsafe</code> ( <a href=\"http://www.docjar.com/docs/api/sun/misc/Unsafe.html\"rel=\"nofollow\">http://www.docjar.com/docs/api/sun/misc/Unsafe.html</a> )</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "docjar":2,
+                    "sun":4,
+                    "rel":1,
+                    "oracl":1,
+                    "doc":2,
+                    "code":2,
+                    "nofollow":1,
+                    "implement":2,
+                    "misc":3,
+                    "api":2,
+                    "unsaf":3,
+                    "html":2,
+                    "href":1,
+                    "http":2,
+                    "jdk":1,
+                    "www":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I once blogged about how <a href=\"http://pveller.blogspot.com/2010/08/java-concurrency-is-unsafe.html\"rel=\"nofollow\">Java concurrency in unsafe</a> :)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10352017]-[1583296690]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I once blogged about how <a href=\"http://pveller.blogspot.com/2010/08/java-concurrency-is-unsafe.html\"rel=\"nofollow\">Java concurrency in unsafe</a> :)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":2,
+                    "pveller":1,
+                    "rel":1,
+                    "blogspot":1,
+                    "blog":1,
+                    "nofollow":1,
+                    "unsaf":2,
+                    "html":1,
+                    "href":1,
+                    "http":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

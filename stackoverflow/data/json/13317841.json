@@ -1,0 +1,2148 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":13317841,
+    "title":"How do I output Java HashMap keys when the 'key' is two integers?",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":18167367,
+        "postId":13317841,
+        "creationDate":"2012-11-10",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Note that there's no absolute need for the hashcode to be unique. You just want it to minimize collisions, for performance reasons. Even if `hashcode` always returned `1` the HashMap would still work, so long as `equals` worked correctly."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[13317841-cu18167367]-[1284596515]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Note that there's no absolute need for the hashcode to be unique. You just want it to minimize collisions, for performance reasons. Even if `hashcode` always returned `1` the HashMap would still work, so long as `equals` worked correctly."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HashMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "hashcod":2,
+                      "uniqu":1,
+                      "minim":1,
+                      "map":1,
+                      "return":1,
+                      "correct":1,
+                      "collis":1,
+                      "reason":1,
+                      "work":2,
+                      "hash":1,
+                      "equal":1,
+                      "note":1,
+                      "perform":1,
+                      "absolut":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"HashMap",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java"
+    ],
+    "creationDate":"2012-11-10",
+    "lastActivityDate":"2012-11-10",
+    "score":3,
+    "viewCount":214,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1813681,
+      "displayName":"Berzerker",
+      "reputation":64
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":" package point; //an array arr is populated with random x,y points using MyPoint then public static void main(String[] args) throws IOException { HashMap&lt;MyPoint,Integer&gt; map = new HashMap&lt;MyPoint,Integer&gt;(); Integer val =0; for(int i = 0; i &lt; arr.length ; i++) { map.put(arr[i],val); } } //second file. package point; public class MyPoint implements Comparable&lt;MyPoint&gt;{ private int x; private int y; public MyPoint(int x1, int y1) { x = x1; y = y1; } public boolean equals(Object p) { MyPoint p1; try {p1 = (MyPoint) p;} catch (ClassCastException ex) {return false;} return (x == p1.x) &amp;&amp; (y == p1.y); } public int hashCode() { return ((y * 31) ^ x); } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13317841]-[-1958925201]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"PackageDeclarationNode",
+                  "annotations":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"point",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    {
+                      "text":"//an array arr is populated with random x,y points using MyPoint then public static void main(String[] args) throws IOException { HashMap<MyPoint,Integer> map = new HashMap<MyPoint,Integer>(); Integer val =0; for(int i = 0; i < arr.length ; i++) { map.put(arr[i],val); } } //second file. package point; public class MyPoint implements Comparable<MyPoint>{ private int x; private int y; public MyPoint(int x1, int y1) { x = x1; y = y1; } public boolean equals(Object p) { MyPoint p1; try {p1 = (MyPoint) p;} catch (ClassCastException ex) {return false;} return (x == p1.x) && (y == p1.y); } public int hashCode() { return ((y * 31) ^ x); } \n"
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":" package point; //an array arr is populated with random x,y points using MyPoint then public static void main(String[] args) throws IOException { HashMap<MyPoint,Integer> map = new HashMap<MyPoint,Integer>(); Integer val =0; for(int i = 0; i < arr.length ; i++) { map.put(arr[i],val); } } //second file. package point; public class MyPoint implements Comparable<MyPoint>{ private int x; private int y; public MyPoint(int x1, int y1) { x = x1; y = y1; } public boolean equals(Object p) { MyPoint p1; try {p1 = (MyPoint) p;} catch (ClassCastException ex) {return false;} return (x == p1.x) && (y == p1.y); } public int hashCode() { return ((y * 31) ^ x); } \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "random":1,
+                  "point":11,
+                  "map":4,
+                  "main":1,
+                  "object":1,
+                  "code":1,
+                  "array":1,
+                  "hash":3,
+                  "cast":1,
+                  "equal":1,
+                  "compar":1,
+                  "popul":1,
+                  "arr":3,
+                  "put":1,
+                  "fals":1,
+                  "file":1,
+                  "length":1,
+                  "ioexcept":1,
+                  "arg":1,
+                  "val":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Here is my code MyPoint stores x y points. I'm using this code to get unique sets of x,y points with no duplicates. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13317841]-[-622541917]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Here is my code MyPoint stores x y points. I'm using this code to get unique sets of x,y points with no duplicates. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MyPoint",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "uniqu":1,
+                  "point":3,
+                  "set":1,
+                  "store":1,
+                  "code":2,
+                  "duplic":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyPoint",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>My Question is how do I retrieve the x y values in MyPoint ? Is this an efficient way to use a HashMap to filter unique X,Y points. Also here is the HashCode I made.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13317841]-[-976865458]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>My Question is how do I retrieve the x y values in MyPoint ? Is this an efficient way to use a HashMap to filter unique X,Y points. Also here is the HashCode I made.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MyPoint",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HashMap",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HashCode",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "uniqu":1,
+                  "point":2,
+                  "map":1,
+                  "retriev":1,
+                  "effici":1,
+                  "code":1,
+                  "filter":1,
+                  "hash":2,
+                  "valu":1,
+                  "made":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyPoint",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HashCode",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Is there a better HashCode I could use?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13317841]-[-1934797749]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Is there a better HashCode I could use?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HashCode",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "hash":1,
+                  "code":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HashCode",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":13317919,
+      "questionId":13317841,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":18167310,
+          "postId":13317919,
+          "creationDate":"2012-11-10",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1813681,
+            "displayName":"Berzerker",
+            "reputation":64
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I used Set\n<mypoint>\n  entries = map.keySet(); for (MyPoint e: entries){ System.out.print(&quot;[&quot;+e.getX()+&quot;,&quot;+&quot; &quot;+e.getY()+&quot;] &quot;); } Seems to work fine for x,y I'm working on a function that can combine them into one, but I think this should work. Thanks!\n</mypoint>"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13317919-cu18167310]-[-2048922741]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I used Set\n<mypoint>\n  entries = map.keySet(); for (MyPoint e: entries){ System.out.print(&quot;[&quot;+e.getX()+&quot;,&quot;+&quot; &quot;+e.getY()+&quot;] &quot;); } Seems to work fine for x,y I'm working on a function that can combine them into one, but I think this should work. Thanks!\n</mypoint>"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"entries",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"map",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"keySet",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Set",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ForLoopStatementNode",
+                        "forControl":{
+                          "type":"ForEachControlNode",
+                          "variable":{
+                            "type":"LocalVariableDeclarationStatementNode",
+                            "modifiers":[
+                              
+                            ],
+                            "declarators":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"e",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expression":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"entries",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"ExpressionStatement",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"System",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"out",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"print",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"+",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"BinaryExpressionNode",
+                                        "operator":{
+                                          "type":"OperatorNode",
+                                          "symbol":"+",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "left":{
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"+",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"BinaryExpressionNode",
+                                            "operator":{
+                                              "type":"OperatorNode",
+                                              "symbol":"+",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "left":{
+                                              "type":"BinaryExpressionNode",
+                                              "operator":{
+                                                "type":"OperatorNode",
+                                                "symbol":"+",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "left":{
+                                                "type":"LiteralNode",
+                                                "node":{
+                                                  "type":"StringLiteralNode",
+                                                  "valueRep":"\"[\""
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "right":{
+                                                "type":"MethodInvocationNode",
+                                                "qualifiedIdentifier":{
+                                                  "type":"QualifiedIdentifierNode",
+                                                  "identifiers":[
+                                                    {
+                                                      "type":"IdentifierNode",
+                                                      "name":"e",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"getX",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "args":{
+                                                  "type":"ExpressionListNode",
+                                                  "arguments":[
+                                                    
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "right":{
+                                              "type":"LiteralNode",
+                                              "node":{
+                                                "type":"StringLiteralNode",
+                                                "valueRep":"\",\""
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"StringLiteralNode",
+                                              "valueRep":"\" \""
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "right":{
+                                          "type":"MethodInvocationNode",
+                                          "qualifiedIdentifier":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"e",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"getY",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "args":{
+                                            "type":"ExpressionListNode",
+                                            "arguments":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"StringLiteralNode",
+                                          "valueRep":"\"] \""
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "point":1,
+                        "system":1,
+                        "map":1,
+                        "mypoint":2,
+                        "print":1,
+                        "set":2,
+                        "work":3,
+                        "key":1,
+                        "entri":2,
+                        "combin":1,
+                        "function":1,
+                        "quot":8,
+                        "fine":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Set",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        {
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"map",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"keySet",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"System",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"out",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"print",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"+",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":"+",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"BinaryExpressionNode",
+                                    "operator":{
+                                      "type":"OperatorNode",
+                                      "symbol":"+",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "left":{
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"+",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"BinaryExpressionNode",
+                                        "operator":{
+                                          "type":"OperatorNode",
+                                          "symbol":"+",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "left":{
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"StringLiteralNode",
+                                            "valueRep":"\"[\""
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "right":{
+                                          "type":"MethodInvocationNode",
+                                          "qualifiedIdentifier":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"e",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"getX",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "args":{
+                                            "type":"ExpressionListNode",
+                                            "arguments":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"StringLiteralNode",
+                                          "valueRep":"\",\""
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "right":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"StringLiteralNode",
+                                        "valueRep":"\" \""
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"e",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"getY",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"] \""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"e",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getX",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"e",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getY",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"entries",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"map",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"keySet",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Set",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"e",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-11-10",
+      "lastActivityDate":"2012-11-10",
+      "score":1,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1729675,
+        "displayName":"awolfe91",
+        "reputation":1334
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>An easy way would be to make getter methods for x and y:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13317919]-[-1851580396]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>An easy way would be to make getter methods for x and y:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "getter":1,
+                    "method":1,
+                    "easi":1,
+                    "make":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"public int getX(){ return x; } public int getY(){ return y; } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[13317919]-[-16212606]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getX",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"x",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getY",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"y",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"public int getX(){ return x; } public int getY(){ return y; } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>As for a HashMap, you could have it map from X coordinates to a list of MyPoints with that X coordinate and unique Y coordinates (HashMap). However, if all you're looking for is uniqueness, you could just store every MyPoint in a set/ArrayList and see if a similar point already exists, using your .equals() method. Hope that helps!</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13317919]-[-1339686997]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>As for a HashMap, you could have it map from X coordinates to a list of MyPoints with that X coordinate and unique Y coordinates (HashMap). However, if all you're looking for is uniqueness, you could just store every MyPoint in a set/ArrayList and see if a similar point already exists, using your .equals() method. Hope that helps!</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyPoints",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyPoint",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ArrayList",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "uniqu":2,
+                    "point":3,
+                    "exist":1,
+                    "map":3,
+                    "similar":1,
+                    "set":1,
+                    "store":1,
+                    "array":1,
+                    "help":1,
+                    "hash":2,
+                    "equal":1,
+                    "hope":1,
+                    "coordin":3,
+                    "list":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HashMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MyPoints",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MyPoint",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ArrayList",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

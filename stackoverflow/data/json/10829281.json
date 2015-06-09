@@ -1,0 +1,3506 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":10829281,
+    "title":"Is it possible to use Java Unsafe in user code?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "classloader"
+    ],
+    "creationDate":"2012-05-31",
+    "lastActivityDate":"2012-10-10",
+    "score":3,
+    "viewCount":293,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":978830,
+      "displayName":"weidi",
+      "reputation":395
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm reading code in java.util.concurrent package, and i find the class Unsafe(which is used to implement those synchronizers) interesting. I may never use it in any real code because the class name itself seems to discourage doing that, but out of curiosity, i have 2 questions on this class.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10829281]-[-457756971]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm reading code in java.util.concurrent package, and i find the class Unsafe(which is used to implement those synchronizers) interesting. I may never use it in any real code because the class name itself seems to discourage doing that, but out of curiosity, i have 2 questions on this class.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"Unsafe",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"name",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "find":1,
+                  "question":1,
+                  "concurr":1,
+                  "util":1,
+                  "real":1,
+                  "discourag":1,
+                  "code":2,
+                  "interest":1,
+                  "implement":1,
+                  "unsaf":1,
+                  "curios":1,
+                  "synchron":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>1). The singleton accessor of this class is like this:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10829281]-[1897275752]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>1). The singleton accessor of this class is like this:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"is",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "accessor":1,
+                  "singleton":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":" public static Unsafe getUnsafe() { Class cc = sun.reflect.Reflection.getCallerClass(2); if (cc.getClassLoader() != null) throw new SecurityException(&quot;Unsafe&quot;); return theUnsafe; } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[10829281]-[-437780128]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"static",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"getUnsafe",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"cc",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"sun",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"reflect",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"Reflection",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"getCallerClass",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"IntegerLiteralNode",
+                                            "valueRep":"2"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Class",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IfStatementNode",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"!=",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"cc",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getClassLoader",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"NullLiteralNode"
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"ThrowStatementNode",
+                          "expression":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"SecurityException",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"Unsafe\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReturnStatementNode",
+                        "expression":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"theUnsafe",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":" public static Unsafe getUnsafe() { Class cc = sun.reflect.Reflection.getCallerClass(2); if (cc.getClassLoader() != null) throw new SecurityException(\"Unsafe\"); return theUnsafe; } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "loader":1,
+                  "sun":1,
+                  "secur":1,
+                  "unsaf":4,
+                  "reflect":2,
+                  "caller":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Class",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SecurityException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"reflect",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Reflection",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getCallerClass",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"2"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"cc",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getClassLoader",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"cc",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"sun",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"reflect",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"Reflection",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getCallerClass",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"IntegerLiteralNode",
+                                  "valueRep":"2"
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Class",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>So if this method is invoked from user code, it will throw an exception. How to work around this? (possibly by making my own class loaded by the bootstrap class loader? is this possible?)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10829281]-[-1319770313]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>So if this method is invoked from user code, it will throw an exception. How to work around this? (possibly by making my own class loaded by the bootstrap class loader? is this possible?)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"loaded",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"loader",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "loader":1,
+                  "invok":1,
+                  "load":1,
+                  "possibl":1,
+                  "work":1,
+                  "code":1,
+                  "make":1,
+                  "bootstrap":1,
+                  "user":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>2). The above code assumes that <code>getClassLoader</code> will return null for classes that are loaded by the boostrap class loader. But the javadoc of <code>Class#getClassLoader</code> says &quot;Some implementations may use null to represent the bootstrap class loader.&quot;, which means there is NO guarantee on this assumption. For implementations that do violate this assumption, wouldn't Unsafe(as well as various classes such as ReentrantLock that depends on it) fail to work at all?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10829281]-[2059750784]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>2). The above code assumes that <code>getClassLoader</code> will return null for classes that are loaded by the boostrap class loader. But the javadoc of <code>Class#getClassLoader</code> says &quot;Some implementations may use null to represent the bootstrap class loader.&quot;, which means there is NO guarantee on this assumption. For implementations that do violate this assumption, wouldn't Unsafe(as well as various classes such as ReentrantLock that depends on it) fail to work at all?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getClassLoader",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"loader",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getClassLoader",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"loader",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ReentrantLock",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "assum":1,
+                  "fail":1,
+                  "violat":1,
+                  "depend":1,
+                  "loader":4,
+                  "mean":1,
+                  "boostrap":1,
+                  "load":1,
+                  "lock":1,
+                  "reentrant":1,
+                  "work":1,
+                  "code":5,
+                  "guarante":1,
+                  "assumpt":2,
+                  "wouldn":1,
+                  "implement":2,
+                  "class":2,
+                  "quot":2,
+                  "unsaf":1,
+                  "bootstrap":1,
+                  "repres":1,
+                  "javadoc":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ReentrantLock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thanks!</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10829281]-[-230082161]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thanks!</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":10829339,
+      "questionId":10829281,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":14098254,
+          "postId":10829339,
+          "creationDate":"2012-05-31",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":978830,
+            "displayName":"weidi",
+            "reputation":395
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thank you. I didn't realize i could use reflection."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[10829339-cu14098254]-[1518788184]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thank you. I didn't realize i could use reflection."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "reflect":1,
+                        "realiz":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-05-31",
+      "lastActivityDate":"2012-05-31",
+      "lastEditDate":"2012-05-31",
+      "score":4,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":367273,
+        "displayName":"NPE",
+        "reputation":198024
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>How to work around this?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10829339]-[625697186]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>How to work around this?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "blockquot":2,
+                    "work":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can gain access to the class like so (provided the security manager will permit the change of accessibility):</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10829339]-[-769817805]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can gain access to the class like so (provided the security manager will permit the change of accessibility):</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"like",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "chang":1,
+                    "provid":1,
+                    "secur":1,
+                    "gain":1,
+                    "permit":1,
+                    "manag":1,
+                    "access":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"public static Unsafe getUnsafe() { try { Field f = Unsafe.class.getDeclaredField(&quot;theUnsafe&quot;); f.setAccessible(true); return (Unsafe)f.get(null); } catch (Exception e) { /* ... */ } } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[10829339]-[-427161681]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"static",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getUnsafe",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"TryCatchStatementNode",
+                          "block":{
+                            "type":"BlockNode",
+                            "statements":[
+                              {
+                                "type":"LocalVariableDeclarationStatementNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "declarators":{
+                                  "type":"VariableDeclaratorsNode",
+                                  "declarators":[
+                                    {
+                                      "type":"VariableDeclaratorNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"f",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "arrayDepth":[
+                                        
+                                      ],
+                                      "assignment":{
+                                        "type":"VariableAssignmentNode",
+                                        "variableAssignment":{
+                                          "type":"VariableExpressionInitNode",
+                                          "expression":{
+                                            "type":"BinaryExpressionNode",
+                                            "operator":{
+                                              "type":"OperatorNode",
+                                              "symbol":".",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "left":{
+                                              "type":"ClassLiteralExpressionNode",
+                                              "aType":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"Unsafe",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepths":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "right":{
+                                              "type":"MethodInvocationNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"getDeclaredField",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"LiteralNode",
+                                                    "node":{
+                                                      "type":"StringLiteralNode",
+                                                      "valueRep":"\"theUnsafe\""
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "varType":{
+                                        "type":"ReferenceTypeNode",
+                                        "ids":[
+                                          {
+                                            "type":"ParameterizedTypeNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"Field",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"ExpressionStatement",
+                                "expression":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"f",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"setAccessible",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      {
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"BooleanLiteralNode",
+                                          "valueRep":"true"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"ReturnStatementNode",
+                                "expression":{
+                                  "type":"CastExpressionNode",
+                                  "aType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"Unsafe",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "argument":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"f",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"get",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"NullLiteralNode"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "catches":[
+                            {
+                              "type":"CatchClauseNode",
+                              "modifiers":[
+                                
+                              ],
+                              "catchType":{
+                                "type":"CatchTypeNode",
+                                "identifiers":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"Exception",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"e",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "block":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  {
+                                    "text":"/* ... */"
+                                  }
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"public static Unsafe getUnsafe() { try { Field f = Unsafe.class.getDeclaredField(\"theUnsafe\"); f.setAccessible(true); return (Unsafe)f.get(null); } catch (Exception e) { /* ... */ } } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "field":2,
+                    "set":1,
+                    "declar":1,
+                    "true":1,
+                    "unsaf":5,
+                    "access":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Field",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getDeclaredField",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"theUnsafe\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"f",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"setAccessible",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"BooleanLiteralNode",
+                              "valueRep":"true"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"f",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"get",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"NullLiteralNode"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"f",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":".",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"ClassLiteralExpressionNode",
+                              "aType":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"Unsafe",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepths":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"MethodInvocationNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"getDeclaredField",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "args":{
+                                "type":"ExpressionListNode",
+                                "arguments":[
+                                  {
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"StringLiteralNode",
+                                      "valueRep":"\"theUnsafe\""
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Field",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>For implementations that do violate this assumption, wouldn't Unsafe ... fail to work at all?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10829339]-[484119478]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>For implementations that do violate this assumption, wouldn't Unsafe ... fail to work at all?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fail":1,
+                    "violat":1,
+                    "work":1,
+                    "blockquot":2,
+                    "assumpt":1,
+                    "wouldn":1,
+                    "implement":1,
+                    "unsaf":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The details of the <code>Unsafe</code> class are also implementation-specific. There is no reason to expect this particular <code>Unsafe</code> to be able to work with any other implementation of the class loader subsystem.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10829339]-[-1994800626]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The details of the <code>Unsafe</code> class are also implementation-specific. There is no reason to expect this particular <code>Unsafe</code> to be able to work with any other implementation of the class loader subsystem.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"are",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"loader",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loader":1,
+                    "reason":1,
+                    "work":1,
+                    "code":4,
+                    "expect":1,
+                    "specif":1,
+                    "implement":2,
+                    "detail":1,
+                    "unsaf":2,
+                    "subsystem":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":11484722,
+      "questionId":10829281,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-07-14",
+      "lastActivityDate":"2012-10-10",
+      "lastEditDate":"2012-10-10",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1525711,
+        "displayName":"Alex",
+        "reputation":1
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Another way to go is to use jvm option <strong>-Xbootclasspath/a:</strong>&lt;<em>directories and zip/jar files separated by <code>;</code></em>&gt;</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11484722]-[-74671053]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Another way to go is to use jvm option <strong>-Xbootclasspath/a:</strong>&lt;<em>directories and zip/jar files separated by <code>;</code></em>&gt;</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jvm":1,
+                    "zip":1,
+                    "option":1,
+                    "separ":1,
+                    "strong":2,
+                    "code":2,
+                    "directori":1,
+                    "file":1,
+                    "jar":1,
+                    "xbootclasspath":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can create a simple class which will call <code>Unsafe.getUnsafe()</code> and append it to bootclasspath.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11484722]-[-1624008384]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can create a simple class which will call <code>Unsafe.getUnsafe()</code> and append it to bootclasspath.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"which",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getUnsafe",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "simpl":1,
+                    "code":2,
+                    "bootclasspath":1,
+                    "unsaf":2,
+                    "creat":1,
+                    "call":1,
+                    "append":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"public class UnsafeAccessor { public static Unsafe getUnsafe() { return Unsafe.getUnsafe(); } } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[11484722]-[1075254370]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"CompilationUnitNode",
+                    "imports":[
+                      
+                    ],
+                    "typeDeclarations":[
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          {
+                            "type":"KeywordModifierNode",
+                            "value":"public",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UnsafeAccessor",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "body":{
+                          "type":"ClassBodyNode",
+                          "declarations":[
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"static",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Unsafe",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"getUnsafe",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ReturnStatementNode",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"Unsafe",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"getUnsafe",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "rawText":"public class UnsafeAccessor { public static Unsafe getUnsafe() { return Unsafe.getUnsafe(); } } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "accessor":1,
+                    "unsaf":5
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getUnsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Command line:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11484722]-[732571592]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Command line:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "line":1,
+                    "command":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"java -Xbootclasspath/a:&amp;lt;path_to&amp;gt;/unsafeaccessor.jar -cp "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[11484722]-[1201543495]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"java -Xbootclasspath/a:&lt;"
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"&",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"path_to",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"gt",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"/unsafeaccessor.jar -cp "
+                  }
+                ]
+              },
+              "rawText":"java -Xbootclasspath/a:&lt;path_to&gt;/unsafeaccessor.jar -cp ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "xbootclasspath":1,
+                    "jar":1,
+                    "unsafeaccessor":1,
+                    "path":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In such a way you will add this class directly to System Bootstrap Classloader. JVM will treat the class as part of JDK, and you can call UnsafeAccessor.getUnsafe() in your code instead of Unsafe.getUnsafe():</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11484722]-[1512004004]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In such a way you will add this class directly to System Bootstrap Classloader. JVM will treat the class as part of JDK, and you can call UnsafeAccessor.getUnsafe() in your code instead of Unsafe.getUnsafe():</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"directly",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"as",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"UnsafeAccessor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getUnsafe",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getUnsafe",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jvm":1,
+                    "system":1,
+                    "direct":1,
+                    "code":1,
+                    "accessor":1,
+                    "treat":1,
+                    "unsaf":4,
+                    "classload":1,
+                    "part":1,
+                    "call":1,
+                    "add":1,
+                    "bootstrap":1,
+                    "jdk":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"Unsafe unsafe = UnsafeAccessor.getUnsafe(); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[11484722]-[-1340323708]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"UnsafeAccessor",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getUnsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Unsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"Unsafe unsafe = UnsafeAccessor.getUnsafe(); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "accessor":1,
+                    "unsaf":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"UnsafeAccessor",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getUnsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"UnsafeAccessor",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getUnsafe",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Unsafe",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1314 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":22635732,
+    "title":"EclipseLink connections deadlock",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":45148698,
+        "postId":22635732,
+        "creationDate":"2015-02-09",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":927477,
+          "displayName":"Avner Levy",
+          "reputation":1687
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"I didn't test it personally but perhaps http://stackoverflow.com/questions/15119095/eclipselink-connection-pooling can help. If I understood correctly, if you use internal connection pool they don't do this reconnection. Just a guess."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22635732-cu45148698]-[746450785]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"I didn't test it personally but perhaps http://stackoverflow.com/questions/15119095/eclipselink-connection-pooling can help. If I understood correctly, if you use internal connection pool they don't do this reconnection. Just a guess."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "question":1,
+                      "test":1,
+                      "connect":2,
+                      "reconnect":1,
+                      "correct":1,
+                      "understood":1,
+                      "stackoverflow":1,
+                      "pool":2,
+                      "person":1,
+                      "eclipselink":1,
+                      "guess":1,
+                      "http":1,
+                      "intern":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "eclipselink",
+      "deadlock"
+    ],
+    "creationDate":"2014-03-25",
+    "lastActivityDate":"2014-03-25",
+    "score":1,
+    "viewCount":80,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2885552,
+      "displayName":"Dejan Milosevic",
+      "reputation":188
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Single threaded standalone java app entering a deadlock? Yes, with EclipseLink this is very easy. So after a week of debugging a very complex multi threaded app, I managed to narrow down the problem to this:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22635732]-[-720521838]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Single threaded standalone java app entering a deadlock? Yes, with EclipseLink this is very easy. So after a week of debugging a very complex multi threaded app, I managed to narrow down the problem to this:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"EclipseLink",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "standalon":1,
+                  "singl":1,
+                  "easi":1,
+                  "problem":1,
+                  "enter":1,
+                  "deadlock":1,
+                  "debug":1,
+                  "eclips":1,
+                  "week":1,
+                  "thread":2,
+                  "link":1,
+                  "app":2,
+                  "manag":1,
+                  "narrow":1,
+                  "multi":1,
+                  "complex":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EclipseLink",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>If you have only 1 thread in application, you'd assume that you need a DB connection pool of size 1 and that everything should work. Well, not in this case:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22635732]-[1072523206]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>If you have only 1 thread in application, you'd assume that you need a DB connection pool of size 1 and that everything should work. Well, not in this case:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "assum":1,
+                  "size":1,
+                  "connect":1,
+                  "work":1,
+                  "thread":1,
+                  "pool":1,
+                  "applic":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public void singleThreadedMethod() { User u; --start JPA transaction / create EM (1)-- u = em.find(User.class, userId); -- end JPA transaction / close EM -- --start JPA transaction / create EM (2)-- u.getCompany(); // lazy assoc (3) -- end JPA transaction / close EM-- } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[22635732]-[686030504]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"singleThreadedMethod",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"u",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"User",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"start"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"JPA"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"transaction"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"/"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"create"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"EM"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"("
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"1"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":")"
+                      },
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"=",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"PrefixOperatorExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"--",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"u",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"em",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"find",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"ClassLiteralExpressionNode",
+                                  "aType":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"User",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepths":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"userId",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"end"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"JPA"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"transaction"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"/"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"close"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"EM"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"-"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"start"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"JPA"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"transaction"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"/"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"create"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"EM"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":" "
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"("
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":"2"
+                      },
+                      {
+                        "type":"TextFragmentNode",
+                        "text":")"
+                      },
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"PrefixOperatorExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"--",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "argument":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"u",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getCompany",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            {
+                              "text":"// lazy assoc (3) -- end JPA transaction / close EM-- } \n"
+                            }
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public void singleThreadedMethod() { User u; --start JPA transaction / create EM (1)-- u = em.find(User.class, userId); -- end JPA transaction / close EM -- --start JPA transaction / create EM (2)-- u.getCompany(); // lazy assoc (3) -- end JPA transaction / close EM-- } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "singl":1,
+                  "method":1,
+                  "lazi":1,
+                  "jpa":4,
+                  "transact":4,
+                  "thread":1,
+                  "end":2,
+                  "assoc":1,
+                  "start":2,
+                  "close":2,
+                  "compani":1,
+                  "creat":2,
+                  "user":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"User",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"em",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"find",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"ClassLiteralExpressionNode",
+                          "aType":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"User",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepths":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"userId",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"u",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getCompany",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"u",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"User",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>EclipseLink will take 1 connection for (1), then return it to the pool. Then take another connection for (2), then try to take another connection for (3), although it looks like the code is inside a single transaction. Trick is that <code>u</code> is not managed in this transaction (2), but still &quot;manages&quot; to get to the DB to get its lazy association. If the DB pool size is 1, this creates a deadlock, since (2) is holding the only connection that (3) (inside (2)) is waiting on. Note that this is NOT a deadlock in DB, but in connection pool in Java.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22635732]-[719676194]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>EclipseLink will take 1 connection for (1), then return it to the pool. Then take another connection for (2), then try to take another connection for (3), although it looks like the code is inside a single transaction. Trick is that <code>u</code> is not managed in this transaction (2), but still &quot;manages&quot; to get to the DB to get its lazy association. If the DB pool size is 1, this creates a deadlock, since (2) is holding the only connection that (3) (inside (2)) is waiting on. Note that this is NOT a deadlock in DB, but in connection pool in Java.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"EclipseLink",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "singl":1,
+                  "wait":1,
+                  "size":1,
+                  "connect":5,
+                  "trick":1,
+                  "lazi":1,
+                  "deadlock":2,
+                  "code":3,
+                  "eclips":1,
+                  "transact":2,
+                  "hold":1,
+                  "insid":2,
+                  "note":1,
+                  "link":1,
+                  "pool":3,
+                  "quot":2,
+                  "manag":2,
+                  "creat":1,
+                  "associ":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EclipseLink",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This creates a debugging nightmare when you have pool of 20 connections and less than 20 threads and you wonder where that deadlock comes from!</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22635732]-[1263534255]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This creates a debugging nightmare when you have pool of 20 connections and less than 20 threads and you wonder where that deadlock comes from!</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "connect":1,
+                  "nightmar":1,
+                  "deadlock":1,
+                  "debug":1,
+                  "thread":1,
+                  "pool":1,
+                  "creat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I guess it's a long shot, but - is there any way to stop EclipseLink from doing what it does? I.e. to stop it from fetching lazy associations when not inside persistence context? Or to use thread's existing persistence context if it's there.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22635732]-[1614365174]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I guess it's a long shot, but - is there any way to stop EclipseLink from doing what it does? I.e. to stop it from fetching lazy associations when not inside persistence context? Or to use thread's existing persistence context if it's there.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"EclipseLink",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "exist":1,
+                  "context":2,
+                  "lazi":1,
+                  "stop":2,
+                  "shot":1,
+                  "eclips":1,
+                  "persist":2,
+                  "thread":1,
+                  "insid":1,
+                  "link":1,
+                  "fetch":1,
+                  "guess":1,
+                  "associ":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EclipseLink",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    
+  ]
+}

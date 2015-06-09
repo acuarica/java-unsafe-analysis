@@ -1,0 +1,4433 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":17335884,
+    "title":"Object header size in Java on 64bit VM with &lt;4GB RAM",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "linux",
+      "windows",
+      "64bit"
+    ],
+    "creationDate":"2013-06-27",
+    "lastActivityDate":"2015-02-11",
+    "score":4,
+    "viewCount":1347,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":331515,
+      "displayName":"Daniel",
+      "reputation":14687
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I wanted to know if there is some way to have the 64bit VM use 8byte object headers instead of 12byte object headers if the usable RAM for the JVM is 4GB anyway. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[17335884]-[-2078570685]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I wanted to know if there is some way to have the 64bit VM use 8byte object headers instead of 12byte object headers if the usable RAM for the JVM is 4GB anyway. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "bit":1,
+                  "ram":1,
+                  "want":1,
+                  "object":2,
+                  "usabl":1,
+                  "header":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Or is it like that on Linux, if not on windows? Could someone test this with this code?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[17335884]-[1639259232]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Or is it like that on Linux, if not on windows? Could someone test this with this code?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "window":1,
+                  "code":1,
+                  "linux":1,
+                  "test":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"import java.lang.reflect.Field; import sun.misc.Unsafe; public class ObjectSizes { String s1; String s2; public static void main(String[] args) throws Exception { Unsafe unsafe; try { Field field = Unsafe.class.getDeclaredField(&quot;theUnsafe&quot;); field.setAccessible(true); unsafe = (Unsafe)field.get(null); } catch (Exception ex) { throw new RuntimeException(&quot;Can't get Unsafe instance.&quot;, ex); } Field s1Field = ObjectSizes.class.getDeclaredField(&quot;s1&quot;); Field s2Field = ObjectSizes.class.getDeclaredField(&quot;s2&quot;); long s1OffSet = unsafe.objectFieldOffset(s1Field); long s2OffSet = unsafe.objectFieldOffset(s2Field); System.out.println(&quot;We are running &quot;+System.getProperty(&quot;java.version&quot;)); System.out.println(&quot;Object header size is &quot;+s1OffSet+&quot; bytes.&quot;); System.out.println(&quot;Object reference size is &quot;+(s2OffSet-s1OffSet)+&quot; bytes.&quot;); } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[17335884]-[21324989]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lang",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"reflect",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Field",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":false,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":false,
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ObjectSizes",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"s1",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"s2",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "returnType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"void",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"main",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "parameters":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"ArrayTypeNode",
+                                  "typeNode":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "depth":[
+                                    {
+                                      "type":"ArrayDimensionNode",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"args",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "thrownExceptions":{
+                              "type":"ThrownExceptionsNode",
+                              "qualifiedIdentifierList":{
+                                "type":"QualifiedIdentifierListNode",
+                                "qualifiedNames":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"Exception",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"unsafe",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Unsafe",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"TryCatchStatementNode",
+                                  "block":{
+                                    "type":"BlockNode",
+                                    "statements":[
+                                      {
+                                        "type":"LocalVariableDeclarationStatementNode",
+                                        "modifiers":[
+                                          
+                                        ],
+                                        "declarators":{
+                                          "type":"VariableDeclaratorsNode",
+                                          "declarators":[
+                                            {
+                                              "type":"VariableDeclaratorNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"field",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepth":[
+                                                
+                                              ],
+                                              "assignment":{
+                                                "type":"VariableAssignmentNode",
+                                                "variableAssignment":{
+                                                  "type":"VariableExpressionInitNode",
+                                                  "expression":{
+                                                    "type":"BinaryExpressionNode",
+                                                    "operator":{
+                                                      "type":"OperatorNode",
+                                                      "symbol":".",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "left":{
+                                                      "type":"ClassLiteralExpressionNode",
+                                                      "aType":{
+                                                        "type":"QualifiedIdentifierNode",
+                                                        "identifiers":[
+                                                          {
+                                                            "type":"IdentifierNode",
+                                                            "name":"Unsafe",
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          }
+                                                        ],
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "arrayDepths":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "right":{
+                                                      "type":"MethodInvocationNode",
+                                                      "identifier":{
+                                                        "type":"IdentifierNode",
+                                                        "name":"getDeclaredField",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "args":{
+                                                        "type":"ExpressionListNode",
+                                                        "arguments":[
+                                                          {
+                                                            "type":"LiteralNode",
+                                                            "node":{
+                                                              "type":"StringLiteralNode",
+                                                              "valueRep":"\"theUnsafe\""
+                                                            },
+                                                            "comments":[
+                                                              
+                                                            ]
+                                                          }
+                                                        ],
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "varType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"Field",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"ExpressionStatement",
+                                        "expression":{
+                                          "type":"MethodInvocationNode",
+                                          "qualifiedIdentifier":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"field",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"setAccessible",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "args":{
+                                            "type":"ExpressionListNode",
+                                            "arguments":[
+                                              {
+                                                "type":"LiteralNode",
+                                                "node":{
+                                                  "type":"BooleanLiteralNode",
+                                                  "valueRep":"true"
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"ExpressionStatement",
+                                        "expression":{
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"=",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"unsafe",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"CastExpressionNode",
+                                            "aType":{
+                                              "type":"ReferenceTypeNode",
+                                              "ids":[
+                                                {
+                                                  "type":"ParameterizedTypeNode",
+                                                  "identifier":{
+                                                    "type":"IdentifierNode",
+                                                    "name":"Unsafe",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "argument":{
+                                              "type":"MethodInvocationNode",
+                                              "qualifiedIdentifier":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"field",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"get",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"LiteralNode",
+                                                    "node":{
+                                                      "type":"NullLiteralNode"
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "catches":[
+                                    {
+                                      "type":"CatchClauseNode",
+                                      "modifiers":[
+                                        
+                                      ],
+                                      "catchType":{
+                                        "type":"CatchTypeNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"Exception",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"ex",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "block":{
+                                        "type":"BlockNode",
+                                        "statements":[
+                                          {
+                                            "type":"ThrowStatementNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"RuntimeException",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"LiteralNode",
+                                                    "node":{
+                                                      "type":"StringLiteralNode",
+                                                      "valueRep":"\"Can't get Unsafe instance.\""
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  {
+                                                    "type":"QualifiedIdentifierNode",
+                                                    "identifiers":[
+                                                      {
+                                                        "type":"IdentifierNode",
+                                                        "name":"ex",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "labels":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"s1Field",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"BinaryExpressionNode",
+                                              "operator":{
+                                                "type":"OperatorNode",
+                                                "symbol":".",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "left":{
+                                                "type":"ClassLiteralExpressionNode",
+                                                "aType":{
+                                                  "type":"QualifiedIdentifierNode",
+                                                  "identifiers":[
+                                                    {
+                                                      "type":"IdentifierNode",
+                                                      "name":"ObjectSizes",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "arrayDepths":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "right":{
+                                                "type":"MethodInvocationNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"getDeclaredField",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "args":{
+                                                  "type":"ExpressionListNode",
+                                                  "arguments":[
+                                                    {
+                                                      "type":"LiteralNode",
+                                                      "node":{
+                                                        "type":"StringLiteralNode",
+                                                        "valueRep":"\"s1\""
+                                                      },
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Field",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"s2Field",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"BinaryExpressionNode",
+                                              "operator":{
+                                                "type":"OperatorNode",
+                                                "symbol":".",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "left":{
+                                                "type":"ClassLiteralExpressionNode",
+                                                "aType":{
+                                                  "type":"QualifiedIdentifierNode",
+                                                  "identifiers":[
+                                                    {
+                                                      "type":"IdentifierNode",
+                                                      "name":"ObjectSizes",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "arrayDepths":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "right":{
+                                                "type":"MethodInvocationNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"getDeclaredField",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "args":{
+                                                  "type":"ExpressionListNode",
+                                                  "arguments":[
+                                                    {
+                                                      "type":"LiteralNode",
+                                                      "node":{
+                                                        "type":"StringLiteralNode",
+                                                        "valueRep":"\"s2\""
+                                                      },
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Field",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"s1OffSet",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"MethodInvocationNode",
+                                              "qualifiedIdentifier":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"unsafe",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"objectFieldOffset",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"QualifiedIdentifierNode",
+                                                    "identifiers":[
+                                                      {
+                                                        "type":"IdentifierNode",
+                                                        "name":"s1Field",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"PrimitiveTypeNode",
+                                          "name":"long",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"s2OffSet",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"MethodInvocationNode",
+                                              "qualifiedIdentifier":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"unsafe",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"objectFieldOffset",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"QualifiedIdentifierNode",
+                                                    "identifiers":[
+                                                      {
+                                                        "type":"IdentifierNode",
+                                                        "name":"s2Field",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"PrimitiveTypeNode",
+                                          "name":"long",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"System",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"out",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"println",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"+",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"StringLiteralNode",
+                                              "valueRep":"\"We are running \""
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"MethodInvocationNode",
+                                            "qualifiedIdentifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"System",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"getProperty",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "args":{
+                                              "type":"ExpressionListNode",
+                                              "arguments":[
+                                                {
+                                                  "type":"LiteralNode",
+                                                  "node":{
+                                                    "type":"StringLiteralNode",
+                                                    "valueRep":"\"java.version\""
+                                                  },
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"System",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"out",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"println",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"+",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"BinaryExpressionNode",
+                                            "operator":{
+                                              "type":"OperatorNode",
+                                              "symbol":"+",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "left":{
+                                              "type":"LiteralNode",
+                                              "node":{
+                                                "type":"StringLiteralNode",
+                                                "valueRep":"\"Object header size is \""
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "right":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"s1OffSet",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"StringLiteralNode",
+                                              "valueRep":"\" bytes.\""
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"System",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"out",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"println",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"+",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"BinaryExpressionNode",
+                                            "operator":{
+                                              "type":"OperatorNode",
+                                              "symbol":"+",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "left":{
+                                              "type":"LiteralNode",
+                                              "node":{
+                                                "type":"StringLiteralNode",
+                                                "valueRep":"\"Object reference size is \""
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "right":{
+                                              "type":"BinaryExpressionNode",
+                                              "operator":{
+                                                "type":"OperatorNode",
+                                                "symbol":"-",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "left":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"s2OffSet",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "right":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"s1OffSet",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"StringLiteralNode",
+                                              "valueRep":"\" bytes.\""
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"import java.lang.reflect.Field; import sun.misc.Unsafe; public class ObjectSizes { String s1; String s2; public static void main(String[] args) throws Exception { Unsafe unsafe; try { Field field = Unsafe.class.getDeclaredField(\"theUnsafe\"); field.setAccessible(true); unsafe = (Unsafe)field.get(null); } catch (Exception ex) { throw new RuntimeException(\"Can't get Unsafe instance.\", ex); } Field s1Field = ObjectSizes.class.getDeclaredField(\"s1\"); Field s2Field = ObjectSizes.class.getDeclaredField(\"s2\"); long s1OffSet = unsafe.objectFieldOffset(s1Field); long s2OffSet = unsafe.objectFieldOffset(s2Field); System.out.println(\"We are running \"+System.getProperty(\"java.version\")); System.out.println(\"Object header size is \"+s1OffSet+\" bytes.\"); System.out.println(\"Object reference size is \"+(s2OffSet-s1OffSet)+\" bytes.\"); } } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "properti":1,
+                  "runtim":1,
+                  "size":5,
+                  "system":4,
+                  "field":16,
+                  "run":1,
+                  "set":6,
+                  "sun":1,
+                  "main":1,
+                  "println":3,
+                  "declar":3,
+                  "object":7,
+                  "version":1,
+                  "offset":2,
+                  "refer":1,
+                  "misc":1,
+                  "true":1,
+                  "header":1,
+                  "unsaf":10,
+                  "lang":1,
+                  "byte":2,
+                  "reflect":1,
+                  "arg":1,
+                  "instanc":1,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"reflect",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Field",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Field",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"RuntimeException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"long",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"unsafe",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"objectFieldOffset",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"s1Field",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"unsafe",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"objectFieldOffset",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"s2Field",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getDeclaredField",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"s2\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"+",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"StringLiteralNode",
+                                "valueRep":"\"Object header size is \""
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"s1OffSet",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\" bytes.\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getDeclaredField",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"s1\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"field",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"setAccessible",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"BooleanLiteralNode",
+                            "valueRep":"true"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getProperty",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"java.version\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"We are running \""
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"System",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getProperty",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"java.version\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getDeclaredField",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"theUnsafe\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"+",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"StringLiteralNode",
+                                "valueRep":"\"Object reference size is \""
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"BinaryExpressionNode",
+                              "operator":{
+                                "type":"OperatorNode",
+                                "symbol":"-",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "left":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"s2OffSet",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "right":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"s1OffSet",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\" bytes.\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"field",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"get",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"NullLiteralNode"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"args",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s1OffSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"unsafe",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"objectFieldOffset",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"s1Field",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"long",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s1",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s2",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"unsafe",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s1Field",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":".",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"ClassLiteralExpressionNode",
+                            "aType":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"ObjectSizes",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepths":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getDeclaredField",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"s1\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Field",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s2Field",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":".",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"ClassLiteralExpressionNode",
+                            "aType":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"ObjectSizes",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepths":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getDeclaredField",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"s2\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Field",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"field",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":".",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"ClassLiteralExpressionNode",
+                            "aType":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"Unsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepths":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getDeclaredField",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"theUnsafe\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Field",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"s2OffSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"unsafe",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"objectFieldOffset",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"s2Field",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"long",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":17348396,
+      "questionId":17335884,
+      "comments":[
+        
+      ],
+      "creationDate":"2013-06-27",
+      "lastActivityDate":"2013-09-23",
+      "lastEditDate":"2013-09-23",
+      "score":9,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":318758,
+        "displayName":"Joni",
+        "reputation":50612
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It doesn't look like it's possible to have an 8-byte object header on a 64-bit JVM. The header consists of a &quot;mark word&quot;, a pointer to the object's class, array size in case of an array, and padding to reach the next 8-byte boundary.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[17348396]-[-1891776651]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It doesn't look like it's possible to have an 8-byte object header on a 64-bit JVM. The header consists of a &quot;mark word&quot;, a pointer to the object's class, array size in case of an array, and padding to reach the next 8-byte boundary.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jvm":1,
+                    "reach":1,
+                    "bit":1,
+                    "size":1,
+                    "pointer":1,
+                    "pad":1,
+                    "object":2,
+                    "array":2,
+                    "boundari":1,
+                    "consist":1,
+                    "header":2,
+                    "quot":2,
+                    "mark":1,
+                    "word":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" ,------------------+------------------+------------------ +---------------. | mark word | klass pointer | array size (opt) | padding | `------------------+------------------+-------------------+---------------' "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[17348396]-[-894853665]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" ,------------------+------------------+------------------ +---------------. | mark word | klass pointer | array size (opt) | padding | `------------------+------------------+-------------------+---------------' "
+                  }
+                ]
+              },
+              "rawText":" ,------------------+------------------+------------------ +---------------. | mark word | klass pointer | array size (opt) | padding | `------------------+------------------+-------------------+---------------' ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "opt":1,
+                    "size":1,
+                    "pointer":1,
+                    "pad":1,
+                    "array":1,
+                    "klass":1,
+                    "mark":1,
+                    "word":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li>The mark word may be used to store native pointers <a href=\"http://mail.openjdk.java.net/pipermail/hotspot-runtime-dev/2008-May/000147.html\">to implement locks and to help GC</a>, so it occupies 8 bytes on a 64-bit JVM.</li> \n <li>With heaps smaller than 32GB the pointer to the object's class <a href=\"https://wikis.oracle.com/display/HotSpotInternals/CompressedOops\">is compressed to 4 bytes</a>.</li> \n <li>The padding may be used to store one of the fields.</li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[17348396]-[-987403367]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li>The mark word may be used to store native pointers <a href=\"http://mail.openjdk.java.net/pipermail/hotspot-runtime-dev/2008-May/000147.html\">to implement locks and to help GC</a>, so it occupies 8 bytes on a 64-bit JVM.</li> \n <li>With heaps smaller than 32GB the pointer to the object's class <a href=\"https://wikis.oracle.com/display/HotSpotInternals/CompressedOops\">is compressed to 4 bytes</a>.</li> \n <li>The padding may be used to store one of the fields.</li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"is",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "openjdk":1,
+                    "jvm":1,
+                    "oop":1,
+                    "runtim":1,
+                    "bit":1,
+                    "pointer":2,
+                    "field":1,
+                    "pipermail":1,
+                    "oracl":1,
+                    "store":2,
+                    "lock":1,
+                    "https":1,
+                    "net":1,
+                    "hotspot":1,
+                    "pad":1,
+                    "object":1,
+                    "dev":1,
+                    "mail":1,
+                    "compress":2,
+                    "implement":1,
+                    "spot":1,
+                    "smaller":1,
+                    "hot":1,
+                    "wiki":1,
+                    "heap":1,
+                    "html":1,
+                    "mark":1,
+                    "href":2,
+                    "http":1,
+                    "occupi":1,
+                    "word":1,
+                    "byte":2,
+                    "intern":1,
+                    "display":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Therefore the object header on a 64-bit system can occupy as little as 8 + 4 = 12 bytes, but not less.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[17348396]-[-669223063]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Therefore the object header on a 64-bit system can occupy as little as 8 + 4 = 12 bytes, but not less.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bit":1,
+                    "system":1,
+                    "object":1,
+                    "header":1,
+                    "occupi":1,
+                    "byte":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":21361349,
+      "questionId":17335884,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-01-26",
+      "lastActivityDate":"2014-01-26",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1204668,
+        "displayName":"NitinS",
+        "reputation":88
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>For 64 bit VMs there are options:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[-261091715]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>For 64 bit VMs there are options:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "vms":1,
+                    "bit":1,
+                    "option":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ol> \n <li>Using compressed pointers via -XX:+UseCompressedOops (enabled by default on Java 6)</li> \n</ol>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[1537099499]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ol> \n <li>Using compressed pointers via -XX:+UseCompressedOops (enabled by default on Java 6)</li> \n</ol>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UseCompressedOops",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oop":1,
+                    "compress":2,
+                    "pointer":1,
+                    "enabl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"UseCompressedOops",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In that case: object headers will be 12 bytes, array headers will be 16 bytes (last 4 byte for size of array)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[1311137672]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In that case: object headers will be 12 bytes, array headers will be 16 bytes (last 4 byte for size of array)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "size":1,
+                    "object":1,
+                    "array":2,
+                    "header":2,
+                    "byte":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>2.Not using compressed pointers via -XX:-UseCompressedOops </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[880783274]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>2.Not using compressed pointers via -XX:-UseCompressedOops </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UseCompressedOops",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oop":1,
+                    "compress":2,
+                    "pointer":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"UseCompressedOops",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In that case: object headers will be 16 bytes, array headers will be 20 bytes (last 4 byte for size of array)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[-2143102107]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In that case: object headers will be 16 bytes, array headers will be 20 bytes (last 4 byte for size of array)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "size":1,
+                    "object":1,
+                    "array":2,
+                    "header":2,
+                    "byte":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The code given above is not VM bit-size independent and will give different results for 32-bit and 64-bit vms. You need to consider bit-ness and compressed oops factors to compute correct size.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[21361349]-[-1003746832]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The code given above is not VM bit-size independent and will give different results for 32-bit and 64-bit vms. You need to consider bit-ness and compressed oops factors to compute correct size.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oop":1,
+                    "bit":4,
+                    "size":2,
+                    "correct":1,
+                    "result":1,
+                    "factor":1,
+                    "code":1,
+                    "comput":1,
+                    "independ":1,
+                    "ness":1,
+                    "vms":1,
+                    "compress":1,
+                    "give":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":28459000,
+      "questionId":17335884,
+      "comments":[
+        
+      ],
+      "creationDate":"2015-02-11",
+      "lastActivityDate":"2015-02-11",
+      "lastEditDate":"2015-02-11",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":4363702,
+        "displayName":"Mike Njong",
+        "reputation":1
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Using compressed pointers via -XX:+UseCompressedOops (enabled by default on Java 6)</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[28459000]-[1573705741]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Using compressed pointers via -XX:+UseCompressedOops (enabled by default on Java 6)</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UseCompressedOops",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oop":1,
+                    "pointer":1,
+                    "blockquot":2,
+                    "compress":2,
+                    "enabl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"UseCompressedOops",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is not true for all version of Java 6. <code>-XX:+UseCompressedOops</code> is enabled by default starting with Java 6u25 </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[28459000]-[876449856]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is not true for all version of Java 6. <code>-XX:+UseCompressedOops</code> is enabled by default starting with Java 6u25 </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UseCompressedOops",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oop":1,
+                    "code":2,
+                    "version":1,
+                    "compress":1,
+                    "true":1,
+                    "enabl":1,
+                    "start":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"UseCompressedOops",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

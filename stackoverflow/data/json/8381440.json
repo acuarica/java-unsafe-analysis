@@ -1,0 +1,978 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":8381440,
+    "title":"How is lazySet in Java's Atomic* classes implemented?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "concurrency"
+    ],
+    "creationDate":"2011-12-05",
+    "lastActivityDate":"2011-12-29",
+    "lastEditDate":"2011-12-29",
+    "score":8,
+    "viewCount":1464,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":879153,
+      "displayName":"PersonalNexus",
+      "reputation":778
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>In <a href=\"http://www.youtube.com/watch?v=DCdGlxBbKU4\"rel=\"nofollow\">this video</a> about <a href=\"http://code.google.com/p/disruptor/\"rel=\"nofollow\">Disruptor</a>, a concurrency framework, the lazySet method of Java's Atomic* classes (e.g. AtomicLong) is mentioned. According to the <a href=\"http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicLong.html#lazySet%28long%29\"rel=\"nofollow\">documentation</a>, this method &quot;eventually sets to the given value&quot;.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[8381440]-[-1655377798]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>In <a href=\"http://www.youtube.com/watch?v=DCdGlxBbKU4\"rel=\"nofollow\">this video</a> about <a href=\"http://code.google.com/p/disruptor/\"rel=\"nofollow\">Disruptor</a>, a concurrency framework, the lazySet method of Java's Atomic* classes (e.g. AtomicLong) is mentioned. According to the <a href=\"http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/AtomicLong.html#lazySet%28long%29\"rel=\"nofollow\">documentation</a>, this method &quot;eventually sets to the given value&quot;.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicLong",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":2,
+                  "concurr":2,
+                  "googl":1,
+                  "util":1,
+                  "document":1,
+                  "youtub":1,
+                  "disruptor":2,
+                  "set":3,
+                  "watch":1,
+                  "rel":3,
+                  "glx":1,
+                  "lazi":2,
+                  "oracl":1,
+                  "eventu":1,
+                  "framework":1,
+                  "doc":2,
+                  "code":1,
+                  "mention":1,
+                  "nofollow":3,
+                  "video":1,
+                  "javas":1,
+                  "class":1,
+                  "quot":2,
+                  "dcd":1,
+                  "atom":4,
+                  "api":1,
+                  "html":1,
+                  "href":3,
+                  "http":3,
+                  "www":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicLong",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Does anybody know what the underlying mechanism is to implement this (specifically on x86 on Windows, if that is relevant). It can't be <a href=\"http://msdn.microsoft.com/en-us/library/aa909159.aspx\"rel=\"nofollow\">InterlockedExchange()</a>, because that would set the value and make sure cache lines are flushed before returning, if I'm not mistaken.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[8381440]-[-1549446749]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Does anybody know what the underlying mechanism is to implement this (specifically on x86 on Windows, if that is relevant). It can't be <a href=\"http://msdn.microsoft.com/en-us/library/aa909159.aspx\"rel=\"nofollow\">InterlockedExchange()</a>, because that would set the value and make sure cache lines are flushed before returning, if I'm not mistaken.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"InterlockedExchange",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "window":1,
+                  "cach":1,
+                  "return":1,
+                  "line":1,
+                  "mistaken":1,
+                  "set":1,
+                  "rel":1,
+                  "exchang":1,
+                  "relev":1,
+                  "librari":1,
+                  "nofollow":1,
+                  "msdn":1,
+                  "specif":1,
+                  "mechan":1,
+                  "implement":1,
+                  "make":1,
+                  "flush":1,
+                  "under":1,
+                  "microsoft":1,
+                  "href":1,
+                  "aspx":1,
+                  "http":1,
+                  "interlock":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"InterlockedExchange",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":8381657,
+      "questionId":8381440,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":10345366,
+          "postId":8381657,
+          "creationDate":"2011-12-05",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":82559,
+            "displayName":"alphazero",
+            "reputation":18914
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"http://gee.cs.oswego.edu/dl/jmm/cookbook.html"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[8381657-cu10345366]-[-2091428636]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"http://gee.cs.oswego.edu/dl/jmm/cookbook.html"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "oswego":1,
+                        "cookbook":1,
+                        "gee":1,
+                        "html":1,
+                        "http":1,
+                        "jmm":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":10345916,
+          "postId":8381657,
+          "creationDate":"2011-12-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":231717,
+            "displayName":"smerlin",
+            "reputation":3486
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"i think the OP asked what kind of memory fencing does lazySet use. That the memory fencing is weaker is obvious."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[8381657-cu10345916]-[-1189482908]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"i think the OP asked what kind of memory fencing does lazySet use. That the memory fencing is weaker is obvious."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "weaker":1,
+                        "fenc":2,
+                        "obvious":1,
+                        "set":1,
+                        "lazi":1,
+                        "kind":1,
+                        "ask":1,
+                        "memori":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-12-05",
+      "lastActivityDate":"2011-12-05",
+      "lastEditDate":"2011-12-05",
+      "score":4,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":82559,
+        "displayName":"alphazero",
+        "reputation":18914
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This basically calls to <code>unsafe.putOrderedLong()</code> which is a native function. Based on the distinction made in unsafe between <em>ordered</em> (lazy) vs <em>volatile</em> (immediate). I am <em>nearly</em> certain that the (lazy) version simply resolves to a <code>storestore</code> while volatile requires the more expensive <code>loadstore</code>. This preserves threading semantics (for the setting thread) without halting all other cores. Eventually the readers will pickup the new value. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8381657]-[-992515039]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This basically calls to <code>unsafe.putOrderedLong()</code> which is a native function. Based on the distinction made in unsafe between <em>ordered</em> (lazy) vs <em>volatile</em> (immediate). I am <em>nearly</em> certain that the (lazy) version simply resolves to a <code>storestore</code> while volatile requires the more expensive <code>loadstore</code>. This preserves threading semantics (for the setting thread) without halting all other cores. Eventually the readers will pickup the new value. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrderedLong",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "resolv":1,
+                    "halt":1,
+                    "reader":1,
+                    "requir":1,
+                    "set":1,
+                    "lazi":2,
+                    "storestor":1,
+                    "eventu":1,
+                    "base":1,
+                    "code":6,
+                    "version":1,
+                    "preserv":1,
+                    "thread":2,
+                    "pickup":1,
+                    "simpli":1,
+                    "order":2,
+                    "function":1,
+                    "distinct":1,
+                    "semant":1,
+                    "loadstor":1,
+                    "put":1,
+                    "unsaf":2,
+                    "expens":1,
+                    "core":1,
+                    "basic":1,
+                    "call":1,
+                    "made":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>[Edit: That said (which is speculative), I am <em>certain</em> that the lazy store uses 'lighter' memory fencing that used by the full volatile -- if the platform provides it. E.g. I don't see what you can't do the same in C#, say for x86]</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8381657]-[260705287]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>[Edit: That said (which is speculative), I am <em>certain</em> that the lazy store uses 'lighter' memory fencing that used by the full volatile -- if the platform provides it. E.g. I don't see what you can't do the same in C#, say for x86]</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fenc":1,
+                    "full":1,
+                    "lazi":1,
+                    "store":1,
+                    "specul":1,
+                    "edit":1,
+                    "lighter":1,
+                    "platform":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Typical use of something like this is a counter (say queue depth). If you hit a volatile on every iteration, it will not be &quot;high performance&quot; as you incur the full cost of cache coherence in each iteration. If your concurrent interaction permits 'fuzzy' readings then your (interacting via memory) then this technique reduces the cost of maintaing total system state (within an acceptable range of error e.g. your reading of queue depth is a bit off.)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8381657]-[-1871272187]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Typical use of something like this is a counter (say queue depth). If you hit a volatile on every iteration, it will not be &quot;high performance&quot; as you incur the full cost of cache coherence in each iteration. If your concurrent interaction permits 'fuzzy' readings then your (interacting via memory) then this technique reduces the cost of maintaing total system state (within an acceptable range of error e.g. your reading of queue depth is a bit off.)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fuzzi":1,
+                    "read":2,
+                    "accept":1,
+                    "cach":1,
+                    "concurr":1,
+                    "bit":1,
+                    "reduc":1,
+                    "system":1,
+                    "state":1,
+                    "queue":2,
+                    "rang":1,
+                    "interact":2,
+                    "hit":1,
+                    "full":1,
+                    "total":1,
+                    "incur":1,
+                    "error":1,
+                    "typic":1,
+                    "cost":2,
+                    "permit":1,
+                    "techniqu":1,
+                    "iter":2,
+                    "perform":1,
+                    "mainta":1,
+                    "counter":1,
+                    "quot":2,
+                    "depth":2,
+                    "coher":1,
+                    "high":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>[p.s./edit: <a href=\"http://mechanical-sympathy.blogspot.com/2011/07/memory-barriersfences.html\"rel=\"nofollow\">discussion of fencing by Distruptor's designers</a>.] </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8381657]-[-804041087]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>[p.s./edit: <a href=\"http://mechanical-sympathy.blogspot.com/2011/07/memory-barriersfences.html\"rel=\"nofollow\">discussion of fencing by Distruptor's designers</a>.] </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "design":1,
+                    "fenc":1,
+                    "barriersf":1,
+                    "rel":1,
+                    "distruptor":1,
+                    "blogspot":1,
+                    "sympathi":1,
+                    "edit":1,
+                    "discuss":1,
+                    "nofollow":1,
+                    "mechan":1,
+                    "html":1,
+                    "href":1,
+                    "http":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":8420284,
+      "questionId":8381440,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-12-07",
+      "lastActivityDate":"2011-12-07",
+      "score":2,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":879153,
+        "displayName":"PersonalNexus",
+        "reputation":778
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Found this description of the implementation in <a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6275329\"rel=\"nofollow\">Bug 6275329</a>:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8420284]-[999863739]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Found this description of the implementation in <a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6275329\"rel=\"nofollow\">Bug 6275329</a>:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "descript":1,
+                    "sun":1,
+                    "rel":1,
+                    "found":1,
+                    "nofollow":1,
+                    "bugdatabas":1,
+                    "bug":4,
+                    "implement":1,
+                    "href":1,
+                    "http":1,
+                    "view":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n <p>...</p> \n <p>For people who like to think of these operations in terms of machine-level barriers on common multiprocessors, lazySet provides a <strong>preceeding store-store barrier</strong> (which is either a no-op or very cheap on current platforms), <strong>but no store-load barrier</strong> (which is usually the expensive part of a volatile-write)</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8420284]-[1008547154]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n <p>...</p> \n <p>For people who like to think of these operations in terms of machine-level barriers on common multiprocessors, lazySet provides a <strong>preceeding store-store barrier</strong> (which is either a no-op or very cheap on current platforms), <strong>but no store-load barrier</strong> (which is usually the expensive part of a volatile-write)</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "cheap":1,
+                    "subsequ":1,
+                    "equival":1,
+                    "reorder":1,
+                    "occur":1,
+                    "barrier":3,
+                    "previous":1,
+                    "set":1,
+                    "term":1,
+                    "lazi":1,
+                    "store":3,
+                    "load":1,
+                    "visibl":1,
+                    "strong":4,
+                    "blockquot":2,
+                    "oper":2,
+                    "guarante":1,
+                    "thread":1,
+                    "common":1,
+                    "machin":1,
+                    "order":1,
+                    "semant":1,
+                    "preceed":1,
+                    "multiprocessor":1,
+                    "part":1,
+                    "expens":1,
+                    "platform":1,
+                    "current":1,
+                    "peopl":1,
+                    "action":1,
+                    "write":4,
+                    "level":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

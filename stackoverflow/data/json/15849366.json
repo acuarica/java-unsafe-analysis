@@ -1,0 +1,1264 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":15849366,
+    "title":"How does Akka implement the JMM-like happens-before relationship?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "akka"
+    ],
+    "creationDate":"2013-04-06",
+    "lastActivityDate":"2013-04-06",
+    "score":5,
+    "viewCount":227,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1118703,
+      "displayName":"Evans Y.",
+      "reputation":1121
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>In the official Akka doc, they disclaim:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[1010086998]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>In the official Akka doc, they disclaim:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "doc":1,
+                  "disclaim":1,
+                  "offici":1,
+                  "akka":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<blockquote> \n <p>To prevent visibility and reordering problems on actors, Akka guarantees the following two &quot;happens before&quot; rules:</p> \n <p>The actor send rule: the send of the message to an actor happens before the receive of that message by the same actor. The actor subsequent processing rule: processing of one message happens before processing of the next message by the same actor.</p> \n</blockquote>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[1070929981]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<blockquote> \n <p>To prevent visibility and reordering problems on actors, Akka guarantees the following two &quot;happens before&quot; rules:</p> \n <p>The actor send rule: the send of the message to an actor happens before the receive of that message by the same actor. The actor subsequent processing rule: processing of one message happens before processing of the next message by the same actor.</p> \n</blockquote>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "actor":6,
+                  "receiv":1,
+                  "subsequ":1,
+                  "reorder":1,
+                  "problem":1,
+                  "process":3,
+                  "prevent":1,
+                  "akka":1,
+                  "rule":3,
+                  "visibl":1,
+                  "blockquot":2,
+                  "guarante":1,
+                  "quot":2,
+                  "messag":4,
+                  "send":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Please ref <a href=\"http://doc.akka.io/docs/akka/2.1.2/general/jmm.html\">the doc</a> for details.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[-2004113153]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Please ref <a href=\"http://doc.akka.io/docs/akka/2.1.2/general/jmm.html\">the doc</a> for details.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "akka":2,
+                  "ref":1,
+                  "doc":3,
+                  "general":1,
+                  "detail":1,
+                  "html":1,
+                  "href":1,
+                  "http":1,
+                  "jmm":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm wondering how does Akka achive this. I just went through the source code(latest at this moment), and I thought there should be a Lock before execute <code>Actor.receive</code>, but I didn't find any locks(I think). Finally, I found a comment for <code>ActorCell.invoke</code>:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[1685083154]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm wondering how does Akka achive this. I just went through the source code(latest at this moment), and I thought there should be a Lock before execute <code>Actor.receive</code>, but I didn't find any locks(I think). Finally, I found a comment for <code>ActorCell.invoke</code>:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "actor":2,
+                  "find":1,
+                  "receiv":1,
+                  "thought":1,
+                  "akka":1,
+                  "achiv":1,
+                  "invok":1,
+                  "lock":2,
+                  "code":5,
+                  "found":1,
+                  "comment":1,
+                  "wonder":1,
+                  "moment":1,
+                  "cell":1,
+                  "latest":1,
+                  "sourc":1,
+                  "execut":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<blockquote> \n <p>//Memory consistency is handled by the Mailbox (reading mailbox status then processing messages, then writing mailbox status</p> \n</blockquote>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[2074860710]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<blockquote> \n <p>//Memory consistency is handled by the Mailbox (reading mailbox status then processing messages, then writing mailbox status</p> \n</blockquote>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "process":1,
+                  "mailbox":3,
+                  "blockquot":2,
+                  "consist":1,
+                  "status":2,
+                  "messag":1,
+                  "handl":1,
+                  "write":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Yeah, the <code>Mailbox.status</code>, I guess this is what I'm looking for. I saw they use <code>Unsafe</code> to access/update the <code>status</code> field, but I just couldn't figure out how can this ensure the memory visibility.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15849366]-[492680196]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Yeah, the <code>Mailbox.status</code>, I guess this is what I'm looking for. I saw they use <code>Unsafe</code> to access/update the <code>status</code> field, but I just couldn't figure out how can this ensure the memory visibility.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "field":1,
+                  "updat":1,
+                  "mailbox":1,
+                  "visibl":1,
+                  "code":6,
+                  "yeah":1,
+                  "status":2,
+                  "figur":1,
+                  "unsaf":1,
+                  "guess":1,
+                  "access":1,
+                  "ensur":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":15851743,
+      "questionId":15849366,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":22590991,
+          "postId":15851743,
+          "creationDate":"2013-04-08",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1118703,
+            "displayName":"Evans Y.",
+            "reputation":1121
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Does this mean actor's internal statuses are guarded by Mailbox.status?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[15851743-cu22590991]-[-1787251410]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Does this mean actor's internal statuses are guarded by Mailbox.status?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":1,
+                        "mailbox":1,
+                        "status":2,
+                        "guard":1,
+                        "intern":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":22593220,
+          "postId":15851743,
+          "creationDate":"2013-04-08",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":958431,
+            "displayName":"Roland Kuhn",
+            "reputation":8179
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"yes, precisely."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[15851743-cu22593220]-[-1168378655]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"yes, precisely."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "precis":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":22748251,
+          "postId":15851743,
+          "creationDate":"2013-04-12",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1118703,
+            "displayName":"Evans Y.",
+            "reputation":1121
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks, Roland! By inspecting the AbstractQueuedSynchronizer, I understand this finally."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[15851743-cu22748251]-[124215913]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks, Roland! By inspecting the AbstractQueuedSynchronizer, I understand this finally."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"AbstractQueuedSynchronizer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "roland":1,
+                        "understand":1,
+                        "inspect":1,
+                        "queu":1,
+                        "synchron":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"AbstractQueuedSynchronizer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-04-06",
+      "lastActivityDate":"2013-04-06",
+      "score":6,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":958431,
+        "displayName":"Roland Kuhn",
+        "reputation":8179
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There are two things to consider: passing the message and correctly publishing the actor\u2019s internal state.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[15851743]-[-2074925620]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There are two things to consider: passing the message and correctly publishing the actor\u2019s internal state.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "actor":1,
+                    "state":1,
+                    "correct":1,
+                    "thing":1,
+                    "publish":1,
+                    "pass":1,
+                    "messag":1,
+                    "intern":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The former is achieved by the mailbox\u2019s MessageQueue implementation which will use volatile writes (for the default ConcurrentLinkedQueue) or locks (for a normal LinkedBlockingQueue) to ensure safe publication of the enqueued item. The actor will synchronize-with the sender by reading the same volatile fields (in the first case) or taking the same locks (in the second), hence all writes prior to the message send happen-before anything within the actor when processing that message.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[15851743]-[179453539]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The former is achieved by the mailbox\u2019s MessageQueue implementation which will use volatile writes (for the default ConcurrentLinkedQueue) or locks (for a normal LinkedBlockingQueue) to ensure safe publication of the enqueued item. The actor will synchronize-with the sender by reading the same volatile fields (in the first case) or taking the same locks (in the second), hence all writes prior to the message send happen-before anything within the actor when processing that message.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MessageQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentLinkedQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"LinkedBlockingQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "actor":2,
+                    "concurr":1,
+                    "prior":1,
+                    "field":1,
+                    "queue":3,
+                    "happen":1,
+                    "process":1,
+                    "normal":1,
+                    "mailbox":1,
+                    "lock":2,
+                    "public":1,
+                    "safe":1,
+                    "block":1,
+                    "achiev":1,
+                    "take":1,
+                    "link":2,
+                    "implement":1,
+                    "sender":1,
+                    "messag":3,
+                    "write":2,
+                    "ensur":1,
+                    "synchron":1,
+                    "item":1,
+                    "send":1,
+                    "enqueu":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MessageQueue",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentLinkedQueue",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"LinkedBlockingQueue",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The actor\u2019s internal state is safely stowed away even when it is rescheduled on a different thread by the mailbox status you have found: after processing a batch of messages (defined by the <code>throughput</code> parameter) the mailbox is set to \u201cnot scheduled\u201d status, which is a volatile write (actually <code>Unsafe.compareAndSetInt()</code>, which has the same semantics). Before the actor starts processing messages it reads the mailbox status using <code>Unsafe.getIntVolatile</code>, which synchronizes-with the previous write, hence all writes done by the actor during the last batch of messages happen-before all reads during this batch.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[15851743]-[-1050664702]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The actor\u2019s internal state is safely stowed away even when it is rescheduled on a different thread by the mailbox status you have found: after processing a batch of messages (defined by the <code>throughput</code> parameter) the mailbox is set to \u201cnot scheduled\u201d status, which is a volatile write (actually <code>Unsafe.compareAndSetInt()</code>, which has the same semantics). Before the actor starts processing messages it reads the mailbox status using <code>Unsafe.getIntVolatile</code>, which synchronizes-with the previous write, hence all writes done by the actor during the last batch of messages happen-before all reads during this batch.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSetInt",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getIntVolatile",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":2,
+                    "actor":3,
+                    "state":1,
+                    "happen":1,
+                    "process":2,
+                    "previous":1,
+                    "set":2,
+                    "stow":1,
+                    "mailbox":3,
+                    "safe":1,
+                    "code":6,
+                    "found":1,
+                    "batch":3,
+                    "thread":1,
+                    "paramet":1,
+                    "compar":1,
+                    "status":3,
+                    "semant":1,
+                    "schedul":1,
+                    "unsaf":2,
+                    "messag":3,
+                    "defin":1,
+                    "throughput":1,
+                    "start":1,
+                    "intern":1,
+                    "write":3,
+                    "reschedul":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can read more about the semantics of the operations involved <a href=\"http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/package-summary.html\">here</a>, keeping in mind that the <code>*Volatile</code> methods on <code>sun.misc.Unsafe</code> obey the same rules as those for <code>Atomic*Reference</code>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[15851743]-[-1911257659]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can read more about the semantics of the operations involved <a href=\"http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/package-summary.html\">here</a>, keeping in mind that the <code>*Volatile</code> methods on <code>sun.misc.Unsafe</code> obey the same rules as those for <code>Atomic*Reference</code>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "method":1,
+                    "involv":1,
+                    "concurr":1,
+                    "util":1,
+                    "summari":1,
+                    "keep":1,
+                    "sun":1,
+                    "oracl":1,
+                    "rule":1,
+                    "doc":2,
+                    "code":6,
+                    "oper":1,
+                    "mind":1,
+                    "refer":1,
+                    "semant":1,
+                    "misc":1,
+                    "javas":1,
+                    "atom":2,
+                    "api":1,
+                    "unsaf":1,
+                    "html":1,
+                    "href":1,
+                    "http":1,
+                    "obey":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

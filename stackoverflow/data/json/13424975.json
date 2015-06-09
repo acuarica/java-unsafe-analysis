@@ -1,0 +1,4096 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":13424975,
+    "title":"Apache HttpClient Multiple polling connections to server strategy",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "apache-httpclient-4.x"
+    ],
+    "creationDate":"2012-11-16",
+    "lastActivityDate":"2014-04-08",
+    "lastEditDate":"2012-11-16",
+    "score":7,
+    "viewCount":1227,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":780694,
+      "displayName":"Saad Farooq",
+      "reputation":3235
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm setting up a Java client for a server that I poll periodically and send messages to based on particular response. The strategy I used for the class is as follows:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13424975]-[-279701806]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm setting up a Java client for a server that I poll periodically and send messages to based on particular response. The strategy I used for the class is as follows:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"is",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "poll":1,
+                  "server":1,
+                  "set":1,
+                  "strategi":1,
+                  "base":1,
+                  "client":1,
+                  "messag":1,
+                  "respons":1,
+                  "period":1,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class PollingClient { private HttpClient client = getHttpClient(); // I get a DefaultHttpClient this way so it's easier to add connection manager and strategy etc to the client later private HttpPost httpPost = getHttpPost(); // same idea, I set headers there public String poll () { List&lt;NameValuePair&gt; formparams = new ArrayList&lt;NameValuePair&gt;(); formparams.add(new BasicNameValuePair(&quot;id&quot;, someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;); httppost.setURI(polluri)); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } public void send(String msg) { List&lt;NameValuePair&gt; formparams = new ArrayList&lt;NameValuePair&gt;(); formparams.add(new BasicNameValuePair(&quot;msg&quot;, msg)); formparams.add(new BasicNameValuePair(&quot;id&quot;, someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, &quot;UTF-8&quot;); httppost.setURI(new URI(URL + &quot;send&quot;)); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13424975]-[534150001]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"PollingClient",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"client",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"MethodInvocationNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"getHttpClient",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "args":{
+                                          "type":"ExpressionListNode",
+                                          "arguments":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"HttpClient",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              {
+                                "text":"// I get a DefaultHttpClient this way so it's easier to add connection manager and strategy etc to the client later private HttpPost httpPost = getHttpPost(); // same idea, I set headers there public String poll () { List<NameValuePair> formparams = new ArrayList<NameValuePair>(); formparams.add(new BasicNameValuePair(\"id\", someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, \"UTF-8\"); httppost.setURI(polluri)); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } public void send(String msg) { List<NameValuePair> formparams = new ArrayList<NameValuePair>(); formparams.add(new BasicNameValuePair(\"msg\", msg)); formparams.add(new BasicNameValuePair(\"id\", someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, \"UTF-8\"); httppost.setURI(new URI(URL + \"send\")); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } } \n"
+                              }
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class PollingClient { private HttpClient client = getHttpClient(); // I get a DefaultHttpClient this way so it's easier to add connection manager and strategy etc to the client later private HttpPost httpPost = getHttpPost(); // same idea, I set headers there public String poll () { List<NameValuePair> formparams = new ArrayList<NameValuePair>(); formparams.add(new BasicNameValuePair(\"id\", someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, \"UTF-8\"); httppost.setURI(polluri)); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } public void send(String msg) { List<NameValuePair> formparams = new ArrayList<NameValuePair>(); formparams.add(new BasicNameValuePair(\"msg\", msg)); formparams.add(new BasicNameValuePair(\"id\", someId)); String responseString = null; try { UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formparams, \"UTF-8\"); httppost.setURI(new URI(URL + \"send\")); httppost.setEntity(formEntity); HttpResponse response = httpclient.execute(httppost); HttpEntity entity = response.getEntity(); if (entity != null) { responseString = EntityUtils.toString(entity); } EntityUtils.consume(entity); } catch (Exception e) { e.printStackTrace(); } } } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "httpclient":2,
+                  "consum":2,
+                  "post":3,
+                  "poll":2,
+                  "trace":2,
+                  "util":4,
+                  "connect":1,
+                  "url":5,
+                  "print":2,
+                  "set":5,
+                  "idea":1,
+                  "uri":3,
+                  "strategi":1,
+                  "array":2,
+                  "easier":1,
+                  "polluri":1,
+                  "encod":4,
+                  "utf":2,
+                  "client":6,
+                  "stack":2,
+                  "header":1,
+                  "msg":3,
+                  "formparam":7,
+                  "pair":7,
+                  "entiti":26,
+                  "form":8,
+                  "respons":10,
+                  "manag":1,
+                  "basic":3,
+                  "httppost":6,
+                  "http":10,
+                  "add":4,
+                  "execut":2,
+                  "list":4,
+                  "send":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HttpClient",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getHttpClient",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"client",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getHttpClient",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HttpClient",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I start a thread that does the polling at around 3 secs. I can send the messages from the main thread based on the polling results. The code works but keeps giving me the following two exceptions but keeps working in between. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13424975]-[743353904]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I start a thread that does the polling at around 3 secs. I can send the messages from the main thread based on the polling results. The code works but keeps giving me the following two exceptions but keeps working in between. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "poll":2,
+                  "result":1,
+                  "main":1,
+                  "work":2,
+                  "sec":1,
+                  "base":1,
+                  "code":1,
+                  "thread":2,
+                  "give":1,
+                  "messag":1,
+                  "start":1,
+                  "except":1,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"java.lang.IllegalStateException: Invalid use of BasicClientConnManager: connection still allocated. Make sure to release the connection before allocating another one. org.apache.http.NoHttpResponseException: The target server failed to respond. "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13424975]-[1681121831]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"IllegalStateException",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": Invalid use of "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"BasicClientConnManager",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": connection still allocated. Make sure to release the connection before allocating another one. "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"NoHttpResponseException",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": The target server failed to respond. "
+                }
+              ]
+            },
+            "rawText":"java.lang.IllegalStateException: Invalid use of BasicClientConnManager: connection still allocated. Make sure to release the connection before allocating another one. org.apache.http.NoHttpResponseException: The target server failed to respond. ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "fail":1,
+                  "conn":1,
+                  "apach":1,
+                  "server":1,
+                  "alloc":2,
+                  "connect":2,
+                  "state":1,
+                  "releas":1,
+                  "invalid":1,
+                  "illeg":1,
+                  "client":1,
+                  "make":1,
+                  "target":1,
+                  "lang":1,
+                  "org":1,
+                  "respons":1,
+                  "manag":1,
+                  "basic":1,
+                  "http":2,
+                  "respond":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"IllegalStateException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"http",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"NoHttpResponseException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"BasicClientConnManager",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I could just mute the exceptions but I want to know what's going on. I was unable to find any solutions via Google. I've tried to consume content, make a new <code>HttpPost</code> object in the send method, stuff like that but nothing has helped so far.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13424975]-[1161505200]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I could just mute the exceptions but I want to know what's going on. I was unable to find any solutions via Google. I've tried to consume content, make a new <code>HttpPost</code> object in the send method, stuff like that but nothing has helped so far.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HttpPost",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "find":1,
+                  "method":1,
+                  "post":1,
+                  "googl":1,
+                  "mute":1,
+                  "object":1,
+                  "code":2,
+                  "help":1,
+                  "stuff":1,
+                  "content":1,
+                  "make":1,
+                  "unabl":1,
+                  "except":1,
+                  "http":1,
+                  "solut":1,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HttpPost",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What's a good strategy for a situation like this. I currently set the the <code>keep-alive</code> header in the <code>HttpPost</code> object in case that matters. Other than that I don't think there is anything I do. I think this has to do with the strategy overall. I don't want to make new object for every connection but I also don't know what level of reuse is recommended. Thanks for any help. Oh.. and this is HttpClient 4.2.2</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13424975]-[34018721]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What's a good strategy for a situation like this. I currently set the the <code>keep-alive</code> header in the <code>HttpPost</code> object in case that matters. Other than that I don't think there is anything I do. I think this has to do with the strategy overall. I don't want to make new object for every connection but I also don't know what level of reuse is recommended. Thanks for any help. Oh.. and this is HttpClient 4.2.2</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HttpPost",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HttpClient",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "recommend":1,
+                  "post":1,
+                  "aliv":1,
+                  "connect":1,
+                  "good":1,
+                  "set":1,
+                  "strategi":2,
+                  "object":2,
+                  "code":4,
+                  "situat":1,
+                  "client":1,
+                  "make":1,
+                  "header":1,
+                  "matter":1,
+                  "http":2,
+                  "level":1,
+                  "reus":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HttpPost",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HttpClient",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":13965496,
+      "questionId":13424975,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-12-20",
+      "lastActivityDate":"2012-12-20",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":222593,
+        "displayName":"seand",
+        "reputation":3678
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This might be overkill, but you might consider having a thread dedicated to http connection handing. This thread would spend sleep until it's time to poll or given a signal to send. The advantage to this is only one connection is ever used. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13965496]-[281692752]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This might be overkill, but you might consider having a thread dedicated to http connection handing. This thread would spend sleep until it's time to poll or given a signal to send. The advantage to this is only one connection is ever used. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "poll":1,
+                    "overkil":1,
+                    "connect":2,
+                    "spend":1,
+                    "hand":1,
+                    "sleep":1,
+                    "thread":2,
+                    "advantag":1,
+                    "dedic":1,
+                    "time":1,
+                    "http":1,
+                    "send":1,
+                    "signal":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":13963839,
+      "questionId":13424975,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-12-20",
+      "lastActivityDate":"2012-12-20",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":455029,
+        "displayName":"sam",
+        "reputation":436
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>These methods aren't synchronized and you're calling from different threads. Is it possible that your code might try to call send() while a poll() operation is ongoing? I imagine HttpClient won't like it if you try to make two requests at the same time using the same object.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13963839]-[2130043313]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>These methods aren't synchronized and you're calling from different threads. Is it possible that your code might try to call send() while a poll() operation is ongoing? I imagine HttpClient won't like it if you try to make two requests at the same time using the same object.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HttpClient",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "poll":1,
+                    "request":1,
+                    "aren":1,
+                    "object":1,
+                    "code":1,
+                    "oper":1,
+                    "thread":1,
+                    "ongo":1,
+                    "client":1,
+                    "make":1,
+                    "imagin":1,
+                    "time":1,
+                    "http":1,
+                    "call":2,
+                    "won":1,
+                    "send":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HttpClient",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>(If this is the problem, a trivial fix would be to add the synchronized keyword to both methods, assuming you don't mind blocking the threads that call them.) </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13963839]-[-195473780]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>(If this is the problem, a trivial fix would be to add the synchronized keyword to both methods, assuming you don't mind blocking the threads that call them.) </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "assum":1,
+                    "problem":1,
+                    "fix":1,
+                    "keyword":1,
+                    "block":1,
+                    "thread":1,
+                    "mind":1,
+                    "call":1,
+                    "add":1,
+                    "trivial":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":13972245,
+      "questionId":13424975,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-12-20",
+      "lastActivityDate":"2012-12-20",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":780694,
+        "displayName":"Saad Farooq",
+        "reputation":3235
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I ended up using the code below. It works... have no idea why.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13972245]-[727672625]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I ended up using the code below. It works... have no idea why.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "idea":1,
+                    "work":1,
+                    "code":1,
+                    "end":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"DefaultHttpClient client = new DefaultHttpClient(); ClientConnectionManager mgr = client.getConnectionManager(); HttpParams params = client.getParams(); client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[13972245]-[-1194816138]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"ConstructorCreatorNode",
+                                "creatorType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"DefaultHttpClient",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "expressionArgs":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"DefaultHttpClient",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"mgr",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"client",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getConnectionManager",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ClientConnectionManager",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"params",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"client",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getParams",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"HttpParams",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"ConstructorCreatorNode",
+                        "creatorType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"DefaultHttpClient",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "expressionArgs":{
+                          "type":"ExpressionListNode",
+                          "arguments":[
+                            {
+                              "type":"ConstructorCreatorNode",
+                              "creatorType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"ThreadSafeClientConnManager",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "expressionArgs":{
+                                "type":"ExpressionListNode",
+                                "arguments":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"params",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  {
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"mgr",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"getSchemeRegistry",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"params",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"DefaultHttpClient client = new DefaultHttpClient(); ClientConnectionManager mgr = client.getConnectionManager(); HttpParams params = client.getParams(); client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()), params); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "conn":1,
+                    "connect":2,
+                    "param":5,
+                    "safe":1,
+                    "thread":1,
+                    "scheme":1,
+                    "client":9,
+                    "mgr":2,
+                    "registri":1,
+                    "manag":3,
+                    "http":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"DefaultHttpClient",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ClientConnectionManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HttpParams",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ThreadSafeClientConnManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getConnectionManager",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getParams",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"mgr",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getSchemeRegistry",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"client",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"DefaultHttpClient",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"DefaultHttpClient",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"mgr",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"client",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getConnectionManager",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ClientConnectionManager",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"params",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"client",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getParams",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"HttpParams",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":22933480,
+      "questionId":13424975,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-04-08",
+      "lastActivityDate":"2014-04-08",
+      "score":1,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":603516,
+        "displayName":"Vadzim",
+        "reputation":5262
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>@Saad's answer was very helpful, but I've experienced delays when trying to load test single url with many concurrent requests.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22933480]-[-1233745356]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>@Saad's answer was very helpful, but I've experienced delays when trying to load test single url with many concurrent requests.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Saad",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "singl":1,
+                    "test":1,
+                    "delay":1,
+                    "saad":1,
+                    "request":1,
+                    "concurr":1,
+                    "url":1,
+                    "load":1,
+                    "help":1,
+                    "answer":1,
+                    "experienc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Here is updated version that resolved the problem.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22933480]-[-449772501]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Here is updated version that resolved the problem.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "resolv":1,
+                    "updat":1,
+                    "problem":1,
+                    "version":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" DefaultHttpClient client = new DefaultHttpClient(); ClientConnectionManager mgr = client.getConnectionManager(); HttpParams params = client.getParams(); int maxConnections = 100; params.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(maxConnections)); params.setIntParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, maxConnections); ThreadSafeClientConnManager conman = new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()); client = new DefaultHttpClient(conman, params); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[22933480]-[-317331789]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" "
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"ConstructorCreatorNode",
+                                "creatorType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"DefaultHttpClient",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "expressionArgs":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"DefaultHttpClient",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"mgr",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"client",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getConnectionManager",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ClientConnectionManager",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"params",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"client",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getParams",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"HttpParams",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"int "
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"maxConnections",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"IntegerLiteralNode",
+                          "valueRep":"100"
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"params",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"setParameter",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"(ConnManagerPNames.MAX"
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_CONNECTIONS_PER_ROUTE",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", "
+                  },
+                  {
+                    "type":"ConstructorCreatorNode",
+                    "creatorType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConnPerRouteBean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "expressionArgs":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"maxConnections",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"); "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"params",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"setIntParameter",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"(ConnManagerPNames.MAX"
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_TOTAL_CONNECTIONS",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"maxConnections",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"); "
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"conman",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"ConstructorCreatorNode",
+                                "creatorType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"ThreadSafeClientConnManager",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "expressionArgs":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"params",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"mgr",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"getSchemeRegistry",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ThreadSafeClientConnManager",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"ConstructorCreatorNode",
+                        "creatorType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"DefaultHttpClient",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "expressionArgs":{
+                          "type":"ExpressionListNode",
+                          "arguments":[
+                            {
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"conman",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"params",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":" DefaultHttpClient client = new DefaultHttpClient(); ClientConnectionManager mgr = client.getConnectionManager(); HttpParams params = client.getParams(); int maxConnections = 100; paramssetParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(maxConnections)); paramssetIntParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, maxConnections); ThreadSafeClientConnManager conman = new ThreadSafeClientConnManager(params, mgr.getSchemeRegistry()); client = new DefaultHttpClient(conman, params); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "paramsset":2,
+                    "conn":5,
+                    "connect":7,
+                    "param":5,
+                    "pname":2,
+                    "total":1,
+                    "safe":2,
+                    "rout":2,
+                    "thread":2,
+                    "paramet":2,
+                    "max":5,
+                    "bean":1,
+                    "conman":2,
+                    "scheme":1,
+                    "client":10,
+                    "mgr":2,
+                    "registri":1,
+                    "manag":6,
+                    "http":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"HttpParams",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConnPerRouteBean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ClientConnectionManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"DefaultHttpClient",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ThreadSafeClientConnManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getConnectionManager",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"client",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getParams",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"mgr",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getSchemeRegistry",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"client",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"DefaultHttpClient",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"DefaultHttpClient",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"mgr",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"client",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getConnectionManager",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ClientConnectionManager",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"params",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"client",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getParams",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"HttpParams",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"conman",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"ThreadSafeClientConnManager",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"params",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"mgr",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"getSchemeRegistry",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ThreadSafeClientConnManager",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

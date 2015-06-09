@@ -1,0 +1,1775 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":8417777,
+    "title":"How to encrypt using a X509 public cert with Android?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "android",
+      "encryption",
+      "x509"
+    ],
+    "creationDate":"2011-12-07",
+    "lastActivityDate":"2011-12-07",
+    "lastEditDate":"2011-12-07",
+    "score":2,
+    "viewCount":1796,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1085930,
+      "displayName":"Chris",
+      "reputation":13
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I am trying to encrypt a text file using a .pfx certificate file using :</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[8417777]-[-309400917]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I am trying to encrypt a text file using a .pfx certificate file using :</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "certif":1,
+                  "encrypt":1,
+                  "text":1,
+                  "file":2,
+                  "pfx":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public void EncryptUsingPublicKey(File in, File out, File publicKeyFile) throws IOException, GeneralSecurityException { byte[] encodedKey = new byte[(int)publicKeyFile.length()]; new FileInputStream(publicKeyFile).read(encodedKey); // create public key X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedKey); KeyFactory kf = KeyFactory.getInstance(&quot;RSA&quot;); PublicKey pk = kf.generatePublic(publicKeySpec); FileInputStream is = new FileInputStream(in); Cipher pkCipher = Cipher.getInstance(&quot;RSA&quot;); pkCipher.init(Cipher.ENCRYPT_MODE, pk); CipherOutputStream os = new CipherOutputStream(new FileOutputStream(out), pkCipher); copy(is, os); os.close(); } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[8417777]-[-2048367655]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"EncryptUsingPublicKey",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "parameters":{
+                      "type":"FormalParameterDeclsNode",
+                      "modifiers":[
+                        
+                      ],
+                      "parameterType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"File",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "nextDeclarator":{
+                        "type":"AdditionalFormalParameterDeclNode",
+                        "variableDeclarator":{
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"in",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ]
+                        },
+                        "formalParameterDeclarator":{
+                          "type":"FormalParameterDeclsNode",
+                          "modifiers":[
+                            
+                          ],
+                          "parameterType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"File",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "nextDeclarator":{
+                            "type":"AdditionalFormalParameterDeclNode",
+                            "variableDeclarator":{
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"out",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ]
+                            },
+                            "formalParameterDeclarator":{
+                              "type":"FormalParameterDeclsNode",
+                              "modifiers":[
+                                
+                              ],
+                              "parameterType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"File",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "nextDeclarator":{
+                                "type":"AdditionalFormalParameterDeclNode",
+                                "variableDeclarator":{
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"publicKeyFile",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "thrownExceptions":{
+                    "type":"ThrownExceptionsNode",
+                    "qualifiedIdentifierList":{
+                      "type":"QualifiedIdentifierListNode",
+                      "qualifiedNames":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"IOException",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"GeneralSecurityException",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"encodedKey",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"ArrayExpressionCreatorNode",
+                                    "creatorType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"byte",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "expressionDepth":[
+                                      {
+                                        "type":"DimExpressionNode",
+                                        "argument":{
+                                          "type":"CastExpressionNode",
+                                          "aType":{
+                                            "type":"PrimitiveTypeNode",
+                                            "name":"int",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "argument":{
+                                            "type":"MethodInvocationNode",
+                                            "qualifiedIdentifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"publicKeyFile",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"length",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "args":{
+                                              "type":"ExpressionListNode",
+                                              "arguments":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"ArrayTypeNode",
+                                "typeNode":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"byte",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "depth":[
+                                  {
+                                    "type":"ArrayDimensionNode",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":".",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"FileInputStream",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"publicKeyFile",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"read",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"encodedKey",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            {
+                              "text":"// create public key X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedKey); KeyFactory kf = KeyFactory.getInstance(\"RSA\"); PublicKey pk = kf.generatePublic(publicKeySpec); FileInputStream is = new FileInputStream(in); Cipher pkCipher = Cipher.getInstance(\"RSA\"); pkCipher.init(Cipher.ENCRYPT_MODE, pk); CipherOutputStream os = new CipherOutputStream(new FileOutputStream(out), pkCipher); copy(is, os); os.close(); } \n"
+                            }
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public void EncryptUsingPublicKey(File in, File out, File publicKeyFile) throws IOException, GeneralSecurityException { byte[] encodedKey = new byte[(int)publicKeyFile.length()]; new FileInputStream(publicKeyFile).read(encodedKey); // create public key X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(encodedKey); KeyFactory kf = KeyFactory.getInstance(\"RSA\"); PublicKey pk = kf.generatePublic(publicKeySpec); FileInputStream is = new FileInputStream(in); Cipher pkCipher = Cipher.getInstance(\"RSA\"); pkCipher.init(Cipher.ENCRYPT_MODE, pk); CipherOutputStream os = new CipherOutputStream(new FileOutputStream(out), pkCipher); copy(is, os); os.close(); } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "rsa":2,
+                  "encrypt":2,
+                  "secur":1,
+                  "factori":2,
+                  "key":15,
+                  "encod":5,
+                  "cipher":8,
+                  "general":1,
+                  "stream":6,
+                  "spec":4,
+                  "mode":1,
+                  "generat":1,
+                  "file":10,
+                  "length":1,
+                  "ioexcept":1,
+                  "output":3,
+                  "close":1,
+                  "creat":1,
+                  "init":1,
+                  "input":3,
+                  "copi":1,
+                  "instanc":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"File",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"FileInputStream",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"byte",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"publicKeyFile",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"length",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"read",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"encodedKey",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"in",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"out",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"publicKeyFile",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"encodedKey",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ArrayExpressionCreatorNode",
+                          "creatorType":{
+                            "type":"PrimitiveTypeNode",
+                            "name":"byte",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionDepth":[
+                            {
+                              "type":"DimExpressionNode",
+                              "argument":{
+                                "type":"CastExpressionNode",
+                                "aType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "argument":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"publicKeyFile",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"length",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "arrayDepth":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ArrayTypeNode",
+                      "typeNode":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"byte",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "depth":[
+                        {
+                          "type":"ArrayDimensionNode",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have two problems:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[8417777]-[-1788737092]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have two problems:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "problem":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ol> \n <li>Where should I store the .pfx file on the device?</li> \n <li>Is this function correct?</li> \n</ol>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[8417777]-[481787782]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ol> \n <li>Where should I store the .pfx file on the device?</li> \n <li>Is this function correct?</li> \n</ol>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "correct":1,
+                  "store":1,
+                  "function":1,
+                  "devic":1,
+                  "file":1,
+                  "pfx":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":8417991,
+      "questionId":8417777,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":10399474,
+          "postId":8417991,
+          "creationDate":"2011-12-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1085930,
+            "displayName":"Chris",
+            "reputation":13
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks for this i will check out protecle."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[8417991-cu10399474]-[1987985987]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks for this i will check out protecle."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "protecl":1,
+                        "check":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":10400887,
+          "postId":8417991,
+          "creationDate":"2011-12-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1085930,
+            "displayName":"Chris",
+            "reputation":13
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I used portecle to expert the .cer (i choose Export &gt; Head Certifcate and DER Encoded) and now get the error java.lang.IllegalArgumentException: Bad sequence size: 3 But X509CertificateStructure does nto seem to exists? I have been reading this http://bouncy-castle.1462172.n4.nabble.com/J2ME-SubjectPublicKeyInfo-Bad-sequence-size-td1467139.html"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[8417991-cu10400887]-[-995290817]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I used portecle to expert the .cer (i choose Export &gt; Head Certifcate and DER Encoded) and now get the error java.lang.IllegalArgumentException: Bad sequence size: 3 But X509CertificateStructure does nto seem to exists? I have been reading this http://bouncy-castle.1462172.n4.nabble.com/J2ME-SubjectPublicKeyInfo-Bad-sequence-size-td1467139.html"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"java",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"lang",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"IllegalArgumentException",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"X509CertificateStructure",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"SubjectPublicKeyInfo",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "castl":1,
+                        "read":1,
+                        "subject":1,
+                        "size":2,
+                        "exist":1,
+                        "head":1,
+                        "certif":1,
+                        "der":1,
+                        "nto":1,
+                        "bad":2,
+                        "info":1,
+                        "structur":1,
+                        "bounci":1,
+                        "key":1,
+                        "expert":1,
+                        "export":1,
+                        "encod":1,
+                        "portecl":1,
+                        "error":1,
+                        "sequenc":2,
+                        "illeg":1,
+                        "choos":1,
+                        "nabbl":1,
+                        "cer":1,
+                        "lang":1,
+                        "certifc":1,
+                        "html":1,
+                        "http":1,
+                        "argument":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"java",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"lang",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"IllegalArgumentException",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"X509CertificateStructure",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"SubjectPublicKeyInfo",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-12-07",
+      "lastActivityDate":"2011-12-07",
+      "score":0,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":150978,
+        "displayName":"Robert",
+        "reputation":12215
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I don't think that your code will work. PFX files are internally AFAIR PKCS#12 files with can contain multiple certificates and keys. The X509EncodedKeySpec you are using requires to have exactly one certificate in a .CER file (DER/binary format).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8417991]-[326153158]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I don't think that your code will work. PFX files are internally AFAIR PKCS#12 files with can contain multiple certificates and keys. The X509EncodedKeySpec you are using requires to have exactly one certificate in a .CER file (DER/binary format).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"X509EncodedKeySpec",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "format":1,
+                    "requir":1,
+                    "certif":2,
+                    "der":1,
+                    "binari":1,
+                    "work":1,
+                    "pkcs":1,
+                    "key":2,
+                    "code":1,
+                    "afair":1,
+                    "encod":1,
+                    "spec":1,
+                    "file":3,
+                    "pfx":1,
+                    "cer":1,
+                    "multipl":1,
+                    "intern":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"X509EncodedKeySpec",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Therefore you have the following two options: </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8417991]-[-1509525690]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Therefore you have the following two options: </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "option":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ol> \n <li>Extract the certificate from the PFX file as CER file (e.g. with the GUI tool <a href=\"http://portecle.sourceforge.net/\"rel=\"nofollow\">portecle</a>) or</li> \n <li>Try to read the PFX file as a PKCS#12 KeyStore at it is presented here: <a href=\"http://stackoverflow.com/questions/3614239/pkcs12-java-keystore-from-ca-and-user-certificate-in-java\">PKCS12 Java Keystore from CA and User certificate in java</a></li> \n</ol>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8417991]-[-108567410]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ol> \n <li>Extract the certificate from the PFX file as CER file (e.g. with the GUI tool <a href=\"http://portecle.sourceforge.net/\"rel=\"nofollow\">portecle</a>) or</li> \n <li>Try to read the PFX file as a PKCS#12 KeyStore at it is presented here: <a href=\"http://stackoverflow.com/questions/3614239/pkcs12-java-keystore-from-ca-and-user-certificate-in-java\">PKCS12 Java Keystore from CA and User certificate in java</a></li> \n</ol>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"KeyStore",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sourceforg":1,
+                    "read":1,
+                    "question":1,
+                    "keystor":2,
+                    "tool":1,
+                    "certif":3,
+                    "present":1,
+                    "rel":1,
+                    "store":1,
+                    "pkcs":3,
+                    "net":1,
+                    "key":1,
+                    "stackoverflow":1,
+                    "portecl":2,
+                    "nofollow":1,
+                    "file":3,
+                    "pfx":2,
+                    "cer":1,
+                    "href":2,
+                    "http":2,
+                    "gui":1,
+                    "user":2,
+                    "extract":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"KeyStore",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In the end you can include the PFX/CER file as resource into your andoid app: <a href=\"http://stackoverflow.com/questions/1851634/load-file-from-resource\">Load file from resource</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[8417991]-[1059260147]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In the end you can include the PFX/CER file as resource into your andoid app: <a href=\"http://stackoverflow.com/questions/1851634/load-file-from-resource\">Load file from resource</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":1,
+                    "resourc":3,
+                    "load":2,
+                    "includ":1,
+                    "stackoverflow":1,
+                    "app":1,
+                    "end":1,
+                    "file":3,
+                    "pfx":1,
+                    "cer":1,
+                    "href":1,
+                    "http":1,
+                    "andoid":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

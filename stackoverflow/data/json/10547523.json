@@ -1,0 +1,2413 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":10547523,
+    "title":"Configure HAProxy for rabbitmq",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":13737067,
+        "postId":10547523,
+        "creationDate":"2012-05-15",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":489888,
+          "displayName":"Steve Martin",
+          "reputation":1119
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Ahh, just looked more closely at your HAP config. You have both servers configured as 'backup'. Will post a suggestion in the answer..."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10547523-cu13737067]-[-58566691]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Ahh, just looked more closely at your HAP config. You have both servers configured as 'backup'. Will post a suggestion in the answer..."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "post":1,
+                      "ahh":1,
+                      "backup":1,
+                      "server":1,
+                      "suggest":1,
+                      "look":1,
+                      "config":1,
+                      "configur":1,
+                      "hap":1,
+                      "answer":1,
+                      "close":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":13730018,
+        "postId":10547523,
+        "creationDate":"2012-05-15",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":663660,
+          "displayName":"Anand Soni",
+          "reputation":2461
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"steve martin. thanks for reply. My HAproxy server is able to connect both the Rabbitmq server. My goal is the connection should be managed by HAProxy. e.g if I have 2 rabbit server behind HAProxy and publish 1000 messages then 500 msg should go in rabbit1 and 500 msg should go in remain. And if I add rabbitmq server dynamically in HAProxy server HAP should distribute among all the rabbit server. Currently what I am suffering is all 1000 msg goes in rabbit1 and not in both."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10547523-cu13730018]-[-192988863]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"steve martin. thanks for reply. My HAproxy server is able to connect both the Rabbitmq server. My goal is the connection should be managed by HAProxy. e.g if I have 2 rabbit server behind HAProxy and publish 1000 messages then 500 msg should go in rabbit1 and 500 msg should go in remain. And if I add rabbitmq server dynamically in HAProxy server HAP should distribute among all the rabbit server. Currently what I am suffering is all 1000 msg goes in rabbit1 and not in both."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "martin":1,
+                      "rabbitmq":2,
+                      "haproxi":4,
+                      "server":6,
+                      "connect":2,
+                      "dynam":1,
+                      "goal":1,
+                      "steve":1,
+                      "publish":1,
+                      "hap":1,
+                      "remain":1,
+                      "repli":1,
+                      "msg":3,
+                      "messag":1,
+                      "manag":1,
+                      "suffer":1,
+                      "distribut":1,
+                      "add":1,
+                      "rabbit":4
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":13726139,
+        "postId":10547523,
+        "creationDate":"2012-05-15",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":489888,
+          "displayName":"Steve Martin",
+          "reputation":1119
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"When you say that it works but messages are only published on one server, surely this is an indication of it not working? From the HAProxy machine can you make an AMQP connection to BOTH servers? I note that they are on different networks, can you post a screen grab of the stats page so that we can see what HAProxy is doing. Incidentally, what is your goal here? Using HAProxy to RR messages to different servers if something that could probably be better managed through a fanout exchange."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10547523-cu13726139]-[-1336771996]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"When you say that it works but messages are only published on one server, surely this is an indication of it not working? From the HAProxy machine can you make an AMQP connection to BOTH servers? I note that they are on different networks, can you post a screen grab of the stats page so that we can see what HAProxy is doing. Incidentally, what is your goal here? Using HAProxy to RR messages to different servers if something that could probably be better managed through a fanout exchange."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "incident":1,
+                      "network":1,
+                      "post":1,
+                      "haproxi":3,
+                      "server":3,
+                      "connect":1,
+                      "sure":1,
+                      "amqp":1,
+                      "page":1,
+                      "stat":1,
+                      "exchang":1,
+                      "goal":1,
+                      "work":2,
+                      "publish":1,
+                      "indic":1,
+                      "machin":1,
+                      "note":1,
+                      "screen":1,
+                      "fanout":1,
+                      "make":1,
+                      "grab":1,
+                      "messag":2,
+                      "manag":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "load-balancing",
+      "rabbitmq",
+      "haproxy",
+      "round-robin"
+    ],
+    "creationDate":"2012-05-11",
+    "lastActivityDate":"2014-10-07",
+    "lastEditDate":"2012-05-16",
+    "score":2,
+    "viewCount":4663,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":663660,
+      "displayName":"Anand Soni",
+      "reputation":2461
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I want to use HAProxy as a load balancer. I want to put two rabbitmq server behind haproxy. Both the rabbitmq server are on different instance of EC2. I have configure HAProxy server by following <a href=\"http://www.joshdevins.net/2010/04/16/rabbitmq-ha-testing-with-haproxy/\"rel=\"nofollow\">this reference</a>. I works but the problem is messages are not published in roundrobin pattern. Messages are publish only on one server. Is there any different configuration for my requirement?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[-888120786]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I want to use HAProxy as a load balancer. I want to put two rabbitmq server behind haproxy. Both the rabbitmq server are on different instance of EC2. I have configure HAProxy server by following <a href=\"http://www.joshdevins.net/2010/04/16/rabbitmq-ha-testing-with-haproxy/\"rel=\"nofollow\">this reference</a>. I works but the problem is messages are not published in roundrobin pattern. Messages are publish only on one server. Is there any different configuration for my requirement?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "balanc":1,
+                  "test":1,
+                  "joshdevin":1,
+                  "rabbitmq":3,
+                  "haproxi":4,
+                  "server":4,
+                  "pattern":1,
+                  "problem":1,
+                  "roundrobin":1,
+                  "requir":1,
+                  "rel":1,
+                  "load":1,
+                  "configur":2,
+                  "work":1,
+                  "net":1,
+                  "publish":2,
+                  "nofollow":1,
+                  "refer":1,
+                  "put":1,
+                  "messag":2,
+                  "href":1,
+                  "http":1,
+                  "instanc":1,
+                  "www":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>My configureation in /etc/haproxy/haproxy.cfg</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[1451329756]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>My configureation in /etc/haproxy/haproxy.cfg</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "configur":1,
+                  "cfg":1,
+                  "haproxi":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"listen rabbitmq 0.0.0.0:5672 mode tcp stats enable balance roundrobin option tcplog no option clitcpka no option srvtcpka server rabbit01 46.XX.XX.XX:5672 check server rabbit02 176.XX.XX.XX:5672 check listen web-service *:80 mode http balance roundrobin option httpchk HEAD / HTTP/1.0 option httpclose option forwardfor option httpchk OPTIONS /health_check.html stats enable stats refresh 10s stats hide-version stats scope . stats uri /lb?stats stats realm LB2\\ Statistics stats auth admin:Adm1nn "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[10547523]-[1901323536]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"listen rabbitmq 0.0.0.0:5672 mode tcp stats enable balance roundrobin option tcplog no option clitcpka no option srvtcpka server rabbit01 46.XX.XX.XX:5672 check server rabbit02 176.XX.XX.XX:5672 check listen web-service *:80 mode http balance roundrobin option httpchk HEAD / HTTP/1.0 option httpclose option forwardfor option httpchk OPTIONS /"
+                },
+                {
+                  "type":"IdentifierNode",
+                  "name":"health_check",
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":".html stats enable stats refresh 10s stats hide-version stats scope . stats uri /lb?stats stats realm LB2\\ Statistics stats auth admin:Adm1nn "
+                }
+              ]
+            },
+            "rawText":"listen rabbitmq 0.0.0.0:5672 mode tcp stats enable balance roundrobin option tcplog no option clitcpka no option srvtcpka server rabbit01 46.XX.XX.XX:5672 check server rabbit02 176.XX.XX.XX:5672 check listen web-service *:80 mode http balance roundrobin option httpchk HEAD / HTTP/1.0 option httpclose option forwardfor option httpchk OPTIONS /health_check.html stats enable stats refresh 10s stats hide-version stats scope . stats uri /lb?stats stats realm LB2\\ Statistics stats auth admin:Adm1nn ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "health":1,
+                  "balanc":2,
+                  "admin":1,
+                  "refresh":1,
+                  "rabbitmq":1,
+                  "server":2,
+                  "auth":1,
+                  "scope":1,
+                  "roundrobin":2,
+                  "head":1,
+                  "stat":9,
+                  "uri":1,
+                  "option":8,
+                  "clitcpka":1,
+                  "statist":1,
+                  "adm":1,
+                  "web":1,
+                  "srvtcpka":1,
+                  "version":1,
+                  "httpchk":2,
+                  "listen":2,
+                  "check":3,
+                  "hide":1,
+                  "tcp":1,
+                  "forwardfor":1,
+                  "httpclose":1,
+                  "mode":2,
+                  "enabl":2,
+                  "realm":1,
+                  "html":1,
+                  "tcplog":1,
+                  "http":2,
+                  "servic":1,
+                  "rabbit":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><b>Update:</b></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[-1799407757]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><b>Update:</b></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "updat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have made some R&amp;D on this and found that HAProxy is round robin the connection on the rabbitmq server. for ex: if i request for 10 connections then it will round robin the 10 connection over my 2 rabbitmq servers and publish the message. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[1441694582]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have made some R&amp;D on this and found that HAProxy is round robin the connection on the rabbitmq server. for ex: if i request for 10 connections then it will round robin the 10 connection over my 2 rabbitmq servers and publish the message. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "rabbitmq":2,
+                  "haproxi":1,
+                  "request":1,
+                  "server":2,
+                  "robin":2,
+                  "connect":3,
+                  "amp":1,
+                  "publish":1,
+                  "found":1,
+                  "round":2,
+                  "messag":1,
+                  "made":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>But the problem is I want to round robin the messages, not connection it should be manage by HAProxy server. i.e if i send 1000 msg at a time to HAProxy then 500 msg should go to rabbit server1 and 500 msg should go to rabbit server2. What should be the configuration that i have to follow?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[657106427]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>But the problem is I want to round robin the messages, not connection it should be manage by HAProxy server. i.e if i send 1000 msg at a time to HAProxy then 500 msg should go to rabbit server1 and 500 msg should go to rabbit server2. What should be the configuration that i have to follow?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "haproxi":2,
+                  "server":3,
+                  "robin":1,
+                  "connect":1,
+                  "problem":1,
+                  "configur":1,
+                  "round":1,
+                  "msg":3,
+                  "time":1,
+                  "messag":1,
+                  "manag":1,
+                  "rabbit":2,
+                  "follow":1,
+                  "send":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><b>Update:</b></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[-1799407757]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><b>Update:</b></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "updat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have also test with leastconn in balancing but HAProxy behavior in unexpected. I have posted that question on <a href=\"http://serverfault.com/questions/388801/unexpected-behaviour-when-dynamically-add-node-in-haproxy-server\">serverfault.com</a> </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10547523]-[1572811074]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have also test with leastconn in balancing but HAProxy behavior in unexpected. I have posted that question on <a href=\"http://serverfault.com/questions/388801/unexpected-behaviour-when-dynamically-add-node-in-haproxy-server\">serverfault.com</a> </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "balanc":1,
+                  "question":2,
+                  "post":1,
+                  "test":1,
+                  "haproxi":2,
+                  "server":1,
+                  "serverfault":2,
+                  "dynam":1,
+                  "leastconn":1,
+                  "unexpect":2,
+                  "behaviour":1,
+                  "node":1,
+                  "behavior":1,
+                  "href":1,
+                  "http":1,
+                  "add":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":10603955,
+      "questionId":10547523,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":13751884,
+          "postId":10603955,
+          "creationDate":"2012-05-16",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":489888,
+            "displayName":"Steve Martin",
+            "reputation":1119
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"What does the HAP stats page say about the connections it's making to your Rabbit servers?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[10603955-cu13751884]-[1245180626]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"What does the HAP stats page say about the connections it's making to your Rabbit servers?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "server":1,
+                        "connect":1,
+                        "page":1,
+                        "stat":1,
+                        "hap":1,
+                        "make":1,
+                        "rabbit":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":13737266,
+          "postId":10603955,
+          "creationDate":"2012-05-15",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":489888,
+            "displayName":"Steve Martin",
+            "reputation":1119
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Oh, and also get rid of 'option forwardfor' as this is only really meaningful for http"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[10603955-cu13737266]-[937703654]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Oh, and also get rid of 'option forwardfor' as this is only really meaningful for http"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "rid":1,
+                        "option":1,
+                        "meaning":1,
+                        "forwardfor":1,
+                        "http":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":13753155,
+          "postId":10603955,
+          "creationDate":"2012-05-16",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":663660,
+            "displayName":"Anand Soni",
+            "reputation":2461
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"yes its making rabbit connection."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[10603955-cu13753155]-[-291960786]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"yes its making rabbit connection."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "rabbit":1,
+                        "make":1,
+                        "connect":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":13750663,
+          "postId":10603955,
+          "creationDate":"2012-05-16",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":663660,
+            "displayName":"Anand Soni",
+            "reputation":2461
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"thanks steve martine. have tried with it. but fails to achieve goal. I have updated the config code in Question."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[10603955-cu13750663]-[1633117865]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"thanks steve martine. have tried with it. but fails to achieve goal. I have updated the config code in Question."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "fail":1,
+                        "martin":1,
+                        "updat":1,
+                        "goal":1,
+                        "steve":1,
+                        "config":1,
+                        "code":1,
+                        "achiev":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-05-15",
+      "lastActivityDate":"2012-05-15",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":489888,
+        "displayName":"Steve Martin",
+        "reputation":1119
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Remove the 'backup' from the server definitions. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10603955]-[-1203639590]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Remove the 'backup' from the server definitions. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "definit":1,
+                    "server":1,
+                    "backup":1,
+                    "remov":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A backup server is one that will be used when all others are down. Specifying all your servers as <code>backup</code> without using <code>option allbackups</code> will likely have untoward consequences.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10603955]-[-1890404302]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A backup server is one that will be used when all others are down. Specifying all your servers as <code>backup</code> without using <code>option allbackups</code> will likely have untoward consequences.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "backup":2,
+                    "server":2,
+                    "option":1,
+                    "code":4,
+                    "allbackup":1,
+                    "consequ":1,
+                    "untoward":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Change the relevant portion of your config to the following:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[10603955]-[1463770379]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Change the relevant portion of your config to the following:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "config":1,
+                    "portion":1,
+                    "chang":1,
+                    "relev":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"listen rebbitmq *:5672 mode tcp balance roundrobin stats enable option forwardfor option tcpka server web2 46.XX.XX.XXX:5672 check inter 5000 server web1 176.XX.XX.XX:5672 check inter 5000 "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[10603955]-[-89554969]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"listen rebbitmq *:5672 mode tcp balance roundrobin stats enable option forwardfor option tcpka server web2 46.XX.XX.XXX:5672 check inter 5000 server web1 176.XX.XX.XX:5672 check inter 5000 "
+                  }
+                ]
+              },
+              "rawText":"listen rebbitmq *:5672 mode tcp balance roundrobin stats enable option forwardfor option tcpka server web2 46.XX.XX.XXX:5672 check inter 5000 server web1 176.XX.XX.XX:5672 check inter 5000 ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "balanc":1,
+                    "server":2,
+                    "roundrobin":1,
+                    "xxx":1,
+                    "stat":1,
+                    "inter":2,
+                    "option":2,
+                    "web":2,
+                    "listen":1,
+                    "check":2,
+                    "tcpka":1,
+                    "tcp":1,
+                    "forwardfor":1,
+                    "mode":1,
+                    "enabl":1,
+                    "rebbitmq":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":13941050,
+      "questionId":10547523,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":19223669,
+          "postId":13941050,
+          "creationDate":"2012-12-18",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":985906,
+            "displayName":"JoshDM",
+            "reputation":2538
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Recommend you elaborate on how to configure the queues in such a fashion."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13941050-cu19223669]-[1075326710]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Recommend you elaborate on how to configure the queues in such a fashion."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "fashion":1,
+                        "recommend":1,
+                        "queue":1,
+                        "configur":1,
+                        "elabor":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-12-18",
+      "lastActivityDate":"2013-03-06",
+      "lastEditDate":"2013-03-06",
+      "score":5,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1914028,
+        "displayName":"Karsten",
+        "reputation":348
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Messages get published to an exchange which will route to a queue.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13941050]-[-1507789527]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Messages get published to an exchange which will route to a queue.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "queue":1,
+                    "exchang":1,
+                    "rout":1,
+                    "publish":1,
+                    "messag":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You probably didn't configure you queues with {&quot;x-ha-policy&quot;,&quot;all&quot;}. Based on the fact that the exchange routing is working on both nodes this is probably all you are missing.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13941050]-[1851056967]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You probably didn't configure you queues with {&quot;x-ha-policy&quot;,&quot;all&quot;}. Based on the fact that the exchange routing is working on both nodes this is probably all you are missing.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "queue":1,
+                    "exchang":1,
+                    "configur":1,
+                    "work":1,
+                    "rout":1,
+                    "miss":1,
+                    "base":1,
+                    "fact":1,
+                    "polici":1,
+                    "quot":4,
+                    "node":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Note: Pre Rabbit 3.0 you would declare a queue with the x-ha-policy argument and it would be mirrored. With rabbit 3.0 you need to apply a policy (ha-mode = all). You can set policies through the api or the api tools (rabbitmqctl, management gui). i.e.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13941050]-[-2109570730]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Note: Pre Rabbit 3.0 you would declare a queue with the x-ha-policy argument and it would be mirrored. With rabbit 3.0 you need to apply a policy (ha-mode = all). You can set policies through the api or the api tools (rabbitmqctl, management gui). i.e.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "pre":1,
+                    "rabbitmqctl":1,
+                    "queue":1,
+                    "tool":1,
+                    "set":1,
+                    "declar":1,
+                    "note":1,
+                    "polici":3,
+                    "mode":1,
+                    "api":2,
+                    "appli":1,
+                    "manag":1,
+                    "mirror":1,
+                    "argument":1,
+                    "gui":1,
+                    "rabbit":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><code>rabbitmqctl set_policy -p '/' MirrorAllQueues '.+' '{&quot;ha-mode&quot;: &quot;all&quot;}'</code></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13941050]-[238114283]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><code>rabbitmqctl set_policy -p '/' MirrorAllQueues '.+' '{&quot;ha-mode&quot;: &quot;all&quot;}'</code></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"set_policy",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MirrorAllQueues",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"JsonObjectNode",
+                    "members":[
+                      {
+                        "type":"JsonMemberNode",
+                        "name":{
+                          "type":"JsonStringNode",
+                          "value":"\"ha-mode\""
+                        },
+                        "value":{
+                          "type":"JsonStringNode",
+                          "value":"\"all\""
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rabbitmqctl":1,
+                    "queue":1,
+                    "set":1,
+                    "code":2,
+                    "polici":1,
+                    "mode":1,
+                    "quot":4,
+                    "mirror":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MirrorAllQueues",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":26240772,
+      "questionId":10547523,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-10-07",
+      "lastActivityDate":"2014-10-07",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":567000,
+        "displayName":"Søren Boisen",
+        "reputation":120
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The AMQP protocol is designed to use <em>persistent</em> connections, meaning you won't get a new connection per AMQP message (to avoid the overhead of constantly reconnecting). This means that a load balancer such as HAProxy will not be effective in balancing out your messages - it can only help with balancing out your <em>connections</em>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[-921615938]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The AMQP protocol is designed to use <em>persistent</em> connections, meaning you won't get a new connection per AMQP message (to avoid the overhead of constantly reconnecting). This means that a load balancer such as HAProxy will not be effective in balancing out your messages - it can only help with balancing out your <em>connections</em>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "balanc":3,
+                    "constant":1,
+                    "design":1,
+                    "haproxi":1,
+                    "connect":3,
+                    "reconnect":1,
+                    "amqp":2,
+                    "effect":1,
+                    "mean":2,
+                    "load":1,
+                    "avoid":1,
+                    "overhead":1,
+                    "persist":1,
+                    "messag":2,
+                    "protocol":1,
+                    "won":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Thus you cannot achieve your stated goal. If, however, your actual goal is to distribute messages evenly to <em>consumers</em> of those RabbitMQ instances, then you can use clustering as Karsten describes or you can use <a href=\"https://www.rabbitmq.com/federation.html\"rel=\"nofollow\">federation</a>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[-2052110630]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Thus you cannot achieve your stated goal. If, however, your actual goal is to distribute messages evenly to <em>consumers</em> of those RabbitMQ instances, then you can use clustering as Karsten describes or you can use <a href=\"https://www.rabbitmq.com/federation.html\"rel=\"nofollow\">federation</a>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "consum":1,
+                    "rabbitmq":1,
+                    "feder":2,
+                    "state":1,
+                    "rel":1,
+                    "goal":2,
+                    "https":1,
+                    "cluster":1,
+                    "nofollow":1,
+                    "achiev":1,
+                    "even":1,
+                    "karsten":1,
+                    "messag":1,
+                    "html":1,
+                    "href":1,
+                    "actual":1,
+                    "distribut":1,
+                    "describ":1,
+                    "rabbit":1,
+                    "instanc":1,
+                    "www":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<h1>Federation setup:</h1>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[-1157077535]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<h1>Federation setup:</h1>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "setup":1,
+                    "feder":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>First you need to enable the federation plugins:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[-2058039806]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>First you need to enable the federation plugins:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "plugin":1,
+                    "feder":1,
+                    "enabl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"rabbitmq-plugins enable rabbitmq_federation rabbitmq-plugins enable rabbitmq_federation_management "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[26240772]-[-2114257974]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"rabbitmq-plugins enable "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"rabbitmq_federation",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" rabbitmq-plugins enable "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"rabbitmq_federation_management",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" "
+                  }
+                ]
+              },
+              "rawText":"rabbitmq-plugins enable rabbitmq_federation rabbitmq-plugins enable rabbitmq_federation_management ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "plugin":2,
+                    "rabbitmq":4,
+                    "feder":2,
+                    "enabl":2,
+                    "manag":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Then for each of your servers log on to the RabbitMQ Web UI as an administrator and go to Admin &gt; &quot;Federation Upstreams&quot; &gt; &quot;Add a new upstream&quot; and add the other server(s) as upstream(s).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[2000431603]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Then for each of your servers log on to the RabbitMQ Web UI as an administrator and go to Admin &gt; &quot;Federation Upstreams&quot; &gt; &quot;Add a new upstream&quot; and add the other server(s) as upstream(s).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "admin":1,
+                    "server":2,
+                    "administr":1,
+                    "feder":1,
+                    "web":1,
+                    "quot":4,
+                    "upstream":3,
+                    "add":2,
+                    "log":1,
+                    "rabbit":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Now you need to define a policy for each exchange/queue you want to be federated. I only managed to get federation working for queues mind you, so I would try that first. Go to Admin &gt; &quot;Policies&quot; &gt; &quot;Add / update a policy&quot; and add a policy that targets the queue(s) you want federated.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26240772]-[-1612266847]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Now you need to define a policy for each exchange/queue you want to be federated. I only managed to get federation working for queues mind you, so I would try that first. Go to Admin &gt; &quot;Policies&quot; &gt; &quot;Add / update a policy&quot; and add a policy that targets the queue(s) you want federated.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "admin":1,
+                    "feder":3,
+                    "queue":3,
+                    "updat":1,
+                    "exchang":1,
+                    "work":1,
+                    "mind":1,
+                    "polici":4,
+                    "quot":4,
+                    "target":1,
+                    "defin":1,
+                    "manag":1,
+                    "add":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

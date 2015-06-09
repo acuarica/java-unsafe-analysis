@@ -1,0 +1,1006 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":7070898,
+    "title":"What is the advantage of using the class Unsafe to write atomics over synchronize blocks?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "atomic",
+      "sun"
+    ],
+    "creationDate":"2011-08-15",
+    "lastActivityDate":"2011-08-15",
+    "score":4,
+    "viewCount":192,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":893576,
+      "displayName":"Anonymice",
+      "reputation":166
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>why java Atomics uses sun Unsafe class rather than using synchronize block/volatile?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7070898]-[-598463815]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>why java Atomics uses sun Unsafe class rather than using synchronize block/volatile?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"rather",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "sun":1,
+                  "block":1,
+                  "atom":1,
+                  "unsaf":1,
+                  "synchron":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":7070951,
+      "questionId":7070898,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":8548842,
+          "postId":7070951,
+          "creationDate":"2011-08-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":785566,
+            "displayName":"Clark Bao",
+            "reputation":1087
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"/@Peter Maybe using multi thread itself is already pushing the language like java to its limit. Perhaps it is too hard to abstract all the functions needed for multi thread in some general utility classes."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7070951-cu8548842]-[234036420]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"/@Peter Maybe using multi thread itself is already pushing the language like java to its limit. Perhaps it is too hard to abstract all the functions needed for multi thread in some general utility classes."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Peter",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "languag":1,
+                        "hard":1,
+                        "util":1,
+                        "peter":1,
+                        "push":1,
+                        "thread":2,
+                        "need":1,
+                        "general":1,
+                        "function":1,
+                        "class":1,
+                        "limit":1,
+                        "multi":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":8546732,
+          "postId":7070951,
+          "creationDate":"2011-08-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Clark, I think Unsafe is not needed in 99% of cases and you should use the classes which utilise the Unsafe class instead. Generally, it only useful to help you understand how using classes work. In rare occasions, using Unsafe is the only way. ;)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7070951-cu8546732]-[-528432071]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Clark, I think Unsafe is not needed in 99% of cases and you should use the classes which utilise the Unsafe class instead. Generally, it only useful to help you understand how using classes work. In rare occasions, using Unsafe is the only way. ;)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Clark",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"instead",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "understand":1,
+                        "work":1,
+                        "clark":1,
+                        "need":1,
+                        "general":1,
+                        "rare":1,
+                        "occas":1,
+                        "class":2,
+                        "utilis":1,
+                        "unsaf":3,
+                        "case":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":8545030,
+          "postId":7070951,
+          "creationDate":"2011-08-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":785566,
+            "displayName":"Clark Bao",
+            "reputation":1087
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Do you think it exposes too much details about low level things?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7070951-cu8545030]-[-727109316]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Do you think it exposes too much details about low level things?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "thing":1,
+                        "expos":1,
+                        "low":1,
+                        "detail":1,
+                        "level":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":8550277,
+          "postId":7070951,
+          "creationDate":"2011-08-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Clark, Multi-threading is built into Java and the concurrency library has been integrated since 2004. I certainly don't consider it pushing Java to the limit. BTW You might like to have a look at the Unsafe class ;) http://www.docjar.com/html/api/sun/misc/Unsafe.java.html"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7070951-cu8550277]-[247786534]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Clark, Multi-threading is built into Java and the concurrency library has been integrated since 2004. I certainly don't consider it pushing Java to the limit. BTW You might like to have a look at the Unsafe class ;) http://www.docjar.com/html/api/sun/misc/Unsafe.java.html"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Clark",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "built":1,
+                        "concurr":1,
+                        "docjar":1,
+                        "btw":1,
+                        "push":1,
+                        "sun":1,
+                        "librari":1,
+                        "integr":1,
+                        "clark":1,
+                        "thread":1,
+                        "misc":1,
+                        "api":1,
+                        "unsaf":2,
+                        "html":2,
+                        "http":1,
+                        "limit":1,
+                        "multi":1,
+                        "www":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":8550337,
+          "postId":7070951,
+          "creationDate":"2011-08-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":785566,
+            "displayName":"Clark Bao",
+            "reputation":1087
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"/@Peter I looked. And no suprise, full of native methods. compareAndSwapObject compareAndSwapInt compareAndSwapLong , How are they different in CPU instructions. If one day CPU changes its behavior of multi-thread, java will also change the APIs I guess."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7070951-cu8550337]-[632167808]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"/@Peter I looked. And no suprise, full of native methods. compareAndSwapObject compareAndSwapInt compareAndSwapLong , How are they different in CPU instructions. If one day CPU changes its behavior of multi-thread, java will also change the APIs I guess."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Peter",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"compareAndSwapObject",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"compareAndSwapInt",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"compareAndSwapLong",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "method":1,
+                        "peter":1,
+                        "look":1,
+                        "full":1,
+                        "object":1,
+                        "thread":1,
+                        "compar":3,
+                        "cpu":2,
+                        "swap":3,
+                        "api":1,
+                        "guess":1,
+                        "behavior":1,
+                        "multi":1,
+                        "day":1,
+                        "supris":1,
+                        "instruct":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-08-15",
+      "lastActivityDate":"2011-08-15",
+      "score":4,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":57695,
+        "displayName":"Peter Lawrey",
+        "reputation":257803
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>synchronization is much more heavy weight.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7070951]-[-1888441574]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>synchronization is much more heavy weight.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "synchron":1,
+                    "weight":1,
+                    "heavi":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The backport of the concurrency library for Java 1.4 uses synchronization however it doesn't perform any where near as well.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7070951]-[1903161421]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The backport of the concurrency library for Java 1.4 uses synchronization however it doesn't perform any where near as well.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "librari":1,
+                    "perform":1,
+                    "backport":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Unsafe gives direct access to the Compare-and-Swap instructions of the CPU.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7070951]-[1747596498]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Unsafe gives direct access to the Compare-and-Swap instructions of the CPU.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "direct":1,
+                    "compar":1,
+                    "cpu":1,
+                    "swap":1,
+                    "unsaf":1,
+                    "access":1,
+                    "instruct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7070943,
+      "questionId":7070898,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-08-15",
+      "lastActivityDate":"2011-08-15",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":335868,
+        "displayName":"Michele",
+        "reputation":3572
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I can think of that the Programmers of the Atomics classes know what they do so they use the low level methodes for better performance. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7070943]-[1601646474]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I can think of that the Programmers of the Atomics classes know what they do so they use the low level methodes for better performance. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "low":1,
+                    "perform":1,
+                    "programm":1,
+                    "class":1,
+                    "atom":1,
+                    "level":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Synchronize is a really heavy tool when doing multithreaded operations. Its way to powerful/blooted for simple locking/mutual exclusion.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7070943]-[1910858950]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Synchronize is a really heavy tool when doing multithreaded operations. Its way to powerful/blooted for simple locking/mutual exclusion.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "exclus":1,
+                    "simpl":1,
+                    "tool":1,
+                    "lock":1,
+                    "mutual":1,
+                    "oper":1,
+                    "multithread":1,
+                    "bloot":1,
+                    "heavi":1,
+                    "power":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

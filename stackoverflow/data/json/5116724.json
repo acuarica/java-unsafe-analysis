@@ -1,0 +1,2621 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":5116724,
+    "title":"Finding OS files corresponding to Java imports. For example, finding source files where only an inner class is imported from another file",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":5742244,
+        "postId":5116724,
+        "creationDate":"2011-02-25",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":61572,
+          "displayName":"Ron",
+          "reputation":1188
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"For classes, call .getEnclosingClass() until you get null (to un-nest). For static imports, the named entity will be a field, method, or nested class (or *). Chop off the last token and use the .getEnclosingClass() un-nester to find the file. I'll add that it's possible to jam multiple classes into one java source file (but only one of them may be public)."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[5116724-cu5742244]-[-998886748]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"For classes, call .getEnclosingClass() until you get null (to un-nest). For static imports, the named entity will be a field, method, or nested class (or *). Chop off the last token and use the .getEnclosingClass() un-nester to find the file. I'll add that it's possible to jam multiple classes into one java source file (but only one of them may be public)."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"getEnclosingClass",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"getEnclosingClass",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "find":1,
+                      "method":1,
+                      "name":1,
+                      "nester":1,
+                      "nest":2,
+                      "field":1,
+                      "import":1,
+                      "chop":1,
+                      "enclos":2,
+                      "token":1,
+                      "class":2,
+                      "file":2,
+                      "entiti":1,
+                      "jam":1,
+                      "call":1,
+                      "multipl":1,
+                      "add":1,
+                      "sourc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "import",
+      "classloader"
+    ],
+    "creationDate":"2011-02-25",
+    "lastActivityDate":"2011-02-26",
+    "lastEditDate":"2011-02-25",
+    "score":0,
+    "viewCount":144,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":329737,
+      "displayName":"Coder",
+      "reputation":600
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I need to find the OS files in the class path corresponding to imports in Java files.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[5116724]-[605617937]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I need to find the OS files in the class path corresponding to imports in Java files.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"path",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "import":1,
+                  "file":2,
+                  "find":1,
+                  "path":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have code which parses java files, obtains their imports and then locates the source files in the class path which correspond to the given import. If no java file is found, it then finds .class files or resources in jars. To accomplish this I use the call below.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[5116724]-[650196326]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have code which parses java files, obtains their imports and then locates the source files in the class path which correspond to the given import. If no java file is found, it then finds .class files or resources in jars. To accomplish this I use the call below.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"path",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"files",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "path":1,
+                  "resourc":1,
+                  "correspond":1,
+                  "code":1,
+                  "found":1,
+                  "pars":1,
+                  "import":1,
+                  "accomplish":1,
+                  "file":4,
+                  "call":1,
+                  "sourc":1,
+                  "jar":1,
+                  "locat":1,
+                  "obtain":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"ClassLoader.getSystemClassLoader().getResource(import) "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[5116724]-[279744764]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"ClassLoader",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getSystemClassLoader",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"()."
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getResource",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"(import) "
+                }
+              ]
+            },
+            "rawText":"ClassLoadergetSystemClassLoader().getResource(import) ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "resourc":1,
+                  "loaderget":1,
+                  "loader":1,
+                  "system":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>To do this successfully I have had to replace <strong>&quot;.&quot;</strong> with <strong>&quot;/&quot;</strong> in the import and append the appropriate extension. For example, to look for java files, I need to append a <strong><em>&quot;.java&quot;</em></strong> to the import string above.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[5116724]-[-1662720846]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>To do this successfully I have had to replace <strong>&quot;.&quot;</strong> with <strong>&quot;/&quot;</strong> in the import and append the appropriate extension. For example, to look for java files, I need to append a <strong><em>&quot;.java&quot;</em></strong> to the import string above.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "success":1,
+                  "strong":6,
+                  "replac":1,
+                  "file":1,
+                  "quot":6,
+                  "extens":1,
+                  "append":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>So &quot;<em>a.b.c</em>&quot; would become &quot;<em>a/b/c.java</em>&quot; and &quot;<em>a/b/c.class</em>&quot; respectively.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[5116724]-[285891406]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>So &quot;<em>a.b.c</em>&quot; would become &quot;<em>a/b/c.java</em>&quot; and &quot;<em>a/b/c.class</em>&quot; respectively.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "quot":6
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Now this works fine and gives me the results I want.The problem comes in when locating nested classes and static imports.For eg. If we have a <code>class A (in package p)</code> which <code>contains an inner class B</code>, and we have an import &quot;<code>import p.A.B;</code>&quot;, and we have the source code for A in the classpath as <code>A.java</code> I can't easily find out that <code>the file corresponding to B is actually A.java</code>. Is there any way to do this without guessing?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[5116724]-[-425818204]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Now this works fine and gives me the results I want.The problem comes in when locating nested classes and static imports.For eg. If we have a <code>class A (in package p)</code> which <code>contains an inner class B</code>, and we have an import &quot;<code>import p.A.B;</code>&quot;, and we have the source code for A in the classpath as <code>A.java</code> I can't easily find out that <code>the file corresponding to B is actually A.java</code>. Is there any way to do this without guessing?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"A",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"B",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ImportDeclarationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"p",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"A",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"B",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "isStatic":false,
+                  "isOnDemand":false,
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "nest":1,
+                  "problem":1,
+                  "result":1,
+                  "work":1,
+                  "classpath":1,
+                  "code":11,
+                  "easili":1,
+                  "import":1,
+                  "class":1,
+                  "file":1,
+                  "quot":2,
+                  "fine":1,
+                  "guess":1,
+                  "sourc":1,
+                  "locat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"p",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"A",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"B",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":5120149,
+      "questionId":5116724,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":5752130,
+          "postId":5120149,
+          "creationDate":"2011-02-26",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":116639,
+            "displayName":"Tom Anderson",
+            "reputation":24473
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Coder: ah. In that case, i have another answer ..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5120149-cu5752130]-[-1560225308]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Coder: ah. In that case, i have another answer ..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Coder",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "coder":1,
+                        "answer":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":5750782,
+          "postId":5120149,
+          "creationDate":"2011-02-26",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":329737,
+            "displayName":"Coder",
+            "reputation":600
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I did not know you could do that. That's interesting information but unfortunately i'm writing this program to compile the program using the minimum set of dependent files and package it in a jar so i don't have access to the compiled files. I'm the one trying to compile them."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5120149-cu5750782]-[-598903305]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I did not know you could do that. That's interesting information but unfortunately i'm writing this program to compile the program using the minimum set of dependent files and package it in a jar so i don't have access to the compiled files. I'm the one trying to compile them."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "program":2,
+                        "depend":1,
+                        "set":1,
+                        "interest":1,
+                        "inform":1,
+                        "file":2,
+                        "compil":3,
+                        "minimum":1,
+                        "jar":1,
+                        "write":1,
+                        "access":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-02-25",
+      "lastActivityDate":"2011-02-25",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":116639,
+        "displayName":"Tom Anderson",
+        "reputation":24473
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Do you have the compiled class files? Class files include the name of the source file from which they were compiled, which is what you need to know. You can see this by running javap on one - the first line says &quot;Compiled from&quot;, and gives the filename. eg:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5120149]-[1233278509]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Do you have the compiled class files? Class files include the name of the source file from which they were compiled, which is what you need to know. You can see this by running javap on one - the first line says &quot;Compiled from&quot;, and gives the filename. eg:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"files",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "filenam":1,
+                    "line":1,
+                    "run":1,
+                    "javap":1,
+                    "includ":1,
+                    "file":3,
+                    "quot":2,
+                    "compil":3,
+                    "sourc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"$ javap java.lang.Character.UnicodeBlock Compiled from &quot;Character.java&quot; public final class java.lang.Character$UnicodeBlock extends java.lang.Character$Subset{ "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[5120149]-[1152361461]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"$ javap "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Character",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"UnicodeBlock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"Compiled from \"Character.java\" "
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"java",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"."
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Character$UnicodeBlock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"extends "
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Character$Subset",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"BlockDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "block":{
+                      "type":"BlockNode",
+                      "statements":[
+                        
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rawText":"$ javap java.lang.Character.UnicodeBlock Compiled from \"Character.java\" public final class java.lang.Character$UnicodeBlock extends java.lang.Character$Subset{ ...\n}",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "charact":4,
+                    "javap":1,
+                    "block":2,
+                    "subset":1,
+                    "unicod":2,
+                    "compil":1,
+                    "lang":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"lang",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Character",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"UnicodeBlock",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"lang",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Character$UnicodeBlock",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"lang",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Character$Subset",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You only get the filename, not the full path, but you can do a bit of string manipulation to construct it. The cases you need to think about are:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5120149]-[1946364004]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You only get the filename, not the full path, but you can do a bit of string manipulation to construct it. The cases you need to think about are:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bit":1,
+                    "path":1,
+                    "filenam":1,
+                    "full":1,
+                    "manipul":1,
+                    "case":1,
+                    "construct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ol> \n <li>The filename matches the last part of the fully-qualified name: this is a normal top-level class</li> \n <li>The filename matches an earlier part of the fully-qualified name: this is an inner class</li> \n <li>The filename does not match any part of the fully-qualified name: this is a non-public top-level class declared in the same source file as another class; this is very unusual, and possibly not worth dealing with if you know you don't have any classes like this</li> \n</ol>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5120149]-[-1076909403]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ol> \n <li>The filename matches the last part of the fully-qualified name: this is a normal top-level class</li> \n <li>The filename matches an earlier part of the fully-qualified name: this is an inner class</li> \n <li>The filename does not match any part of the fully-qualified name: this is a non-public top-level class declared in the same source file as another class; this is very unusual, and possibly not worth dealing with if you know you don't have any classes like this</li> \n</ol>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"The",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"The",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"declared",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "filenam":3,
+                    "normal":1,
+                    "earlier":1,
+                    "possibl":1,
+                    "declar":1,
+                    "match":3,
+                    "qualifi":3,
+                    "worth":1,
+                    "fulli":3,
+                    "class":1,
+                    "file":1,
+                    "part":3,
+                    "unusu":1,
+                    "sourc":1,
+                    "top":2,
+                    "deal":1,
+                    "level":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":5127962,
+      "questionId":5116724,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-02-26",
+      "lastActivityDate":"2011-02-26",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":116639,
+        "displayName":"Tom Anderson",
+        "reputation":24473
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>No.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5127962]-[635709988]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>No.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There's nothing in the source-level name of a class that lets you figure out if it's an inner class or not. It sounds from your description like you're limited to precisely that information.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5127962]-[1085907704]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There's nothing in the source-level name of a class that lets you figure out if it's an inner class or not. It sounds from your description like you're limited to precisely that information.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"that",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"or",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "precis":1,
+                    "descript":1,
+                    "inform":1,
+                    "sound":1,
+                    "figur":1,
+                    "limit":1,
+                    "sourc":1,
+                    "let":1,
+                    "level":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":5117190,
+      "questionId":5116724,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":5741076,
+          "postId":5117190,
+          "creationDate":"2011-02-25",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":106516,
+            "displayName":"damo_inc",
+            "reputation":366
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"If by elegant you mean easy then I don't think there's any viable option. Maybe consider using javap.exe tool?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5117190-cu5741076]-[2030724280]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"If by elegant you mean easy then I don't think there's any viable option. Maybe consider using javap.exe tool?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "easi":1,
+                        "tool":1,
+                        "option":1,
+                        "javap":1,
+                        "eleg":1,
+                        "viabl":1,
+                        "exe":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":5738488,
+          "postId":5117190,
+          "creationDate":"2011-02-25",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":329737,
+            "displayName":"Coder",
+            "reputation":600
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yeah i know, but the issue is that i am going from an import to a .java file. So i don't know the name of the file. Ie. import package.classA.classB; I can't look for classB.java as classB is an inner class of A, hence i have to guess and try different variations. Not elegant. Also this won't work for static imports eg. import package.ClassA.CONSTANT, as CONSTANT is not a class i can't do anything with it except look it up, if it's not found try the parent of the import ie. package.ClassA. none of these are elegant solutions."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5117190-cu5738488]-[921438983]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yeah i know, but the issue is that i am going from an import to a .java file. So i don't know the name of the file. Ie. import package.classA.classB; I can't look for classB.java as classB is an inner class of A, hence i have to guess and try different variations. Not elegant. Also this won't work for static imports eg. import package.ClassA.CONSTANT, as CONSTANT is not a class i can't do anything with it except look it up, if it's not found try the parent of the import ie. package.ClassA. none of these are elegant solutions."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"classA",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"classB",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"classB",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"classB",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"of",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"i",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "constant":2,
+                        "parent":1,
+                        "variat":1,
+                        "issu":1,
+                        "work":1,
+                        "eleg":2,
+                        "found":1,
+                        "import":1,
+                        "yeah":1,
+                        "file":2,
+                        "guess":1,
+                        "solut":1,
+                        "won":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":5750797,
+          "postId":5117190,
+          "creationDate":"2011-02-26",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":329737,
+            "displayName":"Coder",
+            "reputation":600
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"ah ok. I was hoping lol. So the best option i found so far is to get the import decleartion, replace . with slash and append .java extension. If it does not exist then remove the last name from the import and try again. Eg. if a.b.c.java is not found then try a.b.java and so on. Can you think of a more elegant/better option than this or is this basically the easiest?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5117190-cu5750797]-[1381865312]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"ah ok. I was hoping lol. So the best option i found so far is to get the import decleartion, replace . with slash and append .java extension. If it does not exist then remove the last name from the import and try again. Eg. if a.b.c.java is not found then try a.b.java and so on. Can you think of a more elegant/better option than this or is this basically the easiest?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "remov":1,
+                        "lol":1,
+                        "exist":1,
+                        "easiest":1,
+                        "slash":1,
+                        "option":2,
+                        "eleg":1,
+                        "found":2,
+                        "replac":1,
+                        "hope":1,
+                        "decleart":1,
+                        "basic":1,
+                        "extens":1,
+                        "append":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-02-25",
+      "lastActivityDate":"2011-02-25",
+      "lastEditDate":"2011-02-25",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":106516,
+        "displayName":"damo_inc",
+        "reputation":366
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I might not understood your question properly, but the compiler will create a .class file called A$1B.class for an inner class called B (encolsing class A), so the first part of the filename is your enclosing class, and that will tell you in which .java file the code resides in (i.e. A.java).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5117190]-[708584619]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I might not understood your question properly, but the compiler will create a .class file called A$1B.class for an inner class called B (encolsing class A), so the first part of the filename is your enclosing class, and that will tell you in which .java file the code resides in (i.e. A.java).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"file",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"called",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"A",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":1,
+                    "resid":1,
+                    "filenam":1,
+                    "proper":1,
+                    "encols":1,
+                    "code":1,
+                    "understood":1,
+                    "enclos":1,
+                    "file":2,
+                    "compil":1,
+                    "part":1,
+                    "creat":1,
+                    "call":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Example: I have a class called Test and I create an inner class called InnerClass. I compile and get </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5117190]-[-450238719]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Example: I have a class called Test and I create an inner class called InnerClass. I compile and get </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"called",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"called",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "call":2,
+                    "creat":1,
+                    "compil":1,
+                    "test":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"Test.class Test$InnerClass.class "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[5117190]-[-1191379930]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"Test."
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"Test$InnerClass",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":".class "
+                  }
+                ]
+              },
+              "rawText":"Test.class Test$InnerClass.class ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "test":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>So, the first part of the filename, prior to the $ is your enclosing class name, in this case Test. When you know this you can look for .java file called Test.java.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5117190]-[-1881706445]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>So, the first part of the filename, prior to the $ is your enclosing class name, in this case Test. When you know this you can look for .java file called Test.java.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"name",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "test":2,
+                    "prior":1,
+                    "filenam":1,
+                    "enclos":1,
+                    "file":1,
+                    "part":1,
+                    "call":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Hth</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5117190]-[-197634829]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Hth</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "hth":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4317 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":9325868,
+    "title":"Java Automatic Field Value Serialization",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":11767272,
+        "postId":9325868,
+        "creationDate":"2012-02-17",
+        "score":2,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":59279,
+          "displayName":"Joonas Pulakka",
+          "reputation":21470
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Isn't this pretty much what you get by marking the class `Serializable` and then writing/reading that object to/from an object stream? Field order is of course maintained, fields can be ignored with `transient`. If you want it to be done exactly like your `serializeField()` function (explicit byte order, no information about the class), then you have to write it yourself."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[9325868-cu11767272]-[1680308353]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Isn't this pretty much what you get by marking the class `Serializable` and then writing/reading that object to/from an object stream? Field order is of course maintained, fields can be ignored with `transient`. If you want it to be done exactly like your `serializeField()` function (explicit byte order, no information about the class), then you have to write it yourself."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"serializeField",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "serial":1,
+                      "read":1,
+                      "field":3,
+                      "serializ":1,
+                      "object":2,
+                      "pretti":1,
+                      "inform":1,
+                      "order":2,
+                      "stream":1,
+                      "function":1,
+                      "isn":1,
+                      "mark":1,
+                      "explicit":1,
+                      "write":2,
+                      "maintain":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "serialization",
+      "field",
+      "bytebuffer"
+    ],
+    "creationDate":"2012-02-17",
+    "lastActivityDate":"2012-02-19",
+    "lastEditDate":"2012-02-17",
+    "score":2,
+    "viewCount":313,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":623894,
+      "displayName":"lawal",
+      "reputation":138
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Lets say we have a struct-llike java class</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[9325868]-[1908015000]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Lets say we have a struct-llike java class</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "llike":1,
+                  "struct":1,
+                  "let":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class Person { private int height; private byte nChildren; private int salary; public byte[] serializeField() { ByteBuffer buf = ByteBuffer.allocate(4 + 1 + 4); buf.order(ByteOrder.BIG_ENDIAN); buf.putInt(height); buf.put(nChildren); buf.putInt(salary); return buf.array(); } /* * setters and getters */ } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[9325868]-[328165522]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Person",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"height",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"int",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"nChildren",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"byte",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"salary",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"int",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "returnType":{
+                              "type":"ArrayTypeNode",
+                              "typeNode":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"byte",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "depth":[
+                                {
+                                  "type":"ArrayDimensionNode",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"serializeField",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"MethodInvocationNode",
+                                              "qualifiedIdentifier":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"ByteBuffer",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"allocate",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"BinaryExpressionNode",
+                                                    "operator":{
+                                                      "type":"OperatorNode",
+                                                      "symbol":"+",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "left":{
+                                                      "type":"BinaryExpressionNode",
+                                                      "operator":{
+                                                        "type":"OperatorNode",
+                                                        "symbol":"+",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "left":{
+                                                        "type":"LiteralNode",
+                                                        "node":{
+                                                          "type":"IntegerLiteralNode",
+                                                          "valueRep":"4"
+                                                        },
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "right":{
+                                                        "type":"LiteralNode",
+                                                        "node":{
+                                                          "type":"IntegerLiteralNode",
+                                                          "valueRep":"1"
+                                                        },
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "right":{
+                                                      "type":"LiteralNode",
+                                                      "node":{
+                                                        "type":"IntegerLiteralNode",
+                                                        "valueRep":"4"
+                                                      },
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"ByteBuffer",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"order",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"ByteOrder",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"BIG_ENDIAN",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"putInt",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"height",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"put",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"nChildren",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"putInt",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"salary",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ReturnStatementNode",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"buf",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"array",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                {
+                                  "text":"/* * setters and getters */"
+                                }
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class Person { private int height; private byte nChildren; private int salary; public byte[] serializeField() { ByteBuffer buf = ByteBuffer.allocate(4+ 1+ 4); buf.order(ByteOrder.BIG_ENDIAN); buf.putInt(height); buf.put(nChildren); buf.putInt(salary); return buf.array(); } /* * setters and getters */ } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "serial":1,
+                  "children":2,
+                  "alloc":1,
+                  "field":1,
+                  "big":1,
+                  "endian":1,
+                  "setter":1,
+                  "height":2,
+                  "salari":2,
+                  "buffer":2,
+                  "buf":6,
+                  "getter":1,
+                  "array":1,
+                  "order":2,
+                  "person":1,
+                  "put":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"byte",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buf",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"order",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"ByteOrder",
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IdentifierNode",
+                              "name":"BIG_ENDIAN",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buf",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"put",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"nChildren",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buf",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"array",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buf",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"putInt",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"salary",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buf",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"putInt",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"height",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"allocate",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"+",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"4"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"1"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"4"
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"height",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"nChildren",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"byte",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"salary",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"buf",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"allocate",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"+",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":"+",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"4"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"1"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"IntegerLiteralNode",
+                                    "valueRep":"4"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Is there a library that can perform the <code>serializeField()</code> function automatically for any given class? It should be able to maintain the <em>exact order</em> of the fields as defined in the class and perhaps have the ability to ignore certain fields (like the <code>serialVersionUID</code>).</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[9325868]-[-2129051305]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Is there a library that can perform the <code>serializeField()</code> function automatically for any given class? It should be able to maintain the <em>exact order</em> of the fields as defined in the class and perhaps have the ability to ignore certain fields (like the <code>serialVersionUID</code>).</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"serializeField",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"and",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"serialVersionUID",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "serial":2,
+                  "ignor":1,
+                  "field":3,
+                  "librari":1,
+                  "exact":1,
+                  "code":4,
+                  "version":1,
+                  "automat":1,
+                  "order":1,
+                  "function":1,
+                  "perform":1,
+                  "abil":1,
+                  "uid":1,
+                  "defin":1,
+                  "maintain":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":9326986,
+      "questionId":9325868,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":11800744,
+          "postId":9326986,
+          "creationDate":"2012-02-19",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I have added examples, and it works just fine."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9326986-cu11800744]-[-638099476]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I have added examples, and it works just fine."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "ad":1,
+                        "work":1,
+                        "fine":1,
+                        "exampl":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":11790966,
+          "postId":9326986,
+          "creationDate":"2012-02-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":623894,
+            "displayName":"lawal",
+            "reputation":138
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I was midway writing one, when it felt like I was reinventing a wheel. Quickly checked out Kryo &amp; others but couldn't get it to do what I needed. I don't seem to understand your first two points. Your last point wouldn't work, because the writing of the buffer will depend on the order in which methods are called. Say setSalary(int) is called before setHeight(int)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9326986-cu11790966]-[-1292500511]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I was midway writing one, when it felt like I was reinventing a wheel. Quickly checked out Kryo &amp; others but couldn't get it to do what I needed. I don't seem to understand your first two points. Your last point wouldn't work, because the writing of the buffer will depend on the order in which methods are called. Say setSalary(int) is called before setHeight(int)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"setSalary",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"setHeight",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "method":1,
+                        "point":2,
+                        "reinvent":1,
+                        "depend":1,
+                        "felt":1,
+                        "set":2,
+                        "understand":1,
+                        "midway":1,
+                        "height":1,
+                        "salari":1,
+                        "buffer":1,
+                        "wheel":1,
+                        "amp":1,
+                        "work":1,
+                        "need":1,
+                        "check":1,
+                        "order":1,
+                        "wouldn":1,
+                        "kryo":1,
+                        "quick":1,
+                        "call":2,
+                        "write":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-02-17",
+      "lastActivityDate":"2012-02-19",
+      "lastEditDate":"2012-02-19",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":57695,
+        "displayName":"Peter Lawrey",
+        "reputation":257803
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can write one using reflection.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-162622638]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can write one using reflection.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "reflect":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If performance matters, you can</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-943888397]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If performance matters, you can</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "matter":1,
+                    "perform":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li><p>pass in a ByteBuffer to append to to avoid creating lots of buffers you discard.</p> <pre><code>public void serializeField(ByteBuffer buf) { buf.putInt(height); buf.put(nChildren); buf.putInt(salary); } </code></pre></li> \n <li><p>and generate your code (using reflection etc) to avoid using reflection at runtime. i.e. use reflection to generate the code above or in the next example.</p></li> \n <li><p>map the fields getters and setters into a ByteBuffer so there is no serialization/deserialization as such.</p></li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[1393068896]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li><p>pass in a ByteBuffer to append to to avoid creating lots of buffers you discard.</p> <pre><code>public void serializeField(ByteBuffer buf) { buf.putInt(height); buf.put(nChildren); buf.putInt(salary); } </code></pre></li> \n <li><p>and generate your code (using reflection etc) to avoid using reflection at runtime. i.e. use reflection to generate the code above or in the next example.</p></li> \n <li><p>map the fields getters and setters into a ByteBuffer so there is no serialization/deserialization as such.</p></li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"serializeField",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"buf",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"buf",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"putInt",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"height",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"buf",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"put",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"nChildren",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"buf",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"putInt",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"salary",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "serial":2,
+                    "pre":2,
+                    "children":1,
+                    "runtim":1,
+                    "field":2,
+                    "map":1,
+                    "setter":1,
+                    "height":1,
+                    "discard":1,
+                    "salari":1,
+                    "buffer":4,
+                    "buf":4,
+                    "avoid":2,
+                    "getter":1,
+                    "code":4,
+                    "lot":1,
+                    "pass":1,
+                    "generat":2,
+                    "put":3,
+                    "deseri":1,
+                    "creat":1,
+                    "reflect":3,
+                    "append":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buf",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"putInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"height",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buf",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"put",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"nChildren",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buf",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"putInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"salary",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"buf",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Say you have an object with a width and height. As you can see the values are updated into a ByteBuffer (e.g. a direct or memory mapped file) This way there is no serialization overhead as such.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-2014329272]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Say you have an object with a width and height. As you can see the values are updated into a ByteBuffer (e.g. a direct or memory mapped file) This way there is no serialization overhead as such.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "serial":1,
+                    "map":1,
+                    "updat":1,
+                    "height":1,
+                    "buffer":1,
+                    "object":1,
+                    "direct":1,
+                    "overhead":1,
+                    "valu":1,
+                    "file":1,
+                    "width":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"class Sized { private ByteBuffer buffer; private static final int HEIGHT_OFFSET = 0; private static final int WIDTH_OFFSET = 4; public void setBuffer(ByteBuffer buffer) {this.buffer = buffer; } public int getHeight() { return buffer.getInt(HEIGHT_OFFSET); } public void setHeight(int height) { buffer.putInt(HEIGHT_OFFSET, height); } public int getWidth() { return buffer.getInt(WIDTH_OFFSET); } public void setWidth(int width) { buffer.putInt(WIDTH_OFFSET, width); } } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[9326986]-[1756638416]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"CompilationUnitNode",
+                    "imports":[
+                      
+                    ],
+                    "typeDeclarations":[
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Sized",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "body":{
+                          "type":"ClassBodyNode",
+                          "declarations":[
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"private",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"buffer",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "varType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"ByteBuffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"private",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"static",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"final",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"HEIGHT_OFFSET",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"IntegerLiteralNode",
+                                            "valueRep":"0"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"private",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"static",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"final",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"WIDTH_OFFSET",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"IntegerLiteralNode",
+                                            "valueRep":"4"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"void",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"setBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "parameters":{
+                                  "type":"FormalParameterDeclsNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "parameterType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"ByteBuffer",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "nextDeclarator":{
+                                    "type":"AdditionalFormalParameterDeclNode",
+                                    "variableDeclarator":{
+                                      "type":"VariableDeclaratorNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"buffer",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "arrayDepth":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"=",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"this",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"getHeight",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ReturnStatementNode",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"getInt",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"HEIGHT_OFFSET",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"void",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"setHeight",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "parameters":{
+                                  "type":"FormalParameterDeclsNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "parameterType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"int",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "nextDeclarator":{
+                                    "type":"AdditionalFormalParameterDeclNode",
+                                    "variableDeclarator":{
+                                      "type":"VariableDeclaratorNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"height",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "arrayDepth":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"putInt",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"HEIGHT_OFFSET",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"height",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"getWidth",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ReturnStatementNode",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"getInt",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"WIDTH_OFFSET",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"MethodDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "returnType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"void",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"setWidth",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "parameters":{
+                                "type":"FormalParametersNode",
+                                "parameters":{
+                                  "type":"FormalParameterDeclsNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "parameterType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"int",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "nextDeclarator":{
+                                    "type":"AdditionalFormalParameterDeclNode",
+                                    "variableDeclarator":{
+                                      "type":"VariableDeclaratorNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"width",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "arrayDepth":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayReturnType":[
+                                
+                              ],
+                              "body":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"buffer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"putInt",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"WIDTH_OFFSET",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"width",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "rawText":"class Sized { private ByteBuffer buffer; private static final int HEIGHT_OFFSET = 0; private static final int WIDTH_OFFSET = 4; public void setBuffer(ByteBuffer buffer) {this.buffer = buffer; } public int getHeight() { return buffer.getInt(HEIGHT_OFFSET); } public void setHeight(int height) { buffer.putInt(HEIGHT_OFFSET, height); } public int getWidth() { return buffer.getInt(WIDTH_OFFSET); } public void setWidth(int width) { buffer.putInt(WIDTH_OFFSET, width); } } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "size":1,
+                    "set":3,
+                    "height":7,
+                    "buffer":11,
+                    "offset":6,
+                    "put":2,
+                    "width":7
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"HEIGHT_OFFSET",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"putInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"HEIGHT_OFFSET",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"height",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"WIDTH_OFFSET",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"putInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"WIDTH_OFFSET",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"width",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HEIGHT_OFFSET",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"0"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"height",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"WIDTH_OFFSET",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"4"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"buffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"buffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"width",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>To handle the memory mapped data you can use a library like this. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-849241360]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>To handle the memory mapped data you can use a library like this. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "map":1,
+                    "data":1,
+                    "librari":1,
+                    "handl":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><a href=\"https://github.com/peter-lawrey/Java-Chronicle\"rel=\"nofollow\">https://github.com/peter-lawrey/Java-Chronicle</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-139711516]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><a href=\"https://github.com/peter-lawrey/Java-Chronicle\"rel=\"nofollow\">https://github.com/peter-lawrey/Java-Chronicle</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "github":2,
+                    "peter":2,
+                    "rel":1,
+                    "https":2,
+                    "nofollow":1,
+                    "href":1,
+                    "lawrey":2,
+                    "chronicl":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This library allow you to create any number of events/records (billions) which can be updated (but not grown in size once written) very quickly. e.g. millions of records per second with sub-microsecond latency. It can also be shared between processes. Once you exceed your main memory, the main limitation is the speed of your hard drive if you exceed your memory usage. i.e. an SSD will really help. It has a mode where you use the Unsafe class directly (more low level than ByteBuffer) by just enabling it.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9326986]-[-389382278]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This library allow you to create any number of events/records (billions) which can be updated (but not grown in size once written) very quickly. e.g. millions of records per second with sub-microsecond latency. It can also be shared between processes. Once you exceed your main memory, the main limitation is the speed of your hard drive if you exceed your memory usage. i.e. an SSD will really help. It has a mode where you use the Unsafe class directly (more low level than ByteBuffer) by just enabling it.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"directly",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "number":1,
+                    "drive":1,
+                    "latenc":1,
+                    "hard":1,
+                    "size":1,
+                    "ssd":1,
+                    "event":1,
+                    "exceed":2,
+                    "process":1,
+                    "updat":1,
+                    "buffer":1,
+                    "librari":1,
+                    "main":2,
+                    "direct":1,
+                    "share":1,
+                    "low":1,
+                    "billion":1,
+                    "grown":1,
+                    "written":1,
+                    "mode":1,
+                    "enabl":1,
+                    "usag":1,
+                    "quick":1,
+                    "unsaf":1,
+                    "million":1,
+                    "creat":1,
+                    "limit":1,
+                    "record":2,
+                    "speed":1,
+                    "level":1,
+                    "microsecond":1,
+                    "memori":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

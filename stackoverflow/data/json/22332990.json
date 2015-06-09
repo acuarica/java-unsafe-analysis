@@ -1,0 +1,2344 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":22332990,
+    "title":"Java - Heap vs Direct memory access",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":33940149,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Any time you use Unsafe or go off to a native method you pay an initial overhead, just to get there and set things up. As such, even if there is a (slight) performance advantage, it doesn't &quot;kick in&quot; unless you're dealing with fairly large (megabyte-sized) data structures. As to when to use these facilities, until you can answer your own questions above you should not use them -- it's really easy to eff things up, for very little benefit."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33940149]-[523626330]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Any time you use Unsafe or go off to a native method you pay an initial overhead, just to get there and set things up. As such, even if there is a (slight) performance advantage, it doesn't &quot;kick in&quot; unless you're dealing with fairly large (megabyte-sized) data structures. As to when to use these facilities, until you can answer your own questions above you should not use them -- it's really easy to eff things up, for very little benefit."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "question":1,
+                      "method":1,
+                      "fair":1,
+                      "easi":1,
+                      "size":1,
+                      "data":1,
+                      "set":1,
+                      "slight":1,
+                      "thing":2,
+                      "pay":1,
+                      "eff":1,
+                      "structur":1,
+                      "overhead":1,
+                      "kick":1,
+                      "larg":1,
+                      "advantag":1,
+                      "megabyt":1,
+                      "facil":1,
+                      "perform":1,
+                      "answer":1,
+                      "quot":2,
+                      "initi":1,
+                      "unsaf":1,
+                      "time":1,
+                      "benefit":1,
+                      "deal":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33940277,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1094640,
+          "displayName":"Bober02",
+          "reputation":3190
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@Hot Licks: OK, I get that point. Now my further question is - if I have 1000 objects of size 10 bytes, and I call 1000 times `Unsafe.putInt` (once per each object address), how does that differ from calling 1000 times `Unsafe.putInt` on 10,000 byte object, each time with a different offset i.e. 0, then 4, 8 etc? Where is the performance gain, since we should be crossing the JNI barrier exactly 1000 times in both cases?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33940277]-[1352215767]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@Hot Licks: OK, I get that point. Now my further question is - if I have 1000 objects of size 10 bytes, and I call 1000 times `Unsafe.putInt` (once per each object address), how does that differ from calling 1000 times `Unsafe.putInt` on 10,000 byte object, each time with a different offset i.e. 0, then 4, 8 etc? Where is the performance gain, since we should be crossing the JNI barrier exactly 1000 times in both cases?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Hot",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"putInt",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"putInt",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "question":1,
+                      "lick":1,
+                      "point":1,
+                      "size":1,
+                      "differ":1,
+                      "barrier":1,
+                      "object":3,
+                      "jni":1,
+                      "offset":1,
+                      "gain":1,
+                      "perform":1,
+                      "cross":1,
+                      "address":1,
+                      "put":2,
+                      "hot":1,
+                      "unsaf":2,
+                      "time":4,
+                      "case":1,
+                      "call":2,
+                      "byte":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33940900,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"To move only 10 bytes (or 4, if it's really putInt) there's probably no performance gain in either scenario."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33940900]-[-1994555266]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"To move only 10 bytes (or 4, if it's really putInt) there's probably no performance gain in either scenario."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"putInt",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "scenario":1,
+                      "move":1,
+                      "gain":1,
+                      "perform":1,
+                      "put":1,
+                      "byte":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33940929,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1094640,
+          "displayName":"Bober02",
+          "reputation":3190
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Well not according to the article, which is precisely what is puzzling me..."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33940929]-[1490107427]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Well not according to the article, which is precisely what is puzzling me..."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "articl":1,
+                      "precis":1,
+                      "puzzl":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33941133,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Understand that &quot;the heap&quot; is not this encapsulated hunk of something that you have to pry apart every time you access it. Rather it's the &quot;soup&quot; that your Java program is floating in, and accessing it is as easy as performing a single &quot;load&quot; instruction in the CPU. Using Unsafe is only better when it lets you do, um, &quot;unsafe&quot; things, such as copying data directly from a byte array to an int array. Even the a standard `int[]` to `int[]` array copy is going to be as fast or faster using System.arraycopy vs going off to Unsafe."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33941133]-[84267497]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Understand that &quot;the heap&quot; is not this encapsulated hunk of something that you have to pry apart every time you access it. Rather it's the &quot;soup&quot; that your Java program is floating in, and accessing it is as easy as performing a single &quot;load&quot; instruction in the CPU. Using Unsafe is only better when it lets you do, um, &quot;unsafe&quot; things, such as copying data directly from a byte array to an int array. Even the a standard `int[]` to `int[]` array copy is going to be as fast or faster using System.arraycopy vs going off to Unsafe."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "program":1,
+                      "singl":1,
+                      "faster":1,
+                      "easi":1,
+                      "system":1,
+                      "standard":1,
+                      "float":1,
+                      "pri":1,
+                      "data":1,
+                      "understand":1,
+                      "thing":1,
+                      "load":1,
+                      "hunk":1,
+                      "direct":1,
+                      "soup":1,
+                      "array":3,
+                      "cpu":1,
+                      "perform":1,
+                      "quot":8,
+                      "fast":1,
+                      "unsaf":3,
+                      "time":1,
+                      "heap":1,
+                      "arraycopi":1,
+                      "let":1,
+                      "encapsul":1,
+                      "copi":2,
+                      "access":2,
+                      "instruct":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33941226,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"(And understand that you can create a benchmark to prove just about anything you want.)"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33941226]-[-1421637025]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"(And understand that you can create a benchmark to prove just about anything you want.)"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "prove":1,
+                      "understand":1,
+                      "creat":1,
+                      "benchmark":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33941278,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1094640,
+          "displayName":"Bober02",
+          "reputation":3190
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Thanks, so what are the recommendations for using the Unsafe then? When allocating a big chunk of memory, when using MemoryMappedFiles... ?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33941278]-[-1888091872]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Thanks, so what are the recommendations for using the Unsafe then? When allocating a big chunk of memory, when using MemoryMappedFiles... ?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MemoryMappedFiles",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "recommend":1,
+                      "chunk":1,
+                      "alloc":1,
+                      "map":1,
+                      "big":1,
+                      "file":1,
+                      "unsaf":1,
+                      "memori":2
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"MemoryMappedFiles",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33941685,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"When you need it. Memory-mapped files is perhaps one case (though I'm thinking that nio can handle some of that without having to explicitly use Unsafe). And, of course, if you use reflections you're using it implicitly."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33941685]-[-1853473959]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"When you need it. Memory-mapped files is perhaps one case (though I'm thinking that nio can handle some of that without having to explicitly use Unsafe). And, of course, if you use reflections you're using it implicitly."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "map":1,
+                      "nio":1,
+                      "implicit":1,
+                      "think":1,
+                      "file":1,
+                      "unsaf":1,
+                      "explicit":1,
+                      "reflect":1,
+                      "handl":1,
+                      "memori":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33941721,
+        "postId":22332990,
+        "creationDate":"2014-03-11",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":581994,
+          "displayName":"Hot Licks",
+          "reputation":27968
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Here's a fairly good overview: http://www.javacodegeeks.com/2013/12/the-infamous-sun-misc-unsafe-explained.html (Note in particular how complicated -- and slow -- the authorization check is.)"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22332990-cu33941721]-[-792330291]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Here's a fairly good overview: http://www.javacodegeeks.com/2013/12/the-infamous-sun-misc-unsafe-explained.html (Note in particular how complicated -- and slow -- the authorization check is.)"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "author":1,
+                      "fair":1,
+                      "slow":1,
+                      "explain":1,
+                      "good":1,
+                      "complic":1,
+                      "sun":1,
+                      "check":1,
+                      "note":1,
+                      "javacodegeek":1,
+                      "overview":1,
+                      "misc":1,
+                      "unsaf":1,
+                      "html":1,
+                      "infam":1,
+                      "http":1,
+                      "www":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "memory-management",
+      "heap",
+      "memory-mapped-files",
+      "bytebuffer"
+    ],
+    "creationDate":"2014-03-11",
+    "lastActivityDate":"2014-03-11",
+    "score":2,
+    "viewCount":2283,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1094640,
+      "displayName":"Bober02",
+      "reputation":3190
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I recenty came across <code>sun.misc.Unsafe</code> class, allowing user to allocate,deallocate and in general access memory in a similar fashion like in C. I read in a couple of blogs that tackle this issue e.g. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22332990]-[1620523618]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I recenty came across <code>sun.misc.Unsafe</code> class, allowing user to allocate,deallocate and in general access memory in a similar fashion like in C. I read in a couple of blogs that tackle this issue e.g. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "recenti":1,
+                  "fashion":1,
+                  "read":1,
+                  "alloc":1,
+                  "similar":1,
+                  "sun":1,
+                  "issu":1,
+                  "code":2,
+                  "blog":1,
+                  "general":1,
+                  "coupl":1,
+                  "allow":1,
+                  "tackl":1,
+                  "misc":1,
+                  "dealloc":1,
+                  "unsaf":1,
+                  "user":1,
+                  "access":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ol> \n <li><a href=\"http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/\"rel=\"nofollow\">WHich is faster - heap or direct memory</a> - test results claim heap</li> \n <li><a href=\"http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html\"rel=\"nofollow\">Off-heap memory vs DirectByteBuffer vs Heap</a> - Off-heap seems to be fastest</li> \n <li><a href=\"http://vanillajava.blogspot.co.uk/2012/11/when-using-direct-memory-can-be-faster.html\"rel=\"nofollow\">Memory mapped files for time series data</a> - <code>MappedByteBuffer</code> faster than heap objects</li> \n</ol>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22332990]-[-1708175173]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ol> \n <li><a href=\"http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/\"rel=\"nofollow\">WHich is faster - heap or direct memory</a> - test results claim heap</li> \n <li><a href=\"http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html\"rel=\"nofollow\">Off-heap memory vs DirectByteBuffer vs Heap</a> - Off-heap seems to be fastest</li> \n <li><a href=\"http://vanillajava.blogspot.co.uk/2012/11/when-using-direct-memory-can-be-faster.html\"rel=\"nofollow\">Memory mapped files for time series data</a> - <code>MappedByteBuffer</code> faster than heap objects</li> \n</ol>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"DirectByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MappedByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "test":1,
+                  "faster":5,
+                  "claim":1,
+                  "map":2,
+                  "data":1,
+                  "result":1,
+                  "bytebuff":1,
+                  "rel":3,
+                  "buffer":2,
+                  "fastest":1,
+                  "mentablog":1,
+                  "blogspot":1,
+                  "object":1,
+                  "direct":4,
+                  "code":2,
+                  "nofollow":3,
+                  "seri":1,
+                  "javacodegeek":1,
+                  "file":1,
+                  "time":1,
+                  "vanillajava":1,
+                  "heap":8,
+                  "soliveirajr":1,
+                  "html":2,
+                  "href":3,
+                  "http":3,
+                  "www":1,
+                  "memori":6
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DirectByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MappedByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Article 1) seems to be in contradiction with the other ones and I fail to comprehend why. DirectMemoryBuffer is using <code>sun.misc.Unsafe</code> under the hood (so is <code>MappedByteBuffer</code>), so they should also suffer from JNI calls as described in article 1. Also, in article 2, the Off-heap memory accesses resemble the ones in article 1, and give completely opposite results.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22332990]-[1591641445]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Article 1) seems to be in contradiction with the other ones and I fail to comprehend why. DirectMemoryBuffer is using <code>sun.misc.Unsafe</code> under the hood (so is <code>MappedByteBuffer</code>), so they should also suffer from JNI calls as described in article 1. Also, in article 2, the Off-heap memory accesses resemble the ones in article 1, and give completely opposite results.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"DirectMemoryBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MappedByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "fail":1,
+                  "resembl":1,
+                  "map":1,
+                  "result":1,
+                  "sun":1,
+                  "buffer":2,
+                  "articl":4,
+                  "direct":1,
+                  "code":4,
+                  "jni":1,
+                  "hood":1,
+                  "contradict":1,
+                  "opposit":1,
+                  "comprehend":1,
+                  "give":1,
+                  "misc":1,
+                  "unsaf":1,
+                  "complet":1,
+                  "heap":1,
+                  "suffer":1,
+                  "call":1,
+                  "access":1,
+                  "memori":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DirectMemoryBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MappedByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Could someone generally comment on how to proceed with Off-heap memory i.e. when to use it, is there a significant benefit to it, and most importantly, why similar subject gives highly different results based on the articles above? Thanks.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22332990]-[1149640848]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Could someone generally comment on how to proceed with Off-heap memory i.e. when to use it, is there a significant benefit to it, and most importantly, why similar subject gives highly different results based on the articles above? Thanks.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "subject":1,
+                  "similar":1,
+                  "result":1,
+                  "articl":1,
+                  "base":1,
+                  "import":1,
+                  "general":1,
+                  "comment":1,
+                  "signific":1,
+                  "proceed":1,
+                  "heap":1,
+                  "benefit":1,
+                  "high":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":22333102,
+      "questionId":22332990,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":33940169,
+          "postId":22333102,
+          "creationDate":"2014-03-11",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1094640,
+            "displayName":"Bober02",
+            "reputation":3190
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"From article 2: &quot;For memory allocation test I will use 13 byte of message &amp; it is broken down into...&quot;. It seems the writes are quite small, not with big chunks and it is being constantly crossed when invoking `Unsafe` method. So I am still not getting how the tests differ and where the discrepancies lie."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22333102-cu33940169]-[-629108657]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"From article 2: &quot;For memory allocation test I will use 13 byte of message &amp; it is broken down into...&quot;. It seems the writes are quite small, not with big chunks and it is being constantly crossed when invoking `Unsafe` method. So I am still not getting how the tests differ and where the discrepancies lie."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "constant":1,
+                        "discrep":1,
+                        "method":1,
+                        "test":2,
+                        "chunk":1,
+                        "alloc":1,
+                        "big":1,
+                        "differ":1,
+                        "invok":1,
+                        "articl":1,
+                        "amp":1,
+                        "small":1,
+                        "cross":1,
+                        "quot":2,
+                        "unsaf":1,
+                        "messag":1,
+                        "lie":1,
+                        "write":1,
+                        "broken":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33940343,
+          "postId":22333102,
+          "creationDate":"2014-03-11",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":3389051,
+            "displayName":"MikeG010590",
+            "reputation":377
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yes I feel thats where this article falls short. With respect to memory allocation he only test write/read performance and totally ignores memory consumption/allocation speed. Something involving this (which he never looks at) would probably explain why it is being constantly crossed when invoking Unsafe method."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22333102-cu33940343]-[-1269274458]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yes I feel thats where this article falls short. With respect to memory allocation he only test write/read performance and totally ignores memory consumption/allocation speed. Something involving this (which he never looks at) would probably explain why it is being constantly crossed when invoking Unsafe method."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "constant":1,
+                        "read":1,
+                        "ignor":1,
+                        "method":1,
+                        "test":1,
+                        "feel":1,
+                        "involv":1,
+                        "alloc":2,
+                        "explain":1,
+                        "invok":1,
+                        "articl":1,
+                        "total":1,
+                        "fall":1,
+                        "perform":1,
+                        "cross":1,
+                        "respect":1,
+                        "unsaf":1,
+                        "write":1,
+                        "speed":1,
+                        "consumpt":1,
+                        "memori":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33940691,
+          "postId":22333102,
+          "creationDate":"2014-03-11",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1094640,
+            "displayName":"Bober02",
+            "reputation":3190
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Well, the other article also ignores the fact of allocation/deallocation for testing read/write access right? That is, purely test read/write access, yet gets much different results..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22333102-cu33940691]-[-558633598]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Well, the other article also ignores the fact of allocation/deallocation for testing read/write access right? That is, purely test read/write access, yet gets much different results..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "ignor":1,
+                        "test":2,
+                        "alloc":1,
+                        "result":1,
+                        "articl":1,
+                        "pure":1,
+                        "fact":1,
+                        "dealloc":1,
+                        "write":2,
+                        "access":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33941307,
+          "postId":22333102,
+          "creationDate":"2014-03-11",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":581994,
+            "displayName":"Hot Licks",
+            "reputation":27968
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It should be noted that there is no difference between the performance of &quot;off heap&quot; vs heap memory -- it's the exact same memory, and the fact that it's heap adds no overhead."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22333102-cu33941307]-[1553781320]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It should be noted that there is no difference between the performance of &quot;off heap&quot; vs heap memory -- it's the exact same memory, and the fact that it's heap adds no overhead."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "differ":1,
+                        "exact":1,
+                        "overhead":1,
+                        "fact":1,
+                        "note":1,
+                        "perform":1,
+                        "quot":2,
+                        "heap":3,
+                        "add":1,
+                        "memori":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-03-11",
+      "lastActivityDate":"2014-03-11",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":3389051,
+        "displayName":"MikeG010590",
+        "reputation":377
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>1). Working with Native memory from Java has its usages such as when you need to work with large amounts of data (&gt; 2 gigabytes) or when you want to escape from the garbage collector. However in terms of latency, direct memory access from the JVM is not faster than accessing the heap as demonstrated above. The results actually make sense since crossing the JVM barrier must have a cost. That\u2019s the same dilema between using a direct or a heap ByteBuffer. The speed advantage of the direct ByteBuffer is not access speed but the ability to talk directly with the operating system\u2019s native I/O operations. Another great example discussed by Peter Lawrey is the use of memory-mapped files when working with time-series.</strong></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22333102]-[-1686232048]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>1). Working with Native memory from Java has its usages such as when you need to work with large amounts of data (&gt; 2 gigabytes) or when you want to escape from the garbage collector. However in terms of latency, direct memory access from the JVM is not faster than accessing the heap as demonstrated above. The results actually make sense since crossing the JVM barrier must have a cost. That\u2019s the same dilema between using a direct or a heap ByteBuffer. The speed advantage of the direct ByteBuffer is not access speed but the ability to talk directly with the operating system\u2019s native I/O operations. Another great example discussed by Peter Lawrey is the use of memory-mapped files when working with time-series.</strong></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sens":1,
+                    "jvm":2,
+                    "collector":1,
+                    "latenc":1,
+                    "faster":1,
+                    "system":1,
+                    "map":1,
+                    "escap":1,
+                    "barrier":1,
+                    "peter":1,
+                    "data":1,
+                    "result":1,
+                    "term":1,
+                    "talk":1,
+                    "demonstr":1,
+                    "buffer":2,
+                    "strong":2,
+                    "work":3,
+                    "amount":1,
+                    "direct":4,
+                    "oper":2,
+                    "discuss":1,
+                    "dilema":1,
+                    "larg":1,
+                    "advantag":1,
+                    "seri":1,
+                    "cost":1,
+                    "gigabyt":1,
+                    "cross":1,
+                    "abil":1,
+                    "make":1,
+                    "usag":1,
+                    "file":1,
+                    "time":1,
+                    "heap":2,
+                    "lawrey":1,
+                    "great":1,
+                    "garbag":1,
+                    "speed":2,
+                    "access":3,
+                    "memori":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Source: <a href=\"http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/\"rel=\"nofollow\">http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22333102]-[-1852751385]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Source: <a href=\"http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/\"rel=\"nofollow\">http://mentablog.soliveirajr.com/2012/11/which-one-is-faster-java-heap-or-native-memory/</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "faster":2,
+                    "rel":1,
+                    "mentablog":2,
+                    "nofollow":1,
+                    "heap":2,
+                    "soliveirajr":2,
+                    "href":1,
+                    "http":2,
+                    "sourc":1,
+                    "memori":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>2). Off heap via Unsafe is blazing fast with 330/11200 Million/Sec. Performance for all other types of allocation is either good for read or write, none of the allocation is good for both. Special note about ByteBuffer, it is pathetic , i am sure you will not use this after seeing such number. DirectBytebuffer sucks in read speed, i am not sure why it is so slow.So if memory read/write is becoming bottle neck in your system then definitely Off-heap is the way to go, remember it is highway, so drive with care.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22333102]-[1879488386]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>2). Off heap via Unsafe is blazing fast with 330/11200 Million/Sec. Performance for all other types of allocation is either good for read or write, none of the allocation is good for both. Special note about ByteBuffer, it is pathetic , i am sure you will not use this after seeing such number. DirectBytebuffer sucks in read speed, i am not sure why it is so slow.So if memory read/write is becoming bottle neck in your system then definitely Off-heap is the way to go, remember it is highway, so drive with care.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DirectBytebuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":3,
+                    "number":1,
+                    "drive":1,
+                    "neck":1,
+                    "slow":1,
+                    "alloc":2,
+                    "system":1,
+                    "good":2,
+                    "blaze":1,
+                    "suck":1,
+                    "highway":1,
+                    "bytebuff":1,
+                    "buffer":1,
+                    "care":1,
+                    "direct":1,
+                    "sec":1,
+                    "rememb":1,
+                    "note":1,
+                    "perform":1,
+                    "fast":1,
+                    "unsaf":1,
+                    "million":1,
+                    "heap":2,
+                    "special":1,
+                    "type":1,
+                    "pathet":1,
+                    "bottl":1,
+                    "write":2,
+                    "speed":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"DirectBytebuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Soruce: <a href=\"http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html\"rel=\"nofollow\">http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22333102]-[-1555742911]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Soruce: <a href=\"http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html\"rel=\"nofollow\">http://www.javacodegeeks.com/2013/08/which-memory-is-faster-heap-or-bytebuffer-or-direct.html</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "faster":2,
+                    "bytebuff":2,
+                    "rel":1,
+                    "direct":2,
+                    "nofollow":1,
+                    "javacodegeek":2,
+                    "heap":2,
+                    "html":2,
+                    "href":1,
+                    "http":2,
+                    "soruc":1,
+                    "www":2,
+                    "memori":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

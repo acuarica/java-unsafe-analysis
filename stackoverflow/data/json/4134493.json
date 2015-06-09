@@ -1,0 +1,1549 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":4134493,
+    "title":"Spring Injection - access to the injected object within a constructor",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "spring",
+      "dependency-injection"
+    ],
+    "creationDate":"2010-11-09",
+    "lastActivityDate":"2014-06-24",
+    "score":6,
+    "viewCount":2485,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":265289,
+      "displayName":"John Manak",
+      "reputation":3465
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have a resource (Spring bean) which has some of its fields injected by Spring, for example:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[4134493]-[-1652691587]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have a resource (Spring bean) which has some of its fields injected by Spring, for example:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "field":1,
+                  "resourc":1,
+                  "spring":2,
+                  "bean":1,
+                  "inject":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"@Repository(value=&quot;appDao&quot;) public class AppDaoImpl implements AppDao { @PersistenceContext EntityManager entityManager; public Resource() { ... use entityManager ... // doesn't work } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[4134493]-[1074743374]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"AnnotationNode",
+                          "identifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"Repository",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "element":{
+                            "type":"ElementValuePairsNode",
+                            "valuePairs":[
+                              {
+                                "type":"ElementValuePairNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"value",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "value":{
+                                  "type":"ElementValueNode",
+                                  "value":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"StringLiteralNode",
+                                      "valueRep":"\"appDao\""
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AppDaoImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "implementedInterfaces":{
+                        "type":"TypeListNode",
+                        "types":[
+                          {
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"AppDao",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"AnnotationNode",
+                                "identifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"PersistenceContext",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"entityManager",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"EntityManager",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"TextFragmentNode",
+                            "text":"public Resource() { ... use entityManager ... // doesn't work "
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"} "
+                }
+              ]
+            },
+            "rawText":"@Repository(value=\"appDao\") public class AppDaoImpl implements AppDao { @PersistenceContext EntityManager entityManager; public Resource() { ... use entityManager ... // doesn't work } } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "dao":3,
+                  "context":1,
+                  "resourc":1,
+                  "repositori":1,
+                  "work":1,
+                  "impl":1,
+                  "persist":1,
+                  "app":3,
+                  "entiti":3,
+                  "manag":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AppDao",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EntityManager",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"entityManager",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"EntityManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I know that I can't access the injected entityManager in the constructor and should use a <code>@PostConstruct</code> annotation on a different method. But what are the reasons for this?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[4134493]-[1780360799]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I know that I can't access the injected entityManager in the constructor and should use a <code>@PostConstruct</code> annotation on a different method. But what are the reasons for this?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"entityManager",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"PostConstruct",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "post":1,
+                  "constructor":1,
+                  "reason":1,
+                  "code":2,
+                  "annot":1,
+                  "inject":1,
+                  "entiti":1,
+                  "manag":1,
+                  "construct":1,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":4134522,
+      "questionId":4134493,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":4457602,
+          "postId":4134522,
+          "creationDate":"2010-11-09",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":203907,
+            "displayName":"Bozho",
+            "reputation":301603
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"+1, for being faster than me :)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[4134522-cu4457602]-[227719389]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"+1, for being faster than me :)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "faster":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2010-11-09",
+      "lastActivityDate":"2014-06-24",
+      "lastEditDate":"2014-06-24",
+      "score":10,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":342852,
+        "displayName":"Sean Patrick Floyd",
+        "reputation":122619
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Because Spring can't access any fields or methods before the object is created (which is done through the constructor). So Spring instantiates the object using the constructor and <em>then</em> injects the properties.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134522]-[452210548]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Because Spring can't access any fields or methods before the object is created (which is done through the constructor). So Spring instantiates the object using the constructor and <em>then</em> injects the properties.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "properti":1,
+                    "method":1,
+                    "instanti":1,
+                    "field":1,
+                    "spring":2,
+                    "constructor":2,
+                    "object":2,
+                    "inject":1,
+                    "creat":1,
+                    "access":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The only way around this is to use <a href=\"http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-factory-class-ctor\"rel=\"nofollow\">Constructor Injection</a> (which can be cumbersome if you have multiple dependencies). I think what you should do is move your code out of the constructor and into an initialization method using <a href=\"http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-postconstruct-and-predestroy-annotations\"rel=\"nofollow\">the <code>@PostConstruct</code> annotation</a>:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134522]-[882547969]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The only way around this is to use <a href=\"http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-factory-class-ctor\"rel=\"nofollow\">Constructor Injection</a> (which can be cumbersome if you have multiple dependencies). I think what you should do is move your code out of the constructor and into an initialization method using <a href=\"http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-postconstruct-and-predestroy-annotations\"rel=\"nofollow\">the <code>@PostConstruct</code> annotation</a>:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"PostConstruct",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "post":1,
+                    "move":1,
+                    "depend":1,
+                    "springsourc":2,
+                    "rel":2,
+                    "spring":4,
+                    "constructor":2,
+                    "framework":2,
+                    "doc":2,
+                    "factori":1,
+                    "ctor":1,
+                    "code":3,
+                    "postconstruct":1,
+                    "nofollow":2,
+                    "bean":4,
+                    "annot":2,
+                    "refer":2,
+                    "inject":1,
+                    "initi":1,
+                    "org":2,
+                    "html":4,
+                    "href":2,
+                    "http":2,
+                    "multipl":1,
+                    "construct":1,
+                    "cumbersom":1,
+                    "predestroy":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"@PostConstruct public void init(){ // do stuff with entitymanager here } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[4134522]-[-1161488817]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"PostConstruct",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"init",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        {
+                          "text":"// do stuff with entitymanager here } \n"
+                        }
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"@PostConstruct public void init(){ // do stuff with entitymanager here } \n...\n}",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "post":1,
+                    "entitymanag":1,
+                    "stuff":1,
+                    "init":1,
+                    "construct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":4134539,
+      "questionId":4134493,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":4457638,
+          "postId":4134539,
+          "creationDate":"2010-11-09",
+          "score":2,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":342852,
+            "displayName":"Sean Patrick Floyd",
+            "reputation":122619
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It's not possible: `@Target({TYPE, METHOD, FIELD})`"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[4134539-cu4457638]-[1449711022]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It's not possible: `@Target({TYPE, METHOD, FIELD})`"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Target",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "element":{
+                          "type":"ElementValueNode",
+                          "value":{
+                            "type":"ElementValueArrayInitializerNode",
+                            "values":{
+                              "type":"ElementValuesNode",
+                              "values":[
+                                {
+                                  "type":"ElementValueNode",
+                                  "value":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"TYPE",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type":"ElementValueNode",
+                                  "value":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"METHOD",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                {
+                                  "type":"ElementValueNode",
+                                  "value":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"FIELD",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "type":1,
+                        "field":1,
+                        "target":1,
+                        "method":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":43939793,
+          "postId":4134539,
+          "creationDate":"2015-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":961018,
+            "displayName":"momo",
+            "reputation":2147
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Exactly, persistence context will be null. Even in @PostConstruct. Fuck spring."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[4134539-cu43939793]-[-17540592]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Exactly, persistence context will be null. Even in @PostConstruct. Fuck spring."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"PostConstruct",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "post":1,
+                        "fuck":1,
+                        "context":1,
+                        "spring":1,
+                        "persist":1,
+                        "construct":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2010-11-09",
+      "lastActivityDate":"2010-11-09",
+      "lastEditDate":"2010-11-09",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":203907,
+        "displayName":"Bozho",
+        "reputation":301603
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The reason is in the lifecycle of the bean:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134539]-[-1841814208]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The reason is in the lifecycle of the bean:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bean":1,
+                    "lifecycl":1,
+                    "reason":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li>The container (spring application context) instantiates the object</li> \n <li>then it sets all the dependencies (incl. the entityManager in your example)</li> \n <li>after all dependencies have been set, it invokes the <code>@PostConstruct</code> method, if any.</li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134539]-[1768995797]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li>The container (spring application context) instantiates the object</li> \n <li>then it sets all the dependencies (incl. the entityManager in your example)</li> \n <li>after all dependencies have been set, it invokes the <code>@PostConstruct</code> method, if any.</li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"entityManager",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"PostConstruct",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "post":1,
+                    "instanti":1,
+                    "depend":2,
+                    "context":1,
+                    "set":2,
+                    "incl":1,
+                    "invok":1,
+                    "spring":1,
+                    "contain":1,
+                    "object":1,
+                    "code":2,
+                    "applic":1,
+                    "entiti":1,
+                    "manag":1,
+                    "construct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Spring (and no one) can set fields to an object before actually constructing that object.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134539]-[-1487088280]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Spring (and no one) can set fields to an object before actually constructing that object.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "field":1,
+                    "set":1,
+                    "spring":1,
+                    "object":2,
+                    "construct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You <em>can</em> use constructor-injection - passing the dependencies to a non-default constructor, but it is not possible with <code>@PersistenceContext</code></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[4134539]-[396803184]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You <em>can</em> use constructor-injection - passing the dependencies to a non-default constructor, but it is not possible with <code>@PersistenceContext</code></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"PersistenceContext",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "depend":1,
+                    "context":1,
+                    "constructor":2,
+                    "code":2,
+                    "persist":1,
+                    "pass":1,
+                    "inject":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

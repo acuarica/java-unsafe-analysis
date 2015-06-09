@@ -1,0 +1,4158 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":18220435,
+    "title":"Using sun.misc.Unsafe, what is the fastest way to scan bytes from a Direct ByteBuffer?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "performance",
+      "unsafe",
+      "bytebuffer"
+    ],
+    "creationDate":"2013-08-13",
+    "lastActivityDate":"2013-08-14",
+    "lastEditDate":"2013-08-14",
+    "score":9,
+    "viewCount":1012,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":553524,
+      "displayName":"Riyad Kalla",
+      "reputation":6634
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>BACKGROUND</strong></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[1672895570]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>BACKGROUND</strong></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "strong":2,
+                  "background":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Assume I have a direct ByteBuffer:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-1411861006]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Assume I have a direct ByteBuffer:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "buffer":1,
+                  "direct":1,
+                  "assum":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"ByteBuffer directBuffer = ByteBuffer.allocateDirect(1024); "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18220435]-[2054053839]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"LocalVariableDeclarationStatementNode",
+                  "modifiers":[
+                    
+                  ],
+                  "declarators":{
+                    "type":"VariableDeclaratorsNode",
+                    "declarators":[
+                      {
+                        "type":"VariableDeclaratorNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"directBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "arrayDepth":[
+                          
+                        ],
+                        "assignment":{
+                          "type":"VariableAssignmentNode",
+                          "variableAssignment":{
+                            "type":"VariableExpressionInitNode",
+                            "expression":{
+                              "type":"MethodInvocationNode",
+                              "qualifiedIdentifier":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"ByteBuffer",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"allocateDirect",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "args":{
+                                "type":"ExpressionListNode",
+                                "arguments":[
+                                  {
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"1024"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "varType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"ByteBuffer directBuffer = ByteBuffer.allocateDirect(1024); ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "alloc":1,
+                  "buffer":3,
+                  "direct":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"allocateDirect",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"1024"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"directBuffer",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"allocateDirect",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"IntegerLiteralNode",
+                                  "valueRep":"1024"
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>and assume I am passing the buffer to an <a href=\"http://docs.oracle.com/javase/7/docs/api/java/nio/channels/AsynchronousSocketChannel.html#read%28java.nio.ByteBuffer%29\"rel=\"nofollow\">AsynchronousSocketChannel</a> to read chunks of data off that socket up to X bytes at a time (1024 in the example here).</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-575243494]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>and assume I am passing the buffer to an <a href=\"http://docs.oracle.com/javase/7/docs/api/java/nio/channels/AsynchronousSocketChannel.html#read%28java.nio.ByteBuffer%29\"rel=\"nofollow\">AsynchronousSocketChannel</a> to read chunks of data off that socket up to X bytes at a time (1024 in the example here).</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AsynchronousSocketChannel",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":2,
+                  "assum":1,
+                  "chunk":1,
+                  "asynchron":2,
+                  "channel":3,
+                  "socket":3,
+                  "data":1,
+                  "rel":1,
+                  "oracl":1,
+                  "nio":2,
+                  "buffer":2,
+                  "doc":2,
+                  "nofollow":1,
+                  "javas":1,
+                  "pass":1,
+                  "api":1,
+                  "time":1,
+                  "html":1,
+                  "href":1,
+                  "http":1,
+                  "byte":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AsynchronousSocketChannel",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>The transfer time off the socket into the <strong>direct</strong> ByteBuffer is fantastic because it is all occurring in native OS memory space; I haven't passed through the JVM &quot;blood-brain&quot; barrier yet...</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[171889378]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>The transfer time off the socket into the <strong>direct</strong> ByteBuffer is fantastic because it is all occurring in native OS memory space; I haven't passed through the JVM &quot;blood-brain&quot; barrier yet...</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "socket":1,
+                  "occur":1,
+                  "barrier":1,
+                  "buffer":1,
+                  "strong":2,
+                  "direct":1,
+                  "transfer":1,
+                  "space":1,
+                  "brain":1,
+                  "fantast":1,
+                  "pass":1,
+                  "quot":2,
+                  "time":1,
+                  "blood":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>QUESTION</strong></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-1263484070]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>QUESTION</strong></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "strong":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Assuming my job is to scan through all the bytes read back in from the direct byte buffer, what is the <em>fastest</em> way for me to do this?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-24866112]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Assuming my job is to scan through all the bytes read back in from the direct byte buffer, what is the <em>fastest</em> way for me to do this?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "assum":1,
+                  "job":1,
+                  "buffer":1,
+                  "scan":1,
+                  "fastest":1,
+                  "direct":1,
+                  "back":1,
+                  "byte":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I originally asked &quot;<em>... utilizing <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java\"rel=\"nofollow\">sun.misc.Unsafe</a></em>&quot; but maybe that is the wrong assumption.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[223651380]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I originally asked &quot;<em>... utilizing <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java\"rel=\"nofollow\">sun.misc.Unsafe</a></em>&quot; but maybe that is the wrong assumption.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "openjdk":1,
+                  "util":1,
+                  "wrong":1,
+                  "root":1,
+                  "sun":2,
+                  "rel":1,
+                  "repositori":1,
+                  "grepcod":2,
+                  "nofollow":1,
+                  "assumpt":1,
+                  "origin":1,
+                  "misc":2,
+                  "file":1,
+                  "quot":2,
+                  "unsaf":2,
+                  "ask":1,
+                  "href":1,
+                  "http":1,
+                  "jdk":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>POSSIBLE APPROACHES</strong></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-931716667]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>POSSIBLE APPROACHES</strong></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "approach":1,
+                  "strong":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I currently see three approaches and the one I am most curious about is #3:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-788536746]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I currently see three approaches and the one I am most curious about is #3:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "approach":1,
+                  "curious":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ol> \n <li>(DEFAULT) Use ByteBuffer's <a href=\"http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html#get%28byte%5B%5D%29\"rel=\"nofollow\">bulk-get</a> to pull bytes directly from native OS space into an internal byte[1024] construct. </li> \n <li>(UNSAFE) Use Unsafe's <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java#Unsafe.getByte%28java.lang.Object,long%29\"rel=\"nofollow\">getByte</a> ops to pull the values directly out of the ByteBuffer skipping all the bounds-checking of ByteBuffer's standard get ops. Peter Lawrey's answer <a href=\"http://stackoverflow.com/questions/11174231/compare-direct-and-non-direct-bytebuffer-get-put-operations\">here</a> seemed to suggest that those raw native methods in Unsafe can even be optimized out by the JIT compiler (&quot;intrinsics&quot;) to single machine instructions leading to even more fantastic access time. (===UPDATE=== interesting, it looks like the underlying <em>DirectByteBuffer</em> class does exactly this with the <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/nio/DirectByteBuffer.java#DirectByteBuffer._get%28int%29\"rel=\"nofollow\">get/put ops</a> for those interested.)</li> \n <li>(BANANAS) In some crime-against-humanity sort of way, using Unsafe, can I <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java#Unsafe.copyMemory%28java.lang.Object,long,java.lang.Object,long,long%29\"rel=\"nofollow\">copy the memory region</a> of the direct ByteBuffer to the same memory address my byte[1024] exists at inside of the VM, and just start accessing the array using standard int indexes? (This makes the assumption that the &quot;copyMemory&quot; operation can potentially do something fantastically optimized at the OS level.</li> \n</ol>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[1895214961]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ol> \n <li>(DEFAULT) Use ByteBuffer's <a href=\"http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html#get%28byte%5B%5D%29\"rel=\"nofollow\">bulk-get</a> to pull bytes directly from native OS space into an internal byte[1024] construct. </li> \n <li>(UNSAFE) Use Unsafe's <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java#Unsafe.getByte%28java.lang.Object,long%29\"rel=\"nofollow\">getByte</a> ops to pull the values directly out of the ByteBuffer skipping all the bounds-checking of ByteBuffer's standard get ops. Peter Lawrey's answer <a href=\"http://stackoverflow.com/questions/11174231/compare-direct-and-non-direct-bytebuffer-get-put-operations\">here</a> seemed to suggest that those raw native methods in Unsafe can even be optimized out by the JIT compiler (&quot;intrinsics&quot;) to single machine instructions leading to even more fantastic access time. (===UPDATE=== interesting, it looks like the underlying <em>DirectByteBuffer</em> class does exactly this with the <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/nio/DirectByteBuffer.java#DirectByteBuffer._get%28int%29\"rel=\"nofollow\">get/put ops</a> for those interested.)</li> \n <li>(BANANAS) In some crime-against-humanity sort of way, using Unsafe, can I <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/7-b147/sun/misc/Unsafe.java#Unsafe.copyMemory%28java.lang.Object,long,java.lang.Object,long,long%29\"rel=\"nofollow\">copy the memory region</a> of the direct ByteBuffer to the same memory address my byte[1024] exists at inside of the VM, and just start accessing the array using standard int indexes? (This makes the assumption that the &quot;copyMemory&quot; operation can potentially do something fantastically optimized at the OS level.</li> \n</ol>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getByte",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"DirectByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"does",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"copyMemory",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jit":1,
+                  "openjdk":3,
+                  "question":1,
+                  "singl":1,
+                  "method":1,
+                  "lead":1,
+                  "bulk":1,
+                  "banana":1,
+                  "exist":1,
+                  "standard":2,
+                  "root":3,
+                  "human":1,
+                  "suggest":1,
+                  "peter":1,
+                  "potenti":1,
+                  "bytebuff":1,
+                  "updat":1,
+                  "sun":2,
+                  "rel":4,
+                  "oracl":1,
+                  "nio":2,
+                  "skip":1,
+                  "buffer":8,
+                  "repositori":3,
+                  "doc":2,
+                  "object":3,
+                  "grepcod":6,
+                  "direct":8,
+                  "oper":2,
+                  "array":1,
+                  "stackoverflow":1,
+                  "optim":2,
+                  "bound":1,
+                  "nofollow":4,
+                  "assumpt":1,
+                  "check":1,
+                  "space":1,
+                  "interest":2,
+                  "raw":1,
+                  "insid":1,
+                  "machin":1,
+                  "compar":1,
+                  "valu":1,
+                  "crime":1,
+                  "misc":2,
+                  "javas":1,
+                  "fantast":2,
+                  "region":1,
+                  "address":1,
+                  "make":1,
+                  "put":2,
+                  "answer":1,
+                  "file":3,
+                  "quot":4,
+                  "under":1,
+                  "pull":2,
+                  "intrins":1,
+                  "compil":1,
+                  "api":1,
+                  "unsaf":8,
+                  "time":1,
+                  "lang":3,
+                  "sort":1,
+                  "html":1,
+                  "href":5,
+                  "start":1,
+                  "lawrey":1,
+                  "http":5,
+                  "byte":1,
+                  "construct":1,
+                  "intern":1,
+                  "jdk":3,
+                  "copi":3,
+                  "index":1,
+                  "access":2,
+                  "level":1,
+                  "instruct":1,
+                  "op":3,
+                  "memori":4
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DirectByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>It does occur to me that assuming the <em>copyMemory</em> operation does exactly what it advertises, even in the more-optimal OS space, that the #2 approach above is probably still the most optimized since I am not creating duplicates of the buffer before beginning to process it.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-191593971]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>It does occur to me that assuming the <em>copyMemory</em> operation does exactly what it advertises, even in the more-optimal OS space, that the #2 approach above is probably still the most optimized since I am not creating duplicates of the buffer before beginning to process it.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"copyMemory",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "begin":1,
+                  "assum":1,
+                  "advertis":1,
+                  "process":1,
+                  "occur":1,
+                  "buffer":1,
+                  "oper":1,
+                  "optim":2,
+                  "space":1,
+                  "approach":1,
+                  "duplic":1,
+                  "creat":1,
+                  "copi":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This IS different than the &quot;<a href=\"http://stackoverflow.com/questions/12226123/busted-how-to-speed-up-a-byte-lookup-to-be-faster-using-sun-misc-unsafe\">can I use Unsafe to iterate over a byte[] faster?</a>&quot; question as I am not even planning on pulling the bytes into a byte[] internally if it isn't necessary.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-1137914581]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This IS different than the &quot;<a href=\"http://stackoverflow.com/questions/12226123/busted-how-to-speed-up-a-byte-lookup-to-be-faster-using-sun-misc-unsafe\">can I use Unsafe to iterate over a byte[] faster?</a>&quot; question as I am not even planning on pulling the bytes into a byte[] internally if it isn't necessary.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "lookup":1,
+                  "question":2,
+                  "faster":2,
+                  "bust":1,
+                  "sun":1,
+                  "stackoverflow":1,
+                  "iter":1,
+                  "isn":1,
+                  "misc":1,
+                  "quot":2,
+                  "pull":1,
+                  "unsaf":2,
+                  "href":1,
+                  "http":1,
+                  "byte":1,
+                  "intern":1,
+                  "plan":1,
+                  "speed":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thanks for the time; just curious if anyone (Peter?) has gotten nuts with Unsafe to do something like this.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18220435]-[-553137037]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thanks for the time; just curious if anyone (Peter?) has gotten nuts with Unsafe to do something like this.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "nut":1,
+                  "peter":1,
+                  "curious":1,
+                  "unsaf":1,
+                  "time":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":18221314,
+      "questionId":18220435,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":26717408,
+          "postId":18221314,
+          "creationDate":"2013-08-14",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":829571,
+            "displayName":"assylias",
+            "reputation":118960
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@RiyadKalla intrinsic != native. Intrinsic methods are &quot;hardcoded&quot; in the JVM."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu26717408]-[-157827114]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@RiyadKalla intrinsic != native. Intrinsic methods are &quot;hardcoded&quot; in the JVM."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"RiyadKalla",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jvm":1,
+                        "method":1,
+                        "kalla":1,
+                        "hardcod":1,
+                        "quot":2,
+                        "intrins":2,
+                        "riyad":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26712283,
+          "postId":18221314,
+          "creationDate":"2013-08-14",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":553524,
+            "displayName":"Riyad Kalla",
+            "reputation":6634
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Didn't know about the &quot;intrinsic&quot; property of the ByteBuffer methods; do you mean the 'native' methods on the DirectBuffer class specifically? In that case, that would do exactly what #2 would do in my post above so that is great news."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu26712283]-[-1420723244]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Didn't know about the &quot;intrinsic&quot; property of the ByteBuffer methods; do you mean the 'native' methods on the DirectBuffer class specifically? In that case, that would do exactly what #2 would do in my post above so that is great news."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"methods",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"ByteBuffer",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"DirectBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"specifically",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "properti":1,
+                        "method":2,
+                        "post":1,
+                        "buffer":2,
+                        "direct":1,
+                        "specif":1,
+                        "news":1,
+                        "quot":2,
+                        "intrins":1,
+                        "great":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"DirectBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"methods",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ByteBuffer",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26739548,
+          "postId":18221314,
+          "creationDate":"2013-08-14",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":553524,
+            "displayName":"Riyad Kalla",
+            "reputation":6634
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@assylias I understand; I was (incorrectly) referring to what I figured were 'native' methods on the DirectByteBuffer impl class (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/nio/DirectByteBuffer.java) but now that I look at it, I see that there are no 'native' methods, it simply leverages Unsafe to do those ops. I mispoke, thank you for the catch."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu26739548]-[1383494205]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@assylias I understand; I was (incorrectly) referring to what I figured were 'native' methods on the DirectByteBuffer impl class (http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/nio/DirectByteBuffer.java) but now that I look at it, I see that there are no 'native' methods, it simply leverages Unsafe to do those ops. I mispoke, thank you for the catch."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          {
+                            "type":"AnnotationNode",
+                            "identifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"assylias",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"understand",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"I",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"DirectByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "openjdk":1,
+                        "method":2,
+                        "leverag":1,
+                        "root":1,
+                        "mispok":1,
+                        "assylia":1,
+                        "understand":1,
+                        "nio":1,
+                        "buffer":2,
+                        "repositori":1,
+                        "grepcod":2,
+                        "direct":2,
+                        "impl":1,
+                        "simpli":1,
+                        "incorrect":1,
+                        "refer":1,
+                        "figur":1,
+                        "file":1,
+                        "unsaf":1,
+                        "http":1,
+                        "jdk":1,
+                        "op":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"I",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"DirectByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"understand",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"I",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":29875503,
+          "postId":18221314,
+          "creationDate":"2013-11-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":190223,
+            "displayName":"juancn",
+            "reputation":1122
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It is Unsafe that is treated as an intrinsic, rather than ByteBuffer et.al. See for example https://github.com/airlift/slice for an alternate and really fast implementation of buffers in Java"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu29875503]-[1302899497]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It is Unsafe that is treated as an intrinsic, rather than ByteBuffer et.al. See for example https://github.com/airlift/slice for an alternate and really fast implementation of buffers in Java"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "github":1,
+                        "airlift":1,
+                        "buffer":2,
+                        "altern":1,
+                        "https":1,
+                        "slice":1,
+                        "implement":1,
+                        "treat":1,
+                        "fast":1,
+                        "intrins":1,
+                        "unsaf":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":36676019,
+          "postId":18221314,
+          "creationDate":"2014-05-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2057294,
+            "displayName":"skiwi",
+            "reputation":10334
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Benchmark nitpicking: Did you do something useful (like printing out) the value of `sum`? Because else the JIT will optimize it away. I think 0.67ns and 0.81ns per loop is very fast, maybe it really is that fast, but I'm a little bit curious about it."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu36676019]-[531567849]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Benchmark nitpicking: Did you do something useful (like printing out) the value of `sum`? Because else the JIT will optimize it away. I think 0.67ns and 0.81ns per loop is very fast, maybe it really is that fast, but I'm a little bit curious about it."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jit":1,
+                        "loop":1,
+                        "bit":1,
+                        "print":1,
+                        "optim":1,
+                        "curious":1,
+                        "fast":2,
+                        "nitpick":1,
+                        "sum":1,
+                        "benchmark":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":36840400,
+          "postId":18221314,
+          "creationDate":"2014-05-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2158288,
+            "displayName":"bayou.io",
+            "reputation":3910
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@skiwi sure, I printed `sum` out. (though a *really* smart vm would figure out that it's `0` anyway:)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18221314-cu36840400]-[-1449568338]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@skiwi sure, I printed `sum` out. (though a *really* smart vm would figure out that it's `0` anyway:)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "print":1,
+                        "smart":1,
+                        "skiwi":1,
+                        "figur":1,
+                        "sum":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-08-14",
+      "lastActivityDate":"2013-08-14",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":2158288,
+        "displayName":"bayou.io",
+        "reputation":3910
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><code>ByteBuffer</code> methods are extremely fast, because these methods are intrinsics, VM has mapped them to very low level instructions. Compare these two approaches:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18221314]-[1431752092]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><code>ByteBuffer</code> methods are extremely fast, because these methods are intrinsics, VM has mapped them to very low level instructions. Compare these two approaches:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":2,
+                    "map":1,
+                    "buffer":1,
+                    "code":2,
+                    "low":1,
+                    "compar":1,
+                    "extrem":1,
+                    "approach":1,
+                    "fast":1,
+                    "intrins":1,
+                    "level":1,
+                    "instruct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" byte[] bytes = new byte[N]; for(int m=0; m&lt;M; m++) for(int i=0; i&lt;bytes.length; i++) sum += bytes[i]; ByteBuffer bb = ByteBuffer.allocateDirect(N); for(int m=0; m&lt;M; m++) for(int i=0; i&lt;bb.remaining(); i++) sum += bb.get(i); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[18221314]-[1571258130]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" byte[] bytes = new byte[N]; "
+                  },
+                  {
+                    "type":"ForLoopStatementNode",
+                    "forControl":{
+                      "type":"ForVarControlNode",
+                      "variables":{
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"m",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"0"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "condition":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"<",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"m",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"M",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "update":[
+                        {
+                          "type":"PostfixOperatorExpressionNode",
+                          "argument":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"m",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"++",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "statement":{
+                      "type":"ForLoopStatementNode",
+                      "forControl":{
+                        "type":"ForVarControlNode",
+                        "variables":{
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"i",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"IntegerLiteralNode",
+                                        "valueRep":"0"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "condition":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"<",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"i",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"bytes",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"length",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "update":[
+                          {
+                            "type":"PostfixOperatorExpressionNode",
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"i",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"++",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "statement":{
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+=",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"sum",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"ArrayAccessSelectorNode",
+                            "identifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"bytes",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "dimExpression":{
+                              "type":"DimExpressionNode",
+                              "argument":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"i",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"bb",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"ByteBuffer",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"allocateDirect",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"N",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ByteBuffer",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ForLoopStatementNode",
+                    "forControl":{
+                      "type":"ForVarControlNode",
+                      "variables":{
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"m",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"0"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "condition":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"<",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"m",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"M",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "update":[
+                        {
+                          "type":"PostfixOperatorExpressionNode",
+                          "argument":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"m",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"++",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "statement":{
+                      "type":"ForLoopStatementNode",
+                      "forControl":{
+                        "type":"ForVarControlNode",
+                        "variables":{
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"i",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"IntegerLiteralNode",
+                                        "valueRep":"0"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "condition":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"<",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"i",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"bb",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"remaining",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "update":[
+                          {
+                            "type":"PostfixOperatorExpressionNode",
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"i",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"++",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "statement":{
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+=",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"sum",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"bb",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"get",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":" byte[] bytes = new byte[N]; for(int m=0; m<M; m++) for(int i=0; i<bytes.length; i++) sum += bytes[i]; ByteBuffer bb = ByteBuffer.allocateDirect(N); for(int m=0; m<M; m++) for(int i=0; i<bb.remaining(); i++) sum += bb.get(i); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "alloc":1,
+                    "buffer":2,
+                    "direct":1,
+                    "remain":1,
+                    "length":1,
+                    "byte":3,
+                    "sum":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"allocateDirect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"N",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"bb",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"remaining",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"bb",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"get",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"i",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"m",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"0"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"i",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"0"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"bb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"ByteBuffer",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"allocateDirect",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"N",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>on my machine, the difference is 0.67ns vs 0.81ns (per loop).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18221314]-[1672639960]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>on my machine, the difference is 0.67ns vs 0.81ns (per loop).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loop":1,
+                    "differ":1,
+                    "machin":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I'm a little surprised that ByteBuffer is not as fast as byte[]. But I think you should definitely NOT copy it to a byte[] then access.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18221314]-[-573243535]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I'm a little surprised that ByteBuffer is not as fast as byte[]. But I think you should definitely NOT copy it to a byte[] then access.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "buffer":1,
+                    "surpris":1,
+                    "fast":1,
+                    "copi":1,
+                    "access":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

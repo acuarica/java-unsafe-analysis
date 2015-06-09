@@ -1,0 +1,5564 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":24286850,
+    "title":"JPA - Can't insert into a table with a defined type (Oracle)",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "jpa",
+      "insert",
+      "eclipselink",
+      "varray"
+    ],
+    "creationDate":"2014-06-18",
+    "lastActivityDate":"2014-06-27",
+    "lastEditDate":"2014-06-18",
+    "score":0,
+    "viewCount":95,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2256405,
+      "displayName":"Sergi",
+      "reputation":510
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have the following problem: in my database there is a table that uses a defined type:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[24286850]-[-1905051007]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have the following problem: in my database there is a table that uses a defined type:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "problem":1,
+                  "tabl":1,
+                  "databas":1,
+                  "defin":1,
+                  "type":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"CREATE OR REPLACE TYPE ARRAY_METHODS IS VARRAY (10) OF NUMBER (2); "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[24286850]-[-1885586604]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"CREATE OR REPLACE TYPE ARRAY"
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"_METHODS",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" IS VARRAY (10) OF NUMBER (2); "
+                }
+              ]
+            },
+            "rawText":"CREATE OR REPLACE TYPE ARRAY_METHODS IS VARRAY (10) OF NUMBER (2); ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "number":1,
+                  "method":1,
+                  "array":1,
+                  "replac":1,
+                  "varray":1,
+                  "type":1,
+                  "creat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This column is mapped as <code>List&lt;BigDecimal&gt;</code> in its respective entity. The problem starts when I try to do an insert with JPA (I tried both <code>persist()</code> and <code>merge()</code>). Looking for a solution I found that I have to add the <code>@Array</code> and <code>@Struct</code> annotations:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[24286850]-[719168662]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This column is mapped as <code>List&lt;BigDecimal&gt;</code> in its respective entity. The problem starts when I try to do an insert with JPA (I tried both <code>persist()</code> and <code>merge()</code>). Looking for a solution I found that I have to add the <code>@Array</code> and <code>@Struct</code> annotations:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"List",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "typeArguments":{
+                        "type":"TypeArgumentsNode",
+                        "types":[
+                          {
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"BigDecimal",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Array",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Struct",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "insert":1,
+                  "map":1,
+                  "problem":1,
+                  "big":1,
+                  "jpa":1,
+                  "code":10,
+                  "array":1,
+                  "persist":1,
+                  "found":1,
+                  "annot":1,
+                  "decim":1,
+                  "merg":1,
+                  "struct":1,
+                  "column":1,
+                  "respect":1,
+                  "entiti":1,
+                  "start":1,
+                  "add":1,
+                  "solut":1,
+                  "list":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"List",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"BigDecimal",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"BigDecimal",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"@Entity @Struct(name=&quot;ARRAY_METHODS&quot;) @Table(name=&quot;MY_TABLE&quot;) ... @Array(databaseType=&quot;ARRAY_METHODS&quot;) @Column(name=&quot;METHODS&quot;) private List&lt;BigDecimal&gt; methods; "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[24286850]-[-1601739953]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Entity",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Struct",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "element":{
+                    "type":"ElementValuePairsNode",
+                    "valuePairs":[
+                      {
+                        "type":"ElementValuePairNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"name",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "value":{
+                          "type":"ElementValueNode",
+                          "value":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"ARRAY_METHODS\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"AnnotationNode",
+                  "identifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Table",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "element":{
+                    "type":"ElementValuePairsNode",
+                    "valuePairs":[
+                      {
+                        "type":"ElementValuePairNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"name",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "value":{
+                          "type":"ElementValueNode",
+                          "value":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"MY_TABLE\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"... "
+                },
+                {
+                  "type":"FieldDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Array",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "element":{
+                        "type":"ElementValuePairsNode",
+                        "valuePairs":[
+                          {
+                            "type":"ElementValuePairNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"databaseType",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "value":{
+                              "type":"ElementValueNode",
+                              "value":{
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"StringLiteralNode",
+                                  "valueRep":"\"ARRAY_METHODS\""
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Column",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "element":{
+                        "type":"ElementValuePairsNode",
+                        "valuePairs":[
+                          {
+                            "type":"ElementValuePairNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"name",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "value":{
+                              "type":"ElementValueNode",
+                              "value":{
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"StringLiteralNode",
+                                  "valueRep":"\"METHODS\""
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"private",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "variables":{
+                    "type":"VariableDeclaratorsNode",
+                    "declarators":[
+                      {
+                        "type":"VariableDeclaratorNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"methods",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "arrayDepth":[
+                          
+                        ],
+                        "varType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"List",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "typeArguments":{
+                                "type":"TypeArgumentsNode",
+                                "types":[
+                                  {
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"BigDecimal",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"@Entity @Struct(name=\"ARRAY_METHODS\") @Table(name=\"MY_TABLE\") ... @Array(databaseType=\"ARRAY_METHODS\") @Column(name=\"METHODS\") private List<BigDecimal> methods; ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":4,
+                  "big":1,
+                  "tabl":2,
+                  "array":3,
+                  "decim":1,
+                  "struct":1,
+                  "column":1,
+                  "databas":1,
+                  "entiti":1,
+                  "type":1,
+                  "list":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"List",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"BigDecimal",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"BigDecimal",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"methods",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"List",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "typeArguments":{
+                            "type":"TypeArgumentsNode",
+                            "types":[
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"BigDecimal",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>But It still fails:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[24286850]-[-1061076758]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>But It still fails:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "fail":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"Internal Exception: java.sql.SQLException: Unsupported Feature Error Code: 17023 Query: InsertObjectQuery(com.myproject.models.MyTable@45c242ae) at weblogic.transaction.internal.TransactionImpl.throwRollbackException(TransactionImpl.java:1878) at weblogic.transaction.internal.ServerTransactionImpl.internalCommit(ServerTransactionImpl.java:359) at weblogic.transaction.internal.ServerTransactionImpl.commit(ServerTransactionImpl.java:250)at weblogic.ejb.container.internal.BaseLocalObject.postInvoke1(BaseLocalObject.java:336) at weblogic.ejb.container.internal.BaseLocalObject.__WL_postInvokeTxRetry(BaseLocalObject.java:205) at weblogic.ejb.container.internal.BaseWSLocalObject.__WL_postInvokeTxRetry(BaseWSLocalObject.java:194) at weblogic.ejb.container.internal.WSOMethodInvoker.invoke(WSOMethodInvoker.java:40) at com.myproject.ops.OpPhysicalResourcePortTypeImpl_14p9mm_WSOImpl.__WL_opAltaRecurso(Unknown Source) at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) at java.lang.reflect.Method.invoke(Method.java:606) at weblogic.wsee.server.ejb.WsEjb.invoke(WsEjb.java:54) at weblogic.wsee.jaxws.WLSEjbInstanceResolver$WLSEjbInvoker.invoke(WLSEjbInstanceResolver.java:196) at weblogic.wsee.jaxws.WLSInstanceResolver$WLSInvoker.invoke(WLSInstanceResolver.java:91) at com.sun.xml.ws.server.InvokerTube$2.invoke(InvokerTube.java:149) at com.sun.xml.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:88) at com.sun.xml.ws.api.pipe.Fiber.__doRun(Fiber.java:1136) at com.sun.xml.ws.api.pipe.Fiber._doRun(Fiber.java:1050) at com.sun.xml.ws.api.pipe.Fiber.doRun(Fiber.java:1019) at com.sun.xml.ws.api.pipe.Fiber.runSync(Fiber.java:877) at com.sun.xml.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:420) at com.sun.xml.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:687) at com.sun.xml.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:266) at com.sun.xml.ws.transport.http.servlet.ServletAdapter.handle(ServletAdapter.java:169) at weblogic.wsee.jaxws.WLSServletAdapter.handle(WLSServletAdapter.java:205) at weblogic.wsee.jaxws.HttpServletAdapter$AuthorizedInvoke.run(HttpServletAdapter.java:634) at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:363) at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:146) at weblogic.wsee.util.ServerSecurityHelper.authenticatedInvoke(ServerSecurityHelper.java:108) at weblogic.wsee.jaxws.HttpServletAdapter$3.run(HttpServletAdapter.java:278) at weblogic.wsee.jaxws.HttpServletAdapter.post(HttpServletAdapter.java:287) at weblogic.wsee.jaxws.JAXWSServlet.doRequest(JAXWSServlet.java:134) at weblogic.servlet.http.AbstractAsyncServlet.service(AbstractAsyncServlet.java:99) at javax.servlet.http.HttpServlet.service(HttpServlet.java:844) at weblogic.servlet.internal.StubSecurityHelper$ServletServiceAction.run(StubSecurityHelper.java:280) at weblogic.servlet.internal.StubSecurityHelper$ServletServiceAction.run(StubSecurityHelper.java:254) at weblogic.servlet.internal.StubSecurityHelper.invokeServlet(StubSecurityHelper.java:136) at weblogic.servlet.internal.ServletStubImpl.execute(ServletStubImpl.java:341) at weblogic.servlet.internal.ServletStubImpl.execute(ServletStubImpl.java:238) at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.wrapRun(WebAppServletContext.java:3363) at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.run(WebAppServletContext.java:3333) at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:321) at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:120) at weblogic.servlet.provider.WlsSubjectHandle.run(WlsSubjectHandle.java:57) at weblogic.servlet.internal.WebAppServletContext.doSecuredExecute(WebAppServletContext.java:2220) at weblogic.servlet.internal.WebAppServletContext.securedExecute(WebAppServletContext.java:2146) at weblogic.servlet.internal.WebAppServletContext.execute(WebAppServletContext.java:2124) at weblogic.servlet.internal.ServletRequestImpl.run(ServletRequestImpl.java:1564) at weblogic.servlet.provider.ContainerSupportProviderImpl$WlsRequestExecutor.run(ContainerSupportProviderImpl.java:254) at weblogic.work.ExecuteThread.execute(ExecuteThread.java:295) at weblogic.work.ExecuteThread.run(ExecuteThread.java:254) Caused by: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.4.2.v20130514-5956486): org.eclipse.persistence.exceptions.DatabaseException "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[24286850]-[1501937081]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"Internal Exception: "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sql",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"SQLException",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": Unsupported Feature Error Code: 17023 Query: "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"InsertObjectQuery",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"("
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"myproject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"models",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"MyTable",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"@45c242ae) "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transaction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TransactionImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"throwRollbackException",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TransactionImpl.java",
+                    "lineNumber":1878
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transaction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServerTransactionImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internalCommit",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServerTransactionImpl.java",
+                    "lineNumber":359
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transaction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServerTransactionImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"commit",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServerTransactionImpl.java",
+                    "lineNumber":250
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ejb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"container",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"BaseLocalObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"postInvoke1",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"BaseLocalObject.java",
+                    "lineNumber":336
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ejb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"container",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"BaseLocalObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"__WL_postInvokeTxRetry",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"BaseLocalObject.java",
+                    "lineNumber":205
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ejb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"container",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"BaseWSLocalObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"__WL_postInvokeTxRetry",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"BaseWSLocalObject.java",
+                    "lineNumber":194
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ejb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"container",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WSOMethodInvoker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WSOMethodInvoker.java",
+                    "lineNumber":40
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"myproject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ops",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"OpPhysicalResourcePortTypeImpl_14p9mm_WSOImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"__WL_opAltaRecurso",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Unknown Source"
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"reflect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"NativeMethodAccessorImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke0",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Native Method"
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"reflect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"NativeMethodAccessorImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"NativeMethodAccessorImpl.java",
+                    "lineNumber":57
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"reflect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"DelegatingMethodAccessorImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"DelegatingMethodAccessorImpl.java",
+                    "lineNumber":43
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"reflect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Method",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Method.java",
+                    "lineNumber":606
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"server",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ejb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WsEjb",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WsEjb.java",
+                    "lineNumber":54
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WLSEjbInstanceResolver$WLSEjbInvoker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WLSEjbInstanceResolver.java",
+                    "lineNumber":196
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WLSInstanceResolver$WLSInvoker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WLSInstanceResolver.java",
+                    "lineNumber":91
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"server",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"InvokerTube$2",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"InvokerTube.java",
+                    "lineNumber":149
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"server",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sei",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"SEIInvokerTube",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"processRequest",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"SEIInvokerTube.java",
+                    "lineNumber":88
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"api",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"pipe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Fiber",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"__doRun",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Fiber.java",
+                    "lineNumber":1136
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"api",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"pipe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Fiber",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_doRun",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Fiber.java",
+                    "lineNumber":1050
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"api",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"pipe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Fiber",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doRun",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Fiber.java",
+                    "lineNumber":1019
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"api",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"pipe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Fiber",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"runSync",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Fiber.java",
+                    "lineNumber":877
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"server",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WSEndpointImpl$2",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"process",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WSEndpointImpl.java",
+                    "lineNumber":420
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpAdapter$HttpToolkit",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"handle",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpAdapter.java",
+                    "lineNumber":687
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpAdapter",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"handle",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpAdapter.java",
+                    "lineNumber":266
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"com",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"xml",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"transport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServletAdapter",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"handle",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServletAdapter.java",
+                    "lineNumber":169
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WLSServletAdapter",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"handle",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WLSServletAdapter.java",
+                    "lineNumber":205
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpServletAdapter$AuthorizedInvoke",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpServletAdapter.java",
+                    "lineNumber":634
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"security",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"acl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AuthenticatedSubject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doAs",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AuthenticatedSubject.java",
+                    "lineNumber":363
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"security",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"SecurityManager",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"runAs",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"SecurityManager.java",
+                    "lineNumber":146
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServerSecurityHelper",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"authenticatedInvoke",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServerSecurityHelper.java",
+                    "lineNumber":108
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpServletAdapter$3",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpServletAdapter.java",
+                    "lineNumber":278
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpServletAdapter",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"post",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpServletAdapter.java",
+                    "lineNumber":287
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wsee",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"jaxws",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"JAXWSServlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doRequest",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"JAXWSServlet.java",
+                    "lineNumber":134
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractAsyncServlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractAsyncServlet.java",
+                    "lineNumber":99
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"javax",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"http",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"HttpServlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"HttpServlet.java",
+                    "lineNumber":844
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"StubSecurityHelper$ServletServiceAction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"StubSecurityHelper.java",
+                    "lineNumber":280
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"StubSecurityHelper$ServletServiceAction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"StubSecurityHelper.java",
+                    "lineNumber":254
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"StubSecurityHelper",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"invokeServlet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"StubSecurityHelper.java",
+                    "lineNumber":136
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServletStubImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"execute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServletStubImpl.java",
+                    "lineNumber":341
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServletStubImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"execute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServletStubImpl.java",
+                    "lineNumber":238
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WebAppServletContext$ServletInvocationAction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"wrapRun",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WebAppServletContext.java",
+                    "lineNumber":3363
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WebAppServletContext$ServletInvocationAction",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WebAppServletContext.java",
+                    "lineNumber":3333
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"security",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"acl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AuthenticatedSubject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doAs",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AuthenticatedSubject.java",
+                    "lineNumber":321
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"security",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"SecurityManager",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"runAs",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"SecurityManager.java",
+                    "lineNumber":120
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"provider",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WlsSubjectHandle",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WlsSubjectHandle.java",
+                    "lineNumber":57
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WebAppServletContext",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"doSecuredExecute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WebAppServletContext.java",
+                    "lineNumber":2220
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WebAppServletContext",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"securedExecute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WebAppServletContext.java",
+                    "lineNumber":2146
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"WebAppServletContext",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"execute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"WebAppServletContext.java",
+                    "lineNumber":2124
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"internal",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ServletRequestImpl",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ServletRequestImpl.java",
+                    "lineNumber":1564
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"servlet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"provider",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ContainerSupportProviderImpl$WlsRequestExecutor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ContainerSupportProviderImpl.java",
+                    "lineNumber":254
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"work",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ExecuteThread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"execute",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ExecuteThread.java",
+                    "lineNumber":295
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"weblogic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"work",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ExecuteThread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ExecuteThread.java",
+                    "lineNumber":254
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"Caused by: Exception ["
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"EclipseLink",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"-4002] (Eclipse Persistence Services - 2.4.2.v20130514-5956486): "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"eclipse",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"persistence",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"exceptions",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"DatabaseException",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"Internal Exception: java.sql.SQLException: Unsupported Feature Error Code: 17023 Query: InsertObjectQuery(com.myproject.models.MyTable@45c242ae) at weblogic.transaction.internal.TransactionImpl.throwRollbackException(TransactionImpl.java:1878)at weblogic.transaction.internal.ServerTransactionImpl.internalCommit(ServerTransactionImpl.java:359)at weblogic.transaction.internal.ServerTransactionImpl.commit(ServerTransactionImpl.java:250)at weblogic.ejb.container.internal.BaseLocalObject.postInvoke1(BaseLocalObject.java:336)at weblogic.ejb.container.internal.BaseLocalObject.__WL_postInvokeTxRetry(BaseLocalObject.java:205)at weblogic.ejb.container.internal.BaseWSLocalObject.__WL_postInvokeTxRetry(BaseWSLocalObject.java:194)at weblogic.ejb.container.internal.WSOMethodInvoker.invoke(WSOMethodInvoker.java:40)at com.myproject.ops.OpPhysicalResourcePortTypeImpl_14p9mm_WSOImpl.__WL_opAltaRecurso(Unknown Source)at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)at java.lang.reflect.Method.invoke(Method.java:606)at weblogic.wsee.server.ejb.WsEjb.invoke(WsEjb.java:54)at weblogic.wsee.jaxws.WLSEjbInstanceResolver$WLSEjbInvoker.invoke(WLSEjbInstanceResolver.java:196)at weblogic.wsee.jaxws.WLSInstanceResolver$WLSInvoker.invoke(WLSInstanceResolver.java:91)at com.sun.xml.ws.server.InvokerTube$2.invoke(InvokerTube.java:149)at com.sun.xml.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:88)at com.sun.xml.ws.api.pipe.Fiber.__doRun(Fiber.java:1136)at com.sun.xml.ws.api.pipe.Fiber._doRun(Fiber.java:1050)at com.sun.xml.ws.api.pipe.Fiber.doRun(Fiber.java:1019)at com.sun.xml.ws.api.pipe.Fiber.runSync(Fiber.java:877)at com.sun.xml.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:420)at com.sun.xml.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:687)at com.sun.xml.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:266)at com.sun.xml.ws.transport.http.servlet.ServletAdapter.handle(ServletAdapter.java:169)at weblogic.wsee.jaxws.WLSServletAdapter.handle(WLSServletAdapter.java:205)at weblogic.wsee.jaxws.HttpServletAdapter$AuthorizedInvoke.run(HttpServletAdapter.java:634)at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:363)at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:146)at weblogic.wsee.util.ServerSecurityHelper.authenticatedInvoke(ServerSecurityHelper.java:108)at weblogic.wsee.jaxws.HttpServletAdapter$3.run(HttpServletAdapter.java:278)at weblogic.wsee.jaxws.HttpServletAdapter.post(HttpServletAdapter.java:287)at weblogic.wsee.jaxws.JAXWSServlet.doRequest(JAXWSServlet.java:134)at weblogic.servlet.http.AbstractAsyncServlet.service(AbstractAsyncServlet.java:99)at javax.servlet.http.HttpServlet.service(HttpServlet.java:844)at weblogic.servlet.internal.StubSecurityHelper$ServletServiceAction.run(StubSecurityHelper.java:280)at weblogic.servlet.internal.StubSecurityHelper$ServletServiceAction.run(StubSecurityHelper.java:254)at weblogic.servlet.internal.StubSecurityHelper.invokeServlet(StubSecurityHelper.java:136)at weblogic.servlet.internal.ServletStubImpl.execute(ServletStubImpl.java:341)at weblogic.servlet.internal.ServletStubImpl.execute(ServletStubImpl.java:238)at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.wrapRun(WebAppServletContext.java:3363)at weblogic.servlet.internal.WebAppServletContext$ServletInvocationAction.run(WebAppServletContext.java:3333)at weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:321)at weblogic.security.service.SecurityManager.runAs(SecurityManager.java:120)at weblogic.servlet.provider.WlsSubjectHandle.run(WlsSubjectHandle.java:57)at weblogic.servlet.internal.WebAppServletContext.doSecuredExecute(WebAppServletContext.java:2220)at weblogic.servlet.internal.WebAppServletContext.securedExecute(WebAppServletContext.java:2146)at weblogic.servlet.internal.WebAppServletContext.execute(WebAppServletContext.java:2124)at weblogic.servlet.internal.ServletRequestImpl.run(ServletRequestImpl.java:1564)at weblogic.servlet.provider.ContainerSupportProviderImpl$WlsRequestExecutor.run(ContainerSupportProviderImpl.java:254)at weblogic.work.ExecuteThread.execute(ExecuteThread.java:295)at weblogic.work.ExecuteThread.run(ExecuteThread.java:254)Caused by: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.4.2.v20130514-5956486): org.eclipse.persistence.exceptions.DatabaseException ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "adapt":14,
+                  "wsee":9,
+                  "support":2,
+                  "provid":4,
+                  "method":8,
+                  "post":4,
+                  "sql":1,
+                  "author":1,
+                  "sei":1,
+                  "resolv":4,
+                  "jaxwsservlet":2,
+                  "wsomethod":2,
+                  "request":5,
+                  "server":10,
+                  "subject":6,
+                  "util":1,
+                  "wslocal":2,
+                  "commit":2,
+                  "model":1,
+                  "insert":1,
+                  "seiinvok":2,
+                  "authent":5,
+                  "recurso":1,
+                  "invoc":2,
+                  "wlsejb":3,
+                  "process":2,
+                  "context":10,
+                  "run":16,
+                  "fiber":8,
+                  "sun":13,
+                  "local":4,
+                  "resourc":1,
+                  "invok":20,
+                  "ejb":7,
+                  "unknown":1,
+                  "servlet":49,
+                  "secur":18,
+                  "contain":6,
+                  "wlsservlet":2,
+                  "weblog":36,
+                  "work":2,
+                  "object":7,
+                  "base":6,
+                  "acl":2,
+                  "code":1,
+                  "web":10,
+                  "impl":22,
+                  "eclips":3,
+                  "accessor":5,
+                  "tabl":1,
+                  "javax":1,
+                  "wsoimpl":1,
+                  "rollback":1,
+                  "jaxw":7,
+                  "transact":9,
+                  "persist":2,
+                  "transport":3,
+                  "thread":4,
+                  "async":2,
+                  "wrap":1,
+                  "port":1,
+                  "queri":2,
+                  "error":1,
+                  "xml":10,
+                  "link":1,
+                  "alta":1,
+                  "myproject":2,
+                  "sync":1,
+                  "unsupport":1,
+                  "wls":3,
+                  "caus":1,
+                  "wlsinvok":1,
+                  "app":10,
+                  "helper":8,
+                  "databas":1,
+                  "api":4,
+                  "wlsinstanc":2,
+                  "featur":1,
+                  "pipe":4,
+                  "lang":1,
+                  "type":1,
+                  "org":1,
+                  "wsendpoint":2,
+                  "manag":4,
+                  "retri":2,
+                  "toolkit":1,
+                  "executor":1,
+                  "except":1,
+                  "http":18,
+                  "sourc":1,
+                  "reflect":4,
+                  "intern":22,
+                  "handl":6,
+                  "physic":1,
+                  "action":4,
+                  "servic":7,
+                  "tube":4,
+                  "execut":10,
+                  "instanc":2,
+                  "stub":10,
+                  "deleg":2,
+                  "sqlexcept":1,
+                  "op":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sql",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SQLException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"com",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"myproject",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"models",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyTable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"eclipse",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"persistence",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"exceptions",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DatabaseException",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"InsertObjectQuery",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EclipseLink",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Working with: Oracle Database 11g Express Edition, JDK 7, Oracle Weblogic 12c</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[24286850]-[1278879796]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Working with: Oracle Database 11g Express Edition, JDK 7, Oracle Weblogic 12c</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "oracl":2,
+                  "weblog":1,
+                  "work":1,
+                  "edit":1,
+                  "express":1,
+                  "databas":1,
+                  "jdk":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thanks for your help.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[24286850]-[1968018021]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thanks for your help.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":24303783,
+      "questionId":24286850,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":37595511,
+          "postId":24303783,
+          "creationDate":"2014-06-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2256405,
+            "displayName":"Sergi",
+            "reputation":510
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It's not crucial, but I'm working in this project and I'm not free to change the model. Anyway, thanks for your suggestion but it still doesn't work."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24303783-cu37595511]-[1307659553]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It's not crucial, but I'm working in this project and I'm not free to change the model. Anyway, thanks for your suggestion but it still doesn't work."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "model":1,
+                        "project":1,
+                        "suggest":1,
+                        "work":2,
+                        "crucial":1,
+                        "free":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37595610,
+          "postId":24303783,
+          "creationDate":"2014-06-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":3749993,
+            "displayName":"win_wave",
+            "reputation":721
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"BTW, you are suing EclipseLink 2.4.2, have you tried newer versions of it?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24303783-cu37595610]-[2119060537]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"BTW, you are suing EclipseLink 2.4.2, have you tried newer versions of it?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"EclipseLink",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "btw":1,
+                        "su":1,
+                        "newer":1,
+                        "eclips":1,
+                        "version":1,
+                        "link":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"EclipseLink",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37596251,
+          "postId":24303783,
+          "creationDate":"2014-06-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2256405,
+            "displayName":"Sergi",
+            "reputation":510
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yes, 2.5 and same error. With `@ElementCollection` now I get `Caused By: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into (&quot;SERGI&quot;.&quot;MY_TABLE&quot;.&quot;METHODS&quot;)`. Looking at the query I see that the column doesn't appear in it."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24303783-cu37596251]-[-1223439791]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yes, 2.5 and same error. With `@ElementCollection` now I get `Caused By: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into (&quot;SERGI&quot;.&quot;MY_TABLE&quot;.&quot;METHODS&quot;)`. Looking at the query I see that the column doesn't appear in it."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"ElementCollection",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"java",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"sql",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"SQLIntegrityConstraintViolationException",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_TABLE",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "method":1,
+                        "sql":1,
+                        "violat":1,
+                        "insert":1,
+                        "sqlintegr":1,
+                        "element":1,
+                        "tabl":1,
+                        "queri":1,
+                        "error":1,
+                        "ora":1,
+                        "caus":1,
+                        "constraint":1,
+                        "column":1,
+                        "quot":6,
+                        "collect":1,
+                        "sergi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"java",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"sql",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"SQLIntegrityConstraintViolationException",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37596740,
+          "postId":24303783,
+          "creationDate":"2014-06-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":3749993,
+            "displayName":"win_wave",
+            "reputation":721
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"With `@ElementCollection` you do not need `@Column`. See example [here](http://en.wikibooks.org/wiki/Java_Persistence/ElementCollection)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24303783-cu37596740]-[1902396431]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"With `@ElementCollection` you do not need `@Column`. See example [here](http://en.wikibooks.org/wiki/Java_Persistence/ElementCollection)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"ElementCollection",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Column",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_Persistence",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ElementCollection",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "wikibook":1,
+                        "element":2,
+                        "persist":1,
+                        "column":1,
+                        "wiki":1,
+                        "collect":2,
+                        "org":1,
+                        "http":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ElementCollection",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37596966,
+          "postId":24303783,
+          "creationDate":"2014-06-20",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":3749993,
+            "displayName":"win_wave",
+            "reputation":721
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Also it strage that it says about `NULL`, try to initialize your array (like new `ArrayList\n<bigdecimal>\n `)\n</bigdecimal>"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24303783-cu37596966]-[1113799956]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Also it strage that it says about `NULL`, try to initialize your array (like new `ArrayList\n<bigdecimal>\n `)\n</bigdecimal>"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ArrayList",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "strage":1,
+                        "array":2,
+                        "bigdecim":2,
+                        "initi":1,
+                        "list":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ArrayList",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-06-19",
+      "lastActivityDate":"2014-06-19",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":3749993,
+        "displayName":"win_wave",
+        "reputation":721
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Is it crucial to have in the same table? solution could to use @ElementCollection instead @Array</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[24303783]-[-380720788]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Is it crucial to have in the same table? solution could to use @ElementCollection instead @Array</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"ElementCollection",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Array",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "element":1,
+                    "tabl":1,
+                    "array":1,
+                    "crucial":1,
+                    "collect":1,
+                    "solut":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":24446601,
+      "questionId":24286850,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-06-27",
+      "lastActivityDate":"2014-06-27",
+      "score":0,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":2256405,
+        "displayName":"Sergi",
+        "reputation":510
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>After contacting with Oracle, they say the problem is that inserting in a numeric array is not allowed. So now we hava a new table.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[24446601]-[19627496]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>After contacting with Oracle, they say the problem is that inserting in a numeric array is not allowed. So now we hava a new table.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "hava":1,
+                    "insert":1,
+                    "problem":1,
+                    "oracl":1,
+                    "contact":1,
+                    "numer":1,
+                    "tabl":1,
+                    "array":1,
+                    "allow":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

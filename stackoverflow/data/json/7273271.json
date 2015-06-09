@@ -1,0 +1,4326 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":7273271,
+    "title":"Java - Code Coverage",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "unit-testing",
+      "code-coverage"
+    ],
+    "creationDate":"2011-09-01",
+    "lastActivityDate":"2011-09-01",
+    "lastEditDate":"2011-09-01",
+    "score":4,
+    "viewCount":553,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":11612,
+      "displayName":"Damo",
+      "reputation":842
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have a method in one of the classes in my code base that for the life of me, I cannot get into with my junit tests. Basically this class is called when I request a database connection, if a stale connection is returned, a new connection is established</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7273271]-[-1919441589]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have a method in one of the classes in my code base that for the life of me, I cannot get into with my junit tests. Basically this class is called when I request a database connection, if a stale connection is returned, a new connection is established</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"is",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "test":1,
+                  "request":1,
+                  "connect":3,
+                  "return":1,
+                  "junit":1,
+                  "establish":1,
+                  "base":1,
+                  "code":1,
+                  "life":1,
+                  "class":1,
+                  "databas":1,
+                  "basic":1,
+                  "call":1,
+                  "stale":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Here is the snippet of the mthod in my class (trimmed down for this purpose)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7273271]-[-952705706]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Here is the snippet of the mthod in my class (trimmed down for this purpose)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "snippet":1,
+                  "purpos":1,
+                  "trim":1,
+                  "mthod":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class TCSOracleDataSourceWrapper extends OracleDataSource { private static final int STALE_CONNECTION_EX_CODE = 17143; private OracleConnectionCacheManager cacheManager; private String cacheName; /** Local log variable **/ private final Log logger = LogFactory.getLog(getClass()); /** * Class constructor * @throws SQLException */ public TCSOracleDataSourceWrapper() throws SQLException { super(); } private static final long serialVersionUID = 1L; @Override /** * Get a connection but if the connection is stale then refresh all DB connections * */ public final Connection getConnection() throws SQLException { logger.debug(&quot;Retrieving a database connection from the pool&quot;); Connection connection = null; try{ connection = super.getConnection(); } catch(SQLException e) { if(e.getErrorCode() == STALE_CONNECTION_EX_CODE) { logger.error(&quot;Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.&quot;); //refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = super.getConnection(); } else { throw e; } } return connection; }} "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[7273271]-[180488912]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"TCSOracleDataSourceWrapper",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "superTypes":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"OracleDataSource",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"STALE_CONNECTION_EX_CODE",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"17143"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"int",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"cacheManager",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"OracleConnectionCacheManager",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"cacheName",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              {
+                                "text":"/** Local log variable **/"
+                              }
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"logger",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"MethodInvocationNode",
+                                        "qualifiedIdentifier":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"LogFactory",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"getLog",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "args":{
+                                          "type":"ExpressionListNode",
+                                          "arguments":[
+                                            {
+                                              "type":"MethodInvocationNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"getClass",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "args":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"Log",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              {
+                                "text":"/** * Class constructor * @throws SQLException */"
+                              }
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"TCSOracleDataSourceWrapper",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "thrownExceptions":{
+                              "type":"ThrownExceptionsNode",
+                              "qualifiedIdentifierList":{
+                                "type":"QualifiedIdentifierListNode",
+                                "qualifiedNames":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"SQLException",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"super",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"private",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"serialVersionUID",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"1L"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"long",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"AnnotationNode",
+                                "identifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"Override",
+                                      "comments":[
+                                        {
+                                          "text":"/** * Get a connection but if the connection is stale then refresh all DB connections * */"
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "returnType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Connection",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getConnection",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "thrownExceptions":{
+                              "type":"ThrownExceptionsNode",
+                              "qualifiedIdentifierList":{
+                                "type":"QualifiedIdentifierListNode",
+                                "qualifiedNames":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"SQLException",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"ExpressionStatement",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"logger",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"debug",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"StringLiteralNode",
+                                            "valueRep":"\"Retrieving a database connection from the pool\""
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"connection",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"LiteralNode",
+                                              "node":{
+                                                "type":"NullLiteralNode"
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Connection",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"TryCatchStatementNode",
+                                  "block":{
+                                    "type":"BlockNode",
+                                    "statements":[
+                                      {
+                                        "type":"ExpressionStatement",
+                                        "expression":{
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"=",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"connection",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"MethodInvocationNode",
+                                            "qualifiedIdentifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"super",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"getConnection",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "args":{
+                                              "type":"ExpressionListNode",
+                                              "arguments":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "catches":[
+                                    {
+                                      "type":"CatchClauseNode",
+                                      "modifiers":[
+                                        
+                                      ],
+                                      "catchType":{
+                                        "type":"CatchTypeNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"SQLException",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"e",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "block":{
+                                        "type":"BlockNode",
+                                        "statements":[
+                                          {
+                                            "type":"IfStatementNode",
+                                            "expression":{
+                                              "type":"BinaryExpressionNode",
+                                              "operator":{
+                                                "type":"OperatorNode",
+                                                "symbol":"==",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "left":{
+                                                "type":"MethodInvocationNode",
+                                                "qualifiedIdentifier":{
+                                                  "type":"QualifiedIdentifierNode",
+                                                  "identifiers":[
+                                                    {
+                                                      "type":"IdentifierNode",
+                                                      "name":"e",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"getErrorCode",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "args":{
+                                                  "type":"ExpressionListNode",
+                                                  "arguments":[
+                                                    
+                                                  ],
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "right":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"STALE_CONNECTION_EX_CODE",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "statement":{
+                                              "type":"BlockNode",
+                                              "statements":[
+                                                {
+                                                  "type":"ExpressionStatement",
+                                                  "expression":{
+                                                    "type":"MethodInvocationNode",
+                                                    "qualifiedIdentifier":{
+                                                      "type":"QualifiedIdentifierNode",
+                                                      "identifiers":[
+                                                        {
+                                                          "type":"IdentifierNode",
+                                                          "name":"logger",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"error",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "args":{
+                                                      "type":"ExpressionListNode",
+                                                      "arguments":[
+                                                        {
+                                                          "type":"LiteralNode",
+                                                          "node":{
+                                                            "type":"StringLiteralNode",
+                                                            "valueRep":"\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\""
+                                                          },
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      {
+                                                        "text":"//refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = super.getConnection(); } else { throw e; } } return connection; }} \n"
+                                                      }
+                                                    ]
+                                                  },
+                                                  "labels":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "labels":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "labels":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class TCSOracleDataSourceWrapper extends OracleDataSource { private static final int STALE_CONNECTION_EX_CODE = 17143; private OracleConnectionCacheManager cacheManager; private String cacheName; /** Local log variable **/ private final Log logger = LogFactory.getLog(getClass()); /** * Class constructor * @throws SQLException */ public TCSOracleDataSourceWrapper() throws SQLException { super(); } private static final long serialVersionUID = 1L; @Override /** * Get a connection but if the connection is stale then refresh all DB connections * */ public final Connection getConnection() throws SQLException { logger.debug(\"Retrieving a database connection from the pool\"); Connection connection = null; try{ connection = super.getConnection(); } catch(SQLException e) { if(e.getErrorCode() == STALE_CONNECTION_EX_CODE) { logger.error(\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\"); //refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = super.getConnection(); } else { throw e; } } return connection; }} \n...\n}...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "serial":1,
+                  "refresh":5,
+                  "cach":7,
+                  "logger":3,
+                  "connect":23,
+                  "retriev":1,
+                  "data":3,
+                  "local":1,
+                  "overrid":1,
+                  "constructor":1,
+                  "oracl":4,
+                  "factori":1,
+                  "debug":1,
+                  "code":3,
+                  "version":1,
+                  "found":1,
+                  "error":2,
+                  "invalid":3,
+                  "wrapper":2,
+                  "pool":2,
+                  "tcsoracl":2,
+                  "uid":1,
+                  "databas":1,
+                  "variabl":1,
+                  "manag":4,
+                  "sourc":3,
+                  "stale":4,
+                  "log":4,
+                  "sqlexcept":4
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Connection",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Log",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"OracleConnectionCacheManager",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"OracleDataSource",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"long",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"logger",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"error",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"//refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = super.getConnection(); } else { throw e; } } return connection; }} \n"
+                      }
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getClass",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"super",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"logger",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"debug",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"Retrieving a database connection from the pool\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"LogFactory",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getLog",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"MethodInvocationNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getClass",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"e",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getErrorCode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"super",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getConnection",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"connection",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"NullLiteralNode"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Connection",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"cacheName",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"STALE_CONNECTION_EX_CODE",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"17143"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"cacheManager",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"OracleConnectionCacheManager",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"logger",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"LogFactory",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getLog",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"MethodInvocationNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"getClass",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Log",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"serialVersionUID",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"1L"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"long",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Any idea how I can ensure my junit tests execute the if statement? I am currently using EasyMock and Powermock but I cannot find a way to get into this if statment using these tools</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7273271]-[1039061438]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Any idea how I can ensure my junit tests execute the if statement? I am currently using EasyMock and Powermock but I cannot find a way to get into this if statment using these tools</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"EasyMock",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "test":1,
+                  "powermock":1,
+                  "mock":1,
+                  "easi":1,
+                  "tool":1,
+                  "junit":1,
+                  "idea":1,
+                  "statment":1,
+                  "statement":1,
+                  "execut":1,
+                  "ensur":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"EasyMock",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>All help is greatly appreciated</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7273271]-[-1913623769]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>All help is greatly appreciated</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "great":1,
+                  "appreci":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thank you Damien</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7273271]-[2144685476]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thank you Damien</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "damien":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":7273345,
+      "questionId":7273271,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-09-01",
+      "lastActivityDate":"2011-09-01",
+      "lastEditDate":"2011-09-01",
+      "score":7,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":265143,
+        "displayName":"Péter Török",
+        "reputation":76692
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You should refactor your class to become a <a href=\"http://en.wikipedia.org/wiki/Proxy_pattern\"rel=\"nofollow\"><em>proxy</em></a> for another data source, rather than inherit from one. This way you can easily inject into it a mock data source instead of the real one.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7273345]-[960869748]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You should refactor your class to become a <a href=\"http://en.wikipedia.org/wiki/Proxy_pattern\"rel=\"nofollow\"><em>proxy</em></a> for another data source, rather than inherit from one. This way you can easily inject into it a mock data source instead of the real one.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"to",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "mock":1,
+                    "real":1,
+                    "pattern":1,
+                    "data":2,
+                    "rel":1,
+                    "easili":1,
+                    "inherit":1,
+                    "wikipedia":1,
+                    "nofollow":1,
+                    "refactor":1,
+                    "inject":1,
+                    "wiki":1,
+                    "proxi":2,
+                    "org":1,
+                    "href":1,
+                    "http":1,
+                    "sourc":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"import javax.sql.DataSource; public class TCSOracleDataSourceWrapper implements DataSource { ... private DataSource wrappedDataSource; ... public TCSOracleDataSourceWrapper(DataSource ds) { wrappedDataSource = ds; } ... public final Connection getConnection() throws SQLException { ... Connection connection = null; try{ connection = ds.getConnection(); } catch(SQLException e) { ... } return connection; } } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[7273345]-[-1169679064]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"CompilationUnitNode",
+                    "imports":[
+                      {
+                        "type":"ImportDeclarationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"javax",
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IdentifierNode",
+                              "name":"sql",
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IdentifierNode",
+                              "name":"DataSource",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "isStatic":false,
+                        "isOnDemand":false,
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "typeDeclarations":[
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          {
+                            "type":"KeywordModifierNode",
+                            "value":"public",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"TCSOracleDataSourceWrapper",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "implementedInterfaces":{
+                          "type":"TypeListNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"DataSource",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "body":{
+                          "type":"ClassBodyNode",
+                          "declarations":[
+                            {
+                              "type":"TextFragmentNode",
+                              "text":"... private "
+                            },
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"wrappedDataSource",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "varType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"DataSource",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"TextFragmentNode",
+                              "text":"... public TCSOracleDataSourceWrapper(DataSource ds) "
+                            },
+                            {
+                              "type":"BlockDeclarationNode",
+                              "modifiers":[
+                                
+                              ],
+                              "block":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"=",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"wrappedDataSource",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"ds",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            {
+                              "type":"TextFragmentNode",
+                              "text":"... public final Connection getConnection() throws SQLException { ... "
+                            },
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"connection",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"NullLiteralNode"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"Connection",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"TextFragmentNode",
+                              "text":"try"
+                            },
+                            {
+                              "type":"BlockDeclarationNode",
+                              "modifiers":[
+                                
+                              ],
+                              "block":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"=",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"connection",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"MethodInvocationNode",
+                                        "qualifiedIdentifier":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"ds",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"getConnection",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "args":{
+                                          "type":"ExpressionListNode",
+                                          "arguments":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            {
+                              "type":"TextFragmentNode",
+                              "text":"catch(SQLException e) { ... "
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type":"ReturnStatementNode",
+                    "expression":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"connection",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"} } "
+                  }
+                ]
+              },
+              "rawText":"import javax.sql.DataSource; public class TCSOracleDataSourceWrapper implements DataSource { ... private DataSource wrappedDataSource; ... public TCSOracleDataSourceWrapper(DataSource ds) { wrappedDataSource = ds; } ... public final Connection getConnection() throws SQLException { ... Connection connection = null; try{ connection = ds.getConnection(); } catch(SQLException e) { ... } return connection; } } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sql":1,
+                    "connect":7,
+                    "data":8,
+                    "javax":1,
+                    "wrap":2,
+                    "wrapper":2,
+                    "tcsoracl":2,
+                    "sourc":8,
+                    "sqlexcept":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"javax",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sql",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"DataSource",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"DataSource",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Connection",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"ds",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getConnection",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"wrappedDataSource",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"DataSource",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"connection",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"NullLiteralNode"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Connection",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7273358,
+      "questionId":7273271,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-09-01",
+      "lastActivityDate":"2011-09-01",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":839646,
+        "displayName":"Ryan Stewart",
+        "reputation":52462
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>One idea springs to mind: use aggregation rather than inheritance. This problem and others like it would go away because you can then mock the aggregated object to have whatever behavior you want. I don't see another way of getting in there right off hand. In fact, the name TCSOracleDataSourceWrapper already indicates that it's wrapping a data source (aggregation), when it actually isn't.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7273358]-[-2095841895]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>One idea springs to mind: use aggregation rather than inheritance. This problem and others like it would go away because you can then mock the aggregated object to have whatever behavior you want. I don't see another way of getting in there right off hand. In fact, the name TCSOracleDataSourceWrapper already indicates that it's wrapping a data source (aggregation), when it actually isn't.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"TCSOracleDataSourceWrapper",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "mock":1,
+                    "problem":1,
+                    "hand":1,
+                    "data":2,
+                    "idea":1,
+                    "aggreg":3,
+                    "spring":1,
+                    "object":1,
+                    "fact":1,
+                    "inherit":1,
+                    "wrap":1,
+                    "mind":1,
+                    "wrapper":1,
+                    "isn":1,
+                    "tcsoracl":1,
+                    "behavior":1,
+                    "sourc":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"TCSOracleDataSourceWrapper",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7273463,
+      "questionId":7273271,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-09-01",
+      "lastActivityDate":"2011-09-01",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":672586,
+        "displayName":"gkamal",
+        "reputation":10247
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>One quick workaround is to factor out the super.getConnection() call to a new private / protected method. Once you make that change it would be easy to mock the getBaseConnection method using power mock. This is short term fix, like the other answers suggest it is better to use delegation instead of inheritance for the wrapper implementation.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7273463]-[-1134689382]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>One quick workaround is to factor out the super.getConnection() call to a new private / protected method. Once you make that change it would be easy to mock the getBaseConnection method using power mock. This is short term fix, like the other answers suggest it is better to use delegation instead of inheritance for the wrapper implementation.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getConnection",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getBaseConnection",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "chang":1,
+                    "method":2,
+                    "mock":2,
+                    "easi":1,
+                    "connect":2,
+                    "suggest":1,
+                    "fix":1,
+                    "term":1,
+                    "factor":1,
+                    "base":1,
+                    "inherit":1,
+                    "workaround":1,
+                    "wrapper":1,
+                    "implement":1,
+                    "make":1,
+                    "answer":1,
+                    "quick":1,
+                    "power":1,
+                    "call":1,
+                    "deleg":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"Connection getBaseConnection() throws SQLException { return super.getConnection(); } public final Connection getConnection() throws SQLException { logger.debug(&quot;Retrieving a database connection from the pool&quot;); Connection connection = null; try{ connection = getBaseConnection(); } catch(SQLException e) { if(e.getErrorCode() == STALE_CONNECTION_EX_CODE) { logger.error(&quot;Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.&quot;); //refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = getBaseConnection(); } else { throw e; } } return connection; } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[7273463]-[-1334357937]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      
+                    ],
+                    "returnType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Connection",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getBaseConnection",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "thrownExceptions":{
+                      "type":"ThrownExceptionsNode",
+                      "qualifiedIdentifierList":{
+                        "type":"QualifiedIdentifierListNode",
+                        "qualifiedNames":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"SQLException",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"super",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getConnection",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Connection",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getConnection",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "thrownExceptions":{
+                      "type":"ThrownExceptionsNode",
+                      "qualifiedIdentifierList":{
+                        "type":"QualifiedIdentifierListNode",
+                        "qualifiedNames":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"SQLException",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"logger",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"debug",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"Retrieving a database connection from the pool\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"connection",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"NullLiteralNode"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Connection",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"TryCatchStatementNode",
+                          "block":{
+                            "type":"BlockNode",
+                            "statements":[
+                              {
+                                "type":"ExpressionStatement",
+                                "expression":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":"=",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"connection",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"MethodInvocationNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"getBaseConnection",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ]
+                              }
+                            ],
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "catches":[
+                            {
+                              "type":"CatchClauseNode",
+                              "modifiers":[
+                                
+                              ],
+                              "catchType":{
+                                "type":"CatchTypeNode",
+                                "identifiers":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"SQLException",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"e",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "block":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"IfStatementNode",
+                                    "expression":{
+                                      "type":"BinaryExpressionNode",
+                                      "operator":{
+                                        "type":"OperatorNode",
+                                        "symbol":"==",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "left":{
+                                        "type":"MethodInvocationNode",
+                                        "qualifiedIdentifier":{
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"e",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"getErrorCode",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "args":{
+                                          "type":"ExpressionListNode",
+                                          "arguments":[
+                                            
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "right":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"STALE_CONNECTION_EX_CODE",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "statement":{
+                                      "type":"BlockNode",
+                                      "statements":[
+                                        {
+                                          "type":"ExpressionStatement",
+                                          "expression":{
+                                            "type":"MethodInvocationNode",
+                                            "qualifiedIdentifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"logger",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"error",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "args":{
+                                              "type":"ExpressionListNode",
+                                              "arguments":[
+                                                {
+                                                  "type":"LiteralNode",
+                                                  "node":{
+                                                    "type":"StringLiteralNode",
+                                                    "valueRep":"\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\""
+                                                  },
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              {
+                                                "text":"//refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = getBaseConnection(); } else { throw e; } } return connection; } \n"
+                                              }
+                                            ]
+                                          },
+                                          "labels":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "labels":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"Connection getBaseConnection() throws SQLException { return super.getConnection(); } public final Connection getConnection() throws SQLException { logger.debug(\"Retrieving a database connection from the pool\"); Connection connection = null; try{ connection = getBaseConnection(); } catch(SQLException e) { if(e.getErrorCode() == STALE_CONNECTION_EX_CODE) { logger.error(\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\"); //refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = getBaseConnection(); } else { throw e; } } return connection; } \n...\n}...\n}...\n}",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "refresh":4,
+                    "cach":4,
+                    "logger":2,
+                    "connect":21,
+                    "retriev":1,
+                    "oracl":2,
+                    "debug":1,
+                    "base":3,
+                    "code":2,
+                    "found":1,
+                    "error":2,
+                    "invalid":3,
+                    "pool":2,
+                    "databas":1,
+                    "manag":2,
+                    "stale":2,
+                    "sqlexcept":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Connection",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"logger",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"error",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"Stale Oracle connection found in the Connection Pool. Refreshing invalid DB connections.\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        {
+                          "text":"//refresh invalid connections cacheManager.refreshCache(cacheName, OracleConnectionCacheManager.REFRESH_INVALID_CONNECTIONS); //now try to get the connection again connection = getBaseConnection(); } else { throw e; } } return connection; } \n"
+                        }
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"logger",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"debug",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"Retrieving a database connection from the pool\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"e",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getErrorCode",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"super",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getConnection",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getBaseConnection",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"connection",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"NullLiteralNode"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Connection",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

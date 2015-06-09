@@ -1,0 +1,3715 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":9956732,
+    "title":"Unexpected code in synchronized block",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "jvm",
+      "jls"
+    ],
+    "creationDate":"2012-03-31",
+    "lastActivityDate":"2012-03-31",
+    "score":7,
+    "viewCount":295,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":535965,
+      "displayName":"chuacw",
+      "reputation":537
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>The following Java code generates the following JVM bytecode.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[9956732]-[-119473474]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>The following Java code generates the following JVM bytecode.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "code":1,
+                  "generat":1,
+                  "bytecod":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm curious why the code from offset 31 to offset 36 is generated. Nothing in the JLS7 or JVM7 specification talks about this. Did I miss anything?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[9956732]-[1668449797]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm curious why the code from offset 31 to offset 36 is generated. Nothing in the JLS7 or JVM7 specification talks about this. Did I miss anything?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "jls":1,
+                  "talk":1,
+                  "miss":1,
+                  "code":1,
+                  "offset":2,
+                  "specif":1,
+                  "curious":1,
+                  "generat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Even if I remove the println statements, the code (offset 31 to offset 36) still get generated, only at an earlier location, since the println call has been removed.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[9956732]-[1329665364]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Even if I remove the println statements, the code (offset 31 to offset 36) still get generated, only at an earlier location, since the println call has been removed.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "remov":2,
+                  "earlier":1,
+                  "statement":1,
+                  "println":2,
+                  "code":1,
+                  "offset":2,
+                  "generat":1,
+                  "call":1,
+                  "locat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"// Java code void testMonitor() { Boolean x = new Boolean(false); synchronized(x) { System.out.println(&quot;inside synchronized&quot;); System.out.println(&quot;blah&quot;); }; System.out.println(&quot;done&quot;); } // JVM bytecode Offset Instruction Comments (Method: testMonitor) 0 new 42 (java.lang.Boolean) 3 dup 4 iconst_0 5 invokespecial 44 (java.lang.Boolean.&lt;init&gt;) 8 astore_1 (java.lang.Boolean x) 9 aload_1 (java.lang.Boolean x) 10 dup 11 astore_2 12 monitorenter 13 getstatic 15 (java.lang.System.out) 16 ldc 47 (inside synchronized) 18 invokevirtual 23 (java.io.PrintStream.println) 21 getstatic 15 (java.lang.System.out) 24 ldc 49 (blah) 26 invokevirtual 23 (java.io.PrintStream.println) 29 aload_2 30 monitorexit 31 goto 37 34 aload_2 35 monitorexit 36 athrow 37 getstatic 15 (java.lang.System.out) 40 ldc 51 (done) 42 invokevirtual 23 (java.io.PrintStream.println) 45 return "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[9956732]-[-317675267]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"// Java code "
+                },
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"testMonitor",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"x",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"ConstructorCreatorNode",
+                                    "creatorType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"Boolean",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "expressionArgs":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"BooleanLiteralNode",
+                                            "valueRep":"false"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Boolean",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"SynchronizedStatementNode",
+                        "expression":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"x",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "block":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"ExpressionStatement",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"System",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"out",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"println",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"StringLiteralNode",
+                                        "valueRep":"\"inside synchronized\""
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ExpressionStatement",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"System",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"out",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"println",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"StringLiteralNode",
+                                        "valueRep":"\"blah\""
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"EmptyStatementNode",
+                        "comma":{
+                          "type":"SeparatorNode",
+                          "symbol":";",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"System",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"out",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"println",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"StringLiteralNode",
+                                  "valueRep":"\"done\""
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"// JVM bytecode Offset Instruction Comments (Method: testMonitor) 0 new 42 (java.lang.Boolean) 3 dup 4 iconst_0 5 invokespecial 44 (java.lang.Boolean.<init>) 8 astore_1 (java.lang.Boolean x) 9 aload_1 (java.lang.Boolean x) 10 dup 11 astore_2 12 monitorenter 13 getstatic 15 (java.lang.System.out) 16 ldc 47 (inside synchronized) 18 invokevirtual 23 (java.io.PrintStream.println) 21 getstatic 15 (java.lang.System.out) 24 ldc 49 (blah) 26 invokevirtual 23 (java.io.PrintStream.println) 29 aload_2 30 monitorexit 31 goto 37 34 aload_2 35 monitorexit 36 athrow 37 getstatic 15 (java.lang.System.out) 40 ldc 51 (done) 42 invokevirtual 23 (java.io.PrintStream.println) 45 return \n"
+                      }
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"// Java code void testMonitor() { Boolean x = new Boolean(false); synchronized(x) { System.out.println(\"inside synchronized\"); System.out.println(\"blah\"); }; System.out.println(\"done\"); } // JVM bytecode Offset Instruction Comments (Method: testMonitor) 0 new 42 (java.lang.Boolean) 3 dup 4 iconst_0 5 invokespecial 44 (java.lang.Boolean.<init>) 8 astore_1 (java.lang.Boolean x) 9 aload_1 (java.lang.Boolean x) 10 dup 11 astore_2 12 monitorenter 13 getstatic 15 (java.lang.System.out) 16 ldc 47 (inside synchronized) 18 invokevirtual 23 (java.io.PrintStream.println) 21 getstatic 15 (java.lang.System.out) 24 ldc 49 (blah) 26 invokevirtual 23 (java.io.PrintStream.println) 29 aload_2 30 monitorexit 31 goto 37 34 aload_2 35 monitorexit 36 athrow 37 getstatic 15 (java.lang.System.out) 40 ldc 51 (done) 42 invokevirtual 23 (java.io.PrintStream.println) 45 return \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "astor":2,
+                  "jvm":1,
+                  "monitor":2,
+                  "method":1,
+                  "test":2,
+                  "invokespeci":1,
+                  "system":6,
+                  "dup":2,
+                  "bytecod":1,
+                  "print":3,
+                  "monitorexit":2,
+                  "athrow":1,
+                  "aload":3,
+                  "blah":2,
+                  "println":6,
+                  "code":1,
+                  "offset":1,
+                  "iconst":1,
+                  "insid":2,
+                  "stream":3,
+                  "invokevirtu":3,
+                  "comment":1,
+                  "fals":1,
+                  "lang":7,
+                  "init":1,
+                  "getstat":3,
+                  "ldc":3,
+                  "instruct":1,
+                  "monitorent":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Boolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"inside synchronized\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"blah\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"done\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"x",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Boolean",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"BooleanLiteralNode",
+                                  "valueRep":"false"
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Boolean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":9956783,
+      "questionId":9956732,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":12722437,
+          "postId":9956783,
+          "creationDate":"2012-04-01",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":535965,
+            "displayName":"chuacw",
+            "reputation":537
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Hello Peter, your answer doesn't answer the question: &quot;I'm curious why the code ... is generated&quot; or even &quot;Did I miss anything?&quot;. Thank you for your participation though."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956783-cu12722437]-[1623283431]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Hello Peter, your answer doesn't answer the question: &quot;I'm curious why the code ... is generated&quot; or even &quot;Did I miss anything?&quot;. Thank you for your participation though."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "peter":1,
+                        "particip":1,
+                        "miss":1,
+                        "code":1,
+                        "curious":1,
+                        "generat":1,
+                        "answer":2,
+                        "quot":4
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":12725199,
+          "postId":9956783,
+          "creationDate":"2012-04-01",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The code is generated because there has to be code to release the lock, see my example. You missed my attempt to explain. ;)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956783-cu12725199]-[1198855322]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The code is generated because there has to be code to release the lock, see my example. You missed my attempt to explain. ;)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "explain":1,
+                        "lock":1,
+                        "miss":1,
+                        "code":2,
+                        "releas":1,
+                        "generat":1,
+                        "attempt":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":12740312,
+          "postId":9956783,
+          "creationDate":"2012-04-02",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It was to clarify exactly what is happening. I assumed you might be more familar with java code than byte code."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956783-cu12740312]-[-643724297]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It was to clarify exactly what is happening. I assumed you might be more familar with java code than byte code."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "assum":1,
+                        "happen":1,
+                        "code":2,
+                        "familar":1,
+                        "clarifi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":12736584,
+          "postId":9956783,
+          "creationDate":"2012-04-02",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":535965,
+            "displayName":"chuacw",
+            "reputation":537
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Rene's explanation is better. Also, note that I didn't ask for an alternative way. Thanks, anyway."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956783-cu12736584]-[-184686475]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Rene's explanation is better. Also, note that I didn't ask for an alternative way. Thanks, anyway."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "note":1,
+                        "explan":1,
+                        "altern":1,
+                        "rene":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-03-31",
+      "lastActivityDate":"2012-03-31",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":57695,
+        "displayName":"Peter Lawrey",
+        "reputation":257803
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I don't know where it is in the JLS, but it must say somewhere that when an exception is thrown, a lock is released. You can do this with Unsafe.monitorEnter/Exit</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9956783]-[-636784738]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I don't know where it is in the JLS, but it must say somewhere that when an exception is thrown, a lock is released. You can do this with Unsafe.monitorEnter/Exit</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"monitorEnter",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jls":1,
+                    "monitor":1,
+                    "enter":1,
+                    "thrown":1,
+                    "lock":1,
+                    "releas":1,
+                    "exit":1,
+                    "unsaf":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"void testMonitor() { Boolean x = new Boolean(false); theUnsafe.monitorEnter(x); try { System.out.println(&quot;inside synchronized&quot;); System.out.println(&quot;blah&quot;); } catch(Throwable t) { theUnsafe.monitorExit(x); throw t; }; theUnsafe.monitorExit(x); System.out.println(&quot;done&quot;); } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[9956783]-[381224852]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"testMonitor",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"x",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"ConstructorCreatorNode",
+                                      "creatorType":{
+                                        "type":"ReferenceTypeNode",
+                                        "ids":[
+                                          {
+                                            "type":"ParameterizedTypeNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"Boolean",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "expressionArgs":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"BooleanLiteralNode",
+                                              "valueRep":"false"
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Boolean",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"theUnsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"monitorEnter",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"x",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"TryCatchStatementNode",
+                          "block":{
+                            "type":"BlockNode",
+                            "statements":[
+                              {
+                                "type":"ExpressionStatement",
+                                "expression":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"System",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"out",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"println",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      {
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"StringLiteralNode",
+                                          "valueRep":"\"inside synchronized\""
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"ExpressionStatement",
+                                "expression":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"System",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"out",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"println",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      {
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"StringLiteralNode",
+                                          "valueRep":"\"blah\""
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ]
+                              }
+                            ],
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "catches":[
+                            {
+                              "type":"CatchClauseNode",
+                              "modifiers":[
+                                
+                              ],
+                              "catchType":{
+                                "type":"CatchTypeNode",
+                                "identifiers":[
+                                  {
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"Throwable",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"t",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "block":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"theUnsafe",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"monitorExit",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"x",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  },
+                                  {
+                                    "type":"ThrowStatementNode",
+                                    "expression":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"t",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"EmptyStatementNode",
+                          "comma":{
+                            "type":"SeparatorNode",
+                            "symbol":";",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"theUnsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"monitorExit",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"x",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"System",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"out",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"println",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"done\""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"void testMonitor() { Boolean x = new Boolean(false); theUnsafe.monitorEnter(x); try { System.out.println(\"inside synchronized\"); System.out.println(\"blah\"); } catch(Throwable t) { theUnsafe.monitorExit(x); throw t; }; theUnsafe.monitorExit(x); System.out.println(\"done\"); } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "monitor":4,
+                    "test":1,
+                    "system":3,
+                    "enter":1,
+                    "blah":1,
+                    "println":3,
+                    "throwabl":1,
+                    "insid":1,
+                    "exit":2,
+                    "fals":1,
+                    "unsaf":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Boolean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"theUnsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"monitorEnter",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"x",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"theUnsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"monitorExit",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"x",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"System",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"out",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"println",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"done\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"System",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"out",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"println",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"inside synchronized\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"System",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"out",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"println",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"blah\""
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"x",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConstructorCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Boolean",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionArgs":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"BooleanLiteralNode",
+                                    "valueRep":"false"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Boolean",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I believe there is a catch block table at the end you may be missing.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9956783]-[-165860769]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I believe there is a catch block table at the end you may be missing.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "tabl":1,
+                    "block":1,
+                    "miss":1,
+                    "end":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":9956795,
+      "questionId":9956732,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":12717322,
+          "postId":9956795,
+          "creationDate":"2012-03-31",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":535965,
+            "displayName":"chuacw",
+            "reputation":537
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Hello Rene, thank you."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956795-cu12717322]-[568771025]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Hello Rene, thank you."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "rene":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":12717489,
+          "postId":9956795,
+          "creationDate":"2012-03-31",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1286210,
+            "displayName":"Neet",
+            "reputation":2627
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"You're welcome ;-)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[9956795-cu12717489]-[-586049094]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"You're welcome ;-)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-03-31",
+      "lastActivityDate":"2012-03-31",
+      "lastEditDate":"2012-03-31",
+      "score":7,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1286210,
+        "displayName":"Neet",
+        "reputation":2627
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The compiler adds an invisible try/catch block here, to ensure the monitor state gets released (which is documented in the VM specs, see bottom of post). You can verify this by using <code>javap -v</code> and look at the exception table:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9956795]-[196642710]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The compiler adds an invisible try/catch block here, to ensure the monitor state gets released (which is documented in the VM specs, see bottom of post). You can verify this by using <code>javap -v</code> and look at the exception table:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "monitor":1,
+                    "post":1,
+                    "state":1,
+                    "document":1,
+                    "bottom":1,
+                    "verifi":1,
+                    "javap":1,
+                    "code":2,
+                    "tabl":1,
+                    "invis":1,
+                    "block":1,
+                    "releas":1,
+                    "spec":1,
+                    "compil":1,
+                    "add":1,
+                    "ensur":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"void testMonitor(); Code: Stack=3, Locals=3, Args_size=1 0: new #15; //class java/lang/Boolean 3: dup 4: iconst_0 5: invokespecial #17; //Method java/lang/Boolean.&quot;&lt;init&gt;&quot;:(Z)V 8: astore_1 9: aload_1 10: dup 11: astore_2 12: monitorenter 13: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 16: ldc #26; //String inside synchronized 18: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 21: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 24: ldc #34; //String blah 26: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 29: aload_2 30: monitorexit 31: goto 37 34: aload_2 35: monitorexit 36: athrow 37: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 40: ldc #36; //String done 42: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 45: return Exception table: from to target type 13 31 34 any 34 36 34 any "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[9956795]-[1556976043]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"testMonitor",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"Code: Stack=3, Locals=3, Args"
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_size",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"=1 0: new #15; //"
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"java",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"/lang/Boolean 3: dup 4: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"iconst_0",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 5: invokespecial #17; //Method java/lang/Boolean.\""
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"init"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"\":(Z)V 8: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"astore_1",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 9: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"aload_1",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 10: dup 11: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"astore_2",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 12: monitorenter 13: getstatic #20; //Field java/lang/System."
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"io",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"PrintStream",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      {
+                        "type":"LabelNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"16: ldc #26; //String inside synchronized 18: invokevirtual #28; //Method java/io/PrintStream.println:("
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"lang",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":")V 21: getstatic #20; //Field java/lang/System."
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"io",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"PrintStream",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      {
+                        "type":"LabelNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"24: ldc #34; //String blah 26: invokevirtual #28; //Method java/io/PrintStream.println:("
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"lang",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":")V 29: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"aload_2",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 30: monitorexit 31: goto 37 34: "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"aload_2",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 35: monitorexit 36: athrow 37: getstatic #20; //Field java/lang/System."
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"io",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"PrintStream",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      {
+                        "type":"LabelNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"40: ldc #36; //String done 42: invokevirtual #28; //Method java/io/PrintStream.println:("
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"/",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"BinaryExpressionNode",
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"/",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "left":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Ljava",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "right":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"lang",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":")V 45: return Exception table: from to target type 13 31 34 any 34 36 34 any "
+                  }
+                ]
+              },
+              "rawText":"void testMonitor(); Code: Stack=3, Locals=3, Args_size=1 0: new #15; //class java/lang/Boolean 3: dup 4: iconst_0 5: invokespecial #17; //Method java/lang/Boolean.\"<init>\":(Z)V 8: astore_1 9: aload_1 10: dup 11: astore_2 12: monitorenter 13: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 16: ldc #26; //String inside synchronized 18: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 21: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 24: ldc #34; //String blah 26: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 29: aload_2 30: monitorexit 31: goto 37 34: aload_2 35: monitorexit 36: athrow 37: getstatic #20; //Field java/lang/System.out:Ljava/io/PrintStream; 40: ldc #36; //String done 42: invokevirtual #28; //Method java/io/PrintStream.println:(Ljava/lang/String;)V 45: return Exception table: from to target type 13 31 34 any 34 36 34 any ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "astor":2,
+                    "monitor":1,
+                    "method":4,
+                    "test":1,
+                    "invokespeci":1,
+                    "size":1,
+                    "system":3,
+                    "field":3,
+                    "dup":2,
+                    "print":6,
+                    "monitorexit":2,
+                    "local":1,
+                    "athrow":1,
+                    "ljava":6,
+                    "aload":3,
+                    "blah":1,
+                    "println":3,
+                    "code":1,
+                    "tabl":1,
+                    "iconst":1,
+                    "insid":1,
+                    "stream":6,
+                    "invokevirtu":3,
+                    "stack":1,
+                    "target":1,
+                    "lang":8,
+                    "type":1,
+                    "init":1,
+                    "arg":1,
+                    "getstat":3,
+                    "ldc":3,
+                    "monitorent":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Edit: From the <a href=\"http://docs.oracle.com/javase/specs/jvms/se5.0/html/Threads.doc.html#22500\">JVM specs</a>:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9956795]-[-40255496]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Edit: From the <a href=\"http://docs.oracle.com/javase/specs/jvms/se5.0/html/Threads.doc.html#22500\">JVM specs</a>:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jvm":1,
+                    "oracl":1,
+                    "jvms":1,
+                    "doc":2,
+                    "edit":1,
+                    "thread":1,
+                    "spec":2,
+                    "javas":1,
+                    "html":2,
+                    "href":1,
+                    "http":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Normally, a compiler for the Java programming language ensures that the lock operation implemented by a monitorenter instruction executed prior to the execution of the body of the synchronized statement is matched by an unlock operation implemented by a monitorexit instruction whenever the synchronized statement completes, whether completion is normal or abrupt.</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[9956795]-[-1431553120]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Normally, a compiler for the Java programming language ensures that the lock operation implemented by a monitorenter instruction executed prior to the execution of the body of the synchronized statement is matched by an unlock operation implemented by a monitorexit instruction whenever the synchronized statement completes, whether completion is normal or abrupt.</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "program":1,
+                    "abrupt":1,
+                    "languag":1,
+                    "prior":1,
+                    "normal":1,
+                    "monitorexit":1,
+                    "lock":1,
+                    "statement":2,
+                    "unlock":1,
+                    "blockquot":2,
+                    "match":1,
+                    "oper":2,
+                    "implement":2,
+                    "compil":1,
+                    "complet":2,
+                    "bodi":1,
+                    "execut":2,
+                    "ensur":1,
+                    "instruct":2,
+                    "monitorent":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

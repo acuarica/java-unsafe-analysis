@@ -1,0 +1,2146 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":22247827,
+    "title":"How Java int[ ] array is implemented inside JVM?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "arrays",
+      "performance",
+      "jvm",
+      "jni"
+    ],
+    "creationDate":"2014-03-07",
+    "lastActivityDate":"2014-06-04",
+    "score":5,
+    "viewCount":135,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1990748,
+      "displayName":"Bibrak",
+      "reputation":90
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I am trying to understand how JVM internally implements an array of primitive type, like <code>int []</code></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[-1475068528]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I am trying to understand how JVM internally implements an array of primitive type, like <code>int []</code></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "understand":1,
+                  "code":2,
+                  "array":1,
+                  "type":1,
+                  "primit":1,
+                  "intern":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>My question is in two parts:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[1010554308]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>My question is in two parts:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "part":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>1 - Does it use a ByteBuffer internally? Where can I find the source code and then perhaps change it according to my needs (to make a modified JVM of my own).</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[-879394084]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>1 - Does it use a ByteBuffer internally? Where can I find the source code and then perhaps change it according to my needs (to make a modified JVM of my own).</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "chang":1,
+                  "jvm":1,
+                  "find":1,
+                  "buffer":1,
+                  "code":1,
+                  "modifi":1,
+                  "make":1,
+                  "sourc":1,
+                  "intern":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>2 - Is there any way to trick <code>javac</code> to not use the build-in implementation of <code>int []</code> but rather use an implementation provided by a library in lets say classpath <code>-cp</code>? Is this possible and how?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[-1062545481]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>2 - Is there any way to trick <code>javac</code> to not use the build-in implementation of <code>int []</code> but rather use an implementation provided by a library in lets say classpath <code>-cp</code>? Is this possible and how?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "provid":1,
+                  "trick":1,
+                  "build":1,
+                  "librari":1,
+                  "classpath":1,
+                  "code":6,
+                  "implement":2,
+                  "let":1,
+                  "javac":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>My motivation is to declare this <code>int []</code> in a memory outside of JVM (using <code>allocateDirect()</code>) and access it outside from a native JNI code. This should avoid the memory copy overhead.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[1895326537]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>My motivation is to declare this <code>int []</code> in a memory outside of JVM (using <code>allocateDirect()</code>) and access it outside from a native JNI code. This should avoid the memory copy overhead.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"allocateDirect",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jvm":1,
+                  "motiv":1,
+                  "alloc":1,
+                  "avoid":1,
+                  "declar":1,
+                  "direct":1,
+                  "code":5,
+                  "overhead":1,
+                  "jni":1,
+                  "copi":1,
+                  "access":1,
+                  "memori":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>-B </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22247827]-[111618498]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>-B </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":22247935,
+      "questionId":22247827,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":33794223,
+          "postId":22247935,
+          "creationDate":"2014-03-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1990748,
+            "displayName":"Bibrak",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@AlexeiKaigorodov actually MPJ Express uses `ByteBuffer` as internal storage before transferring, `asIntBuffer` is to retrieved `IntBuffer` from the `ByteBuffer` and data is packed into it from the user `int []` as the src, using the standard API functions of the `IntBuffer` `put(int[] src, int offset, int length)`. The optimization is there. But I just was to remove this internal buffering and directly access the user `int []` in JNI."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33794223]-[363193962]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@AlexeiKaigorodov actually MPJ Express uses `ByteBuffer` as internal storage before transferring, `asIntBuffer` is to retrieved `IntBuffer` from the `ByteBuffer` and data is packed into it from the user `int []` as the src, using the standard API functions of the `IntBuffer` `put(int[] src, int offset, int length)`. The optimization is there. But I just was to remove this internal buffering and directly access the user `int []` in JNI."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"AlexeiKaigorodov",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"asIntBuffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"IntBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"IntBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "mpj":1,
+                        "remov":1,
+                        "standard":1,
+                        "retriev":1,
+                        "data":1,
+                        "pack":1,
+                        "alexei":1,
+                        "buffer":6,
+                        "direct":1,
+                        "jni":1,
+                        "optim":1,
+                        "offset":1,
+                        "kaigorodov":1,
+                        "transfer":1,
+                        "function":1,
+                        "src":2,
+                        "express":1,
+                        "put":1,
+                        "length":1,
+                        "api":1,
+                        "storag":1,
+                        "intern":2,
+                        "user":2,
+                        "access":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"IntBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33788173,
+          "postId":22247935,
+          "creationDate":"2014-03-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1990748,
+            "displayName":"Bibrak",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I am using MPJ Express (MPI implementation in Java) it uses an internal buffering layer to buffer the user data. The issue is with this buffering. On high-end interconnects (Infiniband) this copying of data into the internal buffering layer significantly decreases the performance, i.e relatively low bandwidth as compared to native C MPI implementations (like MVAPICH or Open MPI). So I want to bypass this buffering layer and directly access the user data without changing API (the user programs)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33788173]-[1448926310]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I am using MPJ Express (MPI implementation in Java) it uses an internal buffering layer to buffer the user data. The issue is with this buffering. On high-end interconnects (Infiniband) this copying of data into the internal buffering layer significantly decreases the performance, i.e relatively low bandwidth as compared to native C MPI implementations (like MVAPICH or Open MPI). So I want to bypass this buffering layer and directly access the user data without changing API (the user programs)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "mpj":1,
+                        "program":1,
+                        "decreas":1,
+                        "data":3,
+                        "mvapich":1,
+                        "bandwidth":1,
+                        "issu":1,
+                        "buffer":5,
+                        "interconnect":1,
+                        "open":1,
+                        "direct":1,
+                        "layer":3,
+                        "low":1,
+                        "compar":1,
+                        "signific":1,
+                        "perform":1,
+                        "implement":2,
+                        "express":1,
+                        "bypass":1,
+                        "end":1,
+                        "api":1,
+                        "infiniband":1,
+                        "mpi":3,
+                        "intern":2,
+                        "user":3,
+                        "copi":1,
+                        "high":1,
+                        "access":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33826231,
+          "postId":22247935,
+          "creationDate":"2014-03-08",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":581205,
+            "displayName":"maaartinus",
+            "reputation":15638
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@AlexeiKaigorodov: AFAIK, on the OpenJdk JVM a loop for primitives gets compiled into (inlined) `arraycopy` anyway."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33826231]-[563731168]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@AlexeiKaigorodov: AFAIK, on the OpenJdk JVM a loop for primitives gets compiled into (inlined) `arraycopy` anyway."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"AlexeiKaigorodov",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"OpenJdk",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jvm":1,
+                        "loop":1,
+                        "alexei":1,
+                        "afaik":1,
+                        "open":1,
+                        "kaigorodov":1,
+                        "compil":1,
+                        "inlin":1,
+                        "primit":1,
+                        "arraycopi":1,
+                        "jdk":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"OpenJdk",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33790058,
+          "postId":22247935,
+          "creationDate":"2014-03-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1206301,
+            "displayName":"Alexei Kaigorodov",
+            "reputation":6180
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Bibrak do you use `System.arraycopy` to copy data?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33790058]-[1044266640]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Bibrak do you use `System.arraycopy` to copy data?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Bibrak",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "system":1,
+                        "data":1,
+                        "arraycopi":1,
+                        "bibrak":1,
+                        "copi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33790174,
+          "postId":22247935,
+          "creationDate":"2014-03-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1990748,
+            "displayName":"Bibrak",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@AlexeiKaigorodov but doesnt it do a copy? I want to do a Zero-Copy"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33790174]-[-1762303234]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@AlexeiKaigorodov but doesnt it do a copy? I want to do a Zero-Copy"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"AlexeiKaigorodov",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "alexei":1,
+                        "doesnt":1,
+                        "copi":2,
+                        "kaigorodov":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":33790846,
+          "postId":22247935,
+          "creationDate":"2014-03-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1206301,
+            "displayName":"Alexei Kaigorodov",
+            "reputation":6180
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Bibrak `System.arraycopy` is much faster than `for(){}` loop. First try it, and if it is still bottleneck, search for another approaches."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[22247935-cu33790846]-[59447245]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Bibrak `System.arraycopy` is much faster than `for(){}` loop. First try it, and if it is still bottleneck, search for another approaches."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Bibrak",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"JsonObjectNode",
+                        "members":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "faster":1,
+                        "loop":1,
+                        "system":1,
+                        "approach":1,
+                        "bottleneck":1,
+                        "arraycopi":1,
+                        "bibrak":1,
+                        "search":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-03-07",
+      "lastActivityDate":"2014-03-07",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":3049628,
+        "displayName":"Tim B",
+        "reputation":22297
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ol> \n <li><p>int[] is the primitive type. ByteBuffer may be based on an int[] but the opposite is certainly not true. It will almost cerainly be a word-aligned contiguous block of memory with 32 bit values stored in each word of the block. Several JVM's are open source, you can go look at the code if you really want to but it will be advanced stuff.</p></li> \n <li><p>There will be no easy way to do this.</p></li> \n</ol>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22247935]-[-714682626]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ol> \n <li><p>int[] is the primitive type. ByteBuffer may be based on an int[] but the opposite is certainly not true. It will almost cerainly be a word-aligned contiguous block of memory with 32 bit values stored in each word of the block. Several JVM's are open source, you can go look at the code if you really want to but it will be advanced stuff.</p></li> \n <li><p>There will be no easy way to do this.</p></li> \n</ol>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jvm":1,
+                    "advanc":1,
+                    "bit":1,
+                    "easi":1,
+                    "cerain":1,
+                    "contigu":1,
+                    "align":1,
+                    "store":1,
+                    "buffer":1,
+                    "open":1,
+                    "base":1,
+                    "code":1,
+                    "block":2,
+                    "opposit":1,
+                    "valu":1,
+                    "stuff":1,
+                    "true":1,
+                    "type":1,
+                    "primit":1,
+                    "word":2,
+                    "sourc":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It sounds like you are trying to do something in a very complicated way. It may be better to describe the actual problem you are trying to solve rather than asking about problems with an attempted solution to that problem.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[22247935]-[-1304912078]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It sounds like you are trying to do something in a very complicated way. It may be better to describe the actual problem you are trying to solve rather than asking about problems with an attempted solution to that problem.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "solv":1,
+                    "problem":3,
+                    "complic":1,
+                    "sound":1,
+                    "attempt":1,
+                    "actual":1,
+                    "describ":1,
+                    "solut":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":24046673,
+      "questionId":22247827,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":37369979,
+          "postId":24046673,
+          "creationDate":"2014-06-13",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1990748,
+            "displayName":"Bibrak",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The `sun.misc.Unsafe` surely gives the option of allocating native memory but the issue persist as the user arrays (ordinary, normal, primitive arrays) are not implicitly allocated natively."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24046673-cu37369979]-[500787962]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The `sun.misc.Unsafe` surely gives the option of allocating native memory but the issue persist as the user arrays (ordinary, normal, primitive arrays) are not implicitly allocated natively."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"sun",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"misc",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Unsafe",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "alloc":2,
+                        "ordinari":1,
+                        "sure":1,
+                        "normal":1,
+                        "sun":1,
+                        "option":1,
+                        "nativ":1,
+                        "issu":1,
+                        "array":2,
+                        "persist":1,
+                        "implicit":1,
+                        "misc":1,
+                        "unsaf":1,
+                        "primit":1,
+                        "user":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"sun",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"misc",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Unsafe",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37381561,
+          "postId":24046673,
+          "creationDate":"2014-06-13",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":812321,
+            "displayName":"Bryce",
+            "reputation":872
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Right. It's an alternative to the Java arrays that gives easier interop with other processes. Although I wouldn't be surprised if you could do some wildly unsafe trickery to convince the JVM that it's accessible as a int[] array with the standard syntax - the in-memory header for an int[] is pretty simple. Hmm..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24046673-cu37381561]-[-584758359]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Right. It's an alternative to the Java arrays that gives easier interop with other processes. Although I wouldn't be surprised if you could do some wildly unsafe trickery to convince the JVM that it's accessible as a int[] array with the standard syntax - the in-memory header for an int[] is pretty simple. Hmm..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jvm":1,
+                        "wild":1,
+                        "simpl":1,
+                        "standard":1,
+                        "process":1,
+                        "hmm":1,
+                        "altern":1,
+                        "surpris":1,
+                        "pretti":1,
+                        "syntax":1,
+                        "array":2,
+                        "easier":1,
+                        "convinc":1,
+                        "wouldn":1,
+                        "header":1,
+                        "unsaf":1,
+                        "interop":1,
+                        "trickeri":1,
+                        "access":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37495328,
+          "postId":24046673,
+          "creationDate":"2014-06-17",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":812321,
+            "displayName":"Bryce",
+            "reputation":872
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"A custom JVM is not necessary; one can use Unsafe to do arbitrary memory mutations. Some of those mutations let you create a structure with the same layout, off-heap, as a Java array. The only question is whether you can then take that structure and cast it to a &quot;proper&quot; int[]. I somewhat believe this is possible but I haven't tried it."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24046673-cu37495328]-[-1023574424]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"A custom JVM is not necessary; one can use Unsafe to do arbitrary memory mutations. Some of those mutations let you create a structure with the same layout, off-heap, as a Java array. The only question is whether you can then take that structure and cast it to a &quot;proper&quot; int[]. I somewhat believe this is possible but I haven't tried it."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jvm":1,
+                        "question":1,
+                        "arbitrari":1,
+                        "custom":1,
+                        "proper":1,
+                        "mutat":2,
+                        "structur":2,
+                        "array":1,
+                        "cast":1,
+                        "quot":2,
+                        "unsaf":1,
+                        "layout":1,
+                        "heap":1,
+                        "creat":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":37475745,
+          "postId":24046673,
+          "creationDate":"2014-06-17",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1990748,
+            "displayName":"Bibrak",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"do you mean to have a custom JVM?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[24046673-cu37475745]-[1018537910]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"do you mean to have a custom JVM?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "custom":1,
+                        "jvm":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-06-04",
+      "lastActivityDate":"2014-06-04",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":812321,
+        "displayName":"Bryce",
+        "reputation":872
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Instead of using a Java IntBuffer or JNI, you can use sun.misc.Unsafe to allocate and access raw shared memory. This is Dangerous, but it is the absolute fastest way to access shared memory from Java and another process.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[24046673]-[-1687008268]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Instead of using a Java IntBuffer or JNI, you can use sun.misc.Unsafe to allocate and access raw shared memory. This is Dangerous, but it is the absolute fastest way to access shared memory from Java and another process.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"IntBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "alloc":1,
+                    "process":1,
+                    "sun":1,
+                    "buffer":1,
+                    "fastest":1,
+                    "jni":1,
+                    "share":2,
+                    "raw":1,
+                    "misc":1,
+                    "absolut":1,
+                    "unsaf":1,
+                    "danger":1,
+                    "access":2,
+                    "memori":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"IntBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A helpful guide to the Unsafe methods is <a href=\"http://java.dzone.com/articles/understanding-sunmiscunsafe\"rel=\"nofollow\">here</a>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[24046673]-[39548322]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A helpful guide to the Unsafe methods is <a href=\"http://java.dzone.com/articles/understanding-sunmiscunsafe\"rel=\"nofollow\">here</a>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "guid":1,
+                    "sunmiscunsaf":1,
+                    "understand":1,
+                    "rel":1,
+                    "articl":1,
+                    "help":1,
+                    "dzone":1,
+                    "nofollow":1,
+                    "unsaf":1,
+                    "href":1,
+                    "http":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
