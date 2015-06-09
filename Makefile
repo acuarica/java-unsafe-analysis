@@ -26,7 +26,7 @@ all: $(OUTS) $(OVERVIEW) $(OVERVIEWSO)
 
 $(BUILD)/cs.csv: out/unsafe-maven.csv
 $(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
-$(BUILD)/overview-so-pre.pdf: analysis/so-method-usages.csv
+$(BUILD)/overview-so-pre.pdf: stackoverflow/results/method-usages.csv
 $(BUILD)/artifacts.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
 $(BUILD)/classunit.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
 $(BUILD)/patterns.pdf: analysis/comments.csv
