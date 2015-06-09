@@ -10,7 +10,8 @@ import scala.io.Source
 
 class CandidatesAnalyzer {
    
-   val methodNames = Source.fromFile("methodNames.txt").getLines().toList   //one name per line  
+   val methodNames = Source.fromFile("methodNames.txt").getLines().toList   //one name per line
+   val unsafeFields = Source.fromFile("fieldNames.txt").getLines().toList   //one name per line
    val unsafeFullyQualified = "sun.misc.Unsafe"
    val unsafeSimple = "Unsafe"
      
@@ -63,6 +64,13 @@ class CandidatesAnalyzer {
    }
    
    
+   def getFields(visitor: CandidatesVisitor) = {
+     val identifiers = visitor.ids.map{_.name}.toList
+     val literals = visitor.stringLiterals.map{ _.valueRep }.toList
+    (literals ++ identifiers).filter { e => unsafeFields.contains(e) }
+   }
+   
+   
    def getMethods(visitor: CandidatesVisitor) = {
      val qIds = visitor.qualifiedIds.flatMap {qId => 
        val mName = qId.identifiers.last.name
@@ -72,7 +80,9 @@ class CandidatesAnalyzer {
      val literals = visitor.stringLiterals.flatMap { literal => isUnsafeMethodName(clean(literal)) }
      val invocations = visitor.invocations.flatMap { invocation => isUnsafeMethodName(invocation.identifier.name) } 
        
-     (qIds ++ ids ++ literals ++ invocations).toSet
+     val methods  = (qIds ++ ids ++ literals ++ invocations).toSet
+     val fields = getFields(visitor)
+     methods ++ fields
    }
    
   

@@ -63,7 +63,7 @@ object UnsafeUsageExtractor extends App {
     val resForAllPosts = posts.flatMap(post => analyzer.analyze(artifact, post))
     val hasTypeInArtifact = resForAllPosts.exists(_.hasType)
     val v = ctr.incrementAndGet()
-    resForAllPosts.map { usage => UnsafeUsage(usage.artifact, usage.methodName, usage.post, usage.hasType, usage.hasUnsafeWord, hasTypeInArtifact)}
+    resForAllPosts.map { usage => UnsafeUsage(usage.artifact, usage.methodName, usage.post, usage.hasType, usage.hasUnsafeWord, hasTypeInArtifact) }
   }
   println("Done!")
   print("* Writing intermediate result file...")
