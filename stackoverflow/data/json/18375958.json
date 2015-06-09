@@ -1,0 +1,4306 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":18375958,
+    "title":"2D Volatile arrays: will self-assignment help or do I need AtomicIntegerArray?",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "thread-safety",
+      "volatile"
+    ],
+    "creationDate":"2013-08-22",
+    "lastActivityDate":"2013-08-23",
+    "score":0,
+    "viewCount":152,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":628881,
+      "displayName":"jazzbassrob",
+      "reputation":3635
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm writing an audio DSP application and I've opted to use a producer-consumer model. I've been reading a lot about <code>volatile</code> and other threading issues, but I've got a couple of questions about some specifics of my case - particularly, one of the things I need to be shared between threads is an array of arrays.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-1658773805]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm writing an audio DSP application and I've opted to use a producer-consumer model. I've been reading a lot about <code>volatile</code> and other threading issues, but I've got a couple of questions about some specifics of my case - particularly, one of the things I need to be shared between threads is an array of arrays.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "read":1,
+                  "question":1,
+                  "opt":1,
+                  "dsp":1,
+                  "model":1,
+                  "produc":1,
+                  "audio":1,
+                  "thing":1,
+                  "issu":1,
+                  "code":2,
+                  "share":1,
+                  "array":2,
+                  "thread":2,
+                  "coupl":1,
+                  "specif":1,
+                  "applic":1,
+                  "lot":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have a class which represents the producer. To allow for variation in processing time the producer stores <code>n</code> buffers, which it will fill in rotation every time more audio data is available and pass the buffer on to the consumer thread.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-157035300]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have a class which represents the producer. To allow for variation in processing time the producer stores <code>n</code> buffers, which it will fill in rotation every time more audio data is available and pass the buffer on to the consumer thread.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"which",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "variat":1,
+                  "produc":2,
+                  "process":1,
+                  "data":1,
+                  "audio":1,
+                  "store":1,
+                  "buffer":2,
+                  "code":2,
+                  "thread":1,
+                  "fill":1,
+                  "pass":1,
+                  "time":2,
+                  "rotat":1,
+                  "repres":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'll start with my questions, and then I'll try to explain my system in enough detail - sorry for the long post, thanks for bearing with me! I'd also be very grateful for general comments about my implementation and its thread safety.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-1442757228]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'll start with my questions, and then I'll try to explain my system in enough detail - sorry for the long post, thanks for bearing with me! I'd also be very grateful for general comments about my implementation and its thread safety.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "post":1,
+                  "grate":1,
+                  "system":1,
+                  "bear":1,
+                  "explain":1,
+                  "thread":1,
+                  "safeti":1,
+                  "general":1,
+                  "comment":1,
+                  "implement":1,
+                  "detail":1,
+                  "start":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>My buffers are represented by a <code>volatile byte[][]</code> array. I am well aware that the <code>volatile</code> only makes the <em>reference</em> volatile, but having read around SO and various blog posts, it seems that I have two options:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-586682363]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>My buffers are represented by a <code>volatile byte[][]</code> array. I am well aware that the <code>volatile</code> only makes the <em>reference</em> volatile, but having read around SO and various blog posts, it seems that I have two options:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "post":1,
+                  "option":1,
+                  "buffer":1,
+                  "code":4,
+                  "awar":1,
+                  "array":1,
+                  "blog":1,
+                  "refer":1,
+                  "make":1,
+                  "repres":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I could use <code>AtomicIntegerArray</code>. But:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[723472054]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I could use <code>AtomicIntegerArray</code>. But:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "atom":1,
+                  "code":2,
+                  "array":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ul> \n <li><p>Will I compromise performance for an application like this?</p></li> \n <li><p>Is atomicity even what I need? I intend to write to the entire array in one go, <em>then</em> I need it to be visible to another thread, I don't need each <em>individual</em> write to be atomic or visible immediately.</p></li> \n</ul>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-1278736710]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ul> \n <li><p>Will I compromise performance for an application like this?</p></li> \n <li><p>Is atomicity even what I need? I intend to write to the entire array in one go, <em>then</em> I need it to be visible to another thread, I don't need each <em>individual</em> write to be atomic or visible immediately.</p></li> \n</ul>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "compromis":1,
+                  "individu":1,
+                  "entir":1,
+                  "visibl":2,
+                  "array":1,
+                  "intend":1,
+                  "thread":1,
+                  "perform":1,
+                  "applic":1,
+                  "atom":2,
+                  "immedi":1,
+                  "write":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>If I understand correctly (e.g. <a href=\"http://jeremymanson.blogspot.co.uk/2009/06/volatile-arrays-in-java.html\"rel=\"nofollow\">this blog post</a>), a self assignment, which in my case is: <code>buffers[currentBuffer] = buffers[currentBuffer]</code> will ensure publication, which you will see in my code below.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[2046463601]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>If I understand correctly (e.g. <a href=\"http://jeremymanson.blogspot.co.uk/2009/06/volatile-arrays-in-java.html\"rel=\"nofollow\">this blog post</a>), a self assignment, which in my case is: <code>buffers[currentBuffer] = buffers[currentBuffer]</code> will ensure publication, which you will see in my code below.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"currentBuffer",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"currentBuffer",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "post":1,
+                  "correct":1,
+                  "understand":1,
+                  "rel":1,
+                  "assign":1,
+                  "buffer":4,
+                  "public":1,
+                  "blogspot":1,
+                  "code":3,
+                  "jeremymanson":1,
+                  "array":1,
+                  "blog":1,
+                  "nofollow":1,
+                  "html":1,
+                  "href":1,
+                  "current":2,
+                  "http":1,
+                  "ensur":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ul> \n <li><p>Is this correct, that it will cause all recent writes to become visible?</p></li> \n <li><p>Does this work in the case of a 2D array like this?</p></li> \n</ul>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-451582216]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ul> \n <li><p>Is this correct, that it will cause all recent writes to become visible?</p></li> \n <li><p>Does this work in the case of a 2D array like this?</p></li> \n</ul>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "recent":1,
+                  "correct":1,
+                  "visibl":1,
+                  "work":1,
+                  "array":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<hr />"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[1817223689]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<hr />"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'll try to overview the producer class briefly; these are the instance variables:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[2101281043]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'll try to overview the producer class briefly; these are the instance variables:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"briefly",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "produc":1,
+                  "briefli":1,
+                  "overview":1,
+                  "variabl":1,
+                  "instanc":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"// The consumer - just an interface with a process(byte[]) method AudioInputConsumer consumer; // The audio data source AudioSource source; // The number of buffers int bufferCount; // Controls the main producer loop volatile boolean isRunning = false; // The actual buffers volatile byte[][] buffers; // The number of buffers left to process. // Shared counter - the producer inrements and checks it has not run // out of buffers, while the consumer decremenets when it processes a buffer AtomicInteger buffersToProcess = new AtomicInteger(0); // The producer thread. Thread producerThread; // The consumer thread. Thread consumerThread; "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18375958]-[-1891330001]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"// The consumer - just an interface with a process(byte[]) method "
+                },
+                {
+                  "type":"LocalVariableDeclarationStatementNode",
+                  "modifiers":[
+                    
+                  ],
+                  "declarators":{
+                    "type":"VariableDeclaratorsNode",
+                    "declarators":[
+                      {
+                        "type":"VariableDeclaratorNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"consumer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "arrayDepth":[
+                          
+                        ],
+                        "varType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"AudioInputConsumer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    {
+                      "text":"// The audio data source AudioSource source; // The number of buffers int bufferCount; // Controls the main producer loop volatile boolean isRunning = false; // The actual buffers volatile byte[][] buffers; // The number of buffers left to process. // Shared counter - the producer inrements and checks it has not run // out of buffers, while the consumer decremenets when it processes a buffer AtomicInteger buffersToProcess = new AtomicInteger(0); // The producer thread. Thread producerThread; // The consumer thread. Thread consumerThread; \n"
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"// The consumer - just an interface with a process(byte[]) method AudioInputConsumer consumer; // The audio data source AudioSource source; // The number of buffers int bufferCount; // Controls the main producer loop volatile boolean isRunning = false; // The actual buffers volatile byte[][] buffers; // The number of buffers left to process. // Shared counter - the producer inrements and checks it has not run // out of buffers, while the consumer decremenets when it processes a buffer AtomicInteger buffersToProcess = new AtomicInteger(0); // The producer thread. Thread producerThread; // The consumer thread. Thread consumerThread; \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "inrement":1,
+                  "consum":6,
+                  "number":2,
+                  "method":1,
+                  "count":1,
+                  "loop":1,
+                  "produc":4,
+                  "process":4,
+                  "run":2,
+                  "data":1,
+                  "audio":3,
+                  "left":1,
+                  "decremenet":1,
+                  "buffer":8,
+                  "main":1,
+                  "share":1,
+                  "thread":6,
+                  "check":1,
+                  "fals":1,
+                  "counter":1,
+                  "control":1,
+                  "atom":2,
+                  "actual":1,
+                  "sourc":3,
+                  "input":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AudioInputConsumer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"consumer",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AudioInputConsumer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Once I start the <code>producerThread</code> and <code>consumerThread</code>, they just execute the methods <code>producerLoop</code> and <code>consumerLoop</code> respectively.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-227848035]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Once I start the <code>producerThread</code> and <code>consumerThread</code>, they just execute the methods <code>producerLoop</code> and <code>consumerLoop</code> respectively.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"producerThread",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"consumerThread",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"producerLoop",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"consumerLoop",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":2,
+                  "method":1,
+                  "loop":2,
+                  "produc":2,
+                  "code":8,
+                  "thread":2,
+                  "start":1,
+                  "execut":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><code>producerLoop</code> blocks while waiting for audio data, reads into the buffer, <strong>performs a self-assignment on the buffer</strong>, then uses the <code>AtomicInteger</code> instance to signal to the consumer loop.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[2120291751]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><code>producerLoop</code> blocks while waiting for audio data, reads into the buffer, <strong>performs a self-assignment on the buffer</strong>, then uses the <code>AtomicInteger</code> instance to signal to the consumer loop.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"producerLoop",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicInteger",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "read":1,
+                  "wait":1,
+                  "loop":2,
+                  "produc":1,
+                  "data":1,
+                  "audio":1,
+                  "assign":1,
+                  "buffer":2,
+                  "strong":2,
+                  "code":4,
+                  "block":1,
+                  "perform":1,
+                  "atom":1,
+                  "instanc":1,
+                  "signal":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"private void producerLoop() { int bufferSize = source.getBufferSize(); int currentBuffer = 0; while (isRunning) { if (buffersToProcess.get() == bufferCount) { //This thread must be faster than the processing thread, we have run out // of buffers: decide what to do System.err.println(&quot;WARNING: run out of buffers&quot;); } source.read(buffers[currentBuffer], 0, bufferSize); // Read data into the buffer buffers[currentBuffer] = buffers[currentBuffer]; // Self-assignment to force publication (?) buffersToProcess.incrementAndGet(); // Signal to the other thread that there is data to read currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18375958]-[307897267]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"private",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"producerLoop",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"bufferSize",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"MethodInvocationNode",
+                                    "qualifiedIdentifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"source",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"getBufferSize",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "args":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"currentBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"0"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"WhileStatementNode",
+                        "expression":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"isRunning",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"IfStatementNode",
+                              "expression":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"==",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"buffersToProcess",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"get",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"bufferCount",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "statement":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  {
+                                    "text":"//This thread must be faster than the processing thread, we have run out // of buffers: decide what to do System.err.println(\"WARNING: run out of buffers\"); } source.read(buffers[currentBuffer], 0, bufferSize); // Read data into the buffer buffers[currentBuffer] = buffers[currentBuffer]; // Self-assignment to force publication (?) buffersToProcess.incrementAndGet(); // Signal to the other thread that there is data to read currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } } \n"
+                                  }
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"private void producerLoop() { int bufferSize = source.getBufferSize(); int currentBuffer = 0; while (isRunning) { if (buffersToProcess.get() == bufferCount) { //This thread must be faster than the processing thread, we have run out // of buffers: decide what to do System.err.println(\"WARNING: run out of buffers\"); } source.read(buffers[currentBuffer], 0, bufferSize); // Read data into the buffer buffers[currentBuffer] = buffers[currentBuffer]; // Self-assignment to force publication (?) buffersToProcess.incrementAndGet(); // Signal to the other thread that there is data to read currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } } \n...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":3,
+                  "decid":1,
+                  "count":2,
+                  "faster":1,
+                  "loop":1,
+                  "warn":1,
+                  "size":3,
+                  "system":1,
+                  "produc":1,
+                  "process":3,
+                  "run":3,
+                  "data":2,
+                  "assign":1,
+                  "buffer":20,
+                  "public":1,
+                  "println":1,
+                  "thread":3,
+                  "err":1,
+                  "forc":1,
+                  "current":6,
+                  "sourc":2,
+                  "increment":1,
+                  "signal":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"source",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getBufferSize",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buffersToProcess",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"get",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"bufferSize",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"source",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"getBufferSize",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"currentBuffer",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"0"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><code>consumerLoop</code> waits until the <code>AtomicInteger</code> <code>buffersToProcess</code> is greater than zero, then calls the consumer object to do whatever it wants with the data. Afterwards <code>buffersToProcess</code> is decremented and we wait for it to become nonzero again.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[2128713005]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><code>consumerLoop</code> waits until the <code>AtomicInteger</code> <code>buffersToProcess</code> is greater than zero, then calls the consumer object to do whatever it wants with the data. Afterwards <code>buffersToProcess</code> is decremented and we wait for it to become nonzero again.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"consumerLoop",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicInteger",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"buffersToProcess",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"buffersToProcess",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":2,
+                  "wait":2,
+                  "loop":1,
+                  "process":2,
+                  "nonzero":1,
+                  "data":1,
+                  "buffer":2,
+                  "object":1,
+                  "code":8,
+                  "decrement":1,
+                  "atom":1,
+                  "greater":1,
+                  "call":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"private void consumerLoop() { int currentBuffer = 0; while (isRunning) { if (buffersToProcess.get() &gt; 0) { consumer.process(buffers[currentBuffer]); // Process the data buffersToProcess.decrementAndGet(); // Signal that we are done with this buffer currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } Thread.yield(); } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18375958]-[1500305360]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"private",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"consumerLoop",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"currentBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"IntegerLiteralNode",
+                                      "valueRep":"0"
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"PrimitiveTypeNode",
+                                "name":"int",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"WhileStatementNode",
+                        "expression":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"isRunning",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"IfStatementNode",
+                              "expression":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":">",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"MethodInvocationNode",
+                                  "qualifiedIdentifier":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"buffersToProcess",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"get",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"IntegerLiteralNode",
+                                    "valueRep":"0"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "statement":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ExpressionStatement",
+                                    "expression":{
+                                      "type":"MethodInvocationNode",
+                                      "qualifiedIdentifier":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"consumer",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"process",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "args":{
+                                        "type":"ExpressionListNode",
+                                        "arguments":[
+                                          {
+                                            "type":"ArrayAccessSelectorNode",
+                                            "identifier":{
+                                              "type":"QualifiedIdentifierNode",
+                                              "identifiers":[
+                                                {
+                                                  "type":"IdentifierNode",
+                                                  "name":"buffers",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "dimExpression":{
+                                              "type":"DimExpressionNode",
+                                              "argument":{
+                                                "type":"QualifiedIdentifierNode",
+                                                "identifiers":[
+                                                  {
+                                                    "type":"IdentifierNode",
+                                                    "name":"currentBuffer",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        {
+                                          "text":"// Process the data buffersToProcess.decrementAndGet(); // Signal that we are done with this buffer currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } Thread.yield(); } } \n"
+                                        }
+                                      ]
+                                    },
+                                    "labels":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"private void consumerLoop() { int currentBuffer = 0; while (isRunning) { if (buffersToProcess.get() > 0) { consumer.process(buffers[currentBuffer]); // Process the data buffersToProcess.decrementAndGet(); // Signal that we are done with this buffer currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } Thread.yield(); } } \n...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":2,
+                  "count":1,
+                  "loop":1,
+                  "process":4,
+                  "run":1,
+                  "data":1,
+                  "yield":1,
+                  "buffer":10,
+                  "decrement":1,
+                  "thread":1,
+                  "current":4,
+                  "signal":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"buffersToProcess",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"get",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"consumer",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"process",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"ArrayAccessSelectorNode",
+                          "identifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"buffers",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "dimExpression":{
+                            "type":"DimExpressionNode",
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"currentBuffer",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"// Process the data buffersToProcess.decrementAndGet(); // Signal that we are done with this buffer currentBuffer = (currentBuffer + 1) % bufferCount; // Next buffer } Thread.yield(); } } \n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"currentBuffer",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"0"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Many thanks!</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18375958]-[-907844126]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Many thanks!</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":18393739,
+      "questionId":18375958,
+      "comments":[
+        
+      ],
+      "creationDate":"2013-08-23",
+      "lastActivityDate":"2013-08-23",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":2109526,
+        "displayName":"Alex Suo",
+        "reputation":1537
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In addition to @Marko Topolnik explained above about how volatile and atomic works, if you still want to achieve the effect for across-thread visibility when writing into array, you can use Unsafe.putLongVolatile(), Unsafe.putObjectVolatile() and all other methods in the same family.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18393739]-[2043433798]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In addition to @Marko Topolnik explained above about how volatile and atomic works, if you still want to achieve the effect for across-thread visibility when writing into array, you can use Unsafe.putLongVolatile(), Unsafe.putObjectVolatile() and all other methods in the same family.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"AnnotationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"Marko",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putLongVolatile",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putObjectVolatile",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "explain":1,
+                    "addit":1,
+                    "effect":1,
+                    "visibl":1,
+                    "work":1,
+                    "object":1,
+                    "array":1,
+                    "thread":1,
+                    "marko":1,
+                    "achiev":1,
+                    "famili":1,
+                    "topolnik":1,
+                    "put":2,
+                    "atom":1,
+                    "unsaf":2,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Yes it's not that Java like but it resolves your problem.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18393739]-[-1394208727]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Yes it's not that Java like but it resolves your problem.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "resolv":1,
+                    "problem":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":18377060,
+      "questionId":18375958,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":26991314,
+          "postId":18377060,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":628881,
+            "displayName":"jazzbassrob",
+            "reputation":3635
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks for this - this could be a better way. I'm marking the other one as correct because it more directly answers my question but I will investigate this as an alternative approach, thanks!"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18377060-cu26991314]-[-1175192116]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks for this - this could be a better way. I'm marking the other one as correct because it more directly answers my question but I will investigate this as an alternative approach, thanks!"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "correct":1,
+                        "investig":1,
+                        "altern":1,
+                        "direct":1,
+                        "answer":1,
+                        "approach":1,
+                        "mark":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991721,
+          "postId":18377060,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Submitting processing tasks to an executor service is also a great option: you get queueing plus multithreading in one safe package."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18377060-cu26991721]-[1337054256]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Submitting processing tasks to an executor service is also a great option: you get queueing plus multithreading in one safe package."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "task":1,
+                        "queue":1,
+                        "process":1,
+                        "option":1,
+                        "submit":1,
+                        "safe":1,
+                        "multithread":1,
+                        "executor":1,
+                        "great":1,
+                        "servic":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-08-22",
+      "lastActivityDate":"2013-08-22",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":676496,
+        "displayName":"Yusuf Jakoet",
+        "reputation":111
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Have a look at java.util.concurrent.ArrayBlockingQueue.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18377060]-[1960409038]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Have a look at java.util.concurrent.ArrayBlockingQueue.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ArrayBlockingQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "util":1,
+                    "queue":1,
+                    "array":1,
+                    "block":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"concurrent",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ArrayBlockingQueue",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>When you call take() on a blocking queue, it will automatically wait until something is made available.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18377060]-[-1341104175]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>When you call take() on a blocking queue, it will automatically wait until something is made available.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "wait":1,
+                    "queue":1,
+                    "automat":1,
+                    "block":1,
+                    "call":1,
+                    "made":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Simply place the byte[] onto the queue and the consumer will process it. The need to know how many buffers are to be processed is irrelevant in this scenario. Usually, a &quot;terminate&quot; item in the queue would represent the last buffer. It would help to wrap the byte[] in a class with a boolean terminate flag.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18377060]-[983542177]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Simply place the byte[] onto the queue and the consumer will process it. The need to know how many buffers are to be processed is irrelevant in this scenario. Usually, a &quot;terminate&quot; item in the queue would represent the last buffer. It would help to wrap the byte[] in a class with a boolean terminate flag.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"with",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "scenario":1,
+                    "consum":1,
+                    "queue":2,
+                    "process":2,
+                    "buffer":2,
+                    "wrap":1,
+                    "simpli":1,
+                    "flag":1,
+                    "quot":2,
+                    "place":1,
+                    "irrelev":1,
+                    "repres":1,
+                    "termin":2,
+                    "item":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Regards Yusuf</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18377060]-[-1422026221]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Regards Yusuf</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "yusuf":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":18376073,
+      "questionId":18375958,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":26985107,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1853458,
+            "displayName":"veritas",
+            "reputation":1225
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"+1 nicely explained"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26985107]-[-1237599142]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"+1 nicely explained"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "nice":1,
+                        "explain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26990930,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":628881,
+            "displayName":"jazzbassrob",
+            "reputation":3635
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks for your answer, I will give it some thought based on this. Just one clarification - you mention a double buffering scheme, which is essentially what I am doing, although I have a variable number of buffers. However I am trying to &quot;force&quot; publication using a self-assignment `buffers[i]=buffers[i]`, where `buffers` is type `byte[][]`. Does think work? Or should the self-assignment be `buffers=buffers`, since that is the volatile reference?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26990930]-[226623235]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks for your answer, I will give it some thought based on this. Just one clarification - you mention a double buffering scheme, which is essentially what I am doing, although I have a variable number of buffers. However I am trying to &quot;force&quot; publication using a self-assignment `buffers[i]=buffers[i]`, where `buffers` is type `byte[][]`. Does think work? Or should the self-assignment be `buffers=buffers`, since that is the volatile reference?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "number":1,
+                        "thought":1,
+                        "assign":2,
+                        "buffer":7,
+                        "public":1,
+                        "work":1,
+                        "base":1,
+                        "mention":1,
+                        "scheme":1,
+                        "refer":1,
+                        "give":1,
+                        "answer":1,
+                        "quot":2,
+                        "forc":1,
+                        "type":1,
+                        "variabl":1,
+                        "essenti":1,
+                        "clarif":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991021,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"No, `array[i]=array[i]` is basically a no-op. You can't make individual array members volatile. `buffers=buffers` should work. Of course, only if on the reading side you also read the reference to the outer array."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991021]-[-1826820612]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"No, `array[i]=array[i]` is basically a no-op. You can't make individual array members volatile. `buffers=buffers` should work. Of course, only if on the reading side you also read the reference to the outer array."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "side":1,
+                        "read":2,
+                        "outer":1,
+                        "individu":1,
+                        "buffer":2,
+                        "work":1,
+                        "array":4,
+                        "member":1,
+                        "refer":1,
+                        "make":1,
+                        "basic":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991281,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":628881,
+            "displayName":"jazzbassrob",
+            "reputation":3635
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks a lot! Sorry, just one more: &quot;only if on the reading side you also read the reference to the outer array&quot;; I am reading from the exact same reference variable `buffers` if that's what you mean? I assume the alternative you were warning against is if I had some other reference to the same array on the reading side."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991281]-[947827123]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks a lot! Sorry, just one more: &quot;only if on the reading side you also read the reference to the outer array&quot;; I am reading from the exact same reference variable `buffers` if that's what you mean? I assume the alternative you were warning against is if I had some other reference to the same array on the reading side."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"only if on the reading side you also read the reference to the outer array\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          {
+                            "type":"LabelNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"more",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "side":2,
+                        "read":4,
+                        "outer":1,
+                        "assum":1,
+                        "warn":1,
+                        "buffer":1,
+                        "altern":1,
+                        "exact":1,
+                        "array":2,
+                        "refer":3,
+                        "lot":1,
+                        "quot":2,
+                        "variabl":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991354,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"A bad example would be if, at the reading end, you had `buffers` already written to some other variable, and you didn't touch the one and the same `buffers` variable at both ends."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991354]-[1291659140]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"A bad example would be if, at the reading end, you had `buffers` already written to some other variable, and you didn't touch the one and the same `buffers` variable at both ends."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "touch":1,
+                        "bad":1,
+                        "buffer":2,
+                        "written":1,
+                        "end":2,
+                        "variabl":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991441,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":628881,
+            "displayName":"jazzbassrob",
+            "reputation":3635
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yup, that's what I thought. Thanks again for your help."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991441]-[-650845775]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yup, that's what I thought. Thanks again for your help."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "thought":1,
+                        "yup":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991478,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"While we're at it, you must be careful to read from the volatile variable *only once* per publishing event. For example, don't read it every time in a loop: if you use `buffers[i][j]`, then the volatile `buffers` will be read each and every time. That would be both slow and introduce a race condition."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991478]-[1083129196]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"While we're at it, you must be careful to read from the volatile variable *only once* per publishing event. For example, don't read it every time in a loop: if you use `buffers[i][j]`, then the volatile `buffers` will be read each and every time. That would be both slow and introduce a race condition."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":3,
+                        "loop":1,
+                        "slow":1,
+                        "event":1,
+                        "condit":1,
+                        "introduc":1,
+                        "buffer":2,
+                        "care":1,
+                        "publish":1,
+                        "race":1,
+                        "time":2,
+                        "variabl":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26991614,
+          "postId":18376073,
+          "creationDate":"2013-08-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"And definitely stay away from anything else than primitive array elements if performance is dear to you :) You are right that using a container which works only for reference types would be bad."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18376073-cu26991614]-[1675716581]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"And definitely stay away from anything else than primitive array elements if performance is dear to you :) You are right that using a container which works only for reference types would be bad."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "bad":1,
+                        "contain":1,
+                        "work":1,
+                        "element":1,
+                        "array":1,
+                        "perform":1,
+                        "refer":1,
+                        "stay":1,
+                        "type":1,
+                        "primit":1,
+                        "dear":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-08-22",
+      "lastActivityDate":"2013-08-22",
+      "lastEditDate":"2013-08-22",
+      "score":2,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1103872,
+        "displayName":"Marko Topolnik",
+        "reputation":88730
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You do need atomicity because writing to an array is a non-atomic process. Specifically, Java will certainly never guarantee that writes to array members will stay <em>invisible</em> to other threads until you choose to publish them.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18376073]-[687405898]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You do need atomicity because writing to an array is a non-atomic process. Specifically, Java will certainly never guarantee that writes to array members will stay <em>invisible</em> to other threads until you choose to publish them.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "process":1,
+                    "publish":1,
+                    "array":2,
+                    "guarante":1,
+                    "invis":1,
+                    "thread":1,
+                    "member":1,
+                    "specif":1,
+                    "stay":1,
+                    "choos":1,
+                    "atom":2,
+                    "write":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>One option is to create a new array each time, fully initialize it, and then publish over a <code>volatile</code>, but this may incur a significant cost due to Java's insistence that a newly allocated array must be first zeroed out, and due to GC overhead. You may overcome this with a &quot;double buffering&quot; scheme where you keep just two arrays and switch between them. This approach has its dangers: a thread may still be reading from the array which your writing thread has already marked as the inactive one. This highly depends on the precise details of your code.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18376073]-[751206735]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>One option is to create a new array each time, fully initialize it, and then publish over a <code>volatile</code>, but this may incur a significant cost due to Java's insistence that a newly allocated array must be first zeroed out, and due to GC overhead. You may overcome this with a &quot;double buffering&quot; scheme where you keep just two arrays and switch between them. This approach has its dangers: a thread may still be reading from the array which your writing thread has already marked as the inactive one. This highly depends on the precise details of your code.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "precis":1,
+                    "read":1,
+                    "due":2,
+                    "alloc":1,
+                    "depend":1,
+                    "zero":1,
+                    "option":1,
+                    "buffer":1,
+                    "inact":1,
+                    "code":3,
+                    "overhead":1,
+                    "newli":1,
+                    "publish":1,
+                    "array":4,
+                    "thread":2,
+                    "incur":1,
+                    "insist":1,
+                    "cost":1,
+                    "scheme":1,
+                    "signific":1,
+                    "overcom":1,
+                    "fulli":1,
+                    "approach":1,
+                    "quot":2,
+                    "initi":1,
+                    "detail":1,
+                    "time":1,
+                    "mark":1,
+                    "creat":1,
+                    "write":1,
+                    "high":1,
+                    "danger":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The only other option is to do the whole reading and writing in a classic, boring, <code>synchronized</code> block. This has the advantage of being very predictable in latency. Personally, I'd start from this and move on to anything more complicated if absolutely pressed by an actual performance issue.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18376073]-[1906668196]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The only other option is to do the whole reading and writing in a classic, boring, <code>synchronized</code> block. This has the advantage of being very predictable in latency. Personally, I'd start from this and move on to anything more complicated if absolutely pressed by an actual performance issue.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "move":1,
+                    "latenc":1,
+                    "complic":1,
+                    "option":1,
+                    "classic":1,
+                    "issu":1,
+                    "code":2,
+                    "block":1,
+                    "advantag":1,
+                    "bore":1,
+                    "perform":1,
+                    "person":1,
+                    "press":1,
+                    "absolut":1,
+                    "predict":1,
+                    "start":1,
+                    "actual":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You could also lock using read-write locks, but this would only pay off if multiple threads read the array concurrently. This does not seem to be your case.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18376073]-[-227975967]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You could also lock using read-write locks, but this would only pay off if multiple threads read the array concurrently. This does not seem to be your case.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":2,
+                    "concurr":1,
+                    "pay":1,
+                    "lock":2,
+                    "array":1,
+                    "thread":1,
+                    "multipl":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

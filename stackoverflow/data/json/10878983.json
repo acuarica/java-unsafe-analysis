@@ -1,0 +1,3619 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":10878983,
+    "title":"100 threads TIMED_WAITING in tomcat, causing it to stall as total number of threads crosses 200",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":14184446,
+        "postId":10878983,
+        "creationDate":"2012-06-04",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1263942,
+          "displayName":"BGR",
+          "reputation":4802
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Did you try taking a Heap Dump and running it through the [MAT](http://www.eclipse.org/mat/) to see what Objects are accumulating ?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu14184446]-[1109119656]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Did you try taking a Heap Dump and running it through the [MAT](http://www.eclipse.org/mat/) to see what Objects are accumulating ?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "mat":2,
+                      "run":1,
+                      "dump":1,
+                      "object":1,
+                      "eclips":1,
+                      "accumul":1,
+                      "take":1,
+                      "heap":1,
+                      "org":1,
+                      "http":1,
+                      "www":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14921788,
+        "postId":10878983,
+        "creationDate":"2012-07-04",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":501895,
+          "displayName":"ThinkFloyd",
+          "reputation":3111
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"This got fixed when we fixed our code which was leaking DB connections managed by c3p0. There were few flows in our code where we were not calling rollback() specifically in catch block before closing entity Manager in finally block, so in case of exceptions connection was not coming back to pool and if frequency of exception is high(more than size of pool within timeout interval) then all other process threads would pile up to get connection."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu14921788]-[711184939]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"This got fixed when we fixed our code which was leaking DB connections managed by c3p0. There were few flows in our code where we were not calling rollback() specifically in catch block before closing entity Manager in finally block, so in case of exceptions connection was not coming back to pool and if frequency of exception is high(more than size of pool within timeout interval) then all other process threads would pile up to get connection."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "size":1,
+                      "connect":3,
+                      "process":1,
+                      "fix":2,
+                      "leak":1,
+                      "come":1,
+                      "code":2,
+                      "rollback":1,
+                      "pile":1,
+                      "block":2,
+                      "interv":1,
+                      "thread":1,
+                      "flow":1,
+                      "specif":1,
+                      "back":1,
+                      "pool":2,
+                      "entiti":1,
+                      "manag":2,
+                      "close":1,
+                      "except":1,
+                      "call":1,
+                      "timeout":1,
+                      "high":1,
+                      "frequenc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14836372,
+        "postId":10878983,
+        "creationDate":"2012-07-01",
+        "score":1,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":351758,
+          "displayName":"Janning",
+          "reputation":2393
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"At the moment we have the same problem. Even restarting tomcat didn't help. After rebooting evrything worked again. STRANGE! ill investigate further and will report if I find something interesting."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu14836372]-[1853293818]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"At the moment we have the same problem. Even restarting tomcat didn't help. After rebooting evrything worked again. STRANGE! ill investigate further and will report if I find something interesting."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "find":1,
+                      "problem":1,
+                      "investig":1,
+                      "work":1,
+                      "interest":1,
+                      "moment":1,
+                      "evryth":1,
+                      "reboot":1,
+                      "report":1,
+                      "ill":1,
+                      "tomcat":1,
+                      "restart":1,
+                      "strang":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14836384,
+        "postId":10878983,
+        "creationDate":"2012-07-01",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":351758,
+          "displayName":"Janning",
+          "reputation":2393
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"It has nothing to do with hibernate as we encountered this problem tonight across our complete server farm and some of them are just image servers without any hibernate or database stack."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu14836384]-[1609930288]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"It has nothing to do with hibernate as we encountered this problem tonight across our complete server farm and some of them are just image servers without any hibernate or database stack."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "server":2,
+                      "problem":1,
+                      "hibern":2,
+                      "tonight":1,
+                      "stack":1,
+                      "encount":1,
+                      "databas":1,
+                      "complet":1,
+                      "farm":1,
+                      "imag":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14837741,
+        "postId":10878983,
+        "creationDate":"2012-07-01",
+        "score":2,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":351758,
+          "displayName":"Janning",
+          "reputation":2393
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Our problem was due to leap second bug. rebooting the server fixes it. some report restarting ntp would help too. see here http://serverfault.com/questions/403732/anyone-else-experiencing-high-rates-of-linux-server-crashes-during-a-leap-second"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu14837741]-[630422369]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Our problem was due to leap second bug. rebooting the server fixes it. some report restarting ntp would help too. see here http://serverfault.com/questions/403732/anyone-else-experiencing-high-rates-of-linux-server-crashes-during-a-leap-second"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "rate":1,
+                      "question":1,
+                      "due":1,
+                      "ntp":1,
+                      "server":2,
+                      "problem":1,
+                      "serverfault":1,
+                      "crash":1,
+                      "fix":1,
+                      "leap":2,
+                      "bug":1,
+                      "reboot":1,
+                      "linux":1,
+                      "report":1,
+                      "restart":1,
+                      "http":1,
+                      "high":1,
+                      "experienc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":39291090,
+        "postId":10878983,
+        "creationDate":"2014-08-10",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":182289,
+          "displayName":"stepanian",
+          "reputation":3408
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"This is such a badly written question and will surely confuse many people reading it and the answers associated with it. TIMED_WAITING (parking) is exactly what you would see on threads that are waiting for connections. I wish there was a way this question could be deleted to save considerable wasted time for however many people end up reading it."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[10878983-cu39291090]-[1726315045]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"This is such a badly written question and will surely confuse many people reading it and the answers associated with it. TIMED_WAITING (parking) is exactly what you would see on threads that are waiting for connections. I wish there was a way this question could be deleted to save considerable wasted time for however many people end up reading it."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"_WAITING",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "read":2,
+                      "question":2,
+                      "wait":2,
+                      "wast":1,
+                      "delet":1,
+                      "consider":1,
+                      "connect":1,
+                      "sure":1,
+                      "bad":1,
+                      "thread":1,
+                      "written":1,
+                      "park":1,
+                      "answer":1,
+                      "end":1,
+                      "confus":1,
+                      "time":2,
+                      "save":1,
+                      "peopl":2
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "tomcat",
+      "threadpool",
+      "thread-dump"
+    ],
+    "creationDate":"2012-06-04",
+    "lastActivityDate":"2012-11-30",
+    "score":4,
+    "viewCount":7353,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":501895,
+      "displayName":"ThinkFloyd",
+      "reputation":3111
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Recently one of our production tomcat server became unresponsive because tomcat's busy threads shot upto 200. When we took thread dump before restarting we got 100 threads in TIMED_WAITING state like these 3 threads:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10878983]-[-739404922]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Recently one of our production tomcat server became unresponsive because tomcat's busy threads shot upto 200. When we took thread dump before restarting we got 100 threads in TIMED_WAITING state like these 3 threads:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"_WAITING",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "unrespons":1,
+                  "wait":1,
+                  "server":1,
+                  "state":1,
+                  "recent":1,
+                  "dump":1,
+                  "shot":1,
+                  "thread":4,
+                  "busi":1,
+                  "upto":1,
+                  "tomcat":2,
+                  "time":1,
+                  "restart":1,
+                  "product":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"&quot;&quot;http-bio-7007&quot;-exec-241&quot; daemon prio=10 tid=0x00002aaab107b000 nid=0x59df waiting on condition [0x0000000051239000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method) - parking to wait for &lt;0x0000000580d877d0&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198) at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025) at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32) at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945) at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907) at java.lang.Thread.run(Thread.java:662) &quot;&quot;http-bio-7007&quot;-exec-237&quot; daemon prio=10 tid=0x00002aaab186e000 nid=0x596d waiting on condition [0x000000004d1f9000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method) - parking to wait for &lt;0x0000000580d877d0&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198) at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025) at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32) at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945) at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907) at java.lang.Thread.run(Thread.java:662) &quot;&quot;http-bio-7007&quot;-exec-236&quot; daemon prio=10 tid=0x00002aaab1118000 nid=0x596c waiting on condition [0x000000004e50c000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method) - parking to wait for &lt;0x0000000580d877d0&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198) at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025) at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86) at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32) at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945) at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907) at java.lang.Thread.run(Thread.java:662) "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[10878983]-[1860501245]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"\"\"http-bio-7007\"-exec-241\" daemon prio=10 tid=0x00002aaab107b000 nid=0x59df waiting on condition [0x0000000051239000] "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"State",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": TIMED"
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"_WAITING",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" (parking) "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"park",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Native Method"
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"- parking to wait for <0x0000000580d877d0> (a "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":") "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LockSupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"parkNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LockSupport.java",
+                    "lineNumber":198
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"awaitNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":2025
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LinkedBlockingQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LinkedBlockingQueue.java",
+                    "lineNumber":424
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":86
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":32
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getTask",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":945
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor$Worker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":907
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Thread.java",
+                    "lineNumber":662
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"\"\"http-bio-7007\"-exec-237\" daemon prio=10 tid=0x00002aaab186e000 nid=0x596d waiting on condition [0x000000004d1f9000] "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"State",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": TIMED"
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"_WAITING",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" (parking) "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"park",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Native Method"
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"- parking to wait for <0x0000000580d877d0> (a "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":") "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LockSupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"parkNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LockSupport.java",
+                    "lineNumber":198
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"awaitNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":2025
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LinkedBlockingQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LinkedBlockingQueue.java",
+                    "lineNumber":424
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":86
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":32
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getTask",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":945
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor$Worker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":907
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Thread.java",
+                    "lineNumber":662
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"\"\"http-bio-7007\"-exec-236\" daemon prio=10 tid=0x00002aaab1118000 nid=0x596c waiting on condition [0x000000004e50c000] "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"State",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": TIMED"
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"_WAITING",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" (parking) "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"park",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Native Method"
+                  }
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":"- parking to wait for <0x0000000580d877d0> (a "
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":") "
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LockSupport",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"parkNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LockSupport.java",
+                    "lineNumber":198
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"awaitNanos",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"AbstractQueuedSynchronizer.java",
+                    "lineNumber":2025
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"LinkedBlockingQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"LinkedBlockingQueue.java",
+                    "lineNumber":424
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":86
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"org",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"apache",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"tomcat",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"threads",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"TaskQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"poll",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"TaskQueue.java",
+                    "lineNumber":32
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getTask",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":945
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"ThreadPoolExecutor$Worker",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"ThreadPoolExecutor.java",
+                    "lineNumber":907
+                  }
+                },
+                {
+                  "type":"StackTraceLineNode",
+                  "methodName":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lang",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Thread",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"run",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "location":{
+                    "type":"SourceLocationNode",
+                    "fileName":"Thread.java",
+                    "lineNumber":662
+                  }
+                }
+              ]
+            },
+            "rawText":"\"\"http-bio-7007\"-exec-241\" daemon prio=10 tid=0x00002aaab107b000 nid=0x59df waiting on condition [0x0000000051239000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method)- parking to wait for <0x0000000580d877d0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198)at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025)at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32)at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)at java.lang.Thread.run(Thread.java:662)\"\"http-bio-7007\"-exec-237\" daemon prio=10 tid=0x00002aaab186e000 nid=0x596d waiting on condition [0x000000004d1f9000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method)- parking to wait for <0x0000000580d877d0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198)at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025)at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32)at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)at java.lang.Thread.run(Thread.java:662)\"\"http-bio-7007\"-exec-236\" daemon prio=10 tid=0x00002aaab1118000 nid=0x596c waiting on condition [0x000000004e50c000] java.lang.Thread.State: TIMED_WAITING (parking) at sun.misc.Unsafe.park(Native Method)- parking to wait for <0x0000000580d877d0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject) at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198)at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2025)at java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:424)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:86)at org.apache.tomcat.util.threads.TaskQueue.poll(TaskQueue.java:32)at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)at java.lang.Thread.run(Thread.java:662)",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "support":6,
+                  "method":3,
+                  "await":3,
+                  "poll":9,
+                  "wait":9,
+                  "task":15,
+                  "apach":6,
+                  "concurr":18,
+                  "util":24,
+                  "aaab":3,
+                  "state":3,
+                  "queue":18,
+                  "condit":9,
+                  "run":6,
+                  "sun":3,
+                  "daemon":3,
+                  "lock":15,
+                  "nano":6,
+                  "object":6,
+                  "bio":3,
+                  "block":6,
+                  "thread":27,
+                  "link":6,
+                  "pool":12,
+                  "queu":9,
+                  "park":12,
+                  "misc":3,
+                  "tomcat":6,
+                  "unsaf":3,
+                  "time":3,
+                  "lang":6,
+                  "tid":3,
+                  "org":6,
+                  "nid":3,
+                  "executor":12,
+                  "exec":3,
+                  "http":3,
+                  "prio":3,
+                  "synchron":9,
+                  "worker":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"lang",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Thread",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"State",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"locks",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AbstractQueuedSynchronizer$ConditionObject",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>We have 4 application's thread pools(e.g. pool-4-thread-20 etc) also which are having 20 threads each so I am not sure on which blocking queue these 100 threads waiting? We are using c3P0 connection pool with hibernate which doesn't seems to be cause of this. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10878983]-[-1865032505]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>We have 4 application's thread pools(e.g. pool-4-thread-20 etc) also which are having 20 threads each so I am not sure on which blocking queue these 100 threads waiting? We are using c3P0 connection pool with hibernate which doesn't seems to be cause of this. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"c3P0",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "wait":1,
+                  "connect":1,
+                  "queue":1,
+                  "hibern":1,
+                  "block":1,
+                  "thread":4,
+                  "pool":3,
+                  "applic":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Any idea what java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject is?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[10878983]-[-1491052977]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Any idea what java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject is?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"locks",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AbstractQueuedSynchronizer$ConditionObject",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "concurr":1,
+                  "util":1,
+                  "condit":1,
+                  "idea":1,
+                  "lock":1,
+                  "object":1,
+                  "queu":1,
+                  "synchron":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"locks",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AbstractQueuedSynchronizer$ConditionObject",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":11716643,
+      "questionId":10878983,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-07-30",
+      "lastActivityDate":"2012-08-17",
+      "lastEditDate":"2012-08-17",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1268954,
+        "displayName":"Mirko",
+        "reputation":563
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Any idea what java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject is?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11716643]-[-155577472]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Any idea what java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject is?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"locks",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AbstractQueuedSynchronizer$ConditionObject",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "util":1,
+                    "condit":1,
+                    "idea":1,
+                    "lock":1,
+                    "blockquot":2,
+                    "object":1,
+                    "queu":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"concurrent",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"locks",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AbstractQueuedSynchronizer$ConditionObject",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The ConditionObject is used inside the queue to synchronize access to the queue by different threads.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11716643]-[-650097136]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The ConditionObject is used inside the queue to synchronize access to the queue by different threads.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConditionObject",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "queue":2,
+                    "condit":1,
+                    "object":1,
+                    "thread":1,
+                    "insid":1,
+                    "access":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConditionObject",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Its the standard stacktrace, when a thread of your executerpool is idle and waiting for new tasks.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11716643]-[-1085837447]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Its the standard stacktrace, when a thread of your executerpool is idle and waiting for new tasks.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "wait":1,
+                    "task":1,
+                    "standard":1,
+                    "executerpool":1,
+                    "idl":1,
+                    "thread":1,
+                    "stacktrac":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":13639819,
+      "questionId":10878983,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-11-30",
+      "lastActivityDate":"2012-11-30",
+      "score":2,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":501895,
+        "displayName":"ThinkFloyd",
+        "reputation":3111
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This got fixed when we fixed our code which was leaking DB connections managed by c3p0. There were few flows in our code where we were not calling rollback() specifically in catch block before closing entity Manager in finally block, so in case of exceptions connection was not coming back to pool and if frequency of exception is high(more than size of pool within timeout interval) then all other process threads would pile up to get connection.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13639819]-[2122921442]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This got fixed when we fixed our code which was leaking DB connections managed by c3p0. There were few flows in our code where we were not calling rollback() specifically in catch block before closing entity Manager in finally block, so in case of exceptions connection was not coming back to pool and if frequency of exception is high(more than size of pool within timeout interval) then all other process threads would pile up to get connection.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "size":1,
+                    "connect":3,
+                    "process":1,
+                    "fix":2,
+                    "leak":1,
+                    "come":1,
+                    "code":2,
+                    "rollback":1,
+                    "pile":1,
+                    "block":2,
+                    "interv":1,
+                    "thread":1,
+                    "flow":1,
+                    "specif":1,
+                    "back":1,
+                    "pool":2,
+                    "entiti":1,
+                    "manag":2,
+                    "close":1,
+                    "except":1,
+                    "call":1,
+                    "timeout":1,
+                    "high":1,
+                    "frequenc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

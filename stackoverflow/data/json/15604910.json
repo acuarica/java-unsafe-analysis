@@ -1,0 +1,1642 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":15604910,
+    "title":"Debug Oracle Java Tutorial - local variable accessed from inner class; needs to be declared final",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java"
+    ],
+    "creationDate":"2013-03-24",
+    "lastActivityDate":"2013-03-24",
+    "lastEditDate":"2013-03-24",
+    "score":0,
+    "viewCount":61,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1366015,
+      "displayName":"user1366015",
+      "reputation":3
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>If I try to compile this code I get an error that reads &quot;local variable phoneNumber1 is access from within inner class; needs to be declared final. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15604910]-[1358416457]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>If I try to compile this code I get an error that reads &quot;local variable phoneNumber1 is access from within inner class; needs to be declared final. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"phoneNumber1",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "number":1,
+                  "local":1,
+                  "declar":1,
+                  "code":1,
+                  "error":1,
+                  "quot":1,
+                  "compil":1,
+                  "variabl":1,
+                  "phone":1,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Quite simple how do I fix this so it doesn't have this compile error? I've read the technical spec for it, I've gone through the tutorial, but I'm still at a loss. I hope nobody was paid to write this thing.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[15604910]-[1552188287]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Quite simple how do I fix this so it doesn't have this compile error? I've read the technical spec for it, I've gone through the tutorial, but I'm still at a loss. I hope nobody was paid to write this thing.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "simpl":1,
+                  "fix":1,
+                  "thing":1,
+                  "error":1,
+                  "hope":1,
+                  "paid":1,
+                  "spec":1,
+                  "technic":1,
+                  "compil":1,
+                  "loss":1,
+                  "tutori":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class LocalClassExample { static String regularExpression = &quot;[^0-9]&quot;; public static void validatePhoneNumber(String phoneNumber1, String phoneNumber2) { int numberLength = 10; class PhoneNumber { String formattedPhoneNumber = null; PhoneNumber(String phoneNumber){ // numberLength = 7; String currentNumber = phoneNumber.replaceAll( regularExpression, &quot;&quot;); if (currentNumber.length() == numberLength) formattedPhoneNumber = currentNumber; else formattedPhoneNumber = null; } public String getNumber() { return formattedPhoneNumber; } public void printOriginalNumbers() { System.out.println(&quot;Original nubmers are &quot; + phoneNumber1 + &quot; and &quot; + phoneNumber2); } } PhoneNumber myNumber1 = new PhoneNumber(phoneNumber1); PhoneNumber myNumber2 = new PhoneNumber(phoneNumber2); myNumber1.printOriginalNumbers(); if (myNumber1.getNumber() == null) System.out.println(&quot;First number is invalid&quot;); else System.out.println(&quot;First number is &quot; + myNumber1.getNumber()); if (myNumber2.getNumber() == null) System.out.println(&quot;Second number is invalid&quot;); else System.out.println(&quot;Second number is &quot; + myNumber2.getNumber()); } public static void main(String... args) { validatePhoneNumber(&quot;123-456-7890&quot;, &quot;456-7890&quot;); } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[15604910]-[36814605]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"LocalClassExample",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"FieldDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "variables":{
+                              "type":"VariableDeclaratorsNode",
+                              "declarators":[
+                                {
+                                  "type":"VariableDeclaratorNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"regularExpression",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayDepth":[
+                                    
+                                  ],
+                                  "assignment":{
+                                    "type":"VariableAssignmentNode",
+                                    "variableAssignment":{
+                                      "type":"VariableExpressionInitNode",
+                                      "expression":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"StringLiteralNode",
+                                          "valueRep":"\"[^0-9]\""
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "varType":{
+                                    "type":"ReferenceTypeNode",
+                                    "ids":[
+                                      {
+                                        "type":"ParameterizedTypeNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"String",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"MethodDeclaratorNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "returnType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"void",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"validatePhoneNumber",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "parameters":{
+                              "type":"FormalParametersNode",
+                              "parameters":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"String",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"phoneNumber1",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "formalParameterDeclarator":{
+                                    "type":"FormalParameterDeclsNode",
+                                    "modifiers":[
+                                      
+                                    ],
+                                    "parameterType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"String",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "nextDeclarator":{
+                                      "type":"AdditionalFormalParameterDeclNode",
+                                      "variableDeclarator":{
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"phoneNumber2",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayReturnType":[
+                              
+                            ],
+                            "body":{
+                              "type":"BlockNode",
+                              "statements":[
+                                {
+                                  "type":"LocalVariableDeclarationStatementNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "declarators":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"numberLength",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"LiteralNode",
+                                              "node":{
+                                                "type":"IntegerLiteralNode",
+                                                "valueRep":"10"
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"PrimitiveTypeNode",
+                                          "name":"int",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ClassDeclarationNode",
+                                  "modifiers":[
+                                    
+                                  ],
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"PhoneNumber",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "body":{
+                                    "type":"ClassBodyNode",
+                                    "declarations":[
+                                      {
+                                        "type":"FieldDeclaratorNode",
+                                        "modifiers":[
+                                          
+                                        ],
+                                        "variables":{
+                                          "type":"VariableDeclaratorsNode",
+                                          "declarators":[
+                                            {
+                                              "type":"VariableDeclaratorNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"formattedPhoneNumber",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepth":[
+                                                
+                                              ],
+                                              "assignment":{
+                                                "type":"VariableAssignmentNode",
+                                                "variableAssignment":{
+                                                  "type":"VariableExpressionInitNode",
+                                                  "expression":{
+                                                    "type":"LiteralNode",
+                                                    "node":{
+                                                      "type":"NullLiteralNode"
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "varType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"String",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"MethodDeclaratorNode",
+                                        "modifiers":[
+                                          
+                                        ],
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"PhoneNumber",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "parameters":{
+                                          "type":"FormalParametersNode",
+                                          "parameters":{
+                                            "type":"FormalParameterDeclsNode",
+                                            "modifiers":[
+                                              
+                                            ],
+                                            "parameterType":{
+                                              "type":"ReferenceTypeNode",
+                                              "ids":[
+                                                {
+                                                  "type":"ParameterizedTypeNode",
+                                                  "identifier":{
+                                                    "type":"IdentifierNode",
+                                                    "name":"String",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                }
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "nextDeclarator":{
+                                              "type":"AdditionalFormalParameterDeclNode",
+                                              "variableDeclarator":{
+                                                "type":"VariableDeclaratorNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"phoneNumber",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "arrayDepth":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayReturnType":[
+                                          
+                                        ],
+                                        "body":{
+                                          "type":"BlockNode",
+                                          "statements":[
+                                            
+                                          ],
+                                          "labels":[
+                                            
+                                          ],
+                                          "comments":[
+                                            {
+                                              "text":"// numberLength = 7; String currentNumber = phoneNumber.replaceAll( regularExpression, \"\"); if (currentNumber.length() == numberLength) formattedPhoneNumber = currentNumber; else formattedPhoneNumber = null; } public String getNumber() { return formattedPhoneNumber; } public void printOriginalNumbers() { System.out.println(\"Original nubmers are \" + phoneNumber1 + \" and \" + phoneNumber2); } } PhoneNumber myNumber1 = new PhoneNumber(phoneNumber1); PhoneNumber myNumber2 = new PhoneNumber(phoneNumber2); myNumber1.printOriginalNumbers(); if (myNumber1.getNumber() == null) System.out.println(\"First number is invalid\"); else System.out.println(\"First number is \" + myNumber1.getNumber()); if (myNumber2.getNumber() == null) System.out.println(\"Second number is invalid\"); else System.out.println(\"Second number is \" + myNumber2.getNumber()); } public static void main(String... args) { validatePhoneNumber(\"123-456-7890\", \"456-7890\"); } } \n"
+                                            }
+                                          ]
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class LocalClassExample { static String regularExpression = \"[^0-9]\"; public static void validatePhoneNumber(String phoneNumber1, String phoneNumber2) { int numberLength = 10; class PhoneNumber { String formattedPhoneNumber = null; PhoneNumber(String phoneNumber){ // numberLength = 7; String currentNumber = phoneNumber.replaceAll( regularExpression, \"\"); if (currentNumber.length() == numberLength) formattedPhoneNumber = currentNumber; else formattedPhoneNumber = null; } public String getNumber() { return formattedPhoneNumber; } public void printOriginalNumbers() { System.out.println(\"Original nubmers are \" + phoneNumber1 + \" and \" + phoneNumber2); } } PhoneNumber myNumber1 = new PhoneNumber(phoneNumber1); PhoneNumber myNumber2 = new PhoneNumber(phoneNumber2); myNumber1.printOriginalNumbers(); if (myNumber1.getNumber() == null) System.out.println(\"First number is invalid\"); else System.out.println(\"First number is \" + myNumber1.getNumber()); if (myNumber2.getNumber() == null) System.out.println(\"Second number is invalid\"); else System.out.println(\"Second number is \" + myNumber2.getNumber()); } public static void main(String... args) { validatePhoneNumber(\"123-456-7890\", \"456-7890\"); } } \n...\n}...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "number":44,
+                  "format":4,
+                  "system":5,
+                  "print":2,
+                  "local":1,
+                  "nubmer":1,
+                  "regular":2,
+                  "main":1,
+                  "println":5,
+                  "replac":1,
+                  "invalid":2,
+                  "origin":3,
+                  "valid":2,
+                  "express":2,
+                  "length":4,
+                  "current":3,
+                  "arg":1,
+                  "phone":20
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"formattedPhoneNumber",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"NullLiteralNode"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"phoneNumber2",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"regularExpression",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"[^0-9]\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"numberLength",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"10"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"phoneNumber",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"phoneNumber1",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":15604989,
+      "questionId":15604910,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":22130684,
+          "postId":15604989,
+          "creationDate":"2013-03-24",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1366015,
+            "displayName":"user1366015",
+            "reputation":3
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thank-you for your help."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[15604989-cu22130684]-[-594558821]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thank-you for your help."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":22130772,
+          "postId":15604989,
+          "creationDate":"2013-03-24",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1772907,
+            "displayName":"raptortech97",
+            "reputation":452
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Happy to be of help! If you found my answer to be useful, you can click the checkmark on the left of the answer to &quot;accept&quot; it so others know it was useful. See also the FAQ on [accepting answers](http://stackoverflow.com/faq#howtoask). Edit: Thanks for accepting!"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[15604989-cu22130772]-[-1179660237]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Happy to be of help! If you found my answer to be useful, you can click the checkmark on the left of the answer to &quot;accept&quot; it so others know it was useful. See also the FAQ on [accepting answers](http://stackoverflow.com/faq#howtoask). Edit: Thanks for accepting!"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "accept":3,
+                        "faq":2,
+                        "left":1,
+                        "howtoask":1,
+                        "edit":1,
+                        "stackoverflow":1,
+                        "found":1,
+                        "click":1,
+                        "checkmark":1,
+                        "answer":3,
+                        "quot":2,
+                        "happi":1,
+                        "http":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-03-24",
+      "lastActivityDate":"2013-03-24",
+      "score":1,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1772907,
+        "displayName":"raptortech97",
+        "reputation":452
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The simplest way to solve this is to just declare the variables final:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[15604989]-[221202327]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The simplest way to solve this is to just declare the variables final:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "declar":1,
+                    "variabl":1,
+                    "solv":1,
+                    "simplest":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"... public static void validatePhoneNumber(final String phoneNumber1, final String phoneNumber2) { final int numberLength = 10; ... } ... "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[15604989]-[-826301547]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"... "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"static",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"validatePhoneNumber",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          {
+                            "type":"KeywordModifierNode",
+                            "value":"final",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"String",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"phoneNumber1",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"final",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "parameterType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"String",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"phoneNumber2",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            {
+                              "type":"KeywordModifierNode",
+                              "value":"final",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"numberLength",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"IntegerLiteralNode",
+                                        "valueRep":"10"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":" "
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"... "
+                  }
+                ]
+              },
+              "rawText":"... public static void validatePhoneNumber(final String phoneNumber1, final String phoneNumber2) { final int numberLength = 10; ... } ... ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "length":1,
+                    "valid":1,
+                    "number":4,
+                    "phone":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"phoneNumber1",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"phoneNumber2",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"numberLength",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"10"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

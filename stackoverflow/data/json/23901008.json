@@ -1,0 +1,993 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":23901008,
+    "title":"How to decide whether to use deep copy in Java?",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":36801566,
+        "postId":23901008,
+        "creationDate":"2014-05-28",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":276949,
+          "displayName":"Martin Konecny",
+          "reputation":8969
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Are you using threads?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23901008-cu36801566]-[-1120588449]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Are you using threads?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "thread":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "deep-copy"
+    ],
+    "creationDate":"2014-05-28",
+    "lastActivityDate":"2014-05-28",
+    "closedDate":"2014-05-28",
+    "score":0,
+    "viewCount":61,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2986174,
+      "displayName":"Morrissss",
+      "reputation":90
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm new to Java, and get really confused about deep copy.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23901008]-[1289743862]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm new to Java, and get really confused about deep copy.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "deep":1,
+                  "confus":1,
+                  "copi":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I think each method that takes some mutable objects as arguments and returns an object that is related to the input should make defensive copy. However, after some coding I find this is very tricky.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23901008]-[1735037644]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I think each method that takes some mutable objects as arguments and returns an object that is related to the input should make defensive copy. However, after some coding I find this is very tricky.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "method":1,
+                  "tricki":1,
+                  "defens":1,
+                  "relat":1,
+                  "return":1,
+                  "object":2,
+                  "code":1,
+                  "take":1,
+                  "make":1,
+                  "argument":1,
+                  "input":1,
+                  "copi":1,
+                  "mutabl":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>For example, I want to choose some objects from a container satisfying some conditions, and returns them as a smaller container: <code> List&lt;SomeType&gt; chooseWithSomeCondition(List&lt;SomeType&gt; input) </code> But <code>SomeType</code> is defined by others, which is not immutable, not clonable, not serializable, neither has any copy constructor. Since Java's <code>final</code> cannot help either, I don't know how to make deep copy here.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23901008]-[1629449526]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>For example, I want to choose some objects from a container satisfying some conditions, and returns them as a smaller container: <code> List&lt;SomeType&gt; chooseWithSomeCondition(List&lt;SomeType&gt; input) </code> But <code>SomeType</code> is defined by others, which is not immutable, not clonable, not serializable, neither has any copy constructor. Since Java's <code>final</code> cannot help either, I don't know how to make deep copy here.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"List",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "typeArguments":{
+                        "type":"TypeArgumentsNode",
+                        "types":[
+                          {
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"SomeType",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"chooseWithSomeCondition",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"List",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "typeArguments":{
+                        "type":"TypeArgumentsNode",
+                        "types":[
+                          {
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"SomeType",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"SomeType",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "return":1,
+                  "condit":2,
+                  "satisfi":1,
+                  "serializ":1,
+                  "immut":1,
+                  "constructor":1,
+                  "contain":2,
+                  "object":1,
+                  "code":6,
+                  "clonabl":1,
+                  "deep":1,
+                  "make":1,
+                  "choos":2,
+                  "smaller":1,
+                  "defin":1,
+                  "type":3,
+                  "input":1,
+                  "copi":2,
+                  "list":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"List",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"SomeType",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"SomeType",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Is my criteria too strict? Is the code I've read problematic? Are there some other ways to make deep copy? Please share your thoughts, and thanks in advance.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23901008]-[1963014586]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Is my criteria too strict? Is the code I've read problematic? Are there some other ways to make deep copy? Please share your thoughts, and thanks in advance.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "strict":1,
+                  "advanc":1,
+                  "thought":1,
+                  "criteria":1,
+                  "way":1,
+                  "code":1,
+                  "share":1,
+                  "deep":1,
+                  "make":1,
+                  "copi":1,
+                  "problemat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":23901088,
+      "questionId":23901008,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":36824688,
+          "postId":23901088,
+          "creationDate":"2014-05-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2986174,
+            "displayName":"Morrissss",
+            "reputation":90
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks a lot. I read about it and it's very useful."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[23901088-cu36824688]-[304425170]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks a lot. I read about it and it's very useful."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "lot":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-05-28",
+      "lastActivityDate":"2014-05-28",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":3308999,
+        "displayName":"xTrollxDudex",
+        "reputation":715
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In the case of a type where you cannot use normal copying methods for deep copy (in your case of non-serializable, non-clonable, non-instantiable...), you would need to work around with reflection.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[23901088]-[-2010604216]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In the case of a type where you cannot use normal copying methods for deep copy (in your case of non-serializable, non-clonable, non-instantiable...), you would need to work around with reflection.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "instanti":1,
+                    "normal":1,
+                    "serializ":1,
+                    "work":1,
+                    "clonabl":1,
+                    "deep":1,
+                    "type":1,
+                    "reflect":1,
+                    "copi":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you think reflection is too slow, or constructors can't be used, then you may want to think about using <a href=\"http://mishadoff.github.io/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/\"rel=\"nofollow\"><code>sun.misc.Unsafe</code></a> to instantiate. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[23901088]-[-1285340795]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you think reflection is too slow, or constructors can't be used, then you may want to think about using <a href=\"http://mishadoff.github.io/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/\"rel=\"nofollow\"><code>sun.misc.Unsafe</code></a> to instantiate. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "dot":2,
+                    "github":1,
+                    "slow":1,
+                    "instanti":1,
+                    "sun":2,
+                    "rel":1,
+                    "constructor":1,
+                    "code":2,
+                    "blog":1,
+                    "nofollow":1,
+                    "misc":2,
+                    "magic":1,
+                    "unsaf":2,
+                    "part":1,
+                    "href":1,
+                    "http":1,
+                    "reflect":1,
+                    "mishadoff":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":23901456,
+      "questionId":23901008,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-05-28",
+      "lastActivityDate":"2014-05-28",
+      "score":1,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":949300,
+        "displayName":"user949300",
+        "reputation":8806
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In this particular case, the code is problematic, and I'd just do a shallow copy. In your docs, note that the method is actually &quot;chooseWithSomeConditionAtThisInstant&quot; and tell others NOT to modify the elements of either list, or to do so with care and thought. (There are use cases where you <em>want</em> changes to come through.)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[23901456]-[263803992]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In this particular case, the code is problematic, and I'd just do a shallow copy. In your docs, note that the method is actually &quot;chooseWithSomeConditionAtThisInstant&quot; and tell others NOT to modify the elements of either list, or to do so with care and thought. (There are use cases where you <em>want</em> changes to come through.)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"chooseWithSomeConditionAtThisInstant",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "thought":1,
+                    "condit":1,
+                    "care":1,
+                    "doc":1,
+                    "element":1,
+                    "code":1,
+                    "instant":1,
+                    "note":1,
+                    "modifi":1,
+                    "quot":2,
+                    "choos":1,
+                    "shallow":1,
+                    "case":1,
+                    "copi":1,
+                    "problemat":1,
+                    "list":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

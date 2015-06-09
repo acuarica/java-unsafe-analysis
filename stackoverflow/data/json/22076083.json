@@ -1,0 +1,2075 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":22076083,
+    "title":"What exactly UNSAFE.compareAndSwapObject does",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":33479172,
+        "postId":22076083,
+        "creationDate":"2014-02-27",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1093528,
+          "displayName":"fge",
+          "reputation":47331
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Uh, you deal into... Unsafe... Territory. However, my guess here is that a cmpxchg is involved at the CPU level (CoMPare and eXCHanGe). Not sure, though."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22076083-cu33479172]-[-1359997675]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Uh, you deal into... Unsafe... Territory. However, my guess here is that a cmpxchg is involved at the CPU level (CoMPare and eXCHanGe). Not sure, though."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"CoMPare",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"eXCHanGe",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "involv":1,
+                      "mpare":1,
+                      "territori":1,
+                      "cmpxchg":1,
+                      "cpu":1,
+                      "xchan":1,
+                      "unsaf":1,
+                      "guess":1,
+                      "deal":1,
+                      "level":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"CoMPare",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":33661636,
+        "postId":22076083,
+        "creationDate":"2014-03-04",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":2711488,
+          "displayName":"Holger",
+          "reputation":28154
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"`cas` means \u201ccompare and set\u201d and it does what the name suggests, it will compare the old value with the specified first argument (here `null`) and set to the specified second argument (here `newNode`) if the comparison was successful. The special thing is that it is performed *atomically*. There is a [public API providing the same functionality to applications](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicReferenceFieldUpdater.html#compareAndSet(T,%20V,%20V))"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[22076083-cu33661636]-[-1264927137]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"`cas` means \u201ccompare and set\u201d and it does what the name suggests, it will compare the old value with the specified first argument (here `null`) and set to the specified second argument (here `newNode`) if the comparison was successful. The special thing is that it is performed *atomically*. There is a [public API providing the same functionality to applications](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/AtomicReferenceFieldUpdater.html#compareAndSet(T,%20V,%20V))"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"newNode",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"compareAndSet",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "provid":1,
+                      "success":1,
+                      "concurr":1,
+                      "util":1,
+                      "field":1,
+                      "comparison":1,
+                      "suggest":1,
+                      "set":3,
+                      "updat":1,
+                      "mean":1,
+                      "oracl":1,
+                      "thing":1,
+                      "cas":1,
+                      "doc":2,
+                      "compar":3,
+                      "function":1,
+                      "perform":1,
+                      "refer":1,
+                      "applic":1,
+                      "javas":1,
+                      "atom":3,
+                      "node":1,
+                      "api":2,
+                      "special":1,
+                      "html":1,
+                      "http":1,
+                      "argument":2
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "java.util.concurrent"
+    ],
+    "creationDate":"2014-02-27",
+    "lastActivityDate":"2014-02-28",
+    "lastEditDate":"2014-02-28",
+    "score":2,
+    "viewCount":325,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2909563,
+      "displayName":"chaopeng",
+      "reputation":13
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I found UNSAFE.compareAndSwapObject very strange when reading the JDK ConcurrentLinkedQueue. (class CLQ is copy from ConcurrentLinkedQueue for easy debug...)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22076083]-[279784246]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I found UNSAFE.compareAndSwapObject very strange when reading the JDK ConcurrentLinkedQueue. (class CLQ is copy from ConcurrentLinkedQueue for easy debug...)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"UNSAFE",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"compareAndSwapObject",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentLinkedQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"CLQ",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentLinkedQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "concurr":2,
+                  "easi":1,
+                  "queue":2,
+                  "object":1,
+                  "debug":1,
+                  "found":1,
+                  "compar":1,
+                  "link":2,
+                  "swap":1,
+                  "clq":1,
+                  "unsaf":1,
+                  "strang":1,
+                  "jdk":1,
+                  "copi":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentLinkedQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>When I offer the first item to ConcurrentLinkedQueue. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22076083]-[194258406]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>When I offer the first item to ConcurrentLinkedQueue. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentLinkedQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "concurr":1,
+                  "queue":1,
+                  "link":1,
+                  "offer":1,
+                  "item":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentLinkedQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ul> \n <li><p>before <code> p.casNext(null, newNode) </code> head==tail==p==t ref the same object, like this.</p> <p><a href=\"http://i.stack.imgur.com/8dCO0.png\"rel=\"nofollow\">http://i.stack.imgur.com/8dCO0.png</a></p></li> \n <li><p>step into casNext after <code> UNSAFE.compareAndSwapObject(this, nextOffset, cmp, val); </code></p> <p>p.next is ref to the newNode as expected, like this. </p> <p><a href=\"http://i.stack.imgur.com/mNtUN.png\"rel=\"nofollow\">http://i.stack.imgur.com/mNtUN.png</a></p></li> \n <li><p>step out to offer</p> <p>Everything become strange... I can understand why p.next ref wound change to p, how head ref newNode automatically...</p> <p><a href=\"http://i.stack.imgur.com/Pvvcy.png\"rel=\"nofollow\">http://i.stack.imgur.com/Pvvcy.png</a></p></li> \n</ul>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22076083]-[-1397152590]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ul> \n <li><p>before <code> p.casNext(null, newNode) </code> head==tail==p==t ref the same object, like this.</p> <p><a href=\"http://i.stack.imgur.com/8dCO0.png\"rel=\"nofollow\">http://i.stack.imgur.com/8dCO0.png</a></p></li> \n <li><p>step into casNext after <code> UNSAFE.compareAndSwapObject(this, nextOffset, cmp, val); </code></p> <p>p.next is ref to the newNode as expected, like this. </p> <p><a href=\"http://i.stack.imgur.com/mNtUN.png\"rel=\"nofollow\">http://i.stack.imgur.com/mNtUN.png</a></p></li> \n <li><p>step out to offer</p> <p>Everything become strange... I can understand why p.next ref wound change to p, how head ref newNode automatically...</p> <p><a href=\"http://i.stack.imgur.com/Pvvcy.png\"rel=\"nofollow\">http://i.stack.imgur.com/Pvvcy.png</a></p></li> \n</ul>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"p",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"casNext",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"newNode",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"casNext",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"MethodInvocationNode",
+                  "qualifiedIdentifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"UNSAFE",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"compareAndSwapObject",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "args":{
+                    "type":"ExpressionListNode",
+                    "arguments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"this",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"nextOffset",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"cmp",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"val",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"newNode",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"IdentifierNode",
+                  "name":"mNtUN",
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"newNode",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "imgur":6,
+                  "chang":1,
+                  "cmp":1,
+                  "png":6,
+                  "step":2,
+                  "head":2,
+                  "understand":1,
+                  "rel":3,
+                  "ref":4,
+                  "cas":2,
+                  "tail":1,
+                  "object":2,
+                  "code":4,
+                  "automat":1,
+                  "offset":1,
+                  "nofollow":3,
+                  "compar":1,
+                  "expect":1,
+                  "stack":6,
+                  "swap":1,
+                  "offer":1,
+                  "node":3,
+                  "wound":1,
+                  "unsaf":1,
+                  "pvvci":2,
+                  "href":3,
+                  "http":6,
+                  "strang":1,
+                  "val":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"UNSAFE",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"compareAndSwapObject",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"this",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"nextOffset",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"cmp",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"val",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>code: ConcurrentLinkedQueue.class offer()</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[22076083]-[-329241812]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>code: ConcurrentLinkedQueue.class offer()</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentLinkedQueue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ClassDeclarationNode",
+                  "modifiers":[
+                    
+                  ],
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"offer",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "concurr":1,
+                  "queue":1,
+                  "code":1,
+                  "link":1,
+                  "offer":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentLinkedQueue",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public boolean offer(E e) { checkNotNull(e); final Node&lt;E&gt; newNode = new Node&lt;E&gt;(e); for (Node&lt;E&gt; t = tail, p = t;;) { Node&lt;E&gt; q = p.next; if (q == null) { // p is last node if (p.casNext(null, newNode)) { // Successful CAS is the linearization point // for e to become an element of this queue, // and for newNode to become &quot;live&quot;. if (p != t) // hop two nodes at a time casTail(t, newNode); // Failure is OK. return true; } // Lost CAS race to another thread; re-read next } else if (p == q) // We have fallen off list. If tail is unchanged, it // will also be off-list, in which case we need to // jump to head, from which all live nodes are always // reachable. Else the new tail is a better bet. p = (t != (t = tail)) ? t : head; else // Check for tail updates after two hops. p = (p != t &amp;&amp; t != (t = tail)) ? t : q; } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[22076083]-[-2047215061]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"boolean",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"offer",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "parameters":{
+                      "type":"FormalParameterDeclsNode",
+                      "modifiers":[
+                        
+                      ],
+                      "parameterType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"E",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "nextDeclarator":{
+                        "type":"AdditionalFormalParameterDeclNode",
+                        "variableDeclarator":{
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"e",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"checkNotNull",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"e",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"LocalVariableDeclarationStatementNode",
+                        "modifiers":[
+                          {
+                            "type":"KeywordModifierNode",
+                            "value":"final",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "declarators":{
+                          "type":"VariableDeclaratorsNode",
+                          "declarators":[
+                            {
+                              "type":"VariableDeclaratorNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"newNode",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "arrayDepth":[
+                                
+                              ],
+                              "assignment":{
+                                "type":"VariableAssignmentNode",
+                                "variableAssignment":{
+                                  "type":"VariableExpressionInitNode",
+                                  "expression":{
+                                    "type":"ConstructorCreatorNode",
+                                    "creatorType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"Node",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "typeArguments":{
+                                            "type":"TypeArgumentsNode",
+                                            "types":[
+                                              {
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"E",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "expressionArgs":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"e",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "varType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"Node",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "typeArguments":{
+                                      "type":"TypeArgumentsNode",
+                                      "types":[
+                                        {
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"E",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ForLoopStatementNode",
+                        "forControl":{
+                          "type":"ForExpressionControlNode",
+                          "init":[
+                            {
+                              "type":"BinaryExpressionNode",
+                              "operator":{
+                                "type":"OperatorNode",
+                                "symbol":"=",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "left":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":">",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":"<",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"Node",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"E",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"t",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "right":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"tail",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"BinaryExpressionNode",
+                              "operator":{
+                                "type":"OperatorNode",
+                                "symbol":"=",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "left":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"p",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "right":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"t",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "update":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"ExpressionStatement",
+                              "expression":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"=",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":">",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"BinaryExpressionNode",
+                                    "operator":{
+                                      "type":"OperatorNode",
+                                      "symbol":"<",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "left":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"Node",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "right":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"E",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"q",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"p",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"next",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IfStatementNode",
+                              "expression":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"==",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"q",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"NullLiteralNode"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "statement":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  {
+                                    "text":"// p is last node if (p.casNext(null, newNode)) { // Successful CAS is the linearization point // for e to become an element of this queue, // and for newNode to become \"live\". if (p != t) // hop two nodes at a time casTail(t, newNode); // Failure is OK. return true; } // Lost CAS race to another thread; re-read next } else if (p == q) // We have fallen off list. If tail is unchanged, it // will also be off-list, in which case we need to // jump to head, from which all live nodes are always // reachable. Else the new tail is a better bet. p = (t != (t = tail)) ? t : head; else // Check for tail updates after two hops. p = (p != t && t != (t = tail)) ? t : q; } } \n"
+                                  }
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public boolean offer(E e) { checkNotNull(e); final Node<E> newNode = new Node<E>(e); for (Node<E> t = tail, p = t;;) { Node<E> q = p.next; if (q == null) { // p is last node if (p.casNext(null, newNode)) { // Successful CAS is the linearization point // for e to become an element of this queue, // and for newNode to become \"live\". if (p != t) // hop two nodes at a time casTail(t, newNode); // Failure is OK. return true; } // Lost CAS race to another thread; re-read next } else if (p == q) // We have fallen off list. If tail is unchanged, it // will also be off-list, in which case we need to // jump to head, from which all live nodes are always // reachable. Else the new tail is a better bet. p = (t != (t = tail)) ? t : head; else // Check for tail updates after two hops. p = (p != t && t != (t = tail)) ? t : q; } } \n...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "point":1,
+                  "success":1,
+                  "jump":1,
+                  "failur":1,
+                  "queue":1,
+                  "bet":1,
+                  "head":2,
+                  "updat":1,
+                  "reachabl":1,
+                  "hop":2,
+                  "cas":4,
+                  "tail":7,
+                  "lost":1,
+                  "element":1,
+                  "fallen":1,
+                  "thread":1,
+                  "check":2,
+                  "live":2,
+                  "linear":1,
+                  "race":1,
+                  "true":1,
+                  "offer":1,
+                  "node":11,
+                  "time":1,
+                  "unchang":1,
+                  "list":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"E",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Node",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"E",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"boolean",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"checkNotNull",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"e",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"e",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"newNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Node",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "typeArguments":{
+                                  "type":"TypeArgumentsNode",
+                                  "types":[
+                                    {
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"E",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"e",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Node",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "typeArguments":{
+                            "type":"TypeArgumentsNode",
+                            "types":[
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"E",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    
+  ]
+}

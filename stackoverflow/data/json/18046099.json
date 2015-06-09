@@ -1,0 +1,2726 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":18046099,
+    "title":"Flush cache after multithreaded mapping writes to primitive arrays",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":26401908,
+        "postId":18046099,
+        "creationDate":"2013-08-04",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1470092,
+          "displayName":"huseyin tugrul buyukisik",
+          "reputation":2305
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"If you can use JNI, you can use intrinsics to write with non-temporal hint."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[18046099-cu26401908]-[581695673]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"If you can use JNI, you can use intrinsics to write with non-temporal hint."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "jni":1,
+                      "hint":1,
+                      "tempor":1,
+                      "intrins":1,
+                      "write":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "multithreading",
+      "visibility"
+    ],
+    "creationDate":"2013-08-04",
+    "lastActivityDate":"2013-08-04",
+    "lastEditDate":"2013-08-04",
+    "score":0,
+    "viewCount":64,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2650947,
+      "displayName":"user2650947",
+      "reputation":15
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>This question relates to the latest version of Java. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[1637939017]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>This question relates to the latest version of Java. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "latest":1,
+                  "relat":1,
+                  "version":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have a primitive two-dimensional array sized as below. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[-553017031]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have a primitive two-dimensional array sized as below. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "primit":1,
+                  "size":1,
+                  "dimension":1,
+                  "array":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"int[][] array = new int[numPasses][n*10]; //n threads write; during the i-th pass, the k-th thread writes to array[i] at locations k*10 to (k+1)*10-1. //the array above is allocated at the beginning, and constantly rewritten. "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18046099]-[167085277]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"int[][] "
+                },
+                {
+                  "type":"ExpressionStatement",
+                  "expression":{
+                    "type":"BinaryExpressionNode",
+                    "operator":{
+                      "type":"OperatorNode",
+                      "symbol":"=",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "left":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"array",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "right":{
+                      "type":"ArrayExpressionCreatorNode",
+                      "creatorType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "expressionDepth":[
+                        {
+                          "type":"DimExpressionNode",
+                          "argument":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"numPasses",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"DimExpressionNode",
+                          "argument":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"*",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"n",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"10"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "arrayDepth":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"//n threads write; during the i-th pass, the k-th thread writes to array[i] at locations k*10 to (k+1)*10-1. //the array above is allocated at the beginning, and constantly rewritten. \n"
+                      }
+                    ]
+                  },
+                  "labels":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"int[][] array = new int[numPasses][n*10]; //n threads write; during the i-th pass, the k-th thread writes to array[i] at locations k*10 to (k+1)*10-1. //the array above is allocated at the beginning, and constantly rewritten. \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "constant":1,
+                  "begin":1,
+                  "rewritten":1,
+                  "alloc":1,
+                  "num":1,
+                  "array":3,
+                  "thread":2,
+                  "pass":2,
+                  "write":2,
+                  "locat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>During pass <code>i</code>, each of <code>n</code> producer threads writes to its own memory location in <code>array[i]</code>, so there are no race conditions during the write process. After writing, <code>m</code> consumer threads read the results of this write. I do not need the consumers to access <code>array[i]</code> at any point in time before all the writes are done. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[386253527]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>During pass <code>i</code>, each of <code>n</code> producer threads writes to its own memory location in <code>array[i]</code>, so there are no race conditions during the write process. After writing, <code>m</code> consumer threads read the results of this write. I do not need the consumers to access <code>array[i]</code> at any point in time before all the writes are done. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":2,
+                  "read":1,
+                  "point":1,
+                  "produc":1,
+                  "process":1,
+                  "condit":1,
+                  "result":1,
+                  "code":10,
+                  "array":2,
+                  "thread":2,
+                  "race":1,
+                  "pass":1,
+                  "time":1,
+                  "write":5,
+                  "locat":1,
+                  "access":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>My first question:</strong> Would a structure like the following flush all the producer writes from cache? If not, how would one go about doing this for primitive arrays? (For technical reasons, I cannot use Atomic*Arrays.)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[1135162461]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>My first question:</strong> Would a structure like the following flush all the producer writes from cache? If not, how would one go about doing this for primitive arrays? (For technical reasons, I cannot use Atomic*Arrays.)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "cach":1,
+                  "produc":1,
+                  "strong":2,
+                  "reason":1,
+                  "structur":1,
+                  "array":2,
+                  "flush":1,
+                  "atom":1,
+                  "technic":1,
+                  "primit":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"void flush() {//invoked after writes from all producer threads are done. if(producerThreadID == 0) { synchronized(array[i]) {//done at pass i. } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18046099]-[1576814028]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"flush",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"//invoked after writes from all producer threads are done. if(producerThreadID == 0) { synchronized(array[i]) {//done at pass i. } } \n"
+                      }
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"void flush() {//invoked after writes from all producer threads are done. if(producerThreadID == 0) { synchronized(array[i]) {//done at pass i. } } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "produc":2,
+                  "invok":1,
+                  "array":1,
+                  "thread":2,
+                  "pass":1,
+                  "flush":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>My second question:</strong> Is there a better way to do this?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[-820427377]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>My second question:</strong> Is there a better way to do this?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "strong":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>EDIT:</strong> Okay, I accept that what I want to do is essentially impossible with the empty synchronized block. Let's say that, instead of the structure above, each producer thread has access to its own pass, i.e.: </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[1633854052]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>EDIT:</strong> Okay, I accept that what I want to do is essentially impossible with the empty synchronized block. Let's say that, instead of the structure above, each producer thread has access to its own pass, i.e.: </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "accept":1,
+                  "produc":1,
+                  "imposs":1,
+                  "strong":2,
+                  "structur":1,
+                  "edit":1,
+                  "block":1,
+                  "thread":1,
+                  "empti":1,
+                  "pass":1,
+                  "essenti":1,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"int[][] array = new int[numPasses][n*10]; //n = numPasses threads write; during the i-th pass, the i-th thread writes to all elements in array[i]. "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18046099]-[1073654150]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"int[][] "
+                },
+                {
+                  "type":"ExpressionStatement",
+                  "expression":{
+                    "type":"BinaryExpressionNode",
+                    "operator":{
+                      "type":"OperatorNode",
+                      "symbol":"=",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "left":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"array",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "right":{
+                      "type":"ArrayExpressionCreatorNode",
+                      "creatorType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "expressionDepth":[
+                        {
+                          "type":"DimExpressionNode",
+                          "argument":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"numPasses",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"DimExpressionNode",
+                          "argument":{
+                            "type":"BinaryExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"*",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "left":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"n",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "right":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"10"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "arrayDepth":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"//n = numPasses threads write; during the i-th pass, the i-th thread writes to all elements in array[i]. \n"
+                      }
+                    ]
+                  },
+                  "labels":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"int[][] array = new int[numPasses][n*10]; //n = numPasses threads write; during the i-th pass, the i-th thread writes to all elements in array[i]. \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "num":2,
+                  "element":1,
+                  "array":2,
+                  "thread":2,
+                  "pass":3,
+                  "write":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>(This is Zim-Zam's suggestion.)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[-833424945]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>(This is Zim-Zam's suggestion.)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "suggest":1,
+                  "zam":1,
+                  "zim":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>My (hopefully final) question:</strong> Then, would the following structure in the i-th thread ensure visibility for consumer threads after the <code>synchronized</code> block?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[18046099]-[1126565420]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>My (hopefully final) question:</strong> Then, would the following structure in the i-th thread ensure visibility for consumer threads after the <code>synchronized</code> block?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "question":1,
+                  "visibl":1,
+                  "strong":2,
+                  "structur":1,
+                  "code":2,
+                  "block":1,
+                  "thread":2,
+                  "ensur":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"//i-th producer thread acquires lock on array[i] void produce() { synchronized(array[i]) //modify array[i][*] here } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[18046099]-[1133989953]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"//i-th producer thread acquires lock on array[i] void produce() { synchronized(array[i]) //modify array[i][*] here } "
+                }
+              ]
+            },
+            "rawText":"//i-th producer thread acquires lock on array[i] void produce() { synchronized(array[i]) //modify array[i][*] here } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "produc":2,
+                  "lock":1,
+                  "array":3,
+                  "thread":1,
+                  "modifi":1,
+                  "acquir":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":18046207,
+      "questionId":18046099,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":26406262,
+          "postId":18046207,
+          "creationDate":"2013-08-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2650947,
+            "displayName":"user2650947",
+            "reputation":15
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks. I guess I will have to have each thread write to its own array. Please let me know if my modified approach (edited above) will work."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18046207-cu26406262]-[762451637]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks. I guess I will have to have each thread write to its own array. Please let me know if my modified approach (edited above) will work."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "work":1,
+                        "edit":1,
+                        "array":1,
+                        "thread":1,
+                        "modifi":1,
+                        "approach":1,
+                        "guess":1,
+                        "write":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26406714,
+          "postId":18046207,
+          "creationDate":"2013-08-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1827903,
+            "displayName":"Zim-Zam O'Pootertoot",
+            "reputation":11200
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@user2650947 Yes, that should do the trick"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18046207-cu26406714]-[227676816]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@user2650947 Yes, that should do the trick"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "trick":1,
+                        "user":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26401959,
+          "postId":18046207,
+          "creationDate":"2013-08-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2650947,
+            "displayName":"user2650947",
+            "reputation":15
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Unfortunately, for other technical reasons, I cannot have each thread write to its own array. But I repeat: will the empty synchronized block do what I expect it to?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18046207-cu26401959]-[-217813679]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Unfortunately, for other technical reasons, I cannot have each thread write to its own array. But I repeat: will the empty synchronized block do what I expect it to?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "reason":1,
+                        "array":1,
+                        "block":1,
+                        "thread":1,
+                        "expect":1,
+                        "empti":1,
+                        "technic":1,
+                        "repeat":1,
+                        "write":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":26402250,
+          "postId":18046207,
+          "creationDate":"2013-08-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1827903,
+            "displayName":"Zim-Zam O'Pootertoot",
+            "reputation":11200
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@user2650947 No, `synchronized` blocks will flush variables modified within the block when the block exits - they won't flush the contents of the block's monitor. You would need to have each thread make its array modifications from within a `synchronized` block in order to do what you're trying to accomplish. Due to the problems of false sharing and synchronization overhead, it would probably be more efficient to use a single thread to update the arrays."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[18046207-cu26402250]-[-1107612902]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@user2650947 No, `synchronized` blocks will flush variables modified within the block when the block exits - they won't flush the contents of the block's monitor. You would need to have each thread make its array modifications from within a `synchronized` block in order to do what you're trying to accomplish. Due to the problems of false sharing and synchronization overhead, it would probably be more efficient to use a single thread to update the arrays."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "monitor":1,
+                        "singl":1,
+                        "due":1,
+                        "problem":1,
+                        "updat":1,
+                        "effici":1,
+                        "modif":1,
+                        "overhead":1,
+                        "share":1,
+                        "array":2,
+                        "block":5,
+                        "thread":2,
+                        "order":1,
+                        "modifi":1,
+                        "accomplish":1,
+                        "content":1,
+                        "exit":1,
+                        "make":1,
+                        "fals":1,
+                        "flush":2,
+                        "variabl":1,
+                        "user":1,
+                        "won":1,
+                        "synchron":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-08-04",
+      "lastActivityDate":"2013-08-04",
+      "score":0,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1827903,
+        "displayName":"Zim-Zam O'Pootertoot",
+        "reputation":11200
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Your algorithm is probably going to create <a href=\"http://en.wikipedia.org/wiki/False_sharing\"rel=\"nofollow\">false sharing</a>, which occurs when two threads write to nearby memory locations - if thread1 and thread2 are writing to data that shares a cache line, then the cache protocol will force thread2 to block until or re-execute after thread1 completes or vice versa. You can avoid this by using coarser grained parallelism, e.g. use one thread per pass (one thread per array) rather than one thread per array element - this way each thread is operating on its own array and there probably isn't going to be any false sharing.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18046207]-[1799495547]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Your algorithm is probably going to create <a href=\"http://en.wikipedia.org/wiki/False_sharing\"rel=\"nofollow\">false sharing</a>, which occurs when two threads write to nearby memory locations - if thread1 and thread2 are writing to data that shares a cache line, then the cache protocol will force thread2 to block until or re-execute after thread1 completes or vice versa. You can avoid this by using coarser grained parallelism, e.g. use one thread per pass (one thread per array) rather than one thread per array element - this way each thread is operating on its own array and there probably isn't going to be any false sharing.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "cach":2,
+                    "nearbi":1,
+                    "line":1,
+                    "occur":1,
+                    "data":1,
+                    "rel":1,
+                    "vice":1,
+                    "avoid":1,
+                    "element":1,
+                    "oper":1,
+                    "share":4,
+                    "array":3,
+                    "block":1,
+                    "thread":9,
+                    "wikipedia":1,
+                    "nofollow":1,
+                    "algorithm":1,
+                    "coarser":1,
+                    "versa":1,
+                    "isn":1,
+                    "grain":1,
+                    "pass":1,
+                    "fals":3,
+                    "wiki":1,
+                    "complet":1,
+                    "forc":1,
+                    "org":1,
+                    "href":1,
+                    "http":1,
+                    "creat":1,
+                    "protocol":1,
+                    "parallel":1,
+                    "write":2,
+                    "locat":1,
+                    "execut":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":18047553,
+      "questionId":18046099,
+      "comments":[
+        
+      ],
+      "creationDate":"2013-08-04",
+      "lastActivityDate":"2013-08-04",
+      "lastEditDate":"2013-08-04",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":823393,
+        "displayName":"OldCurmudgeon",
+        "reputation":21694
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I would study carefully your reasons or not using <code>Atomics</code> because they are exactly what you are needing.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18047553]-[-1538241199]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I would study carefully your reasons or not using <code>Atomics</code> because they are exactly what you are needing.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "care":1,
+                    "reason":1,
+                    "code":2,
+                    "need":1,
+                    "studi":1,
+                    "atom":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If there is truly a problem then have you considered using <code>sun.misc.Unsafe</code> like the <code>Atomics</code> <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/concurrent/atomic/AtomicInteger.java\"rel=\"nofollow\">use</a>?</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18047553]-[-1512347016]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If there is truly a problem then have you considered using <code>sun.misc.Unsafe</code> like the <code>Atomics</code> <a href=\"http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/concurrent/atomic/AtomicInteger.java\"rel=\"nofollow\">use</a>?</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "openjdk":1,
+                    "concurr":1,
+                    "util":1,
+                    "root":1,
+                    "problem":1,
+                    "sun":1,
+                    "rel":1,
+                    "repositori":1,
+                    "grepcod":2,
+                    "code":4,
+                    "nofollow":1,
+                    "consid":1,
+                    "misc":1,
+                    "file":1,
+                    "atom":3,
+                    "unsaf":1,
+                    "href":1,
+                    "http":1,
+                    "jdk":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"sun",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"misc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Alternatively - use an array of objects holding a <code>volatile</code> field.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[18047553]-[-1416416005]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Alternatively - use an array of objects holding a <code>volatile</code> field.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "field":1,
+                    "altern":1,
+                    "object":1,
+                    "code":2,
+                    "array":1,
+                    "hold":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"class Vint { public volatile int i; } Vint[] arr = new Vint[10]; { for (int i = 0; i &lt; arr.length; i++) { arr[i] = new Vint(); } } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[18047553]-[-1471551969]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"CompilationUnitNode",
+                    "imports":[
+                      
+                    ],
+                    "typeDeclarations":[
+                      {
+                        "type":"ClassDeclarationNode",
+                        "modifiers":[
+                          
+                        ],
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Vint",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "body":{
+                          "type":"ClassBodyNode",
+                          "declarations":[
+                            {
+                              "type":"FieldDeclaratorNode",
+                              "modifiers":[
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"public",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"KeywordModifierNode",
+                                  "value":"volatile",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "variables":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"arr",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"ArrayExpressionCreatorNode",
+                                "creatorType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Vint",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "expressionDepth":[
+                                  {
+                                    "type":"DimExpressionNode",
+                                    "argument":{
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"IntegerLiteralNode",
+                                        "valueRep":"10"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "arrayDepth":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ArrayTypeNode",
+                            "typeNode":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Vint",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "depth":[
+                              {
+                                "type":"ArrayDimensionNode",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"BlockDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "block":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ForLoopStatementNode",
+                          "forControl":{
+                            "type":"ForVarControlNode",
+                            "variables":{
+                              "type":"LocalVariableDeclarationStatementNode",
+                              "modifiers":[
+                                
+                              ],
+                              "declarators":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"LiteralNode",
+                                          "node":{
+                                            "type":"IntegerLiteralNode",
+                                            "valueRep":"0"
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "condition":{
+                              "type":"BinaryExpressionNode",
+                              "operator":{
+                                "type":"OperatorNode",
+                                "symbol":"<",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "left":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"i",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "right":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"arr",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"length",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "update":[
+                              {
+                                "type":"PostfixOperatorExpressionNode",
+                                "argument":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"++",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "statement":{
+                            "type":"BlockNode",
+                            "statements":[
+                              {
+                                "type":"ExpressionStatement",
+                                "expression":{
+                                  "type":"BinaryExpressionNode",
+                                  "operator":{
+                                    "type":"OperatorNode",
+                                    "symbol":"=",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "left":{
+                                    "type":"ArrayAccessSelectorNode",
+                                    "identifier":{
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"arr",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "dimExpression":{
+                                      "type":"DimExpressionNode",
+                                      "argument":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"i",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "right":{
+                                    "type":"ConstructorCreatorNode",
+                                    "creatorType":{
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"Vint",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "expressionArgs":{
+                                      "type":"ExpressionListNode",
+                                      "arguments":[
+                                        
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ]
+                              }
+                            ],
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rawText":"class Vint { public volatile int i; } Vint[] arr = new Vint[10]; { for (int i = 0; i < arr.length; i++) { arr[i] = new Vint(); } } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "arr":3,
+                    "length":1,
+                    "vint":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Vint",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"i",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"arr",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ArrayExpressionCreatorNode",
+                            "creatorType":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Vint",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "expressionDepth":[
+                              {
+                                "type":"DimExpressionNode",
+                                "argument":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"IntegerLiteralNode",
+                                    "valueRep":"10"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "arrayDepth":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ArrayTypeNode",
+                        "typeNode":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Vint",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "depth":[
+                          {
+                            "type":"ArrayDimensionNode",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"i",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"0"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

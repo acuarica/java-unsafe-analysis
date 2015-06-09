@@ -1,0 +1,3627 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":16940670,
+    "title":"How atomicity is achieved in the classes defined in java.util.concurrent.atomic package?",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":24458630,
+        "postId":16940670,
+        "creationDate":"2013-06-05",
+        "score":1,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":302916,
+          "displayName":"Brian Roach",
+          "reputation":46069
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"You seem to be ignoring that a method is being called in that loop and the result of that method is the condition to break the loop. Google &quot;Compare and swap&quot;"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[16940670-cu24458630]-[539562554]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"You seem to be ignoring that a method is being called in that loop and the result of that method is the condition to break the loop. Google &quot;Compare and swap&quot;"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "ignor":1,
+                      "method":2,
+                      "loop":2,
+                      "googl":1,
+                      "condit":1,
+                      "result":1,
+                      "compar":1,
+                      "swap":1,
+                      "quot":2,
+                      "call":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":24459220,
+        "postId":16940670,
+        "creationDate":"2013-06-05",
+        "score":1,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1103872,
+          "displayName":"Marko Topolnik",
+          "reputation":88730
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"This is a classic use case for a `goto`. In a `goto`less language we use an infinite loop."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[16940670-cu24459220]-[-2064303069]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"This is a classic use case for a `goto`. In a `goto`less language we use an infinite loop."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "loop":1,
+                      "languag":1,
+                      "infinit":1,
+                      "classic":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "concurrency",
+      "thread-safety",
+      "atomic",
+      "java.util.concurrent"
+    ],
+    "creationDate":"2013-06-05",
+    "lastActivityDate":"2013-08-22",
+    "score":5,
+    "viewCount":529,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":898094,
+      "displayName":"Vaibhav Raj",
+      "reputation":875
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I was going through the source code of <i>java.util.concurrent.atomic.AtomicInteger</i> to find out how atomicity is achieved by the atomic operations provided by the class. For instance <i>AtomicInteger.getAndIncrement()</i> method source is as follows</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[16940670]-[-575248507]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I was going through the source code of <i>java.util.concurrent.atomic.AtomicInteger</i> to find out how atomicity is achieved by the atomic operations provided by the class. For instance <i>AtomicInteger.getAndIncrement()</i> method source is as follows</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"java",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"util",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"concurrent",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"atomic",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicInteger",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"AtomicInteger",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getAndIncrement",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "provid":1,
+                  "method":1,
+                  "concurr":1,
+                  "util":1,
+                  "code":1,
+                  "oper":1,
+                  "achiev":1,
+                  "atom":5,
+                  "sourc":2,
+                  "increment":1,
+                  "instanc":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"atomic",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public final int getAndIncrement() { for (;;) { int current = get(); int next = current + 1; if (compareAndSet(current, next)) return current; } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[16940670]-[593642184]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"final",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"getAndIncrement",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"ForLoopStatementNode",
+                        "forControl":{
+                          "type":"ForExpressionControlNode",
+                          "init":[
+                            
+                          ],
+                          "update":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"LocalVariableDeclarationStatementNode",
+                              "modifiers":[
+                                
+                              ],
+                              "declarators":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"current",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"MethodInvocationNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"get",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "args":{
+                                            "type":"ExpressionListNode",
+                                            "arguments":[
+                                              
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"LocalVariableDeclarationStatementNode",
+                              "modifiers":[
+                                
+                              ],
+                              "declarators":{
+                                "type":"VariableDeclaratorsNode",
+                                "declarators":[
+                                  {
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"next",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ],
+                                    "assignment":{
+                                      "type":"VariableAssignmentNode",
+                                      "variableAssignment":{
+                                        "type":"VariableExpressionInitNode",
+                                        "expression":{
+                                          "type":"BinaryExpressionNode",
+                                          "operator":{
+                                            "type":"OperatorNode",
+                                            "symbol":"+",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "left":{
+                                            "type":"QualifiedIdentifierNode",
+                                            "identifiers":[
+                                              {
+                                                "type":"IdentifierNode",
+                                                "name":"current",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "right":{
+                                            "type":"LiteralNode",
+                                            "node":{
+                                              "type":"IntegerLiteralNode",
+                                              "valueRep":"1"
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "varType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IfStatementNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"compareAndSet",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"current",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"QualifiedIdentifierNode",
+                                      "identifiers":[
+                                        {
+                                          "type":"IdentifierNode",
+                                          "name":"next",
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "statement":{
+                                "type":"ReturnStatementNode",
+                                "expression":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"current",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public final int getAndIncrement() { for (;;) { int current = get(); int next = current + 1; if (compareAndSet(current, next)) return current; } } ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "set":1,
+                  "compar":1,
+                  "increment":1,
+                  "current":4
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"get",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"compareAndSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"current",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"next",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"current",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"get",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"next",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"current",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"1"
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop. Does it serve any special purpose in Java Memory Model (JMM). Please help me find a descriptive understanding. Thanks in advance. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[16940670]-[-1765196304]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop. Does it serve any special purpose in Java Memory Model (JMM). Please help me find a descriptive understanding. Thanks in advance. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "find":1,
+                  "descript":1,
+                  "advanc":1,
+                  "loop":1,
+                  "model":1,
+                  "serv":1,
+                  "understand":2,
+                  "oper":1,
+                  "insid":1,
+                  "sequenc":1,
+                  "infinit":1,
+                  "special":1,
+                  "jmm":1,
+                  "purpos":2,
+                  "write":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":16940704,
+      "questionId":16940670,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":24458837,
+          "postId":16940704,
+          "creationDate":"2013-06-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":898094,
+            "displayName":"Vaibhav Raj",
+            "reputation":875
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"According to my understanding of Volatile: it solves the visibility purpose without using synchronization or any kind of explicit locking. Therefore, volatile can be used without synchronization for consistent visibility of read/write. So, why to use this special for loop for synchronization? If you can explain more about the relation between loops and synchronization, it would be a great help. Thanks for instant reply."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940704-cu24458837]-[1756928684]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"According to my understanding of Volatile: it solves the visibility purpose without using synchronization or any kind of explicit locking. Therefore, volatile can be used without synchronization for consistent visibility of read/write. So, why to use this special for loop for synchronization? If you can explain more about the relation between loops and synchronization, it would be a great help. Thanks for instant reply."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "solv":1,
+                        "read":1,
+                        "loop":2,
+                        "explain":1,
+                        "relat":1,
+                        "understand":1,
+                        "lock":1,
+                        "visibl":2,
+                        "consist":1,
+                        "instant":1,
+                        "repli":1,
+                        "kind":1,
+                        "special":1,
+                        "explicit":1,
+                        "purpos":1,
+                        "great":1,
+                        "write":1,
+                        "synchron":4
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":24459004,
+          "postId":16940704,
+          "creationDate":"2013-06-05",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":302916,
+            "displayName":"Brian Roach",
+            "reputation":46069
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@VaibhavRaj - The loop has nothing to do with synchronization. It loops until the CAS operation succeeds."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940704-cu24459004]-[-1401435553]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@VaibhavRaj - The loop has nothing to do with synchronization. It loops until the CAS operation succeeds."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"VaibhavRaj",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "succeed":1,
+                        "raj":1,
+                        "loop":2,
+                        "cas":1,
+                        "oper":1,
+                        "vaibhav":1,
+                        "synchron":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":24459005,
+          "postId":16940704,
+          "creationDate":"2013-06-05",
+          "score":2,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1103872,
+            "displayName":"Marko Topolnik",
+            "reputation":88730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"`volatile` is about visibility; `AtomicInteger` is about *lock-free atomicity*. You can't achieve that without retries. Infinite loop = retries."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940704-cu24459005]-[-1493011848]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"`volatile` is about visibility; `AtomicInteger` is about *lock-free atomicity*. You can't achieve that without retries. Infinite loop = retries."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"AtomicInteger",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "loop":1,
+                        "lock":1,
+                        "visibl":1,
+                        "achiev":1,
+                        "infinit":1,
+                        "atom":2,
+                        "retri":2,
+                        "free":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"AtomicInteger",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":24459036,
+          "postId":16940704,
+          "creationDate":"2013-06-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":179850,
+            "displayName":"Gray",
+            "reputation":63324
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Well `volatile` solves the problem of visibility without using the `synchronized` keyword but ensuring memory synchronization is part of what it does. What it _doesn't_ do is give you atomic access to a boolean."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940704-cu24459036]-[1120476989]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Well `volatile` solves the problem of visibility without using the `synchronized` keyword but ensuring memory synchronization is part of what it does. What it _doesn't_ do is give you atomic access to a boolean."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_doesn",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "solv":1,
+                        "problem":1,
+                        "visibl":1,
+                        "keyword":1,
+                        "give":1,
+                        "atom":1,
+                        "part":1,
+                        "access":1,
+                        "ensur":1,
+                        "synchron":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":24459318,
+          "postId":16940704,
+          "creationDate":"2013-06-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":898094,
+            "displayName":"Vaibhav Raj",
+            "reputation":875
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Gray- Thanks for making it clear."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940704-cu24459318]-[-1228965031]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Gray- Thanks for making it clear."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Gray",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "gray":1,
+                        "clear":1,
+                        "make":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-06-05",
+      "lastActivityDate":"2013-08-22",
+      "lastEditDate":"2013-08-22",
+      "score":6,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":179850,
+        "displayName":"Gray",
+        "reputation":63324
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop. </p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[-1039133764]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop. </p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loop":1,
+                    "understand":1,
+                    "blockquot":2,
+                    "oper":1,
+                    "insid":1,
+                    "sequenc":1,
+                    "infinit":1,
+                    "purpos":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The purpose of this code is to ensure that the <code>volatile</code> field gets updated appropriately <em>without</em> the overhead of a <code>synchronized</code> lock. Unless there are a large number of threads all competing to update this same field, this will most likely spin a very few times to accomplish this.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[2095913408]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The purpose of this code is to ensure that the <code>volatile</code> field gets updated appropriately <em>without</em> the overhead of a <code>synchronized</code> lock. Unless there are a large number of threads all competing to update this same field, this will most likely spin a very few times to accomplish this.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "number":1,
+                    "field":2,
+                    "updat":2,
+                    "spin":1,
+                    "lock":1,
+                    "code":5,
+                    "overhead":1,
+                    "thread":1,
+                    "larg":1,
+                    "accomplish":1,
+                    "time":1,
+                    "appropri":1,
+                    "purpos":1,
+                    "compet":1,
+                    "ensur":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The <code>volatile</code> keyword provides visibility and memory synchronization guarantees but does not in itself ensure atomic operations with multiple operations (test and set). If you are testing and then setting a <code>volatile</code> field there are race-conditions if multiple threads are trying to perform the same operation at the same time. In this case, if multiple threads are trying to increment the <code>AtomicInteger</code> at the same time, you might miss one of the increments. The concurrent code here uses the spin loop and the <code>compareAndSet</code> underlying methods to make sure that the <code>volatile int</code> is only updated to 4 (for example) if it still is equal to 3.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[-270846385]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The <code>volatile</code> keyword provides visibility and memory synchronization guarantees but does not in itself ensure atomic operations with multiple operations (test and set). If you are testing and then setting a <code>volatile</code> field there are race-conditions if multiple threads are trying to perform the same operation at the same time. In this case, if multiple threads are trying to increment the <code>AtomicInteger</code> at the same time, you might miss one of the increments. The concurrent code here uses the spin loop and the <code>compareAndSet</code> underlying methods to make sure that the <code>volatile int</code> is only updated to 4 (for example) if it still is equal to 3.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "test":2,
+                    "loop":1,
+                    "concurr":1,
+                    "field":1,
+                    "condit":1,
+                    "set":3,
+                    "updat":1,
+                    "spin":1,
+                    "visibl":1,
+                    "keyword":1,
+                    "miss":1,
+                    "code":11,
+                    "oper":3,
+                    "guarante":1,
+                    "thread":2,
+                    "equal":1,
+                    "compar":1,
+                    "race":1,
+                    "perform":1,
+                    "make":1,
+                    "under":1,
+                    "atom":2,
+                    "time":2,
+                    "multipl":3,
+                    "increment":2,
+                    "ensur":1,
+                    "synchron":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicInteger",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ol> \n <li>t1 gets the atomic-int and it is 0.</li> \n <li>t2 gets the atomic-int and it is 0.</li> \n <li>t1 adds 1 to it</li> \n <li>t1 <em>atomically</em> tests to make sure it is 0, it is, and stores 1.</li> \n <li>t2 adds 1 to it</li> \n <li>t2 <em>atomically</em> tests to make sure it is 0, it is <em>not</em>, so it has to spin and try again.</li> \n <li>t2 gets the atomic-int and it is 1.</li> \n <li>t2 adds 1 to it </li> \n <li>t2 <em>atomically</em> tests to make sure it is 1, it <em>is</em>, and stores 2.</li> \n</ol>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[-806167966]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ol> \n <li>t1 gets the atomic-int and it is 0.</li> \n <li>t2 gets the atomic-int and it is 0.</li> \n <li>t1 adds 1 to it</li> \n <li>t1 <em>atomically</em> tests to make sure it is 0, it is, and stores 1.</li> \n <li>t2 adds 1 to it</li> \n <li>t2 <em>atomically</em> tests to make sure it is 0, it is <em>not</em>, so it has to spin and try again.</li> \n <li>t2 gets the atomic-int and it is 1.</li> \n <li>t2 adds 1 to it </li> \n <li>t2 <em>atomically</em> tests to make sure it is 1, it <em>is</em>, and stores 2.</li> \n</ol>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "test":3,
+                    "spin":1,
+                    "store":2,
+                    "make":3,
+                    "atom":6,
+                    "add":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Does it serve any special purpose in Java Memory Model (JMM).</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[-653943782]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Does it serve any special purpose in Java Memory Model (JMM).</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "model":1,
+                    "serv":1,
+                    "blockquot":2,
+                    "special":1,
+                    "jmm":1,
+                    "purpos":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>No, it serves the purpose of the class and method definitions and <em>uses</em> the JMM and the language definitions around <code>volatile</code> to achieve its purpose. The JMM defines what the language does with the <code>synchronized</code>, <code>volatile</code>, and other keywords and how multiple threads interact with cached and central memory. This is mostly about native code interactions with operating system and hardware and is rarely, if ever, about Java code.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[257849509]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>No, it serves the purpose of the class and method definitions and <em>uses</em> the JMM and the language definitions around <code>volatile</code> to achieve its purpose. The JMM defines what the language does with the <code>synchronized</code>, <code>volatile</code>, and other keywords and how multiple threads interact with cached and central memory. This is mostly about native code interactions with operating system and hardware and is rarely, if ever, about Java code.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"and",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "languag":2,
+                    "cach":1,
+                    "system":1,
+                    "serv":1,
+                    "interact":2,
+                    "central":1,
+                    "keyword":1,
+                    "code":8,
+                    "oper":1,
+                    "thread":1,
+                    "achiev":1,
+                    "rare":1,
+                    "definit":2,
+                    "hardwar":1,
+                    "defin":1,
+                    "multipl":1,
+                    "jmm":2,
+                    "purpos":2,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It is the <code>compareAndSet(...)</code> method which gets closer to the JMM by calling into the <code>Unsafe</code> class which is mostly native methods with some wrappers:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940704]-[-616189753]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It is the <code>compareAndSet(...)</code> method which gets closer to the JMM by calling into the <code>Unsafe</code> class which is mostly native methods with some wrappers:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"which",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":2,
+                    "set":1,
+                    "closer":1,
+                    "code":4,
+                    "compar":1,
+                    "wrapper":1,
+                    "unsaf":1,
+                    "call":1,
+                    "jmm":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"public final boolean compareAndSet(int expect, int update) { return unsafe.compareAndSwapInt(this, valueOffset, expect, update); } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[16940704]-[888170096]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"compareAndSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"PrimitiveTypeNode",
+                          "name":"int",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"expect",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              
+                            ],
+                            "parameterType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"int",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"update",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"unsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"compareAndSwapInt",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"this",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"valueOffset",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"expect",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"update",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"public final boolean compareAndSet(int expect, int update) { return unsafe.compareAndSwapInt(this, valueOffset, expect, update); } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "set":1,
+                    "updat":2,
+                    "offset":1,
+                    "compar":2,
+                    "expect":2,
+                    "swap":1,
+                    "unsaf":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"unsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"compareAndSwapInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"this",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"valueOffset",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"expect",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"update",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"expect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"update",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":16940890,
+      "questionId":16940670,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":24459136,
+          "postId":16940890,
+          "creationDate":"2013-06-05",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":898094,
+            "displayName":"Vaibhav Raj",
+            "reputation":875
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thank you very much for making it clear."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[16940890-cu24459136]-[858177752]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thank you very much for making it clear."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "clear":1,
+                        "make":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-06-05",
+      "lastActivityDate":"2013-08-22",
+      "lastEditDate":"2013-08-22",
+      "score":3,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":192444,
+        "displayName":"John Vint",
+        "reputation":21382
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop.</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[-218318938]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>I am not able to understand the purpose of writing the sequence of operations inside a infinite for loop.</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loop":1,
+                    "understand":1,
+                    "blockquot":2,
+                    "oper":1,
+                    "insid":1,
+                    "sequenc":1,
+                    "infinit":1,
+                    "purpos":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>To understand why it is in an infinite loop I find it helpful to understand what the <code>compareAndSet</code> does and how it may return false.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[-1903556596]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>To understand why it is in an infinite loop I find it helpful to understand what the <code>compareAndSet</code> does and how it may return false.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "find":1,
+                    "loop":1,
+                    "set":1,
+                    "understand":2,
+                    "code":2,
+                    "help":1,
+                    "compar":1,
+                    "infinit":1,
+                    "fals":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <pre><code>Atomically sets the value to the given updated value if the current value == the expected value. Parameters: expect - the expected value update - the new value Returns: true if successful. False return indicates that the actual value was not equal to the expected value </code></pre> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[-572489381]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <pre><code>Atomically sets the value to the given updated value if the current value == the expected value. Parameters: expect - the expected value update - the new value Returns: true if successful. False return indicates that the actual value was not equal to the expected value </code></pre> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "pre":2,
+                    "success":1,
+                    "return":1,
+                    "set":1,
+                    "updat":2,
+                    "blockquot":2,
+                    "code":2,
+                    "paramet":1,
+                    "equal":1,
+                    "expect":4,
+                    "true":1,
+                    "fals":1,
+                    "atom":1,
+                    "actual":1,
+                    "current":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>So you read the <code>Returns</code> message and ask how is that possible?</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[1359246017]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>So you read the <code>Returns</code> message and ask how is that possible?</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "messag":1,
+                    "return":1,
+                    "code":2,
+                    "read":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If two threads are invoking <code>incrementAndGet</code> at close to the same time, and they both enter and see the value <code>current == 1</code>. Both threads will create a thread-local <code>next == 2</code> and try to set via <code>compareAndSet</code>. Only one thread will win as per documented and the thread that loses must try again. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[-179160997]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If two threads are invoking <code>incrementAndGet</code> at close to the same time, and they both enter and see the value <code>current == 1</code>. Both threads will create a thread-local <code>next == 2</code> and try to set via <code>compareAndSet</code>. Only one thread will win as per documented and the thread that loses must try again. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"incrementAndGet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "win":1,
+                    "document":1,
+                    "enter":1,
+                    "set":2,
+                    "local":1,
+                    "invok":1,
+                    "code":8,
+                    "thread":5,
+                    "compar":1,
+                    "time":1,
+                    "close":1,
+                    "current":1,
+                    "creat":1,
+                    "increment":1,
+                    "lose":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is how CAS works. You attempt to change the value if you fail, try again, if you succeed then continue on.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[-164874551]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is how CAS works. You attempt to change the value if you fail, try again, if you succeed then continue on.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "succeed":1,
+                    "chang":1,
+                    "fail":1,
+                    "cas":1,
+                    "work":1,
+                    "attempt":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Now simply declaring the field as volatile will not work because incrementing is <em>not atomic</em>. So something like this is <strong>not safe</strong> from the scenario I explained</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16940890]-[1859010927]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Now simply declaring the field as volatile will not work because incrementing is <em>not atomic</em>. So something like this is <strong>not safe</strong> from the scenario I explained</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "scenario":1,
+                    "field":1,
+                    "explain":1,
+                    "strong":2,
+                    "safe":1,
+                    "work":1,
+                    "declar":1,
+                    "simpli":1,
+                    "atom":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"volatile int count = 0; public int incrementAndGet(){ return ++count; //may return the same number more than once. } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[16940890]-[1370542534]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"volatile int "
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"count",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"IntegerLiteralNode",
+                          "valueRep":"0"
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"incrementAndGet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"PrefixOperatorExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"++",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"count",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            {
+                              "text":"//may return the same number more than once. } \n"
+                            }
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"volatile int count = 0; public int incrementAndGet(){ return ++count; //may return the same number more than once. } \n...\n}",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "count":2,
+                    "number":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":16941227,
+      "questionId":16940670,
+      "comments":[
+        
+      ],
+      "creationDate":"2013-06-05",
+      "lastActivityDate":"2013-06-05",
+      "lastEditDate":"2013-06-05",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1831293,
+        "displayName":"Evgeniy Dorofeev",
+        "reputation":58894
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Java's compareAndSet is based on CPU compare-and-swap (CAS) instructions see <a href=\"http://en.wikipedia.org/wiki/Compare-and-swap\"rel=\"nofollow\">http://en.wikipedia.org/wiki/Compare-and-swap</a>. <em>It compares the contents of a memory location to a given value and, only if they are the same, modifies the contents of that memory location to a given new value.</em> </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16941227]-[-2135857182]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Java's compareAndSet is based on CPU compare-and-swap (CAS) instructions see <a href=\"http://en.wikipedia.org/wiki/Compare-and-swap\"rel=\"nofollow\">http://en.wikipedia.org/wiki/Compare-and-swap</a>. <em>It compares the contents of a memory location to a given value and, only if they are the same, modifies the contents of that memory location to a given new value.</em> </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "set":1,
+                    "rel":1,
+                    "cas":1,
+                    "base":1,
+                    "wikipedia":2,
+                    "nofollow":1,
+                    "compar":5,
+                    "cpu":1,
+                    "modifi":1,
+                    "content":2,
+                    "swap":3,
+                    "wiki":2,
+                    "org":2,
+                    "href":1,
+                    "http":2,
+                    "locat":2,
+                    "instruct":1,
+                    "memori":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In case of incrementAndGet we read the current value and call <code>compareAndSet(current, current + 1)</code>. If it returns false it means that another thread interfered and changed the current value, which means that our attempt failed and we need to repeat the whole cycle until it succeeds.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[16941227]-[-639911995]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In case of incrementAndGet we read the current value and call <code>compareAndSet(current, current + 1)</code>. If it returns false it means that another thread interfered and changed the current value, which means that our attempt failed and we need to repeat the whole cycle until it succeeds.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"incrementAndGet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "succeed":1,
+                    "read":1,
+                    "chang":1,
+                    "fail":1,
+                    "return":1,
+                    "set":1,
+                    "mean":2,
+                    "interf":1,
+                    "code":2,
+                    "thread":1,
+                    "compar":1,
+                    "fals":1,
+                    "repeat":1,
+                    "attempt":1,
+                    "cycl":1,
+                    "current":4,
+                    "call":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

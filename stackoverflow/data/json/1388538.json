@@ -1,0 +1,4624 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":1388538,
+    "title":"Time synchronization in java",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "synchronization",
+      "multithreading",
+      "timestamp",
+      "simulation"
+    ],
+    "creationDate":"2009-09-07",
+    "lastActivityDate":"2011-03-21",
+    "lastEditDate":"2009-09-07",
+    "score":3,
+    "viewCount":2687,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":111791,
+      "displayName":"Markus",
+      "reputation":202
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Inside a for-loop I'm controlling the simulation-step-based traffic simulator SUMO by retrieving and processing information of vehicles. To make sure that my program simulates in &quot;real-time&quot; (1 simulation-step = 1 second) I want to sleep my program after the processing phase until the next time step begins. To get better results I'm calculating the time stamp based on a initially taken reference time stamp. </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[-1570968280]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Inside a for-loop I'm controlling the simulation-step-based traffic simulator SUMO by retrieving and processing information of vehicles. To make sure that my program simulates in &quot;real-time&quot; (1 simulation-step = 1 second) I want to sleep my program after the processing phase until the next time step begins. To get better results I'm calculating the time stamp based on a initially taken reference time stamp. </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "program":2,
+                  "begin":1,
+                  "loop":1,
+                  "step":3,
+                  "vehicl":1,
+                  "real":1,
+                  "retriev":1,
+                  "phase":1,
+                  "process":2,
+                  "result":1,
+                  "sleep":1,
+                  "stamp":2,
+                  "sumo":1,
+                  "simul":4,
+                  "calcul":1,
+                  "base":2,
+                  "inform":1,
+                  "insid":1,
+                  "refer":1,
+                  "traffic":1,
+                  "make":1,
+                  "quot":2,
+                  "control":1,
+                  "initi":1,
+                  "time":4
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>The loop looks like this:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[-130551645]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>The loop looks like this:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "loop":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":" System.out.println(&quot;start of traffic simulation ...&quot;); for (int i = 0; i &lt; stepCount; i++) { System.out.println(&quot;step: &quot; + i); // set before timeStamp beforeTimeStamp = System.currentTimeMillis(); if (firstStep) { // get reference timeStamp referenceTimeStamp = beforeTimeStamp; firstStep = false; } else { // get next vehicleVector vehicleVector = masterControl.traCIclient.simulateStep(); } // process vehicleVector // set after timeStamp afterTimeStamp = System.currentTimeMillis(); processingTime = afterTimeStamp - beforeTimeStamp; // calculate sleepTime sleepTime = referenceTimeStamp + ((i + 1) * 1000) - afterTimeStamp; // sleep for sleepTime ms Thread.sleep(sleepTime); } System.out.println(&quot;end of traffic simulation ...&quot;); "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[1388538]-[-1917523940]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":" "
+                },
+                {
+                  "type":"MethodInvocationNode",
+                  "qualifiedIdentifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"System",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"out",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"println",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "args":{
+                    "type":"ExpressionListNode",
+                    "arguments":[
+                      {
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"StringLiteralNode",
+                          "valueRep":"\"start of traffic simulation ...\""
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ForLoopStatementNode",
+                  "forControl":{
+                    "type":"ForVarControlNode",
+                    "variables":{
+                      "type":"LocalVariableDeclarationStatementNode",
+                      "modifiers":[
+                        
+                      ],
+                      "declarators":{
+                        "type":"VariableDeclaratorsNode",
+                        "declarators":[
+                          {
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"i",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ],
+                            "assignment":{
+                              "type":"VariableAssignmentNode",
+                              "variableAssignment":{
+                                "type":"VariableExpressionInitNode",
+                                "expression":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"IntegerLiteralNode",
+                                    "valueRep":"0"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "varType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"int",
+                              "comments":[
+                                
+                              ]
+                            }
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "condition":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"<",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"i",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"stepCount",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "update":[
+                      {
+                        "type":"PostfixOperatorExpressionNode",
+                        "argument":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"i",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "operator":{
+                          "type":"OperatorNode",
+                          "symbol":"++",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "statement":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"ExpressionStatement",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"System",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IdentifierNode",
+                                "name":"out",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"println",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"+",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"StringLiteralNode",
+                                    "valueRep":"\"step: \""
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            {
+                              "text":"// set before timeStamp beforeTimeStamp = System.currentTimeMillis(); if (firstStep) { // get reference timeStamp referenceTimeStamp = beforeTimeStamp; firstStep = false; } else { // get next vehicleVector vehicleVector = masterControl.traCIclient.simulateStep(); } // process vehicleVector // set after timeStamp afterTimeStamp = System.currentTimeMillis(); processingTime = afterTimeStamp - beforeTimeStamp; // calculate sleepTime sleepTime = referenceTimeStamp + ((i + 1) * 1000) - afterTimeStamp; // sleep for sleepTime ms Thread.sleep(sleepTime); } System.out.println(\"end of traffic simulation ...\"); \n"
+                            }
+                          ]
+                        },
+                        "labels":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":" Systemoutprintln(\"start of traffic simulation ...\"); for (int i = 0; i < stepCount; i++) { System.out.println(\"step: \"+ i); // set before timeStamp beforeTimeStamp = System.currentTimeMillis(); if (firstStep) { // get reference timeStamp referenceTimeStamp = beforeTimeStamp; firstStep = false; } else { // get next vehicleVector vehicleVector = masterControl.traCIclient.simulateStep(); } // process vehicleVector // set after timeStamp afterTimeStamp = System.currentTimeMillis(); processingTime = afterTimeStamp - beforeTimeStamp; // calculate sleepTime sleepTime = referenceTimeStamp + ((i + 1) * 1000) - afterTimeStamp; // sleep for sleepTime ms Thread.sleep(sleepTime); } System.out.println(\"end of traffic simulation ...\"); \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "count":1,
+                  "step":5,
+                  "vehicl":3,
+                  "system":4,
+                  "master":1,
+                  "process":2,
+                  "tra":1,
+                  "ciclient":1,
+                  "set":2,
+                  "milli":2,
+                  "vector":3,
+                  "sleep":6,
+                  "stamp":11,
+                  "simul":3,
+                  "calcul":1,
+                  "println":2,
+                  "thread":1,
+                  "refer":3,
+                  "traffic":2,
+                  "end":1,
+                  "fals":1,
+                  "control":1,
+                  "time":18,
+                  "systemoutprintln":1,
+                  "start":1,
+                  "current":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"StringLiteralNode",
+                            "valueRep":"\"start of traffic simulation ...\""
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"System",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"out",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"println",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"BinaryExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"+",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "left":{
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"StringLiteralNode",
+                              "valueRep":"\"step: \""
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "right":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"i",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"// set before timeStamp beforeTimeStamp = System.currentTimeMillis(); if (firstStep) { // get reference timeStamp referenceTimeStamp = beforeTimeStamp; firstStep = false; } else { // get next vehicleVector vehicleVector = masterControl.traCIclient.simulateStep(); } // process vehicleVector // set after timeStamp afterTimeStamp = System.currentTimeMillis(); processingTime = afterTimeStamp - beforeTimeStamp; // calculate sleepTime sleepTime = referenceTimeStamp + ((i + 1) * 1000) - afterTimeStamp; // sleep for sleepTime ms Thread.sleep(sleepTime); } System.out.println(\"end of traffic simulation ...\"); \n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"i",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"0"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Here's the output of some variables:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[240906045]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Here's the output of some variables:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "variabl":1,
+                  "output":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlTextNode",
+              "contents":" step: 0 beforeTimeStamp 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 afterTimeStamp 1252317242959 sleepTime: 606 step: 1 beforeTimeStamp 1252317242961 processing time: 665 test time: 1252317244565 afterTimeStamp 1252317243626 sleepTime: 939 (exspected: 1000 - 665 = 335) "
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[1388538]-[68987088]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":" step: 0 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"beforeTimeStamp",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"afterTimeStamp",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" 1252317242959 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"sleepTime",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": 606 step: 1 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"beforeTimeStamp",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" 1252317242961 processing time: 665 test time: 1252317244565 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"afterTimeStamp",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":" 1252317243626 "
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"sleepTime",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"TextFragmentNode",
+                  "text":": 939 (exspected: 1000 - 665 = 335) "
+                }
+              ]
+            },
+            "rawText":" step: 0 beforeTimeStamp 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 afterTimeStamp 1252317242959 sleepTime: 606 step: 1 beforeTimeStamp 1252317242961 processing time: 665 test time: 1252317244565 afterTimeStamp 1252317243626 sleepTime: 939 (exspected: 1000 - 665 = 335) ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "test":2,
+                  "step":2,
+                  "process":2,
+                  "exspect":1,
+                  "sleep":2,
+                  "stamp":4,
+                  "refer":1,
+                  "time":11
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>As you can see the sleep time is only correct for the first simulation step. I have no clue what might me going wrong here. Does anybody has an idea?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[1459880098]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>As you can see the sleep time is only correct for the first simulation step. I have no clue what might me going wrong here. Does anybody has an idea?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "step":1,
+                  "wrong":1,
+                  "correct":1,
+                  "idea":1,
+                  "sleep":1,
+                  "simul":1,
+                  "time":1,
+                  "clue":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>BR,</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[2038475283]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>BR,</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Markus</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1388538]-[678335446]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Markus</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "markus":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":1388613,
+      "questionId":1388538,
+      "comments":[
+        
+      ],
+      "creationDate":"2009-09-07",
+      "lastActivityDate":"2009-09-07",
+      "lastEditDate":"2009-09-07",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":12960,
+        "displayName":"Brian Agnew",
+        "reputation":154342
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>As highlighted by <a href=\"http://stackoverflow.com/questions/1388538/time-synchronization-in-java/1388574#1388574\">others</a>, you should be sleeping for 1000 - processing time.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388613]-[-430016186]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>As highlighted by <a href=\"http://stackoverflow.com/questions/1388538/time-synchronization-in-java/1388574#1388574\">others</a>, you should be sleeping for 1000 - processing time.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":1,
+                    "process":1,
+                    "highlight":1,
+                    "sleep":1,
+                    "stackoverflow":1,
+                    "time":2,
+                    "href":1,
+                    "http":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Ignoring the fact that Java SE doesn't provide a real-time platform (and as such you won't get precision), I would perhaps take a look at the <a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/util/Timer.html\"rel=\"nofollow\">Timer</a> class, and particularly <a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/util/Timer.html#scheduleAtFixedRate%28java.util.TimerTask,%20long,%20long%29\"rel=\"nofollow\">Timer.scheduleAtFixedRate()</a>, which will look after scheduling tasks at regular intervals.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388613]-[1031282005]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Ignoring the fact that Java SE doesn't provide a real-time platform (and as such you won't get precision), I would perhaps take a look at the <a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/util/Timer.html\"rel=\"nofollow\">Timer</a> class, and particularly <a href=\"http://java.sun.com/j2se/1.4.2/docs/api/java/util/Timer.html#scheduleAtFixedRate%28java.util.TimerTask,%20long,%20long%29\"rel=\"nofollow\">Timer.scheduleAtFixedRate()</a>, which will look after scheduling tasks at regular intervals.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Timer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"scheduleAtFixedRate",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rate":2,
+                    "precis":1,
+                    "provid":1,
+                    "ignor":1,
+                    "task":2,
+                    "util":3,
+                    "real":1,
+                    "sun":2,
+                    "fix":2,
+                    "rel":2,
+                    "regular":1,
+                    "doc":2,
+                    "fact":1,
+                    "interv":1,
+                    "nofollow":2,
+                    "schedul":3,
+                    "api":2,
+                    "time":1,
+                    "html":2,
+                    "href":2,
+                    "platform":1,
+                    "http":2,
+                    "won":1,
+                    "timer":5
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":1388616,
+      "questionId":1388538,
+      "comments":[
+        
+      ],
+      "creationDate":"2009-09-07",
+      "lastActivityDate":"2009-09-07",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":138561,
+        "displayName":"Gregory Mostizky",
+        "reputation":4797
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There is a simple standard solution in Java starting with Java 5.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388616]-[245136472]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There is a simple standard solution in Java starting with Java 5.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "standard":1,
+                    "solut":1,
+                    "start":1,
+                    "simpl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Take a look at <a href=\"http://www.j2ee.me/j2se/1.5.0/docs/api/java/util/concurrent/ScheduledExecutorService.html\"rel=\"nofollow\">ScheduledExecutorService</a>.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388616]-[52689324]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Take a look at <a href=\"http://www.j2ee.me/j2se/1.5.0/docs/api/java/util/concurrent/ScheduledExecutorService.html\"rel=\"nofollow\">ScheduledExecutorService</a>.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ScheduledExecutorService",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "util":1,
+                    "rel":1,
+                    "doc":1,
+                    "nofollow":1,
+                    "schedul":2,
+                    "api":1,
+                    "html":1,
+                    "href":1,
+                    "executor":2,
+                    "http":1,
+                    "servic":2,
+                    "www":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ScheduledExecutorService",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It will look something like this:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388616]-[1379221432]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It will look something like this:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" ScheduledExecutorService service = Executors.newScheduledThreadPool(1); service.scheduleAtFixedRate(new MyCode(), 0, 1, TimeUnit.SECONDS); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[1388616]-[-169322443]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" "
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"service",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"MethodInvocationNode",
+                                "qualifiedIdentifier":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"Executors",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"newScheduledThreadPool",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "args":{
+                                  "type":"ExpressionListNode",
+                                  "arguments":[
+                                    {
+                                      "type":"LiteralNode",
+                                      "node":{
+                                        "type":"IntegerLiteralNode",
+                                        "valueRep":"1"
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"ScheduledExecutorService",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"scheduleAtFixedRate",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"("
+                  },
+                  {
+                    "type":"ConstructorCreatorNode",
+                    "creatorType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MyCode",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "expressionArgs":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":", 0, 1, TimeUnit.SECONDS); "
+                  }
+                ]
+              },
+              "rawText":" ScheduledExecutorService service = Executors.newScheduledThreadPool(1); servicescheduleAtFixedRate(new MyCode(), 0, 1, TimeUnit.SECONDS); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rate":1,
+                    "fix":1,
+                    "code":1,
+                    "second":1,
+                    "thread":1,
+                    "serviceschedul":1,
+                    "pool":1,
+                    "schedul":2,
+                    "unit":1,
+                    "time":1,
+                    "executor":2,
+                    "servic":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ScheduledExecutorService",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MyCode",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Executors",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"newScheduledThreadPool",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"LiteralNode",
+                            "node":{
+                              "type":"IntegerLiteralNode",
+                              "valueRep":"1"
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"service",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"Executors",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"newScheduledThreadPool",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"IntegerLiteralNode",
+                                    "valueRep":"1"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ScheduledExecutorService",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Where MyCode class implements runnable interface and will be executed once a second.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388616]-[-1583626224]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Where MyCode class implements runnable interface and will be executed once a second.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MyCode",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "code":1,
+                    "execut":1,
+                    "runnabl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"MyCode",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is not a real time guarantee but should be sufficient for your case.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388616]-[1288868745]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is not a real time guarantee but should be sufficient for your case.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "real":1,
+                    "suffici":1,
+                    "guarante":1,
+                    "time":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":1388834,
+      "questionId":1388538,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":1229254,
+          "postId":1388834,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":111791,
+            "displayName":"Markus",
+            "reputation":202
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Ohh, sorry. I forgot to mention, that I currently do NOT really sleep. Therefore the values are probably different from what you expected."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388834-cu1229254]-[1218289127]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Ohh, sorry. I forgot to mention, that I currently do NOT really sleep. Therefore the values are probably different from what you expected."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "ohh":1,
+                        "sleep":1,
+                        "mention":1,
+                        "forgot":1,
+                        "expect":1,
+                        "valu":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2009-09-07",
+      "lastActivityDate":"2009-09-07",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":149808,
+        "displayName":"ZZ Coder",
+        "reputation":39716
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Are you sure the output is from the same program? See the discrepancy highlighted inline,</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388834]-[1899457408]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Are you sure the output is from the same program? See the discrepancy highlighted inline,</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "program":1,
+                    "discrep":1,
+                    "highlight":1,
+                    "inlin":1,
+                    "output":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"step: 0 beforeTimeStamp 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 afterTimeStamp 1252317242959 sleepTime: 606 #### It didn't sleep this long at all step: 1 beforeTimeStamp 1252317242961 #### This is only 2ms from last afteTimeStamp processing time: 665 test time: 1252317244565 afterTimeStamp 1252317243626 sleepTime: 939 (exspected: 1000 - 665 = 335) #### This is to make up the deficit from last sleep "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[1388834]-[1509222468]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"step: 0 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"beforeTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"afterTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 1252317242959 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sleepTime",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":": 606 #### It didn't sleep this long at all step: 1 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"beforeTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 1252317242961 #### This is only 2ms from last "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"afteTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" processing time: 665 test time: 1252317244565 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"afterTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 1252317243626 "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sleepTime",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":": 939 (exspected: 1000 - 665 = 335) #### This is to make up the deficit from last sleep "
+                  }
+                ]
+              },
+              "rawText":"step: 0 beforeTimeStamp 1252317242565 reference time: 1252317242565 processing time: 394 test time: 1252317243565 afterTimeStamp 1252317242959 sleepTime: 606 #### It didn't sleep this long at all step: 1 beforeTimeStamp 1252317242961 #### This is only 2ms from last afteTimeStamp processing time: 665 test time: 1252317244565 afterTimeStamp 1252317243626 sleepTime: 939 (exspected: 1000 - 665 = 335) #### This is to make up the deficit from last sleep ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "test":2,
+                    "step":2,
+                    "aft":1,
+                    "process":2,
+                    "exspect":1,
+                    "sleep":4,
+                    "stamp":5,
+                    "deficit":1,
+                    "refer":1,
+                    "make":1,
+                    "time":12
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There were 604 (606-2) deficit in fist sleep. So 939 (335 + 604) is the correct sleep time for second loop.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388834]-[1880956048]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There were 604 (606-2) deficit in fist sleep. So 939 (335 + 604) is the correct sleep time for second loop.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loop":1,
+                    "correct":1,
+                    "sleep":2,
+                    "deficit":1,
+                    "fist":1,
+                    "time":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Java's sleep is not accurate but it can't be this far off. I think either you interrupt the program in a debugger or the code doesn't match the output.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388834]-[8909455]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Java's sleep is not accurate but it can't be this far off. I think either you interrupt the program in a debugger or the code doesn't match the output.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "program":1,
+                    "sleep":1,
+                    "match":1,
+                    "code":1,
+                    "accur":1,
+                    "debugg":1,
+                    "output":1,
+                    "interrupt":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":1388569,
+      "questionId":1388538,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":1234686,
+          "postId":1388569,
+          "creationDate":"2009-09-08",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":111791,
+            "displayName":"Markus",
+            "reputation":202
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@oxbow_lakes Do you know how the excecutor in your example behaves, if the execution of the task takes longer than a second? I'm not sure if I have to surround some parts of the code with synchronized-blocks to avoid that code is executed by several instances at once ..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1234686]-[647595383]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@oxbow_lakes Do you know how the excecutor in your example behaves, if the execution of the task takes longer than a second? I'm not sure if I have to surround some parts of the code with synchronized-blocks to avoid that code is executed by several instances at once ..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"oxbow_lakes",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "task":1,
+                        "lake":1,
+                        "avoid":1,
+                        "behav":1,
+                        "code":2,
+                        "block":1,
+                        "take":1,
+                        "longer":1,
+                        "part":1,
+                        "oxbow":1,
+                        "excecutor":1,
+                        "execut":2,
+                        "surround":1,
+                        "instanc":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1235083,
+          "postId":1388569,
+          "creationDate":"2009-09-08",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":16853,
+            "displayName":"oxbow_lakes",
+            "reputation":75132
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Markus - as the executor is single-threaded, it's not possible for it to be running multiple tasks at once. My (almost certainly correct) guess is that when scheduling at fixed rate, if the first invocation takes longer than the period, the next invocation will start immediately."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1235083]-[1799302475]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Markus - as the executor is single-threaded, it's not possible for it to be running multiple tasks at once. My (almost certainly correct) guess is that when scheduling at fixed rate, if the first invocation takes longer than the period, the next invocation will start immediately."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Markus",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "rate":1,
+                        "singl":1,
+                        "task":1,
+                        "markus":1,
+                        "invoc":2,
+                        "correct":1,
+                        "run":1,
+                        "fix":1,
+                        "thread":1,
+                        "take":1,
+                        "longer":1,
+                        "schedul":1,
+                        "immedi":1,
+                        "guess":1,
+                        "start":1,
+                        "executor":1,
+                        "multipl":1,
+                        "period":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1229047,
+          "postId":1388569,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":16853,
+            "displayName":"oxbow_lakes",
+            "reputation":75132
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The 1000-processing time issue is a bug in the code. My answer is explanation as to why the whole approach is flawed, is a correct answer and I can't quite see how it's worthy of a downvote"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1229047]-[-564976200]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The 1000-processing time issue is a bug in the code. My answer is explanation as to why the whole approach is flawed, is a correct answer and I can't quite see how it's worthy of a downvote"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "process":1,
+                        "correct":1,
+                        "issu":1,
+                        "flaw":1,
+                        "code":1,
+                        "explan":1,
+                        "bug":1,
+                        "downvot":1,
+                        "answer":2,
+                        "approach":1,
+                        "time":1,
+                        "worthi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1229037,
+          "postId":1388569,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":12960,
+            "displayName":"Brian Agnew",
+            "reputation":154342
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Isn't the simpler issue that he should be sleeping for (1000-processingtime), regardless of real-time issues ?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1229037]-[-543861944]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Isn't the simpler issue that he should be sleeping for (1000-processingtime), regardless of real-time issues ?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "real":1,
+                        "sleep":1,
+                        "issu":2,
+                        "isn":1,
+                        "time":1,
+                        "processingtim":1,
+                        "simpler":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1229114,
+          "postId":1388569,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":12960,
+            "displayName":"Brian Agnew",
+            "reputation":154342
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Well, I think the immediate question *is* where's the bug in the code. Following up with the issue that you can't do this reliably is worthwhile, however. Perhaps the downvote was too harsh. Removed."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1229114]-[875780414]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Well, I think the immediate question *is* where's the bug in the code. Following up with the issue that you can't do this reliably is worthwhile, however. Perhaps the downvote was too harsh. Removed."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "remov":1,
+                        "reliabl":1,
+                        "issu":1,
+                        "code":1,
+                        "bug":1,
+                        "worthwhil":1,
+                        "downvot":1,
+                        "harsh":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1363675,
+          "postId":1388569,
+          "creationDate":"2009-10-02",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":111791,
+            "displayName":"Markus",
+            "reputation":202
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@oxbow_lakes Do you have an idea how the ScheduledExecutorService internally works? Because I'm trying to compare some sleep variants within my master thesis this information would be very useful for me..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1363675]-[-988475496]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@oxbow_lakes Do you have an idea how the ScheduledExecutorService internally works? Because I'm trying to compare some sleep variants within my master thesis this information would be very useful for me..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"oxbow_lakes",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ScheduledExecutorService",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "lake":1,
+                        "master":1,
+                        "idea":1,
+                        "sleep":1,
+                        "variant":1,
+                        "work":1,
+                        "thesi":1,
+                        "inform":1,
+                        "compar":1,
+                        "schedul":1,
+                        "oxbow":1,
+                        "executor":1,
+                        "intern":1,
+                        "servic":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ScheduledExecutorService",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1365292,
+          "postId":1388569,
+          "creationDate":"2009-10-02",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":16853,
+            "displayName":"oxbow_lakes",
+            "reputation":75132
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"What do you want to know? Are you asking about the Java code or the `sun.misc.Unsafe` class? Why not ask another question on SO; it will be sure to be answered!"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388569-cu1365292]-[1771305031]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"What do you want to know? Are you asking about the Java code or the `sun.misc.Unsafe` class? Why not ask another question on SO; it will be sure to be answered!"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"sun",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"misc",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Unsafe",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "sun":1,
+                        "code":1,
+                        "misc":1,
+                        "answer":1,
+                        "unsaf":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"sun",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"misc",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Unsafe",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2009-09-07",
+      "lastActivityDate":"2011-03-21",
+      "lastEditDate":"2011-03-21",
+      "score":10,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":16853,
+        "displayName":"oxbow_lakes",
+        "reputation":75132
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You <strong>cannot sleep for an <em>exact</em> amount of time using standard Java</strong> due to the fact that Java offers no absolute guarantees about thread-scheduling. Java is affected by when it is allotted CPU time by the OS and your program will be affected by garbage-collection pauses, which are unpredictable.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[315364295]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You <strong>cannot sleep for an <em>exact</em> amount of time using standard Java</strong> due to the fact that Java offers no absolute guarantees about thread-scheduling. Java is affected by when it is allotted CPU time by the OS and your program will be affected by garbage-collection pauses, which are unpredictable.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "program":1,
+                    "due":1,
+                    "standard":1,
+                    "paus":1,
+                    "unpredict":1,
+                    "allot":1,
+                    "sleep":1,
+                    "strong":2,
+                    "affect":2,
+                    "amount":1,
+                    "exact":1,
+                    "fact":1,
+                    "guarante":1,
+                    "thread":1,
+                    "cpu":1,
+                    "absolut":1,
+                    "offer":1,
+                    "schedul":1,
+                    "collect":1,
+                    "time":2,
+                    "garbag":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you do need predictable execution then you need to look at the <a href=\"http://www.rtsj.org/\"rel=\"nofollow\">realtime-specification for Java</a>. <em>Which is clealy overkill here!</em></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[-595977080]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you do need predictable execution then you need to look at the <a href=\"http://www.rtsj.org/\"rel=\"nofollow\">realtime-specification for Java</a>. <em>Which is clealy overkill here!</em></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "overkil":1,
+                    "rel":1,
+                    "realtim":1,
+                    "nofollow":1,
+                    "specif":1,
+                    "predict":1,
+                    "org":1,
+                    "rtsj":1,
+                    "href":1,
+                    "cleali":1,
+                    "http":1,
+                    "execut":1,
+                    "www":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can use <code>ScheduledExecutorService</code> in the <code>java.util.concurrent</code> package to execute tasks periodically (either by sleeping for a period, or executing at a particular rate). Usage:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[-519418446]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can use <code>ScheduledExecutorService</code> in the <code>java.util.concurrent</code> package to execute tasks periodically (either by sleeping for a period, or executing at a particular rate). Usage:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ScheduledExecutorService",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rate":1,
+                    "task":1,
+                    "concurr":1,
+                    "util":1,
+                    "sleep":1,
+                    "code":4,
+                    "usag":1,
+                    "schedul":1,
+                    "executor":1,
+                    "servic":1,
+                    "period":2,
+                    "execut":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ScheduledExecutorService",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"import static java.util.concurrent.* Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS) "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[1388569]-[-93665342]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ImportDeclarationNode",
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "isStatic":true,
+                    "isOnDemand":true,
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Executors",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"newSingleThreadScheduledExecutor",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"()."
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"scheduleAtFixedRate",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"(task, 0, 1, TimeUnit.SECONDS) "
+                  }
+                ]
+              },
+              "rawText":"import static javautilconcurrent.* ExecutorsnewSingleThreadScheduledExecutor().scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS) ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "rate":1,
+                    "singl":1,
+                    "task":1,
+                    "executorsnew":1,
+                    "fix":1,
+                    "javautilconcurr":1,
+                    "second":1,
+                    "thread":1,
+                    "schedul":2,
+                    "unit":1,
+                    "time":1,
+                    "executor":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>But this is <em>not exact</em> (see the JavaDoc): </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[950330118]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>But this is <em>not exact</em> (see the JavaDoc): </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"JavaDoc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "doc":1,
+                    "exact":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"JavaDoc",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p><em>Beware however that expiration of a relative delay need not coincide with the current Date at which the task is enabled due to network time synchronization protocols, clock drift, <strong>or other factors</strong></em></p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[829365512]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p><em>Beware however that expiration of a relative delay need not coincide with the current Date at which the task is enabled due to network time synchronization protocols, clock drift, <strong>or other factors</strong></em></p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "network":1,
+                    "due":1,
+                    "delay":1,
+                    "task":1,
+                    "relat":1,
+                    "expir":1,
+                    "bewar":1,
+                    "strong":2,
+                    "drift":1,
+                    "blockquot":2,
+                    "factor":1,
+                    "clock":1,
+                    "date":1,
+                    "enabl":1,
+                    "time":1,
+                    "current":1,
+                    "coincid":1,
+                    "protocol":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>(Emphasis mine)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388569]-[1048445201]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>(Emphasis mine)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "emphasi":1,
+                    "mine":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":1388574,
+      "questionId":1388538,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":1229116,
+          "postId":1388574,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":12960,
+            "displayName":"Brian Agnew",
+            "reputation":154342
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"+1 because I think it's the only answer that addresses the immediate bug in the code."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388574-cu1229116]-[-1301053141]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"+1 because I think it's the only answer that addresses the immediate bug in the code."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "address":1,
+                        "bug":1,
+                        "code":1,
+                        "answer":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1229177,
+          "postId":1388574,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":111791,
+            "displayName":"Markus",
+            "reputation":202
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Mhhh, I'm not sure if 1000 - processingTime is what I really want to have, because in this case the sleep time is only based on the information of the last step. Using my solution I would be able to avoid some time drifting problems. But because I have no influence on the execution overhead, I probably have no other choice than using your solution ... or?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388574-cu1229177]-[-959167840]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Mhhh, I'm not sure if 1000 - processingTime is what I really want to have, because in this case the sleep time is only based on the information of the last step. Using my solution I would be able to avoid some time drifting problems. But because I have no influence on the execution overhead, I probably have no other choice than using your solution ... or?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"processingTime",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "step":1,
+                        "problem":1,
+                        "process":1,
+                        "influenc":1,
+                        "sleep":1,
+                        "drift":1,
+                        "avoid":1,
+                        "base":1,
+                        "overhead":1,
+                        "inform":1,
+                        "choic":1,
+                        "time":3,
+                        "mhhh":1,
+                        "solut":2,
+                        "execut":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1229284,
+          "postId":1388574,
+          "creationDate":"2009-09-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":106114,
+            "displayName":"laura",
+            "reputation":4678
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The only solution what actually comes closer to what you want is scheduleAtFixedRate in the other comments - the downside of which, if I understand your question correctly, is that you would not be sure that a step finishes before the next one begins (being run on different threads and all) - if that is not a problem, then a ScheduledExecutorService would ensure that each step begins 1000 millis after the previous one"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1388574-cu1229284]-[1597772374]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The only solution what actually comes closer to what you want is scheduleAtFixedRate in the other comments - the downside of which, if I understand your question correctly, is that you would not be sure that a step finishes before the next one begins (being run on different threads and all) - if that is not a problem, then a ScheduledExecutorService would ensure that each step begins 1000 millis after the previous one"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"scheduleAtFixedRate",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ScheduledExecutorService",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "rate":1,
+                        "question":1,
+                        "begin":2,
+                        "step":2,
+                        "problem":1,
+                        "previous":1,
+                        "correct":1,
+                        "run":1,
+                        "downsid":1,
+                        "milli":1,
+                        "understand":1,
+                        "fix":1,
+                        "closer":1,
+                        "finish":1,
+                        "thread":1,
+                        "comment":1,
+                        "schedul":2,
+                        "executor":1,
+                        "solut":1,
+                        "servic":1,
+                        "ensur":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ScheduledExecutorService",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2009-09-07",
+      "lastActivityDate":"2009-09-07",
+      "lastEditDate":"2009-09-07",
+      "score":4,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":106114,
+        "displayName":"laura",
+        "reputation":4678
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Why not sleep for <code>1000 - processingTime</code> ? It would be the closest you can get to a correct answer. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388574]-[-401294806]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Why not sleep for <code>1000 - processingTime</code> ? It would be the closest you can get to a correct answer. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"processingTime",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "process":1,
+                    "correct":1,
+                    "sleep":1,
+                    "code":2,
+                    "answer":1,
+                    "time":1,
+                    "closest":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Your solution only works on the first step because it's only correct for the first step. You assume that you will start your processing for each step at <code>referenceTime + (step * 1000)</code>, but you are not taking overhead (thread sleeping, prints, garbage collection) into account. Print out <code>referenceTimeStamp + ((i + 1) * 1000) - beforeTimeStamp</code> to see what I mean</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1388574]-[742703261]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Your solution only works on the first step because it's only correct for the first step. You assume that you will start your processing for each step at <code>referenceTime + (step * 1000)</code>, but you are not taking overhead (thread sleeping, prints, garbage collection) into account. Print out <code>referenceTimeStamp + ((i + 1) * 1000) - beforeTimeStamp</code> to see what I mean</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"referenceTime",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"referenceTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"beforeTimeStamp",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "assum":1,
+                    "step":4,
+                    "process":1,
+                    "print":2,
+                    "correct":1,
+                    "sleep":1,
+                    "stamp":2,
+                    "work":1,
+                    "code":4,
+                    "overhead":1,
+                    "thread":1,
+                    "take":1,
+                    "refer":2,
+                    "account":1,
+                    "collect":1,
+                    "time":3,
+                    "start":1,
+                    "solut":1,
+                    "garbag":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

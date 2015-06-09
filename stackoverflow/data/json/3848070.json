@@ -1,0 +1,4733 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":3848070,
+    "title":"AtomicBoolean vs synchronized block",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":4089355,
+        "postId":3848070,
+        "creationDate":"2010-10-03",
+        "score":1,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":4249,
+          "displayName":"matt b",
+          "reputation":78520
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"You may have had very little contention in the original code to begin with. What led you to thinking this needed to be optimized?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[3848070-cu4089355]-[1560493808]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"You may have had very little contention in the original code to begin with. What led you to thinking this needed to be optimized?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "begin":1,
+                      "led":1,
+                      "code":1,
+                      "optim":1,
+                      "need":1,
+                      "origin":1,
+                      "think":1,
+                      "content":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":4089427,
+        "postId":3848070,
+        "creationDate":"2010-10-03",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":366091,
+          "displayName":"brunodecarvalho",
+          "reputation":1164
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Running performance tests on a lib I wrote. I had a default implementation using synchronized blocks and manual wait()/notify() synchronization. I then tried another version of it using only java.util.concurrent stuff and I got worst results. Here are the classes: http://github.com/brunodecarvalho/hotpotato/blob/master/src/main/java/org/factor45/hotpotato/request/ConcurrentHttpRequestFuture.java and http://github.com/brunodecarvalho/hotpotato/blob/master/src/main/java/org/factor45/hotpotato/request/DefaultHttpRequestFuture.java"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[3848070-cu4089427]-[-1050525768]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Running performance tests on a lib I wrote. I had a default implementation using synchronized blocks and manual wait()/notify() synchronization. I then tried another version of it using only java.util.concurrent stuff and I got worst results. Here are the classes: http://github.com/brunodecarvalho/hotpotato/blob/master/src/main/java/org/factor45/hotpotato/request/ConcurrentHttpRequestFuture.java and http://github.com/brunodecarvalho/hotpotato/blob/master/src/main/java/org/factor45/hotpotato/request/DefaultHttpRequestFuture.java"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "github":2,
+                      "test":1,
+                      "wait":1,
+                      "request":4,
+                      "concurr":2,
+                      "util":1,
+                      "worst":1,
+                      "master":2,
+                      "run":1,
+                      "result":1,
+                      "notifi":1,
+                      "wrote":1,
+                      "hotpotato":4,
+                      "main":2,
+                      "factor":2,
+                      "version":1,
+                      "block":1,
+                      "brunodecarvalho":2,
+                      "lib":1,
+                      "futur":2,
+                      "src":2,
+                      "perform":1,
+                      "stuff":1,
+                      "implement":1,
+                      "class":1,
+                      "org":2,
+                      "manual":1,
+                      "http":4,
+                      "blob":2,
+                      "synchron":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":4089450,
+        "postId":3848070,
+        "creationDate":"2010-10-03",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":366091,
+          "displayName":"brunodecarvalho",
+          "reputation":1164
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"I've come to realize after another micro-benchmark (yes, I do know micro benchmarks are somewhat flawed...) that the problem actually lied in the usage of CountDownLatch over wait()/notify(). Besides, that AtomicBoolean approach wasn't completely safe so I dropped it."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[3848070-cu4089450]-[-1901125453]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"I've come to realize after another micro-benchmark (yes, I do know micro benchmarks are somewhat flawed...) that the problem actually lied in the usage of CountDownLatch over wait()/notify(). Besides, that AtomicBoolean approach wasn't completely safe so I dropped it."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"CountDownLatch",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicBoolean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "count":1,
+                      "wait":1,
+                      "problem":1,
+                      "notifi":1,
+                      "wasn":1,
+                      "safe":1,
+                      "flaw":1,
+                      "drop":1,
+                      "micro":2,
+                      "latch":1,
+                      "approach":1,
+                      "usag":1,
+                      "atom":1,
+                      "complet":1,
+                      "lie":1,
+                      "realiz":1,
+                      "benchmark":2
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"CountDownLatch",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"AtomicBoolean",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "synchronized-block",
+      "atomicboolean"
+    ],
+    "creationDate":"2010-10-03",
+    "lastActivityDate":"2010-10-03",
+    "score":4,
+    "viewCount":5127,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":366091,
+      "displayName":"brunodecarvalho",
+      "reputation":1164
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I was trying to cut thread contention in my code by replacing some <code>synchronized</code> blocks with <code>AtomicBoolean</code>.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-978198179]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I was trying to cut thread contention in my code by replacing some <code>synchronized</code> blocks with <code>AtomicBoolean</code>.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicBoolean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "cut":1,
+                  "code":5,
+                  "block":1,
+                  "thread":1,
+                  "replac":1,
+                  "content":1,
+                  "atom":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Here's an example with <code>synchronized</code>:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-1744321167]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Here's an example with <code>synchronized</code>:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "code":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public void toggleCondition() { synchronized (this.mutex) { if (this.toggled) { return; } this.toggled = true; // do other stuff } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[3848070]-[-422003633]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"toggleCondition",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"SynchronizedStatementNode",
+                        "expression":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"this",
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"IdentifierNode",
+                              "name":"mutex",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "block":{
+                          "type":"BlockNode",
+                          "statements":[
+                            {
+                              "type":"IfStatementNode",
+                              "expression":{
+                                "type":"QualifiedIdentifierNode",
+                                "identifiers":[
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"this",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  {
+                                    "type":"IdentifierNode",
+                                    "name":"toggled",
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "statement":{
+                                "type":"BlockNode",
+                                "statements":[
+                                  {
+                                    "type":"ReturnStatementNode",
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "labels":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ExpressionStatement",
+                              "expression":{
+                                "type":"BinaryExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"=",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "left":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"this",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"toggled",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "right":{
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"BooleanLiteralNode",
+                                    "valueRep":"true"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  {
+                                    "text":"// do other stuff } } \n"
+                                  }
+                                ]
+                              },
+                              "labels":[
+                                
+                              ]
+                            }
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public void toggleCondition() { synchronized (this.mutex) { if (this.toggled) { return; } this.toggled = true; // do other stuff } } \n...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "condit":1,
+                  "mutex":1,
+                  "stuff":1,
+                  "true":1,
+                  "toggl":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>And the alternative with <code>AtomicBoolean</code>:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-1898958016]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>And the alternative with <code>AtomicBoolean</code>:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicBoolean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "atom":1,
+                  "code":2,
+                  "altern":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public void toggleCondition() { if (!this.condition.getAndSet(true)) { // do other stuff } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[3848070]-[-1619592324]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"MethodDeclaratorNode",
+                  "modifiers":[
+                    {
+                      "type":"KeywordModifierNode",
+                      "value":"public",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "returnType":{
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"toggleCondition",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "parameters":{
+                    "type":"FormalParametersNode",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "arrayReturnType":[
+                    
+                  ],
+                  "body":{
+                    "type":"BlockNode",
+                    "statements":[
+                      {
+                        "type":"IfStatementNode",
+                        "expression":{
+                          "type":"PrefixOperatorExpressionNode",
+                          "operator":{
+                            "type":"OperatorNode",
+                            "symbol":"!",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "argument":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"this",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"condition",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getAndSet",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"LiteralNode",
+                                  "node":{
+                                    "type":"BooleanLiteralNode",
+                                    "valueRep":"true"
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "statement":{
+                          "type":"BlockNode",
+                          "statements":[
+                            
+                          ],
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            {
+                              "text":"// do other stuff } } \n"
+                            }
+                          ]
+                        },
+                        "labels":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"public void toggleCondition() { if (!this.condition.getAndSet(true)) { // do other stuff } } \n...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "condit":2,
+                  "set":1,
+                  "stuff":1,
+                  "true":1,
+                  "toggl":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"this",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"condition",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getAndSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"BooleanLiteralNode",
+                            "valueRep":"true"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Taking advantage of <code>AtomicBoolean</code>'s CAS property should be way faster than relying on synchronization so I ran a <a href=\"http://bruno.factor45.org/dumpster/Test.java\"rel=\"nofollow\">little micro-benchmark</a>.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[1714174949]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Taking advantage of <code>AtomicBoolean</code>'s CAS property should be way faster than relying on synchronization so I ran a <a href=\"http://bruno.factor45.org/dumpster/Test.java\"rel=\"nofollow\">little micro-benchmark</a>.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicBoolean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "properti":1,
+                  "test":1,
+                  "faster":1,
+                  "ran":1,
+                  "rel":1,
+                  "cas":1,
+                  "factor":1,
+                  "code":2,
+                  "nofollow":1,
+                  "advantag":1,
+                  "take":1,
+                  "micro":1,
+                  "atom":1,
+                  "reli":1,
+                  "org":1,
+                  "href":1,
+                  "dumpster":1,
+                  "http":1,
+                  "benchmark":1,
+                  "synchron":1,
+                  "bruno":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>For 10 concurrent threads and 1000000 iterations, <code>AtomicBoolean</code> comes in only slightly faster than <code>synchronized</code> block.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-1583712973]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>For 10 concurrent threads and 1000000 iterations, <code>AtomicBoolean</code> comes in only slightly faster than <code>synchronized</code> block.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicBoolean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "faster":1,
+                  "concurr":1,
+                  "slight":1,
+                  "code":4,
+                  "block":1,
+                  "thread":1,
+                  "iter":1,
+                  "atom":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Average time (per thread) spent on toggleCondition() with AtomicBoolean: 0.0338</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-1899334703]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Average time (per thread) spent on toggleCondition() with AtomicBoolean: 0.0338</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"toggleCondition",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicBoolean",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "condit":1,
+                  "averag":1,
+                  "thread":1,
+                  "atom":1,
+                  "time":1,
+                  "toggl":1,
+                  "spent":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Average time (per thread) spent on toggleCondition() with synchronized: 0.0357</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[1764724631]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Average time (per thread) spent on toggleCondition() with synchronized: 0.0357</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"toggleCondition",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "condit":1,
+                  "averag":1,
+                  "thread":1,
+                  "time":1,
+                  "toggl":1,
+                  "spent":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I know micro-benchmarks are worth what they're worth but shouldn't the difference be higher?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[3848070]-[-1767498432]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I know micro-benchmarks are worth what they're worth but shouldn't the difference be higher?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "higher":1,
+                  "differ":1,
+                  "worth":2,
+                  "micro":1,
+                  "shouldn":1,
+                  "benchmark":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":3848163,
+      "questionId":3848070,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":4089407,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":366091,
+            "displayName":"brunodecarvalho",
+            "reputation":1164
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I'm only clocking the time it takes to call toggleCondition()."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4089407]-[1956572401]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I'm only clocking the time it takes to call toggleCondition()."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"toggleCondition",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "condit":1,
+                        "clock":1,
+                        "take":1,
+                        "time":1,
+                        "toggl":1,
+                        "call":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":4089449,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":139985,
+            "displayName":"Stephen C",
+            "reputation":291715
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I know that. The problem is that the way that the benchmark is written means that there is almost no contention. Change the code so that there is significant contention and I expect you will see a performance difference."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4089449]-[1477039549]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I know that. The problem is that the way that the benchmark is written means that there is almost no contention. Change the code so that there is significant contention and I expect you will see a performance difference."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "problem":1,
+                        "differ":1,
+                        "mean":1,
+                        "code":1,
+                        "expect":1,
+                        "signific":1,
+                        "written":1,
+                        "perform":1,
+                        "content":2,
+                        "benchmark":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":4089512,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":366091,
+            "displayName":"brunodecarvalho",
+            "reputation":1164
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Check my replies on the comment from matt b on the question. In a real use case I was reading worse values for the version using AtomicBoolean; but it seems it was actually CountDownLatch causing the slowdown. Still, how do you suggest I increase contention there?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4089512]-[-624084344]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Check my replies on the comment from matt b on the question. In a real use case I was reading worse values for the version using AtomicBoolean; but it seems it was actually CountDownLatch causing the slowdown. Still, how do you suggest I increase contention there?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"AtomicBoolean",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"CountDownLatch",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "question":1,
+                        "count":1,
+                        "real":1,
+                        "suggest":1,
+                        "wors":1,
+                        "matt":1,
+                        "version":1,
+                        "check":1,
+                        "repli":1,
+                        "comment":1,
+                        "valu":1,
+                        "increas":1,
+                        "content":1,
+                        "caus":1,
+                        "latch":1,
+                        "slowdown":1,
+                        "atom":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"AtomicBoolean",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"CountDownLatch",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":4089655,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":139985,
+            "displayName":"Stephen C",
+            "reputation":291715
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Like I said ... change each thread's `run` method to call toggleCondition() a large number of times."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4089655]-[-1851849995]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Like I said ... change each thread's `run` method to call toggleCondition() a large number of times."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"toggleCondition",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "number":1,
+                        "chang":1,
+                        "method":1,
+                        "condit":1,
+                        "run":1,
+                        "thread":1,
+                        "larg":1,
+                        "time":1,
+                        "toggl":1,
+                        "call":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":4089767,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":366091,
+            "displayName":"brunodecarvalho",
+            "reputation":1164
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Kind of goes against the scenario I intended to test (only one toggle could occur) but I'll give it a try..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4089767]-[-1597610229]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Kind of goes against the scenario I intended to test (only one toggle could occur) but I'll give it a try..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "scenario":1,
+                        "test":1,
+                        "occur":1,
+                        "intend":1,
+                        "give":1,
+                        "kind":1,
+                        "toggl":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":4092927,
+          "postId":3848163,
+          "creationDate":"2010-10-03",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":366091,
+            "displayName":"brunodecarvalho",
+            "reputation":1164
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Regarding your EDIT, yes I have. I don't have a performance issue, I was just being curious; last I heard it wasn't a bad thing."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu4092927]-[103083383]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Regarding your EDIT, yes I have. I don't have a performance issue, I was just being curious; last I heard it wasn't a bad thing."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "heard":1,
+                        "bad":1,
+                        "thing":1,
+                        "issu":1,
+                        "wasn":1,
+                        "edit":1,
+                        "curious":1,
+                        "perform":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":22206623,
+          "postId":3848163,
+          "creationDate":"2013-03-26",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":139985,
+            "displayName":"Stephen C",
+            "reputation":291715
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@brunodecarvalho - curiosity is not a bad thing. However, you should focus your curiosity on something that is likely to matter. Otherwise you are just wasting your time ... like hunting for unicorns."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[3848163-cu22206623]-[1993963070]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@brunodecarvalho - curiosity is not a bad thing. However, you should focus your curiosity on something that is likely to matter. Otherwise you are just wasting your time ... like hunting for unicorns."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "wast":1,
+                        "bad":1,
+                        "thing":1,
+                        "brunodecarvalho":1,
+                        "focus":1,
+                        "unicorn":1,
+                        "matter":1,
+                        "time":1,
+                        "hunt":1,
+                        "curios":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2010-10-03",
+      "lastActivityDate":"2010-10-03",
+      "lastEditDate":"2010-10-03",
+      "score":4,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":139985,
+        "displayName":"Stephen C",
+        "reputation":291715
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>I know micro-benchmarks are worth what they're worth but shouldn't the difference be higher?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[171419989]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>I know micro-benchmarks are worth what they're worth but shouldn't the difference be higher?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "higher":1,
+                    "differ":1,
+                    "blockquot":2,
+                    "worth":2,
+                    "micro":1,
+                    "shouldn":1,
+                    "benchmark":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I think the problem is in your benchmark. It looks like each thread is going to toggle the condition just once. The benchmark will spend most of its time creating and destroying threads. The chance that any given thread will be toggling a condition at the same time as any other thread is toggling it will be close to zero.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-220033078]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I think the problem is in your benchmark. It looks like each thread is going to toggle the condition just once. The benchmark will spend most of its time creating and destroying threads. The chance that any given thread will be toggling a condition at the same time as any other thread is toggling it will be close to zero.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "spend":1,
+                    "problem":1,
+                    "condit":2,
+                    "thread":4,
+                    "destroy":1,
+                    "time":2,
+                    "toggl":3,
+                    "close":1,
+                    "creat":1,
+                    "chanc":1,
+                    "benchmark":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>An AtomicBoolean has a performance advantage over primitive locking when there is significant contention for the condition. For an uncontended condition, I'd expect to see little difference.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-715992002]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>An AtomicBoolean has a performance advantage over primitive locking when there is significant contention for the condition. For an uncontended condition, I'd expect to see little difference.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "differ":1,
+                    "condit":2,
+                    "lock":1,
+                    "advantag":1,
+                    "expect":1,
+                    "signific":1,
+                    "perform":1,
+                    "content":1,
+                    "atom":1,
+                    "primit":1,
+                    "uncontend":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicBoolean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Change your benchmark so that each thread toggles the condition a few million times. That will guarantee lots of lock contention, and I expect you will see a performance difference.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-857346302]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Change your benchmark so that each thread toggles the condition a few million times. That will guarantee lots of lock contention, and I expect you will see a performance difference.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "chang":1,
+                    "differ":1,
+                    "condit":1,
+                    "lock":1,
+                    "guarante":1,
+                    "thread":1,
+                    "expect":1,
+                    "perform":1,
+                    "content":1,
+                    "lot":1,
+                    "time":1,
+                    "million":1,
+                    "toggl":1,
+                    "benchmark":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>EDIT</strong></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-831946442]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>EDIT</strong></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strong":2,
+                    "edit":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If the scenario you intended to test only involved one toggle per thread (and 10 threads), then it is unlikely that your application would experience contention, and therefore it is unlikely that using AtomicBoolean will make any difference.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-1649827089]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If the scenario you intended to test only involved one toggle per thread (and 10 threads), then it is unlikely that your application would experience contention, and therefore it is unlikely that using AtomicBoolean will make any difference.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicBoolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "scenario":1,
+                    "test":1,
+                    "involv":1,
+                    "differ":1,
+                    "experi":1,
+                    "intend":1,
+                    "thread":2,
+                    "applic":1,
+                    "content":1,
+                    "make":1,
+                    "atom":1,
+                    "toggl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicBoolean",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>At this point, I should ask why you are focusing your attention on this particular aspect. Have you profiled your application and determined that <em>really</em> you have a lock contention problem? Or are you just guessing? Have you been given the standard lecture on the evils of premature optimization yet??</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848163]-[-2028180081]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>At this point, I should ask why you are focusing your attention on this particular aspect. Have you profiled your application and determined that <em>really</em> you have a lock contention problem? Or are you just guessing? Have you been given the standard lecture on the evils of premature optimization yet??</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "determin":1,
+                    "point":1,
+                    "profil":1,
+                    "standard":1,
+                    "problem":1,
+                    "aspect":1,
+                    "lock":1,
+                    "optim":1,
+                    "lectur":1,
+                    "attent":1,
+                    "focus":1,
+                    "applic":1,
+                    "content":1,
+                    "prematur":1,
+                    "guess":1,
+                    "evil":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":3848177,
+      "questionId":3848070,
+      "comments":[
+        
+      ],
+      "creationDate":"2010-10-03",
+      "lastActivityDate":"2010-10-03",
+      "lastEditDate":"2010-10-03",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":177800,
+        "displayName":"Jarrod Roberson",
+        "reputation":35344
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Looking at the actual implementation, I mean looking at the code is way better than some microbenchmark ( which are less than useless in Java or any other GC runtime ), I am not surprised it isn't &quot;significantly faster&quot;. It is basically doing an implicit synchronized section.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848177]-[-1762151218]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Looking at the actual implementation, I mean looking at the code is way better than some microbenchmark ( which are less than useless in Java or any other GC runtime ), I am not surprised it isn't &quot;significantly faster&quot;. It is basically doing an implicit synchronized section.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "faster":1,
+                    "runtim":1,
+                    "useless":1,
+                    "microbenchmark":1,
+                    "section":1,
+                    "surpris":1,
+                    "code":1,
+                    "implicit":1,
+                    "signific":1,
+                    "isn":1,
+                    "implement":1,
+                    "quot":2,
+                    "basic":1,
+                    "actual":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"/** * Atomically sets to the given value and returns the previous value. * * @param newValue the new value * @return the previous value */ public final boolean getAndSet(boolean newValue) { for (;;) { boolean current = get(); if (compareAndSet(current, newValue)) return current; } } /** * Atomically sets the value to the given updated value * if the current value {@code ==} the expected value. * * @param expect the expected value * @param update the new value * @return true if successful. False return indicates that * the actual value was not equal to the expected value. */ public final boolean compareAndSet(boolean expect, boolean update) { int e = expect ? 1 : 0; int u = update ? 1 : 0; return unsafe.compareAndSwapInt(this, valueOffset, e, u); } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[3848177]-[1575920529]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"/** * Atomically sets to the given value and returns the previous value. * * @param "
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"newValue",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" the new value * @return the previous value */ "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"getAndSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"PrimitiveTypeNode",
+                          "name":"boolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"newValue",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ForLoopStatementNode",
+                          "forControl":{
+                            "type":"ForExpressionControlNode",
+                            "init":[
+                              
+                            ],
+                            "update":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "statement":{
+                            "type":"BlockNode",
+                            "statements":[
+                              {
+                                "type":"LocalVariableDeclarationStatementNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "declarators":{
+                                  "type":"VariableDeclaratorsNode",
+                                  "declarators":[
+                                    {
+                                      "type":"VariableDeclaratorNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"current",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "arrayDepth":[
+                                        
+                                      ],
+                                      "assignment":{
+                                        "type":"VariableAssignmentNode",
+                                        "variableAssignment":{
+                                          "type":"VariableExpressionInitNode",
+                                          "expression":{
+                                            "type":"MethodInvocationNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"get",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "args":{
+                                              "type":"ExpressionListNode",
+                                              "arguments":[
+                                                
+                                              ],
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "varType":{
+                                        "type":"PrimitiveTypeNode",
+                                        "name":"boolean",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"IfStatementNode",
+                                "expression":{
+                                  "type":"MethodInvocationNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"compareAndSet",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "args":{
+                                    "type":"ExpressionListNode",
+                                    "arguments":[
+                                      {
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"current",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"newValue",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "statement":{
+                                  "type":"ReturnStatementNode",
+                                  "expression":{
+                                    "type":"QualifiedIdentifierNode",
+                                    "identifiers":[
+                                      {
+                                        "type":"IdentifierNode",
+                                        "name":"current",
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "labels":[
+                                    
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "labels":[
+                                  
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        {
+                          "text":"/** * Atomically sets the value to the given updated value * if the current value {@code ==} the expected value. * * @param expect the expected value * @param update the new value * @return true if successful. False return indicates that * the actual value was not equal to the expected value. */"
+                        }
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"compareAndSet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"PrimitiveTypeNode",
+                          "name":"boolean",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"expect",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              
+                            ],
+                            "parameterType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"boolean",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"update",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "body":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"e",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"ConditionalExpressionNode",
+                                      "condition":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"expect",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "thenExp":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"1"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "elseExp":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"0"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"LocalVariableDeclarationStatementNode",
+                          "modifiers":[
+                            
+                          ],
+                          "declarators":{
+                            "type":"VariableDeclaratorsNode",
+                            "declarators":[
+                              {
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"u",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ],
+                                "assignment":{
+                                  "type":"VariableAssignmentNode",
+                                  "variableAssignment":{
+                                    "type":"VariableExpressionInitNode",
+                                    "expression":{
+                                      "type":"ConditionalExpressionNode",
+                                      "condition":{
+                                        "type":"QualifiedIdentifierNode",
+                                        "identifiers":[
+                                          {
+                                            "type":"IdentifierNode",
+                                            "name":"update",
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "thenExp":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"1"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "elseExp":{
+                                        "type":"LiteralNode",
+                                        "node":{
+                                          "type":"IntegerLiteralNode",
+                                          "valueRep":"0"
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "varType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ReturnStatementNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"unsafe",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"compareAndSwapInt",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"this",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"valueOffset",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"e",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"u",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"/** * Atomically sets to the given value and returns the previous value. * * @param newValue the new value * @return the previous value */ public final boolean getAndSet(boolean newValue) { for (;;) { boolean current = get(); if (compareAndSet(current, newValue)) return current; } } /** * Atomically sets the value to the given updated value * if the current value {@code ==} the expected value. * * @param expect the expected value * @param update the new value * @return true if successful. False return indicates that * the actual value was not equal to the expected value. */ public final boolean compareAndSet(boolean expect, boolean update) { int e = expect ? 1: 0; int u = update ? 1: 0; return unsafe.compareAndSwapInt(this, valueOffset, e, u); } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "success":1,
+                    "return":1,
+                    "param":3,
+                    "previous":2,
+                    "set":5,
+                    "updat":4,
+                    "code":1,
+                    "offset":1,
+                    "equal":1,
+                    "compar":3,
+                    "expect":6,
+                    "true":1,
+                    "swap":1,
+                    "fals":1,
+                    "atom":2,
+                    "unsaf":1,
+                    "actual":1,
+                    "current":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"get",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"current",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"newValue",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"unsafe",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"compareAndSwapInt",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"this",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"valueOffset",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"e",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"u",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"expect",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"current",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"get",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"boolean",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"newValue",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"e",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConditionalExpressionNode",
+                            "condition":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"expect",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "thenExp":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"1"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "elseExp":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"0"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"update",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"u",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"ConditionalExpressionNode",
+                            "condition":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"update",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "thenExp":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"1"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "elseExp":{
+                              "type":"LiteralNode",
+                              "node":{
+                                "type":"IntegerLiteralNode",
+                                "valueRep":"0"
+                              },
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"PrimitiveTypeNode",
+                        "name":"int",
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>And then this from <code>com.sun.Unsafe.java</code></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848177]-[1194529053]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>And then this from <code>com.sun.Unsafe.java</code></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "unsaf":1,
+                    "sun":1,
+                    "code":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"/** * Atomically update Java variable to &lt;tt&gt;x&lt;/tt&gt; if it is currently * holding &lt;tt&gt;expected&lt;/tt&gt;. * @return &lt;tt&gt;true&lt;/tt&gt; if successful */ public final native boolean compareAndSwapInt(Object o, long offset, int expected, int x); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[3848177]-[63330945]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"/** * Atomically update Java variable to "
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"tt"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      {
+                        "type":"XmlTextNode",
+                        "contents":"x"
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" if it is currently * holding "
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"tt"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      {
+                        "type":"XmlTextNode",
+                        "contents":"expected"
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":". * @return "
+                  },
+                  {
+                    "type":"XmlNode",
+                    "name":{
+                      "type":"XmlNameNode",
+                      "value":"tt"
+                    },
+                    "attributes":[
+                      
+                    ],
+                    "elements":[
+                      {
+                        "type":"XmlTextNode",
+                        "contents":"true"
+                      }
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" if successful */ "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"final",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"native",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"compareAndSwapInt",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Object",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"o",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              
+                            ],
+                            "parameterType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"long",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"offset",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "formalParameterDeclarator":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"expected",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "formalParameterDeclarator":{
+                                    "type":"FormalParameterDeclsNode",
+                                    "modifiers":[
+                                      
+                                    ],
+                                    "parameterType":{
+                                      "type":"PrimitiveTypeNode",
+                                      "name":"int",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "nextDeclarator":{
+                                      "type":"AdditionalFormalParameterDeclNode",
+                                      "variableDeclarator":{
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"x",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"/** * Atomically update Java variable to <tt>x</tt> if it is currently * holding <tt>expected</tt>. * @return <tt>true</tt> if successful */ public final native boolean compareAndSwapInt(Object o, long offset, int expected, int x); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "success":1,
+                    "updat":1,
+                    "object":1,
+                    "hold":1,
+                    "offset":1,
+                    "compar":1,
+                    "expect":2,
+                    "true":1,
+                    "swap":1,
+                    "atom":1,
+                    "variabl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Object",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"boolean",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"long",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"o",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"offset",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"expected",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"x",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>there is no magic in this, resource contention is a bitch and very complex. That is why using <code>final</code> variables and working with immutable data is so prevalent in real concurrent languages like Erlang. All this complexity that eats CPU time is by passed, or at least shifted somewhere less complex.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[3848177]-[916450323]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>there is no magic in this, resource contention is a bitch and very complex. That is why using <code>final</code> variables and working with immutable data is so prevalent in real concurrent languages like Erlang. All this complexity that eats CPU time is by passed, or at least shifted somewhere less complex.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "languag":1,
+                    "concurr":1,
+                    "real":1,
+                    "eat":1,
+                    "data":1,
+                    "shift":1,
+                    "resourc":1,
+                    "immut":1,
+                    "work":1,
+                    "code":2,
+                    "cpu":1,
+                    "content":1,
+                    "erlang":1,
+                    "pass":1,
+                    "magic":1,
+                    "bitch":1,
+                    "time":1,
+                    "variabl":1,
+                    "preval":1,
+                    "complex":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

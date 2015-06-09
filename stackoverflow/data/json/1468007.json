@@ -1,0 +1,3830 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":1468007,
+    "title":"AtomicInteger lazySet vs. set",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "concurrency",
+      "atomic"
+    ],
+    "creationDate":"2009-09-23",
+    "lastActivityDate":"2014-09-03",
+    "lastEditDate":"2014-09-03",
+    "score":52,
+    "viewCount":11050,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":72437,
+      "displayName":"Cheok Yan Cheng",
+      "reputation":13311
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What is the difference between the <code>lazySet</code> and <code>set</code> methods of <code>AtomicInteger</code>? The <a href=\"http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html#lazySet-int-\">documentation</a> doesn't have much to say about <code>lazySet</code>:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1468007]-[1099619312]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What is the difference between the <code>lazySet</code> and <code>set</code> methods of <code>AtomicInteger</code>? The <a href=\"http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html#lazySet-int-\">documentation</a> doesn't have much to say about <code>lazySet</code>:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"AtomicInteger",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "concurr":1,
+                  "util":1,
+                  "document":1,
+                  "differ":1,
+                  "set":4,
+                  "lazi":3,
+                  "oracl":1,
+                  "doc":2,
+                  "code":8,
+                  "javas":1,
+                  "atom":3,
+                  "api":1,
+                  "html":1,
+                  "href":1,
+                  "http":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<blockquote> \n <p>Eventually sets to the given value.</p> \n</blockquote>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1468007]-[1139244582]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<blockquote> \n <p>Eventually sets to the given value.</p> \n</blockquote>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "blockquot":2,
+                  "set":1,
+                  "eventu":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>It seems that the stored value will not be immediately set to the desired value but will instead be scheduled to be set some time in the future. But, what is the practical use of this method? Any example?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[1468007]-[-1810752231]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>It seems that the stored value will not be immediately set to the desired value but will instead be scheduled to be set some time in the future. But, what is the practical use of this method? Any example?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "set":2,
+                  "store":1,
+                  "futur":1,
+                  "desir":1,
+                  "schedul":1,
+                  "time":1,
+                  "immedi":1,
+                  "practic":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":5327457,
+      "questionId":1468007,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":38902344,
+          "postId":5327457,
+          "creationDate":"2014-07-29",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1047667,
+            "displayName":"Nitsan Wakart",
+            "reputation":666
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"lazySet is a write followed by a StoreStore barrier, which does not mandate draining the store buffer. As such the write is in theory not as immediately visible to other cores as a volatile write or a successful CAS operation. Another core using CAS will see which ever value is visible, and cannot force other cores to drain their store buffer. There is no compareAndGet operation in Java, there's compareAndSet and getAndSet though."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[5327457-cu38902344]-[284086956]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"lazySet is a write followed by a StoreStore barrier, which does not mandate draining the store buffer. As such the write is in theory not as immediately visible to other cores as a volatile write or a successful CAS operation. Another core using CAS will see which ever value is visible, and cannot force other cores to drain their store buffer. There is no compareAndGet operation in Java, there's compareAndSet and getAndSet though."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"StoreStore",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"compareAndGet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"compareAndSet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"getAndSet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "success":1,
+                        "mandat":1,
+                        "barrier":1,
+                        "set":3,
+                        "lazi":1,
+                        "drain":2,
+                        "store":4,
+                        "buffer":2,
+                        "cas":2,
+                        "visibl":2,
+                        "theori":1,
+                        "oper":2,
+                        "compar":2,
+                        "immedi":1,
+                        "forc":1,
+                        "core":3,
+                        "write":3
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"StoreStore",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-03-16",
+      "lastActivityDate":"2011-03-16",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":662755,
+        "displayName":"jyluo",
+        "reputation":29
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Here is my understanding, correct me if I am wrong: You can think about lazySet() as &quot;semi&quot; volatile: it's basically a non-volatile variable in terms of reading by other threads, i.e. the value set by lazySet may not be visible to to other threads. But it becomes volatile when another write operation occurs (may be from other threads). The only impact of lazySet I can imagine is compareAndGet. So if you use lazySet(), get() from other threads may still get the old value, but compareAndGet() will always have the new value since it is a write operation.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[5327457]-[-896300199]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Here is my understanding, correct me if I am wrong: You can think about lazySet() as &quot;semi&quot; volatile: it's basically a non-volatile variable in terms of reading by other threads, i.e. the value set by lazySet may not be visible to to other threads. But it becomes volatile when another write operation occurs (may be from other threads). The only impact of lazySet I can imagine is compareAndGet. So if you use lazySet(), get() from other threads may still get the old value, but compareAndGet() will always have the new value since it is a write operation.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndGet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndGet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "wrong":1,
+                    "occur":1,
+                    "correct":1,
+                    "set":5,
+                    "understand":1,
+                    "impact":1,
+                    "term":1,
+                    "lazi":4,
+                    "visibl":1,
+                    "oper":2,
+                    "thread":4,
+                    "compar":2,
+                    "imagin":1,
+                    "quot":2,
+                    "variabl":1,
+                    "basic":1,
+                    "semi":1,
+                    "write":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":1468020,
+      "questionId":1468007,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":1317165,
+          "postId":1468020,
+          "creationDate":"2009-09-23",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":121275,
+            "displayName":"amischiefr",
+            "reputation":1929
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"beat me to it lol"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu1317165]-[850321339]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"beat me to it lol"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "lol":1,
+                        "beat":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1317181,
+          "postId":1468020,
+          "creationDate":"2009-09-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":13531,
+            "displayName":"Michael Myers",
+            "reputation":91367
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"By 8 minutes."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu1317181]-[1704873312]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"By 8 minutes."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "minut":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1317235,
+          "postId":1468020,
+          "creationDate":"2009-09-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":121275,
+            "displayName":"amischiefr",
+            "reputation":1929
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"lol yeah, didn't refresh the page before posting :("
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu1317235]-[-1452107978]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"lol yeah, didn't refresh the page before posting :("
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "post":1,
+                        "refresh":1,
+                        "lol":1,
+                        "page":1,
+                        "yeah":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":1322906,
+          "postId":1468020,
+          "creationDate":"2009-09-24",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":72437,
+            "displayName":"Cheok Yan Cheng",
+            "reputation":13311
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Request from Doug Lea :o"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu1322906]-[-1855849525]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Request from Doug Lea :o"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "doug":1,
+                        "request":1,
+                        "lea":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":2691572,
+          "postId":1468020,
+          "creationDate":"2010-04-20",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":78310,
+            "displayName":"Gaurav",
+            "reputation":740
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Could someone dumb it down for the rest of us? :("
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu2691572]-[1244442566]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Could someone dumb it down for the rest of us? :("
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "dumb":1,
+                        "rest":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":2963307,
+          "postId":1468020,
+          "creationDate":"2010-05-26",
+          "score":5,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":154949,
+            "displayName":"yawn",
+            "reputation":3399
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Lazy is the non-volatile version (e.g. the state change is not guaranteed to be visible to all threads which have the `Atomic*` in scope)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu2963307]-[-1725353852]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Lazy is the non-volatile version (e.g. the state change is not guaranteed to be visible to all threads which have the `Atomic*` in scope)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "state":1,
+                        "scope":1,
+                        "lazi":1,
+                        "visibl":1,
+                        "guarante":1,
+                        "version":1,
+                        "thread":1,
+                        "atom":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":6648490,
+          "postId":1468020,
+          "creationDate":"2011-04-27",
+          "score":18,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":450148,
+            "displayName":"Felipe Micaroni Lalli",
+            "reputation":4554
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"what I don't understand is why javadoc is so poor about it."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[1468020-cu6648490]-[1718424793]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"what I don't understand is why javadoc is so poor about it."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "understand":1,
+                        "javadoc":1,
+                        "poor":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2009-09-23",
+      "lastActivityDate":"2009-09-23",
+      "lastEditDate":"2009-09-23",
+      "score":56,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":154949,
+        "displayName":"yawn",
+        "reputation":3399
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Cited straight from <a href=\"http://bugs.sun.com/bugdatabase/view%5Fbug.do?bug%5Fid=6275329\">Bug 6275329</a>:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1468020]-[1392821415]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Cited straight from <a href=\"http://bugs.sun.com/bugdatabase/view%5Fbug.do?bug%5Fid=6275329\">Bug 6275329</a>:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fid":1,
+                    "fbug":1,
+                    "sun":1,
+                    "cite":1,
+                    "bugdatabas":1,
+                    "bug":3,
+                    "straight":1,
+                    "href":1,
+                    "http":1,
+                    "view":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>As probably the last little JSR166 follow-up for Mustang, we added a &quot;lazySet&quot; method to the Atomic classes (AtomicInteger, AtomicReference, etc). This is a niche method that is sometimes useful when fine-tuning code using non-blocking data structures. The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n <p>The main use case is for nulling out fields of nodes in non-blocking data structures solely for the sake of avoiding long-term garbage retention; it applies when it is harmless if other threads see non-null values for a while, but you'd like to ensure that structures are eventually GCable. In such cases, you can get better performance by avoiding the costs of the null volatile-write. There are a few other use cases along these lines for non-reference-based atomics as well, so the method is supported across all of the AtomicX classes.</p> \n <p>For people who like to think of these operations in terms of machine-level barriers on common multiprocessors, lazySet provides a preceeding store-store barrier (which is either a no-op or very cheap on current platforms), but no store-load barrier (which is usually the expensive part of a volatile-write).</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[1468020]-[1441092241]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>As probably the last little JSR166 follow-up for Mustang, we added a &quot;lazySet&quot; method to the Atomic classes (AtomicInteger, AtomicReference, etc). This is a niche method that is sometimes useful when fine-tuning code using non-blocking data structures. The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n <p>The main use case is for nulling out fields of nodes in non-blocking data structures solely for the sake of avoiding long-term garbage retention; it applies when it is harmless if other threads see non-null values for a while, but you'd like to ensure that structures are eventually GCable. In such cases, you can get better performance by avoiding the costs of the null volatile-write. There are a few other use cases along these lines for non-reference-based atomics as well, so the method is supported across all of the AtomicX classes.</p> \n <p>For people who like to think of these operations in terms of machine-level barriers on common multiprocessors, lazySet provides a preceeding store-store barrier (which is either a no-op or very cheap on current platforms), but no store-load barrier (which is usually the expensive part of a volatile-write).</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicReference",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "tune":1,
+                    "support":1,
+                    "method":3,
+                    "harmless":1,
+                    "sole":1,
+                    "cheap":1,
+                    "subsequ":1,
+                    "field":1,
+                    "equival":1,
+                    "sake":1,
+                    "reorder":1,
+                    "mustang":1,
+                    "line":1,
+                    "occur":1,
+                    "barrier":3,
+                    "previous":1,
+                    "jsr":1,
+                    "data":2,
+                    "set":2,
+                    "term":2,
+                    "lazi":2,
+                    "store":3,
+                    "load":1,
+                    "gcabl":1,
+                    "visibl":1,
+                    "eventu":1,
+                    "main":1,
+                    "null":1,
+                    "avoid":2,
+                    "blockquot":2,
+                    "structur":3,
+                    "base":1,
+                    "code":1,
+                    "oper":2,
+                    "guarante":1,
+                    "block":2,
+                    "thread":2,
+                    "common":1,
+                    "cost":1,
+                    "machin":1,
+                    "order":1,
+                    "perform":1,
+                    "valu":1,
+                    "refer":2,
+                    "retent":1,
+                    "nich":1,
+                    "semant":1,
+                    "preceed":1,
+                    "ad":1,
+                    "class":2,
+                    "quot":2,
+                    "atom":5,
+                    "node":1,
+                    "multiprocessor":1,
+                    "fine":1,
+                    "part":1,
+                    "case":2,
+                    "appli":1,
+                    "expens":1,
+                    "platform":1,
+                    "current":1,
+                    "peopl":1,
+                    "action":1,
+                    "write":5,
+                    "garbag":1,
+                    "follow":1,
+                    "ensur":1,
+                    "level":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicInteger",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicReference",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":14553302,
+      "questionId":1468007,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":20305565,
+          "postId":14553302,
+          "creationDate":"2013-01-28",
+          "score":2,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":697449,
+            "displayName":"Paul Bellora",
+            "reputation":29373
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It's hard to understand what you're getting at here. Can you please clarify your point?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14553302-cu20305565]-[-365936518]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It's hard to understand what you're getting at here. Can you please clarify your point?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "hard":1,
+                        "understand":1,
+                        "point":1,
+                        "clarifi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":38902044,
+          "postId":14553302,
+          "creationDate":"2014-07-29",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1047667,
+            "displayName":"Nitsan Wakart",
+            "reputation":666
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"&quot;lazySet == unsafe.putOrderedLong == xchg rw( asm instruction that serve as a soft barrier costing 20 cycles on nehelem intel cpu) on x86 (x86_64) such a barrier is much cheaper performance-wise than volatile or AtomicLong getAndAdd&quot; -&gt; This is not true to the best of my knowledge. lazySet/putOrdered is a MOV to an address, which is why the JMM cookbook describes it as a no-op on x86."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14553302-cu38902044]-[1208305123]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"&quot;lazySet == unsafe.putOrderedLong == xchg rw( asm instruction that serve as a soft barrier costing 20 cycles on nehelem intel cpu) on x86 (x86_64) such a barrier is much cheaper performance-wise than volatile or AtomicLong getAndAdd&quot; -&gt; This is not true to the best of my knowledge. lazySet/putOrdered is a MOV to an address, which is why the JMM cookbook describes it as a no-op on x86."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"unsafe",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrderedLong",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"x86_64",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"AtomicLong",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"getAndAdd",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrdered",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "wise":1,
+                        "mov":1,
+                        "knowledg":1,
+                        "serv":1,
+                        "barrier":2,
+                        "set":2,
+                        "cookbook":1,
+                        "lazi":2,
+                        "xchg":1,
+                        "soft":1,
+                        "intel":1,
+                        "cost":1,
+                        "cheaper":1,
+                        "order":2,
+                        "asm":1,
+                        "cpu":1,
+                        "perform":1,
+                        "true":1,
+                        "address":1,
+                        "put":2,
+                        "nehelem":1,
+                        "quot":2,
+                        "atom":1,
+                        "unsaf":1,
+                        "cycl":1,
+                        "jmm":1,
+                        "add":1,
+                        "describ":1,
+                        "instruct":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"AtomicLong",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-01-27",
+      "lastActivityDate":"2013-01-30",
+      "lastEditDate":"2013-01-30",
+      "score":6,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1974712,
+        "displayName":"porkchop",
+        "reputation":119
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>lazySet can be used for rmw inter thread communication, because xchg is atomic, as for visibility, when writer thread process modify a cache line location, reader thread's processor will see it at the next read, because the cache coherence protocol of intel cpu will garantee LazySet works, but the cache line will be updated at the next read, again, the CPU has to be modern enough.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[-1957155010]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>lazySet can be used for rmw inter thread communication, because xchg is atomic, as for visibility, when writer thread process modify a cache line location, reader thread's processor will see it at the next read, because the cache coherence protocol of intel cpu will garantee LazySet works, but the cache line will be updated at the next read, again, the CPU has to be modern enough.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"LazySet",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":2,
+                    "cach":3,
+                    "writer":1,
+                    "garante":1,
+                    "reader":1,
+                    "line":2,
+                    "process":1,
+                    "set":2,
+                    "updat":1,
+                    "inter":1,
+                    "lazi":2,
+                    "xchg":1,
+                    "visibl":1,
+                    "work":1,
+                    "modern":1,
+                    "thread":3,
+                    "intel":1,
+                    "processor":1,
+                    "cpu":2,
+                    "modifi":1,
+                    "communic":1,
+                    "atom":1,
+                    "rmw":1,
+                    "coher":1,
+                    "protocol":1,
+                    "locat":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"LazySet",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><a href=\"http://sc.tamu.edu/systems/eos/nehalem.pdf\">http://sc.tamu.edu/systems/eos/nehalem.pdf</a> For Nehalem which is a multi-processor platform, the processors have the ability to \u201csnoop\u201d (eavesdrop) the address bus for other processor\u2019s accesses to system memory and to their internal caches. They use this snooping ability to keep their internal caches consistent both with system memory and with the caches in other interconnected processors. If through snooping one processor detects that another processor intends to write to a memory location that it currently has cached in Shared state, the snooping processor will invalidate its cache block forcing it to perform a cache line fill the next time it accesses the same memory location.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[188404843]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><a href=\"http://sc.tamu.edu/systems/eos/nehalem.pdf\">http://sc.tamu.edu/systems/eos/nehalem.pdf</a> For Nehalem which is a multi-processor platform, the processors have the ability to \u201csnoop\u201d (eavesdrop) the address bus for other processor\u2019s accesses to system memory and to their internal caches. They use this snooping ability to keep their internal caches consistent both with system memory and with the caches in other interconnected processors. If through snooping one processor detects that another processor intends to write to a memory location that it currently has cached in Shared state, the snooping processor will invalidate its cache block forcing it to perform a cache line fill the next time it accesses the same memory location.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bus":1,
+                    "cach":6,
+                    "system":4,
+                    "state":1,
+                    "line":1,
+                    "detect":1,
+                    "pdf":2,
+                    "eo":2,
+                    "interconnect":1,
+                    "eavesdrop":1,
+                    "tamu":2,
+                    "share":1,
+                    "intend":1,
+                    "block":1,
+                    "consist":1,
+                    "invalid":1,
+                    "processor":7,
+                    "fill":1,
+                    "perform":1,
+                    "nehalem":3,
+                    "abil":2,
+                    "address":1,
+                    "time":1,
+                    "forc":1,
+                    "href":1,
+                    "platform":1,
+                    "http":2,
+                    "intern":2,
+                    "multi":1,
+                    "write":1,
+                    "locat":2,
+                    "access":2,
+                    "snoop":4,
+                    "memori":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>oracle hotspot jdk for x86 cpu architecture-&gt;</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[467241842]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>oracle hotspot jdk for x86 cpu architecture-&gt;</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "oracl":1,
+                    "hotspot":1,
+                    "architectur":1,
+                    "cpu":1,
+                    "jdk":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>lazySet == unsafe.putOrderedLong == xchg rw( asm instruction that serve as a soft barrier costing 20 cycles on nehelem intel cpu)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[474246081]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>lazySet == unsafe.putOrderedLong == xchg rw( asm instruction that serve as a soft barrier costing 20 cycles on nehelem intel cpu)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrderedLong",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "serv":1,
+                    "barrier":1,
+                    "set":1,
+                    "lazi":1,
+                    "xchg":1,
+                    "soft":1,
+                    "intel":1,
+                    "cost":1,
+                    "order":1,
+                    "asm":1,
+                    "cpu":1,
+                    "put":1,
+                    "nehelem":1,
+                    "unsaf":1,
+                    "cycl":1,
+                    "instruct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>on x86 (x86_64) such a barrier is much cheaper performance-wise than volatile or AtomicLong getAndAdd , </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[-482223144]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>on x86 (x86_64) such a barrier is much cheaper performance-wise than volatile or AtomicLong getAndAdd , </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"x86_64",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicLong",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getAndAdd",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "wise":1,
+                    "barrier":1,
+                    "cheaper":1,
+                    "perform":1,
+                    "atom":1,
+                    "add":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicLong",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In an one producer, one consumer queue scenario, xchg soft barrier can force the line of codes before the lazySet(sequence+1) for producer thread to happen BEFORE any consumer thread code that will consume (work on) the new data, of course consumer thread will need to check atomically that producer sequence was incremented by exactly one using a compareAndSet (sequence, sequence + 1).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[-1481611347]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In an one producer, one consumer queue scenario, xchg soft barrier can force the line of codes before the lazySet(sequence+1) for producer thread to happen BEFORE any consumer thread code that will consume (work on) the new data, of course consumer thread will need to check atomically that producer sequence was incremented by exactly one using a compareAndSet (sequence, sequence + 1).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"compareAndSet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "scenario":1,
+                    "consum":4,
+                    "produc":3,
+                    "queue":1,
+                    "line":1,
+                    "happen":1,
+                    "barrier":1,
+                    "data":1,
+                    "set":2,
+                    "lazi":1,
+                    "xchg":1,
+                    "work":1,
+                    "soft":1,
+                    "code":2,
+                    "thread":3,
+                    "check":1,
+                    "sequenc":4,
+                    "compar":1,
+                    "atom":1,
+                    "forc":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I traced after Hotspot source code to find the exact mapping of the lazySet to cpp code: <a href=\"http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/9b0ca45cd756/src/share/vm/prims/unsafe.cpp\">http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/9b0ca45cd756/src/share/vm/prims/unsafe.cpp</a> Unsafe_setOrderedLong -&gt; SET_FIELD_VOLATILE definition -&gt; OrderAccess:release_store_fence. For x86_64, OrderAccess:release_store_fence is defined as using the xchg instruction. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[1131430761]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I traced after Hotspot source code to find the exact mapping of the lazySet to cpp code: <a href=\"http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/9b0ca45cd756/src/share/vm/prims/unsafe.cpp\">http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/9b0ca45cd756/src/share/vm/prims/unsafe.cpp</a> Unsafe_setOrderedLong -&gt; SET_FIELD_VOLATILE definition -&gt; OrderAccess:release_store_fence. For x86_64, OrderAccess:release_store_fence is defined as using the xchg instruction. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_setOrderedLong",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"_FIELD_VOLATILE",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"OrderAccess",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"release_store_fence",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"x86_64",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"OrderAccess",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"release_store_fence",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "openjdk":2,
+                    "find":1,
+                    "trace":1,
+                    "field":1,
+                    "map":1,
+                    "fenc":2,
+                    "set":3,
+                    "cpp":3,
+                    "lazi":1,
+                    "store":2,
+                    "xchg":1,
+                    "net":2,
+                    "hotspot":3,
+                    "exact":1,
+                    "prim":2,
+                    "code":2,
+                    "share":2,
+                    "releas":2,
+                    "order":3,
+                    "definit":1,
+                    "src":2,
+                    "file":2,
+                    "unsaf":3,
+                    "defin":1,
+                    "href":1,
+                    "http":2,
+                    "sourc":1,
+                    "jdk":4,
+                    "access":2,
+                    "instruct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"OrderAccess",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can see how it is exactly defined in jdk7 (doug lea is working on some new stuff for JDK 8): <a href=\"http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/4fc084dac61e/src/os_cpu/linux_x86/vm/orderAccess_linux_x86.inline.hpp\">http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/4fc084dac61e/src/os_cpu/linux_x86/vm/orderAccess_linux_x86.inline.hpp</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[650780349]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can see how it is exactly defined in jdk7 (doug lea is working on some new stuff for JDK 8): <a href=\"http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/4fc084dac61e/src/os_cpu/linux_x86/vm/orderAccess_linux_x86.inline.hpp\">http://hg.openjdk.java.net/jdk7/jdk7/hotspot/file/4fc084dac61e/src/os_cpu/linux_x86/vm/orderAccess_linux_x86.inline.hpp</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"os_cpu",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"linux_x86",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"IdentifierNode",
+                    "name":"orderAccess_linux_x86",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "openjdk":2,
+                    "doug":1,
+                    "hpp":2,
+                    "work":1,
+                    "net":2,
+                    "hotspot":2,
+                    "order":2,
+                    "cpu":2,
+                    "src":2,
+                    "stuff":1,
+                    "linux":4,
+                    "file":2,
+                    "inlin":2,
+                    "defin":1,
+                    "href":1,
+                    "http":2,
+                    "lea":1,
+                    "jdk":6,
+                    "dac":2,
+                    "access":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>you can also use the hdis to disassemble the lazySet code's assembly in action.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[552564675]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>you can also use the hdis to disassemble the lazySet code's assembly in action.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "assembl":1,
+                    "set":1,
+                    "lazi":1,
+                    "code":1,
+                    "hdis":1,
+                    "action":1,
+                    "disassembl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There is another related question: <a href=\"http://stackoverflow.com/questions/9027590/do-we-need-mfence-when-using-xchg\">Do we need mfence when using xchg</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14553302]-[-1107025789]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There is another related question: <a href=\"http://stackoverflow.com/questions/9027590/do-we-need-mfence-when-using-xchg\">Do we need mfence when using xchg</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":2,
+                    "relat":1,
+                    "xchg":2,
+                    "stackoverflow":1,
+                    "mfenc":2,
+                    "href":1,
+                    "http":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":13522002,
+      "questionId":1468007,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":18512171,
+          "postId":13522002,
+          "creationDate":"2012-11-23",
+          "score":4,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":667301,
+            "displayName":"Mike Pennington",
+            "reputation":18433
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Please try not to simply post hyperlinks to code... those links may change in the future, leaving your answer worthless"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13522002-cu18512171]-[-499009748]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Please try not to simply post hyperlinks to code... those links may change in the future, leaving your answer worthless"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "post":1,
+                        "leav":1,
+                        "code":1,
+                        "simpli":1,
+                        "futur":1,
+                        "link":1,
+                        "hyperlink":1,
+                        "answer":1,
+                        "worthless":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-11-23",
+      "lastActivityDate":"2014-06-19",
+      "lastEditDate":"2014-06-19",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1846346,
+        "displayName":"Mathieu Lalonde",
+        "reputation":31
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Martin Thompson makes a good use of lazySet in his Single Consumer/Producer queue example in this presentation (qcon San Francisco 2012): <a href=\"http://ebookbrowsee.net/martinthompson-lockfreealgorithmsforultimateperformancemovedtoballrooma-pdf-d522161427\"rel=\"nofollow\">http://ebookbrowsee.net/martinthompson-lockfreealgorithmsforultimateperformancemovedtoballrooma-pdf-d522161427</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13522002]-[2086602855]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Martin Thompson makes a good use of lazySet in his Single Consumer/Producer queue example in this presentation (qcon San Francisco 2012): <a href=\"http://ebookbrowsee.net/martinthompson-lockfreealgorithmsforultimateperformancemovedtoballrooma-pdf-d522161427\"rel=\"nofollow\">http://ebookbrowsee.net/martinthompson-lockfreealgorithmsforultimateperformancemovedtoballrooma-pdf-d522161427</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "consum":1,
+                    "singl":1,
+                    "martin":1,
+                    "thompson":1,
+                    "produc":1,
+                    "queue":1,
+                    "good":1,
+                    "pdf":2,
+                    "present":1,
+                    "set":1,
+                    "rel":1,
+                    "ebookbrowse":2,
+                    "lazi":1,
+                    "qcon":1,
+                    "net":2,
+                    "francisco":1,
+                    "nofollow":1,
+                    "san":1,
+                    "make":1,
+                    "martinthompson":2,
+                    "href":1,
+                    "http":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>See the code here: <a href=\"https://github.com/mjpt777/examples\"rel=\"nofollow\">https://github.com/mjpt777/examples</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13522002]-[2117434575]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>See the code here: <a href=\"https://github.com/mjpt777/examples\"rel=\"nofollow\">https://github.com/mjpt777/examples</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "github":2,
+                    "exampl":2,
+                    "rel":1,
+                    "https":2,
+                    "code":1,
+                    "mjpt":2,
+                    "nofollow":1,
+                    "href":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":2702050,
+      "questionId":1468007,
+      "comments":[
+        
+      ],
+      "creationDate":"2010-04-23",
+      "lastActivityDate":"2010-04-23",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":297918,
+        "displayName":"Paul Mclachlan",
+        "reputation":131
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Re: attempt to dumb it down -</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[2702050]-[1743164250]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Re: attempt to dumb it down -</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "dumb":1,
+                    "attempt":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can think of this as a way to treat a volatile field as if it wasn't volatile for a particular store (eg: ref = null;) operation.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[2702050]-[-1628342899]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can think of this as a way to treat a volatile field as if it wasn't volatile for a particular store (eg: ref = null;) operation.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"ref",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"NullLiteralNode"
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      {
+                        "type":"LabelNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"eg",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "field":1,
+                    "store":1,
+                    "ref":1,
+                    "wasn":1,
+                    "oper":1,
+                    "treat":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>That isn't perfectly accurate, but it should be enough that you could make a decision between &quot;OK, I really don't care&quot; and &quot;Hmm, let me think about that for a bit&quot;.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[2702050]-[-794286071]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>That isn't perfectly accurate, but it should be enough that you could make a decision between &quot;OK, I really don't care&quot; and &quot;Hmm, let me think about that for a bit&quot;.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "bit":1,
+                    "hmm":1,
+                    "perfect":1,
+                    "care":1,
+                    "decis":1,
+                    "accur":1,
+                    "isn":1,
+                    "make":1,
+                    "quot":4
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":14020946,
+      "questionId":1468007,
+      "comments":[
+        
+      ],
+      "creationDate":"2012-12-24",
+      "lastActivityDate":"2012-12-24",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":1047667,
+        "displayName":"Nitsan Wakart",
+        "reputation":666
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A wider discussion of the origins and utility of lazySet and the underlying putOrdered can be found here: <a href=\"http://psy-lob-saw.blogspot.co.uk/2012/12/atomiclazyset-is-performance-win-for.html\"rel=\"nofollow\">http://psy-lob-saw.blogspot.co.uk/2012/12/atomiclazyset-is-performance-win-for.html</a></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14020946]-[298789769]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A wider discussion of the origins and utility of lazySet and the underlying putOrdered can be found here: <a href=\"http://psy-lob-saw.blogspot.co.uk/2012/12/atomiclazyset-is-performance-win-for.html\"rel=\"nofollow\">http://psy-lob-saw.blogspot.co.uk/2012/12/atomiclazyset-is-performance-win-for.html</a></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrdered",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "win":2,
+                    "util":1,
+                    "lob":2,
+                    "atomiclazyset":2,
+                    "set":1,
+                    "rel":1,
+                    "lazi":1,
+                    "blogspot":2,
+                    "psi":2,
+                    "found":1,
+                    "discuss":1,
+                    "nofollow":1,
+                    "order":1,
+                    "origin":1,
+                    "wider":1,
+                    "perform":2,
+                    "put":1,
+                    "under":1,
+                    "html":2,
+                    "href":1,
+                    "http":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>To summarize: lazySet is a weak volatile write in the sense that it acts as a store-store and not a store-load fence. This boils down to lazySet being JIT compiled to a MOV instruction that cannot be re-ordered by the compiler rather then the significantly more expensive instruction used for a volatile set.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14020946]-[1461920507]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>To summarize: lazySet is a weak volatile write in the sense that it acts as a store-store and not a store-load fence. This boils down to lazySet being JIT compiled to a MOV instruction that cannot be re-ordered by the compiler rather then the significantly more expensive instruction used for a volatile set.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "boil":1,
+                    "sens":1,
+                    "jit":1,
+                    "mov":1,
+                    "fenc":1,
+                    "summar":1,
+                    "weak":1,
+                    "set":3,
+                    "lazi":2,
+                    "store":3,
+                    "load":1,
+                    "order":1,
+                    "signific":1,
+                    "compil":2,
+                    "expens":1,
+                    "act":1,
+                    "write":1,
+                    "instruct":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>When reading the value you always end up doing a volatile read(with an Atomic*.get() in any case).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14020946]-[-1399842816]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>When reading the value you always end up doing a volatile read(with an Atomic*.get() in any case).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "atom":1,
+                    "read":2,
+                    "end":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>lazySet offers a single writer a consistent volatile write mechanism, i.e. it is perfectly legitimate for a single writer to use lazySet to increment a counter, multiple threads incrementing the same counter will have to resolve the competing writes using CAS, which is exactly what happens under the covers of Atomic* for incAndGet.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14020946]-[-1978945740]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>lazySet offers a single writer a consistent volatile write mechanism, i.e. it is perfectly legitimate for a single writer to use lazySet to increment a counter, multiple threads incrementing the same counter will have to resolve the competing writes using CAS, which is exactly what happens under the covers of Atomic* for incAndGet.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"incAndGet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "singl":2,
+                    "resolv":1,
+                    "writer":2,
+                    "set":2,
+                    "lazi":2,
+                    "perfect":1,
+                    "cas":1,
+                    "legitim":1,
+                    "thread":1,
+                    "cover":1,
+                    "consist":1,
+                    "mechan":1,
+                    "counter":2,
+                    "atom":1,
+                    "offer":1,
+                    "multipl":1,
+                    "increment":2,
+                    "write":2,
+                    "compet":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

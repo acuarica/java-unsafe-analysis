@@ -1,0 +1,3002 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":7557156,
+    "title":"AtomicXXX.lazySet(...) in terms of happens before edges",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":9503541,
+        "postId":7557156,
+        "creationDate":"2011-10-17",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":554431,
+          "displayName":"bestsss",
+          "reputation":6866
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"if the lazySet method acts as store-store barrier, it's ok to use it. Once thread2 sees the flag it's going to be ok to read the structure. The lazySet ensures the write will be visible at some point and all architectures allow for automatic visibility, i.e. if something it's written it will be visible and eventually consistent."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[7557156-cu9503541]-[-2019131958]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"if the lazySet method acts as store-store barrier, it's ok to use it. Once thread2 sees the flag it's going to be ok to read the structure. The lazySet ensures the write will be visible at some point and all architectures allow for automatic visibility, i.e. if something it's written it will be visible and eventually consistent."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"lazySet",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"lazySet",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "read":1,
+                      "method":1,
+                      "point":1,
+                      "barrier":1,
+                      "set":2,
+                      "lazi":2,
+                      "store":2,
+                      "visibl":3,
+                      "eventu":1,
+                      "structur":1,
+                      "automat":1,
+                      "thread":1,
+                      "consist":1,
+                      "written":1,
+                      "architectur":1,
+                      "flag":1,
+                      "act":1,
+                      "see":1,
+                      "write":1,
+                      "ensur":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "concurrency",
+      "atomic"
+    ],
+    "creationDate":"2011-09-26",
+    "lastActivityDate":"2011-09-30",
+    "lastEditDate":"2011-09-28",
+    "score":9,
+    "viewCount":1427,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":811047,
+      "displayName":"BegemoT",
+      "reputation":2080
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What does mean AtomicXXX.lazySet(value) method in terms of happens-before edges, used in most of JMM reasoning? The javadocs is pure on it, and Sun bug <a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6275329\">6275329</a> states:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[1679120290]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What does mean AtomicXXX.lazySet(value) method in terms of happens-before edges, used in most of JMM reasoning? The javadocs is pure on it, and Sun bug <a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6275329\">6275329</a> states:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"AtomicXXX",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "state":1,
+                  "xxx":1,
+                  "set":1,
+                  "sun":2,
+                  "term":1,
+                  "lazi":1,
+                  "pure":1,
+                  "reason":1,
+                  "bugdatabas":1,
+                  "bug":4,
+                  "atom":1,
+                  "href":1,
+                  "http":1,
+                  "jmm":1,
+                  "edg":1,
+                  "javadoc":1,
+                  "view":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<blockquote> \n <p>The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n</blockquote>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[1888301036]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<blockquote> \n <p>The semantics are that the write is guaranteed not to be re-ordered with any previous write, but may be reordered with subsequent operations (or equivalently, might not be visible to other threads) until some other volatile write or synchronizing action occurs).</p> \n</blockquote>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "subsequ":1,
+                  "equival":1,
+                  "reorder":1,
+                  "occur":1,
+                  "previous":1,
+                  "visibl":1,
+                  "blockquot":2,
+                  "oper":1,
+                  "guarante":1,
+                  "thread":1,
+                  "order":1,
+                  "semant":1,
+                  "action":1,
+                  "write":3,
+                  "synchron":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>But this not a reasoning about HB edges, so it confuses me. Does it mean what lazySet() semantics can't be expressed in terms of HB edges? </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[-268894380]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>But this not a reasoning about HB edges, so it confuses me. Does it mean what lazySet() semantics can't be expressed in terms of HB edges? </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "set":1,
+                  "term":1,
+                  "lazi":1,
+                  "reason":1,
+                  "semant":1,
+                  "express":1,
+                  "confus":1,
+                  "edg":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>UPDATE</strong>: I'll try to concretize my question. I can use ordinary volatile field in following scenario:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[2134686823]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>UPDATE</strong>: I'll try to concretize my question. I can use ordinary volatile field in following scenario:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "scenario":1,
+                  "question":1,
+                  "field":1,
+                  "ordinari":1,
+                  "concret":1,
+                  "updat":1,
+                  "strong":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"//thread 1: producer ...fill some data structure myVolatileFlag = 1; //thread 2: consumer while(myVolatileFlag!=1){ //spin-wait } ...use data structure... "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[7557156]-[-385284311]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"//thread 1: producer ...fill some data structure "
+                },
+                {
+                  "type":"ExpressionStatement",
+                  "expression":{
+                    "type":"BinaryExpressionNode",
+                    "operator":{
+                      "type":"OperatorNode",
+                      "symbol":"=",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "left":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"myVolatileFlag",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "right":{
+                      "type":"LiteralNode",
+                      "node":{
+                        "type":"IntegerLiteralNode",
+                        "valueRep":"1"
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"//thread 2: consumer while(myVolatileFlag!=1){ //spin-wait } ...use data structure... \n"
+                      }
+                    ]
+                  },
+                  "labels":[
+                    
+                  ]
+                }
+              ]
+            },
+            "rawText":"//thread 1: producer ...fill some data structure myVolatileFlag = 1; //thread 2: consumer while(myVolatileFlag!=1){ //spin-wait } ...use data structure... \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "wait":1,
+                  "produc":1,
+                  "data":2,
+                  "spin":1,
+                  "structur":2,
+                  "thread":2,
+                  "fill":1,
+                  "flag":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>In this scenario use of &quot;data structure&quot; in consumer is correct, since volatile flag write-read make HB edge, giving guarantee what all writes to &quot;data structure&quot; by producer will be completed, and visible by consumer. But what if I'll use AtomicInteger.lazySet/get instead of volatile write/read in this scenario?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[1369418477]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>In this scenario use of &quot;data structure&quot; in consumer is correct, since volatile flag write-read make HB edge, giving guarantee what all writes to &quot;data structure&quot; by producer will be completed, and visible by consumer. But what if I'll use AtomicInteger.lazySet/get instead of volatile write/read in this scenario?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"AtomicInteger",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "scenario":2,
+                  "consum":2,
+                  "read":2,
+                  "produc":1,
+                  "correct":1,
+                  "data":2,
+                  "set":1,
+                  "lazi":1,
+                  "visibl":1,
+                  "structur":2,
+                  "guarante":1,
+                  "give":1,
+                  "flag":1,
+                  "make":1,
+                  "quot":4,
+                  "atom":1,
+                  "complet":1,
+                  "edg":1,
+                  "write":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"//thread 1: producer ...fill some data structure myAtomicFlag.lazySet(1); //thread 2: consumer while(myAtomicFlag.get()!=1){ //spin-wait } ...use data structure... "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[7557156]-[-462195794]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"//thread 1: producer ...fill some data structure "
+                },
+                {
+                  "type":"MethodInvocationNode",
+                  "qualifiedIdentifier":{
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"myAtomicFlag",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "identifier":{
+                    "type":"IdentifierNode",
+                    "name":"lazySet",
+                    "comments":[
+                      
+                    ]
+                  },
+                  "args":{
+                    "type":"ExpressionListNode",
+                    "arguments":[
+                      {
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"IntegerLiteralNode",
+                          "valueRep":"1"
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "comments":[
+                    {
+                      "text":"//thread 2: consumer while(myAtomicFlag.get()!=1){ //spin-wait } ...use data structure... \n"
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"//thread 1: producer ...fill some data structure myAtomicFlaglazySet(1); //thread 2: consumer while(myAtomicFlag.get()!=1){ //spin-wait } ...use data structure... \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "wait":1,
+                  "produc":1,
+                  "data":2,
+                  "set":1,
+                  "spin":1,
+                  "flaglazi":1,
+                  "structur":2,
+                  "thread":2,
+                  "fill":1,
+                  "flag":1,
+                  "atom":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"myAtomicFlag",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        {
+                          "type":"LiteralNode",
+                          "node":{
+                            "type":"IntegerLiteralNode",
+                            "valueRep":"1"
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      {
+                        "text":"//thread 2: consumer while(myAtomicFlag.get()!=1){ //spin-wait } ...use data structure... \n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>will it be still correct? Can I still really on &quot;data structure&quot; values visibility in consumer thread?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[-1660069058]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>will it be still correct? Can I still really on &quot;data structure&quot; values visibility in consumer thread?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "consum":1,
+                  "correct":1,
+                  "data":1,
+                  "visibl":1,
+                  "structur":1,
+                  "thread":1,
+                  "valu":1,
+                  "quot":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>It is not &quot;from air&quot; question -- I've seen such method in LMAX Disruptor code in exactly this scenario, and I don't understand how to prove it is correct...</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7557156]-[873999720]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>It is not &quot;from air&quot; question -- I've seen such method in LMAX Disruptor code in exactly this scenario, and I don't understand how to prove it is correct...</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "scenario":1,
+                  "lmax":1,
+                  "question":1,
+                  "method":1,
+                  "prove":1,
+                  "disruptor":1,
+                  "correct":1,
+                  "understand":1,
+                  "code":1,
+                  "quot":2,
+                  "air":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":7561051,
+      "questionId":7557156,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":9204655,
+          "postId":7561051,
+          "creationDate":"2011-09-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":811047,
+            "displayName":"BegemoT",
+            "reputation":2080
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"ok, thank you for clarification."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7561051-cu9204655]-[1585735560]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"ok, thank you for clarification."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "clarif":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9202341,
+          "postId":7561051,
+          "creationDate":"2011-09-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":811047,
+            "displayName":"BegemoT",
+            "reputation":2080
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"It is single producer/single consumer case. But I still do not understand why it is safe - how do I can prove what 1) writes done before sequence.lazySet(seq) are all finished and _visible_ to thread 2 after sequence.get() == seq? and what 2) lazySet(seq) is actually written at some finite time: docs says &quot;eventually&quot; -- which can mean &quot;in second&quot;, &quot;in hour&quot;, and even &quot;never&quot;. If look on lazySet as non-volatile write it looks like it can freely be delayed forever by compiler or processor..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7561051-cu9202341]-[271550569]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"It is single producer/single consumer case. But I still do not understand why it is safe - how do I can prove what 1) writes done before sequence.lazySet(seq) are all finished and _visible_ to thread 2 after sequence.get() == seq? and what 2) lazySet(seq) is actually written at some finite time: docs says &quot;eventually&quot; -- which can mean &quot;in second&quot;, &quot;in hour&quot;, and even &quot;never&quot;. If look on lazySet as non-volatile write it looks like it can freely be delayed forever by compiler or processor..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"sequence",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_visible_",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "consum":1,
+                        "singl":2,
+                        "freeli":1,
+                        "prove":1,
+                        "delay":1,
+                        "produc":1,
+                        "set":3,
+                        "understand":1,
+                        "finit":1,
+                        "lazi":3,
+                        "visibl":1,
+                        "eventu":1,
+                        "safe":1,
+                        "finish":1,
+                        "doc":1,
+                        "hour":1,
+                        "thread":1,
+                        "processor":1,
+                        "sequenc":2,
+                        "written":1,
+                        "quot":8,
+                        "seq":3,
+                        "compil":1,
+                        "time":1,
+                        "forev":1,
+                        "write":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9202681,
+          "postId":7561051,
+          "creationDate":"2011-09-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":19450,
+            "displayName":"Ben Manes",
+            "reputation":2095
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"You're correct - eventually is non-deterministic. It is visible when the cache is flushed due to other activity. The GC example is optimistic and doesn't rely on visibility for correctness. My ring buffer example uses the lock release for visibility. In your single producer / consumer example, I'd expect the producer to have a volatile write at a known point later to ensure visibility. As is, it is error prone but may appear to work due to other activity forcing a flush. If you cannot reason about correctness of code, then its best to assume that its incorrect even if it appears to work."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7561051-cu9202681]-[1841238142]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"You're correct - eventually is non-deterministic. It is visible when the cache is flushed due to other activity. The GC example is optimistic and doesn't rely on visibility for correctness. My ring buffer example uses the lock release for visibility. In your single producer / consumer example, I'd expect the producer to have a volatile write at a known point later to ensure visibility. As is, it is error prone but may appear to work due to other activity forcing a flush. If you cannot reason about correctness of code, then its best to assume that its incorrect even if it appears to work."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "consum":1,
+                        "singl":1,
+                        "due":2,
+                        "assum":1,
+                        "point":1,
+                        "cach":1,
+                        "produc":2,
+                        "appear":1,
+                        "correct":3,
+                        "prone":1,
+                        "lock":1,
+                        "buffer":1,
+                        "visibl":4,
+                        "ring":1,
+                        "eventu":1,
+                        "reason":1,
+                        "work":2,
+                        "code":1,
+                        "releas":1,
+                        "activ":2,
+                        "error":1,
+                        "incorrect":1,
+                        "expect":1,
+                        "flush":2,
+                        "reli":1,
+                        "forc":1,
+                        "optimist":1,
+                        "determinist":1,
+                        "write":1,
+                        "ensur":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9194566,
+          "postId":7561051,
+          "creationDate":"2011-09-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":811047,
+            "displayName":"BegemoT",
+            "reputation":2080
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thank you for clarification. May you also take look on update and comment it?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7561051-cu9194566]-[-1637877065]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thank you for clarification. May you also take look on update and comment it?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "comment":1,
+                        "clarif":1,
+                        "updat":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9201064,
+          "postId":7561051,
+          "creationDate":"2011-09-28",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":19450,
+            "displayName":"Ben Manes",
+            "reputation":2095
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"As a set, not a cas, its safe only if it won't overwrite important data when made visible. Multiple producers would compete for a slot, so its not safe. It would be safe if a single consumer drained the buffer, delaying the visibility of a free slot. I was playing with that a few months ago, see my [ring buffer](http://code.google.com/p/concurrentlinkedhashmap/source/browse/trunk/src/main/java/com/googlecode/concurrentlinkedhashmap/RingBuffer.java?spec=svn754&amp;r=749) code."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7561051-cu9201064]-[1783064682]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"As a set, not a cas, its safe only if it won't overwrite important data when made visible. Multiple producers would compete for a slot, so its not safe. It would be safe if a single consumer drained the buffer, delaying the visibility of a free slot. I was playing with that a few months ago, see my [ring buffer](http://code.google.com/p/concurrentlinkedhashmap/source/browse/trunk/src/main/java/com/googlecode/concurrentlinkedhashmap/RingBuffer.java?spec=svn754&amp;r=749) code."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "consum":1,
+                        "singl":1,
+                        "delay":1,
+                        "googl":1,
+                        "produc":1,
+                        "play":1,
+                        "data":1,
+                        "set":1,
+                        "drain":1,
+                        "buffer":3,
+                        "cas":1,
+                        "visibl":2,
+                        "ring":2,
+                        "main":1,
+                        "brows":1,
+                        "safe":3,
+                        "amp":1,
+                        "code":2,
+                        "import":1,
+                        "ago":1,
+                        "src":1,
+                        "spec":1,
+                        "googlecod":1,
+                        "svn":1,
+                        "trunk":1,
+                        "slot":2,
+                        "http":1,
+                        "multipl":1,
+                        "made":1,
+                        "sourc":1,
+                        "overwrit":1,
+                        "won":1,
+                        "compet":1,
+                        "free":1,
+                        "month":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-09-26",
+      "lastActivityDate":"2011-09-26",
+      "score":8,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":19450,
+        "displayName":"Ben Manes",
+        "reputation":2095
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The <code>lazySet</code> operations do not create happens-before edges and are therefore not guaranteed to be immediately visible. This is a low-level optimization that has only a few use-cases, which are mostly in concurrent data structures.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7561051]-[-1948501509]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The <code>lazySet</code> operations do not create happens-before edges and are therefore not guaranteed to be immediately visible. This is a low-level optimization that has only a few use-cases, which are mostly in concurrent data structures.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "data":1,
+                    "set":1,
+                    "lazi":1,
+                    "visibl":1,
+                    "structur":1,
+                    "code":2,
+                    "oper":1,
+                    "guarante":1,
+                    "optim":1,
+                    "low":1,
+                    "immedi":1,
+                    "case":1,
+                    "creat":1,
+                    "edg":1,
+                    "level":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The garbage collection example of nulling out linked list pointers has no user-visible side effects. The nulling is preferred so that if nodes in the list are in different generations, it doesn't force a more expensive collection to be performed to discard the link chain. The use of lazySet maintains hygenic semantics without incurring volatile write overhead.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7561051]-[1890331220]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The garbage collection example of nulling out linked list pointers has no user-visible side effects. The nulling is preferred so that if nodes in the list are in different generations, it doesn't force a more expensive collection to be performed to discard the link chain. The use of lazySet maintains hygenic semantics without incurring volatile write overhead.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "side":1,
+                    "pointer":1,
+                    "effect":1,
+                    "set":1,
+                    "lazi":1,
+                    "discard":1,
+                    "visibl":1,
+                    "null":2,
+                    "overhead":1,
+                    "incur":1,
+                    "link":2,
+                    "perform":1,
+                    "hygen":1,
+                    "semant":1,
+                    "generat":1,
+                    "node":1,
+                    "collect":2,
+                    "forc":1,
+                    "expens":1,
+                    "chain":1,
+                    "user":1,
+                    "write":1,
+                    "garbag":1,
+                    "prefer":1,
+                    "list":2,
+                    "maintain":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Another example is the usage of volatile fields guarded by a lock, such as in <code>ConcurrentHashMap</code>. The fields are volatile to allow lock-free reads, but writes must be performed under a lock to ensure strict consistency. As the lock guarantees the happens-before edge on release, an optimization is to use lazySet when writing to the fields and flushing all of the updates when unlocking. This helps keep the critical section short by avoiding unnecessary stalls and bus traffic.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7561051]-[855229353]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Another example is the usage of volatile fields guarded by a lock, such as in <code>ConcurrentHashMap</code>. The fields are volatile to allow lock-free reads, but writes must be performed under a lock to ensure strict consistency. As the lock guarantees the happens-before edge on release, an optimization is to use lazySet when writing to the fields and flushing all of the updates when unlocking. This helps keep the critical section short by avoiding unnecessary stalls and bus traffic.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "strict":1,
+                    "bus":1,
+                    "critic":1,
+                    "concurr":1,
+                    "field":3,
+                    "map":1,
+                    "set":1,
+                    "updat":1,
+                    "lazi":1,
+                    "lock":4,
+                    "unlock":1,
+                    "section":1,
+                    "avoid":1,
+                    "code":2,
+                    "guarante":1,
+                    "help":1,
+                    "optim":1,
+                    "stall":1,
+                    "hash":1,
+                    "consist":1,
+                    "releas":1,
+                    "perform":1,
+                    "traffic":1,
+                    "usag":1,
+                    "flush":1,
+                    "guard":1,
+                    "edg":1,
+                    "write":2,
+                    "unnecessari":1,
+                    "free":1,
+                    "ensur":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you write a concurrent data structure then <code>lazySet</code> is a good trick to be aware of. Its a low-level optimization so its only worth considering when performance tuning.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7561051]-[1573166178]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you write a concurrent data structure then <code>lazySet</code> is a good trick to be aware of. Its a low-level optimization so its only worth considering when performance tuning.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "tune":1,
+                    "concurr":1,
+                    "good":1,
+                    "trick":1,
+                    "data":1,
+                    "set":1,
+                    "lazi":1,
+                    "structur":1,
+                    "code":2,
+                    "awar":1,
+                    "optim":1,
+                    "low":1,
+                    "worth":1,
+                    "perform":1,
+                    "write":1,
+                    "level":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7557786,
+      "questionId":7557156,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":9503500,
+          "postId":7557786,
+          "creationDate":"2011-10-17",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":554431,
+            "displayName":"bestsss",
+            "reputation":6866
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"the lazySet ensures no write reorder, but do not do so for read one, i.e. consecutive reads may be executed before the value is propagated. for x86 lazySet is just a mov instruction. In the example above, lazySet is fine, imo... and it's great win."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7557786-cu9503500]-[1311432325]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"the lazySet ensures no write reorder, but do not do so for read one, i.e. consecutive reads may be executed before the value is propagated. for x86 lazySet is just a mov instruction. In the example above, lazySet is fine, imo... and it's great win."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "win":1,
+                        "propag":1,
+                        "mov":1,
+                        "imo":1,
+                        "reorder":1,
+                        "set":3,
+                        "lazi":3,
+                        "consecut":1,
+                        "fine":1,
+                        "great":1,
+                        "write":1,
+                        "execut":1,
+                        "ensur":1,
+                        "instruct":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-09-26",
+      "lastActivityDate":"2011-09-30",
+      "lastEditDate":"2011-09-30",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":192444,
+        "displayName":"John Vint",
+        "reputation":21382
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Based on the Javadoc of Unsafe (the putOrderedInt is used in the AtomicInteger.lazySet)</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[-1304249214]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Based on the Javadoc of Unsafe (the putOrderedInt is used in the AtomicInteger.lazySet)</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrderedInt",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"AtomicInteger",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "set":1,
+                    "lazi":1,
+                    "base":1,
+                    "order":1,
+                    "put":1,
+                    "atom":1,
+                    "unsaf":1,
+                    "javadoc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"/** * Version of {@link #putObjectVolatile(Object, long, Object)} * that does not guarantee immediate visibility of the store to * other threads. This method is generally only useful if the * underlying field is a Java volatile (or if an array cell, one * that is otherwise only accessed using volatile accesses). */ public native void putOrderedObject(Object o, long offset, Object x); /** Ordered/Lazy version of {@link #putIntVolatile(Object, long, int)} */ public native void putOrderedInt(Object o, long offset, int x); "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[7557786]-[1052402444]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"/** * Version of {@link #"
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putObjectVolatile",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"(Object, long, Object)} * that does not guarantee immediate visibility of the store to * other threads. This method is generally only useful if the * underlying field is a Java volatile (or if an array cell, one * that is otherwise only accessed using volatile accesses). */ "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"native",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"putOrderedObject",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Object",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"o",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              
+                            ],
+                            "parameterType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"long",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"offset",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "formalParameterDeclarator":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Object",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"x",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"/** Ordered/Lazy version of {@link #putIntVolatile(Object, long, int)} */"
+                      }
+                    ]
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"native",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"putOrderedInt",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Object",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"o",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "formalParameterDeclarator":{
+                            "type":"FormalParameterDeclsNode",
+                            "modifiers":[
+                              
+                            ],
+                            "parameterType":{
+                              "type":"PrimitiveTypeNode",
+                              "name":"long",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "nextDeclarator":{
+                              "type":"AdditionalFormalParameterDeclNode",
+                              "variableDeclarator":{
+                                "type":"VariableDeclaratorNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"offset",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "arrayDepth":[
+                                  
+                                ]
+                              },
+                              "formalParameterDeclarator":{
+                                "type":"FormalParameterDeclsNode",
+                                "modifiers":[
+                                  
+                                ],
+                                "parameterType":{
+                                  "type":"PrimitiveTypeNode",
+                                  "name":"int",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "nextDeclarator":{
+                                  "type":"AdditionalFormalParameterDeclNode",
+                                  "variableDeclarator":{
+                                    "type":"VariableDeclaratorNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"x",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "arrayDepth":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"/** * Version of {@link #putObjectVolatile(Object, long, Object)} * that does not guarantee immediate visibility of the store to * other threads. This method is generally only useful if the * underlying field is a Java volatile (or if an array cell, one * that is otherwise only accessed using volatile accesses). */ public native void putOrderedObject(Object o, long offset, Object x); /** Ordered/Lazy version of {@link #putIntVolatile(Object, long, int)} */ public native void putOrderedInt(Object o, long offset, int x); ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "field":1,
+                    "lazi":1,
+                    "store":1,
+                    "visibl":1,
+                    "object":8,
+                    "array":1,
+                    "guarante":1,
+                    "version":2,
+                    "thread":1,
+                    "offset":2,
+                    "general":1,
+                    "order":3,
+                    "link":2,
+                    "put":4,
+                    "under":1,
+                    "cell":1,
+                    "access":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Object",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"void",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"long",
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"o",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"offset",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"x",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The backing fields in the AtomicXXX classes are volatile. The lazySet seems to write to these fields as if they are not volatile, which would remove the happens-before edges you are expecting. As noted in your link this would be useful for nulling values to be eligible for GC without having to incur the volatile write.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[1921670391]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The backing fields in the AtomicXXX classes are volatile. The lazySet seems to write to these fields as if they are not volatile, which would remove the happens-before edges you are expecting. As noted in your link this would be useful for nulling values to be eligible for GC without having to incur the volatile write.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "elig":1,
+                    "remov":1,
+                    "field":2,
+                    "xxx":1,
+                    "set":1,
+                    "lazi":1,
+                    "null":1,
+                    "incur":1,
+                    "note":1,
+                    "expect":1,
+                    "link":1,
+                    "back":1,
+                    "valu":1,
+                    "class":1,
+                    "atom":1,
+                    "edg":1,
+                    "write":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Edit:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[563059719]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Edit:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "edit":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is to answer your update. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[-481311602]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is to answer your update. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "updat":1,
+                    "answer":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you take a look at the quote you provided from the link then you lose any memory guarantees you had with the volatile write.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[352851218]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you take a look at the quote you provided from the link then you lose any memory guarantees you had with the volatile write.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "provid":1,
+                    "guarante":1,
+                    "link":1,
+                    "quot":1,
+                    "lose":1,
+                    "write":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The lazySet will not be ordered above where it is being written to, but without any other actual synchronization you lose the guarantee that the consumer will see any changes that were written before it. It is perfectly legal to delay the write of the myAtomicFlag and there for any writes before it until some other form of synchronization occurs.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7557786]-[-1524418403]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The lazySet will not be ordered above where it is being written to, but without any other actual synchronization you lose the guarantee that the consumer will see any changes that were written before it. It is perfectly legal to delay the write of the myAtomicFlag and there for any writes before it until some other form of synchronization occurs.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"myAtomicFlag",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "consum":1,
+                    "delay":1,
+                    "occur":1,
+                    "set":1,
+                    "lazi":1,
+                    "perfect":1,
+                    "guarante":1,
+                    "legal":1,
+                    "order":1,
+                    "written":2,
+                    "flag":1,
+                    "atom":1,
+                    "form":1,
+                    "actual":1,
+                    "lose":1,
+                    "write":2,
+                    "synchron":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

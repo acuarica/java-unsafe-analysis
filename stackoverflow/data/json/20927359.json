@@ -1,0 +1,5318 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":20927359,
+    "title":"Single writer multiple reader primitives map",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":31422673,
+        "postId":20927359,
+        "creationDate":"2014-01-04",
+        "score":2,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":596781,
+          "displayName":"Kerrek SB",
+          "reputation":215807
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"How about a simple reader-writer lock, like `std::shared_lock` (C++14)? &quot;High performance&quot; doesn't necessarily correlate with &quot;lock-free&quot;. Lock-freedom is about deterministic latency rather than throughput."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[20927359-cu31422673]-[846985310]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"How about a simple reader-writer lock, like `std::shared_lock` (C++14)? &quot;High performance&quot; doesn't necessarily correlate with &quot;lock-free&quot;. Lock-freedom is about deterministic latency rather than throughput."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"shared_lock",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "latenc":1,
+                      "simpl":1,
+                      "writer":1,
+                      "reader":1,
+                      "lock":4,
+                      "std":1,
+                      "freedom":1,
+                      "share":1,
+                      "correl":1,
+                      "perform":1,
+                      "quot":4,
+                      "necessarili":1,
+                      "throughput":1,
+                      "determinist":1,
+                      "high":1,
+                      "free":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "c++",
+      "multithreading",
+      "c++11"
+    ],
+    "creationDate":"2014-01-04",
+    "lastActivityDate":"2014-01-04",
+    "score":2,
+    "viewCount":298,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1971442,
+      "displayName":"Rajiv",
+      "reputation":730
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I am trying to write an actor implementation in Java. My design requires a high performance map data structure to be used for looking up what thread a particular actor is scheduled on. The look up is done with an int id. All actors have separate ids. I have following requirements:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1072563175]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I am trying to write an actor implementation in Java. My design requires a high performance map data structure to be used for looking up what thread a particular actor is scheduled on. The look up is done with an int id. All actors have separate ids. I have following requirements:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "actor":3,
+                  "design":1,
+                  "map":1,
+                  "requir":2,
+                  "data":1,
+                  "separ":1,
+                  "structur":1,
+                  "thread":1,
+                  "id":1,
+                  "perform":1,
+                  "implement":1,
+                  "schedul":1,
+                  "write":1,
+                  "high":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>i) Keys are <strong>primitive ints</strong>, not Integer classes.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-509777802]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>i) Keys are <strong>primitive ints</strong>, not Integer classes.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "strong":2,
+                  "key":1,
+                  "int":1,
+                  "class":1,
+                  "primit":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>ii) Values are also <strong>primitives</strong>. Values can only cover a few numbers which are known before instantiation of the data structure. A value is just an id of a thread/core so it could be a <strong>short</strong>. Number of threads is less than the number of cores on the machine so it can't really reach a very high number.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-1636617567]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>ii) Values are also <strong>primitives</strong>. Values can only cover a few numbers which are known before instantiation of the data structure. A value is just an id of a thread/core so it could be a <strong>short</strong>. Number of threads is less than the number of cores on the machine so it can't really reach a very high number.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "number":4,
+                  "reach":1,
+                  "instanti":1,
+                  "data":1,
+                  "strong":4,
+                  "structur":1,
+                  "thread":2,
+                  "cover":1,
+                  "machin":1,
+                  "valu":2,
+                  "core":2,
+                  "primit":1,
+                  "high":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>iii)The map is written to by a <strong>single thread</strong>, but is read from <strong>multiple ones</strong>. I want my implementation to be lock-free and without any sharing (false or otherwise). Thus reads should not involve any writes to non thread-local memory.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-1914290826]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>iii)The map is written to by a <strong>single thread</strong>, but is read from <strong>multiple ones</strong>. I want my implementation to be lock-free and without any sharing (false or otherwise). Thus reads should not involve any writes to non thread-local memory.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":2,
+                  "singl":1,
+                  "involv":1,
+                  "map":1,
+                  "local":1,
+                  "lock":1,
+                  "strong":4,
+                  "share":1,
+                  "thread":2,
+                  "iii":1,
+                  "written":1,
+                  "implement":1,
+                  "fals":1,
+                  "multipl":1,
+                  "write":1,
+                  "free":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>iv) Number of writes (by the single thread) will be vastly outnumbered by the reads from multiple reader threads which use the map for look ups.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1747449486]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>iv) Number of writes (by the single thread) will be vastly outnumbered by the reads from multiple reader threads which use the map for look ups.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "number":1,
+                  "singl":1,
+                  "map":1,
+                  "reader":1,
+                  "up":1,
+                  "vast":1,
+                  "thread":2,
+                  "outnumb":1,
+                  "multipl":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>v) The primary operations that are needed:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-1682388731]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>v) The primary operations that are needed:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "primari":1,
+                  "need":1,
+                  "oper":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ol> \n <li><p><code>Set(key, value)</code> and <code>delete(key, value)</code> which are always called from the single writer thread. Most keys that are set are also deleted eventually, so performance after a lot of deletions cannot degrade. New keys (actor-ids) will be generated using an incrementing integer and signify creation of an actor. Deletion of a key(id of an actor) signifies that said actor has exited and will never revive. What this also means is that a key once deleted will never be set again. It's important that we don't accumulate dead space in the map since deletions will occur (actors exit).</p></li> \n <li><p><code>Get(key)</code> called from reader thread.</p></li> \n</ol>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-1389751656]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ol> \n <li><p><code>Set(key, value)</code> and <code>delete(key, value)</code> which are always called from the single writer thread. Most keys that are set are also deleted eventually, so performance after a lot of deletions cannot degrade. New keys (actor-ids) will be generated using an incrementing integer and signify creation of an actor. Deletion of a key(id of an actor) signifies that said actor has exited and will never revive. What this also means is that a key once deleted will never be set again. It's important that we don't accumulate dead space in the map since deletions will occur (actors exit).</p></li> \n <li><p><code>Get(key)</code> called from reader thread.</p></li> \n</ol>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "actor":5,
+                  "singl":1,
+                  "delet":6,
+                  "writer":1,
+                  "map":1,
+                  "reader":1,
+                  "occur":1,
+                  "dead":1,
+                  "set":3,
+                  "mean":1,
+                  "eventu":1,
+                  "degrad":1,
+                  "creation":1,
+                  "key":7,
+                  "code":6,
+                  "reviv":1,
+                  "accumul":1,
+                  "thread":2,
+                  "import":1,
+                  "id":1,
+                  "space":1,
+                  "perform":1,
+                  "lot":1,
+                  "exit":2,
+                  "generat":1,
+                  "call":2,
+                  "signifi":2,
+                  "increment":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>vi) The operation <code>get(key)</code> needs to be <code>eventually consistent</code> but with some caveats. Say the writer thread has changed the pair key1-&gt;value1 to key1-&gt;value2. It is not a problem if one of the readers performs get(key1) and still receives value1. Eventually it should get value2. It's also fine if the pair key1-&gt;value1 has been deleted by the writer thread, and a get(key1) on the reader thread still returns value1. In practice what I mean is that something like Java's <code>putOrderedObject/lazySet/getObjectVolatile</code> , or C++11's <code>std::memory_order_relaxed/std::memory_order_acquire/std::memory_order_release</code> could be incorporated. On the other hand <code>get(key1)</code> should not return an empty value (say -1) if a value is indeed set. I don't mind having a <code>getStrict(key1)</code> operation which I can call if <code>get(key1)</code> returns an empty value to meet this requirement.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-766526639]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>vi) The operation <code>get(key)</code> needs to be <code>eventually consistent</code> but with some caveats. Say the writer thread has changed the pair key1-&gt;value1 to key1-&gt;value2. It is not a problem if one of the readers performs get(key1) and still receives value1. Eventually it should get value2. It's also fine if the pair key1-&gt;value1 has been deleted by the writer thread, and a get(key1) on the reader thread still returns value1. In practice what I mean is that something like Java's <code>putOrderedObject/lazySet/getObjectVolatile</code> , or C++11's <code>std::memory_order_relaxed/std::memory_order_acquire/std::memory_order_release</code> could be incorporated. On the other hand <code>get(key1)</code> should not return an empty value (say -1) if a value is indeed set. I don't mind having a <code>getStrict(key1)</code> operation which I can call if <code>get(key1)</code> returns an empty value to meet this requirement.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"putOrderedObject",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"lazySet",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getObjectVolatile",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"memory_order_relaxed",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"memory_order_acquire",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"memory_order_release",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getStrict",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "chang":1,
+                  "strict":1,
+                  "receiv":1,
+                  "delet":1,
+                  "writer":2,
+                  "reader":2,
+                  "return":2,
+                  "problem":1,
+                  "hand":1,
+                  "requir":1,
+                  "set":2,
+                  "lazi":1,
+                  "std":3,
+                  "eventu":2,
+                  "object":2,
+                  "key":9,
+                  "code":14,
+                  "oper":2,
+                  "thread":3,
+                  "consist":1,
+                  "releas":1,
+                  "mind":1,
+                  "order":4,
+                  "empti":2,
+                  "perform":1,
+                  "put":1,
+                  "meet":1,
+                  "pair":2,
+                  "fine":1,
+                  "acquir":1,
+                  "practic":1,
+                  "call":1,
+                  "relax":1,
+                  "incorpor":1,
+                  "caveat":1,
+                  "memori":3
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Reasons I am not straight away using a library are:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-160555550]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Reasons I am not straight away using a library are:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "librari":1,
+                  "straight":1,
+                  "reason":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>i) <strong>Java collections</strong>: They require wrapper classes, thus not meeting my goals (i) and (ii)</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1919707155]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>i) <strong>Java collections</strong>: They require wrapper classes, thus not meeting my goals (i) and (ii)</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "requir":1,
+                  "goal":1,
+                  "strong":2,
+                  "wrapper":1,
+                  "class":1,
+                  "meet":1,
+                  "collect":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>ii) <strong>Trove, FastUtil</strong> etc: They do have primitive maps, but don't provide for any concurrent access facilities. They also do not optimize for the values being in a sparse range - number of cores in my case.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1082828715]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>ii) <strong>Trove, FastUtil</strong> etc: They do have primitive maps, but don't provide for any concurrent access facilities. They also do not optimize for the values being in a sparse range - number of cores in my case.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"FastUtil",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "spars":1,
+                  "number":1,
+                  "provid":1,
+                  "concurr":1,
+                  "util":1,
+                  "map":1,
+                  "rang":1,
+                  "strong":2,
+                  "trove":1,
+                  "optim":1,
+                  "facil":1,
+                  "valu":1,
+                  "fast":1,
+                  "core":1,
+                  "primit":1,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"FastUtil",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>iii) <strong>Java ConcurrentHashMap/ConcurrentSkipListMap</strong>: They require wrapper classes and do not optimize for the single writer, multiple reader use case.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-1425974403]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>iii) <strong>Java ConcurrentHashMap/ConcurrentSkipListMap</strong>: They require wrapper classes and do not optimize for the single writer, multiple reader use case.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentHashMap",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ConcurrentSkipListMap",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "singl":1,
+                  "concurr":2,
+                  "writer":1,
+                  "map":2,
+                  "reader":1,
+                  "requir":1,
+                  "skip":1,
+                  "strong":2,
+                  "optim":1,
+                  "hash":1,
+                  "iii":1,
+                  "wrapper":1,
+                  "class":1,
+                  "multipl":1,
+                  "list":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentHashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentSkipListMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I realize that these are a lot of requirements so it's fine if the answers address some of the points while remaining ambiguous about some others. Pointing me to source/code or comments on a design would be great. Any explanation of trade-offs would be an added bonus since I am trying to learn how to fish.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1493096502]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I realize that these are a lot of requirements so it's fine if the answers address some of the points while remaining ambiguous about some others. Pointing me to source/code or comments on a design would be great. Any explanation of trade-offs would be an added bonus since I am trying to learn how to fish.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "design":1,
+                  "off":1,
+                  "point":2,
+                  "learn":1,
+                  "bonus":1,
+                  "requir":1,
+                  "trade":1,
+                  "code":1,
+                  "explan":1,
+                  "remain":1,
+                  "comment":1,
+                  "fish":1,
+                  "lot":1,
+                  "address":1,
+                  "answer":1,
+                  "ad":1,
+                  "fine":1,
+                  "ambigu":1,
+                  "sourc":1,
+                  "great":1,
+                  "realiz":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>If I boil my detailed requirements to a few questions they probably are:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-160088073]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>If I boil my detailed requirements to a few questions they probably are:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "detail":1,
+                  "boil":1,
+                  "requir":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>i) How can I optimize for the single-writer/multiple reader use case?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[117997015]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>i) How can I optimize for the single-writer/multiple reader use case?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "singl":1,
+                  "writer":1,
+                  "reader":1,
+                  "optim":1,
+                  "multipl":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>ii) How do I design the <code>get(key)</code> and <code>getStrict(key)</code> operations? Is this the right way of even thinking about it?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[-716807256]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>ii) How do I design the <code>get(key)</code> and <code>getStrict(key)</code> operations? Is this the right way of even thinking about it?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"QualifiedIdentifierNode",
+                  "identifiers":[
+                    {
+                      "type":"IdentifierNode",
+                      "name":"getStrict",
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "strict":1,
+                  "design":1,
+                  "key":2,
+                  "code":4,
+                  "oper":1,
+                  "think":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>iii) How can I design my map to take advantage of the incrementing keys and sparse value range?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[333668862]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>iii) How can I design my map to take advantage of the incrementing keys and sparse value range?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "spars":1,
+                  "design":1,
+                  "map":1,
+                  "rang":1,
+                  "key":1,
+                  "iii":1,
+                  "advantag":1,
+                  "increment":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>iv) How do I optimally handle the frequent deletions? Any resizing/rehashing will need to be immediately visible to the reader threads instead of being eventually visible.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1429856111]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>iv) How do I optimally handle the frequent deletions? Any resizing/rehashing will need to be immediately visible to the reader threads instead of being eventually visible.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "delet":1,
+                  "reader":1,
+                  "rehash":1,
+                  "visibl":2,
+                  "eventu":1,
+                  "optim":1,
+                  "thread":1,
+                  "resiz":1,
+                  "immedi":1,
+                  "handl":1,
+                  "frequent":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Also any answers with C++/C++11 code are welcome. With some research, I should be able to convert most of the std::atomic operations into Java Unsafe ones.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[20927359]-[1329030415]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Also any answers with C++/C++11 code are welcome. With some research, I should be able to convert most of the std::atomic operations into Java Unsafe ones.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "research":1,
+                  "std":1,
+                  "code":1,
+                  "oper":1,
+                  "answer":1,
+                  "atom":1,
+                  "unsaf":1,
+                  "convert":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":20927474,
+      "questionId":20927359,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":31422880,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Are you talking about the Java concurrent map? I need a map with primitives and not classes. Reason I was thinking of a getStrict is relaxed atomics. If I set a key to a value in one thread say using putOrderedObject, it's effects might not be visible for an indeterminate amount of time. Since I don't want to read a set value as missing I was thinking of a strict version. When the single writer changes a key1-&gt;thread-id1 to key2-thread-id2, both threads are first made aware of this change so an old value will be resolved to a newer value through forwarding. Resizing will lead to wrong values."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31422880]-[-1200869467]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Are you talking about the Java concurrent map? I need a map with primitives and not classes. Reason I was thinking of a getStrict is relaxed atomics. If I set a key to a value in one thread say using putOrderedObject, it's effects might not be visible for an indeterminate amount of time. Since I don't want to read a set value as missing I was thinking of a strict version. When the single writer changes a key1-&gt;thread-id1 to key2-thread-id2, both threads are first made aware of this change so an old value will be resolved to a newer value through forwarding. Resizing will lead to wrong values."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"getStrict",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrderedObject",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "chang":1,
+                        "singl":1,
+                        "lead":1,
+                        "strict":2,
+                        "resolv":1,
+                        "concurr":1,
+                        "writer":1,
+                        "map":2,
+                        "wrong":1,
+                        "indetermin":1,
+                        "effect":1,
+                        "set":2,
+                        "newer":1,
+                        "forward":1,
+                        "talk":1,
+                        "visibl":1,
+                        "reason":1,
+                        "amount":1,
+                        "object":1,
+                        "miss":1,
+                        "key":3,
+                        "awar":1,
+                        "version":1,
+                        "thread":4,
+                        "order":1,
+                        "think":2,
+                        "valu":1,
+                        "put":1,
+                        "resiz":1,
+                        "class":1,
+                        "atom":1,
+                        "time":1,
+                        "primit":1,
+                        "relax":1,
+                        "made":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31422912,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Rajiv `putOrderedObject` doesn't take any longer than `putVolatileObject` the difference is that the later stalls the CPU pipeline in case you attempt to read the value you just wrote in the same thread."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31422912]-[-384764902]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Rajiv `putOrderedObject` doesn't take any longer than `putVolatileObject` the difference is that the later stalls the CPU pipeline in case you attempt to read the value you just wrote in the same thread."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Rajiv",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrderedObject",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putVolatileObject",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "differ":1,
+                        "wrote":1,
+                        "pipelin":1,
+                        "object":2,
+                        "rajiv":1,
+                        "stall":1,
+                        "thread":1,
+                        "order":1,
+                        "cpu":1,
+                        "put":2,
+                        "longer":1,
+                        "attempt":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31422952,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Rajiv I don't know of any collection which allows you to change one key for another as an atomic operation. Keys are not mutable by design. Resizing is pretty simple with a single writer as you create a shallow copy of the data structure and swap one reference for another when done. It is only a potential problem when you multiple threads writing/resizing."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31422952]-[667411953]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Rajiv I don't know of any collection which allows you to change one key for another as an atomic operation. Keys are not mutable by design. Resizing is pretty simple with a single writer as you create a shallow copy of the data structure and swap one reference for another when done. It is only a potential problem when you multiple threads writing/resizing."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Rajiv",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "chang":1,
+                        "singl":1,
+                        "design":1,
+                        "simpl":1,
+                        "writer":1,
+                        "problem":1,
+                        "data":1,
+                        "potenti":1,
+                        "structur":1,
+                        "pretti":1,
+                        "key":2,
+                        "rajiv":1,
+                        "oper":1,
+                        "thread":1,
+                        "refer":1,
+                        "swap":1,
+                        "resiz":2,
+                        "atom":1,
+                        "shallow":1,
+                        "collect":1,
+                        "creat":1,
+                        "multipl":1,
+                        "write":1,
+                        "copi":1,
+                        "mutabl":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31422958,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Reading old values is fine, but reading wrong values is not, hence the need for resizing changes to be visible immediately. Could you please elaborate on the ring-buffer solution? A ring buffer would be great if the id's were created and deleted in the same order. Actor's will have unpredictable life-cycles. So actor id 1,2,3 would be created in order but 3 could die first and 1,2 could never die at all."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31422958]-[-430963911]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Reading old values is fine, but reading wrong values is not, hence the need for resizing changes to be visible immediately. Could you please elaborate on the ring-buffer solution? A ring buffer would be great if the id's were created and deleted in the same order. Actor's will have unpredictable life-cycles. So actor id 1,2,3 would be created in order but 3 could die first and 1,2 could never die at all."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "actor":2,
+                        "delet":1,
+                        "wrong":1,
+                        "unpredict":1,
+                        "buffer":2,
+                        "visibl":1,
+                        "ring":2,
+                        "die":2,
+                        "order":2,
+                        "elabor":1,
+                        "valu":2,
+                        "life":1,
+                        "resiz":1,
+                        "fine":1,
+                        "immedi":1,
+                        "cycl":1,
+                        "creat":2,
+                        "great":1,
+                        "solut":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31422982,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Why should there be a wrong value? I can only see how you would get an old value."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31422982]-[820919389]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Why should there be a wrong value? I can only see how you would get an old value."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "wrong":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423000,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"A ring buffer doesn't need to be strictly deleted in the same order. You can mark old entries as to be removed and when the last entry is deleted, you catch up."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423000]-[-282535013]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"A ring buffer doesn't need to be strictly deleted in the same order. You can mark old entries as to be removed and when the last entry is deleted, you catch up."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "strict":1,
+                        "remov":1,
+                        "delet":2,
+                        "buffer":1,
+                        "ring":1,
+                        "entri":2,
+                        "order":1,
+                        "mark":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423018,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"What do actors die? Shouldn't the actors exist for the life of the application?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423018]-[-1763413963]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"What do actors die? Shouldn't the actors exist for the life of the application?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":2,
+                        "exist":1,
+                        "die":1,
+                        "applic":1,
+                        "life":1,
+                        "shouldn":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423075,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Say a map has been resized and the hash function maintained. Key1 could hash to a new slot now. A get operation on the read thread may not be aware of the size change and pick the wrong slot and hence read the wrong value?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423075]-[-935885789]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Say a map has been resized and the hash function maintained. Key1 could hash to a new slot now. A get operation on the read thread may not be aware of the size change and pick the wrong slot and hence read the wrong value?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "chang":1,
+                        "size":1,
+                        "map":1,
+                        "wrong":2,
+                        "key":1,
+                        "oper":1,
+                        "awar":1,
+                        "hash":2,
+                        "thread":1,
+                        "pick":1,
+                        "function":1,
+                        "resiz":1,
+                        "slot":2,
+                        "maintain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423107,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Actors here are lightweight concurrent entities multiplexed on top of fewer threads. An application could create an actor per HTTP request. Such actors would be short lived."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423107]-[1301695235]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Actors here are lightweight concurrent entities multiplexed on top of fewer threads. An application could create an actor per HTTP request. Such actors would be short lived."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":3,
+                        "request":1,
+                        "fewer":1,
+                        "concurr":1,
+                        "thread":1,
+                        "live":1,
+                        "applic":1,
+                        "multiplex":1,
+                        "entiti":1,
+                        "http":1,
+                        "creat":1,
+                        "top":1,
+                        "lightweight":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423131,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"let us [continue this discussion in chat](http://chat.stackoverflow.com/rooms/44529/discussion-between-rajiv-and-peter-lawrey)"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423131]-[-378674868]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"let us [continue this discussion in chat](http://chat.stackoverflow.com/rooms/44529/discussion-between-rajiv-and-peter-lawrey)"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "peter":1,
+                        "rajiv":1,
+                        "chat":2,
+                        "stackoverflow":1,
+                        "discuss":2,
+                        "room":1,
+                        "lawrey":1,
+                        "http":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423151,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"You have a reference to a data structure e.g. an array which has the keys and value. You copy to another, larger data structure, and when finish, you swap the references. A reader will only ever see the old data structure or the new one when finish. It cannot see some intermediate one."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423151]-[1476757348]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"You have a reference to a data structure e.g. an array which has the keys and value. You copy to another, larger data structure, and when finish, you swap the references. A reader will only ever see the old data structure or the new one when finish. It cannot see some intermediate one."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "reader":1,
+                        "data":3,
+                        "finish":2,
+                        "structur":3,
+                        "key":1,
+                        "array":1,
+                        "larger":1,
+                        "refer":2,
+                        "swap":1,
+                        "copi":1,
+                        "intermedi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423183,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I would have actors which are created at the start of the application, e.g. one which processes 1/n-th of HTTP requests. It would run until the application finishes, no need to have the overhead of creating an actor and destroying/recycling it later."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423183]-[816807198]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I would have actors which are created at the start of the application, e.g. one which processes 1/n-th of HTTP requests. It would run until the application finishes, no need to have the overhead of creating an actor and destroying/recycling it later."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":2,
+                        "request":1,
+                        "process":1,
+                        "run":1,
+                        "recycl":1,
+                        "finish":1,
+                        "overhead":1,
+                        "destroy":1,
+                        "applic":2,
+                        "start":1,
+                        "http":1,
+                        "creat":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423209,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"IMHO short lived actor make sense if you have a task which needs to be done once e.g. on startup and never again. If you have a recurring task, just have an actor which lives for the life of the application."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423209]-[-621163443]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"IMHO short lived actor make sense if you have a task which needs to be done once e.g. on startup and never again. If you have a recurring task, just have an actor which lives for the life of the application."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "sens":1,
+                        "actor":2,
+                        "task":2,
+                        "startup":1,
+                        "imho":1,
+                        "live":2,
+                        "recur":1,
+                        "applic":1,
+                        "life":1,
+                        "make":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423223,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I get the eventual catch up with ring buffers, but one long lived actor would use up all the spaces and prevent possibly tens of thousands of slots from being reclaimed. The atomic swap of a reference means that the reader thread would need a volatile read on the reference every time no? About short lived actors, sadly this is for a general framework similar to Akka/Erlang semantics where actors are used in such a manner to make things more &quot;object oriented&quot;."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423223]-[-1270787169]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I get the eventual catch up with ring buffers, but one long lived actor would use up all the spaces and prevent possibly tens of thousands of slots from being reclaimed. The atomic swap of a reference means that the reader thread would need a volatile read on the reference every time no? About short lived actors, sadly this is for a general framework similar to Akka/Erlang semantics where actors are used in such a manner to make things more &quot;object oriented&quot;."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "actor":3,
+                        "manner":1,
+                        "reader":1,
+                        "similar":1,
+                        "prevent":1,
+                        "reclaim":1,
+                        "akka":1,
+                        "mean":1,
+                        "thing":1,
+                        "buffer":1,
+                        "ring":1,
+                        "eventu":1,
+                        "framework":1,
+                        "possibl":1,
+                        "object":1,
+                        "thread":1,
+                        "general":1,
+                        "space":1,
+                        "live":2,
+                        "refer":2,
+                        "semant":1,
+                        "erlang":1,
+                        "orient":1,
+                        "swap":1,
+                        "make":1,
+                        "ten":1,
+                        "thousand":1,
+                        "quot":2,
+                        "atom":1,
+                        "time":1,
+                        "sad":1,
+                        "slot":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423294,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I would have a ring buffer with messages, and these messages are processes/complete as soon as it is processed, not when the actor dies."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423294]-[-1124888190]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I would have a ring buffer with messages, and these messages are processes/complete as soon as it is processed, not when the actor dies."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":1,
+                        "process":2,
+                        "buffer":1,
+                        "ring":1,
+                        "die":1,
+                        "complet":1,
+                        "messag":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423340,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The reader only need a volatile read (costs about 5 ns) if you cannot read an old value, that is up to you. Short lived actors are popular but IMHO the whole point of using multiple threads is to improve performance. If you don't care about performance you would just use one thread which is much simpler. There is another train of thought that multiple threads have to be used to use all the CPU even if this makes the program slower, but I don't see the point of this."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423340]-[182124070]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The reader only need a volatile read (costs about 5 ns) if you cannot read an old value, that is up to you. Short lived actors are popular but IMHO the whole point of using multiple threads is to improve performance. If you don't care about performance you would just use one thread which is much simpler. There is another train of thought that multiple threads have to be used to use all the CPU even if this makes the program slower, but I don't see the point of this."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "actor":1,
+                        "program":1,
+                        "point":2,
+                        "thought":1,
+                        "reader":1,
+                        "care":1,
+                        "popular":1,
+                        "improv":1,
+                        "imho":1,
+                        "thread":3,
+                        "cost":1,
+                        "slower":1,
+                        "live":1,
+                        "cpu":1,
+                        "perform":2,
+                        "make":1,
+                        "train":1,
+                        "multipl":2,
+                        "simpler":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423375,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Using a primitive key and value isn't very object orientated so I would decide what principles I have to have and which ones are optional and be consistent."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423375]-[348148308]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Using a primitive key and value isn't very object orientated so I would decide what principles I have to have and which ones are optional and be consistent."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "decid":1,
+                        "option":1,
+                        "principl":1,
+                        "object":1,
+                        "key":1,
+                        "consist":1,
+                        "isn":1,
+                        "orient":1,
+                        "primit":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423473,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I do use a ring buffer to actually dispatch messages from one actor(on a thread) to another actor(on another thread). The map is just used to look up actorId -&gt; dispatcherId. Possibly short lived but numerous actors just means here that the processing logic plus state is contained within objects. The dispatch is done though a virtual function that each actor overrides. So once each dispatcher gets a particular message (messages contain destination actor-id) it looks up the user's actor object and calls a virtual function."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423473]-[1226876211]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I do use a ring buffer to actually dispatch messages from one actor(on a thread) to another actor(on another thread). The map is just used to look up actorId -&gt; dispatcherId. Possibly short lived but numerous actors just means here that the processing logic plus state is contained within objects. The dispatch is done though a virtual function that each actor overrides. So once each dispatcher gets a particular message (messages contain destination actor-id) it looks up the user's actor object and calls a virtual function."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"dispatcherId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":7,
+                        "state":1,
+                        "map":1,
+                        "process":1,
+                        "dispatch":4,
+                        "mean":1,
+                        "overrid":1,
+                        "buffer":1,
+                        "contain":1,
+                        "ring":1,
+                        "possibl":1,
+                        "numer":1,
+                        "virtual":2,
+                        "logic":1,
+                        "object":2,
+                        "thread":2,
+                        "live":1,
+                        "function":2,
+                        "messag":3,
+                        "call":1,
+                        "destin":1,
+                        "user":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423504,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Primitive key and values are an implementation detail that the user of the framework can be blissfully unaware of. I understand and agree with your view, but since these are the requirements all I can do is change the implementation. This is not as optimal as threads themselves being actors as you point out, but leads to a different style of coding where each entity in a system(say a user, a chat room) etc can be represented as a self contained actor."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423504]-[1361743039]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Primitive key and values are an implementation detail that the user of the framework can be blissfully unaware of. I understand and agree with your view, but since these are the requirements all I can do is change the implementation. This is not as optimal as threads themselves being actors as you point out, but leads to a different style of coding where each entity in a system(say a user, a chat room) etc can be represented as a self contained actor."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":2,
+                        "chang":1,
+                        "lead":1,
+                        "point":1,
+                        "system":1,
+                        "style":1,
+                        "requir":1,
+                        "understand":1,
+                        "contain":1,
+                        "framework":1,
+                        "key":1,
+                        "code":1,
+                        "chat":1,
+                        "optim":1,
+                        "thread":1,
+                        "valu":1,
+                        "implement":2,
+                        "agre":1,
+                        "detail":1,
+                        "entiti":1,
+                        "unawar":1,
+                        "room":1,
+                        "primit":1,
+                        "repres":1,
+                        "user":2,
+                        "bliss":1,
+                        "view":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423589,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Rajiv Or you can have an actor which handles all user events, and another which handles all chat events, or an actor which does both."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423589]-[-1262028333]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Rajiv Or you can have an actor which handles all user events, and another which handles all chat events, or an actor which does both."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Rajiv",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":2,
+                        "event":2,
+                        "rajiv":1,
+                        "chat":1,
+                        "handl":2,
+                        "user":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423673,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Rajiv It is not clear to how using the primitive helps if you have to use objects. You could a ring buffer for each thread and add a reference to the actor and its state on each ring buffer dedicated to that thread. This way a slow thread doesn't slow down another thread or its actors."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423673]-[517579497]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Rajiv It is not clear to how using the primitive helps if you have to use objects. You could a ring buffer for each thread and add a reference to the actor and its state on each ring buffer dedicated to that thread. This way a slow thread doesn't slow down another thread or its actors."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Rajiv",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":2,
+                        "slow":2,
+                        "state":1,
+                        "clear":1,
+                        "buffer":2,
+                        "ring":2,
+                        "object":1,
+                        "rajiv":1,
+                        "help":1,
+                        "thread":4,
+                        "refer":1,
+                        "dedic":1,
+                        "primit":1,
+                        "add":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423750,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"If I was writing my own stand-alone application I would tend to use one actor per thread like you suggested. I am trying to write an experimental dispatcher for Akka. Both Akka and Erlang encourage the style of writing an actor per entity so I have to deal with that. Also I am using primitive ids instead of references to the actor to maintain the Akka/Erlang style of not passing the actual mutable objects between actors (to prevent misuse). A primitive is an id and the only operation possible with it is to send a message to the actor to which the id belongs."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423750]-[-1071768544]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"If I was writing my own stand-alone application I would tend to use one actor per thread like you suggested. I am trying to write an experimental dispatcher for Akka. Both Akka and Erlang encourage the style of writing an actor per entity so I have to deal with that. Also I am using primitive ids instead of references to the actor to maintain the Akka/Erlang style of not passing the actual mutable objects between actors (to prevent misuse). A primitive is an id and the only operation possible with it is to send a message to the actor to which the id belongs."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":5,
+                        "style":2,
+                        "misus":1,
+                        "prevent":1,
+                        "suggest":1,
+                        "encourag":1,
+                        "akka":3,
+                        "dispatch":1,
+                        "belong":1,
+                        "stand":1,
+                        "object":1,
+                        "oper":1,
+                        "thread":1,
+                        "id":1,
+                        "tend":1,
+                        "refer":1,
+                        "applic":1,
+                        "erlang":2,
+                        "pass":1,
+                        "entiti":1,
+                        "messag":1,
+                        "primit":2,
+                        "actual":1,
+                        "deal":1,
+                        "write":3,
+                        "experiment":1,
+                        "mutabl":1,
+                        "send":1,
+                        "maintain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423859,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"A rough algo: i) Actor created on any dispatcher is actually a msg sent to the central writer which decides which dispatcher an actor should live on. This central writer maintains the directory asked in the question mapping an actorId to a threadId. It also passes a reference to the actor object to the said threadId/dispatcher. ii) Whenever an actor wants to send a msg to another actor it looks at this directory to figure out what dispatcher to msg and puts a msg on the ring-buffer connecting the src and destn dispatchers. If the src &amp; destn are the same a method is invoked instead."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423859]-[-333556219]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"A rough algo: i) Actor created on any dispatcher is actually a msg sent to the central writer which decides which dispatcher an actor should live on. This central writer maintains the directory asked in the question mapping an actorId to a threadId. It also passes a reference to the actor object to the said threadId/dispatcher. ii) Whenever an actor wants to send a msg to another actor it looks at this directory to figure out what dispatcher to msg and puts a msg on the ring-buffer connecting the src and destn dispatchers. If the src &amp; destn are the same a method is invoked instead."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"threadId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"threadId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":6,
+                        "decid":1,
+                        "question":1,
+                        "method":1,
+                        "connect":1,
+                        "writer":2,
+                        "map":1,
+                        "dispatch":5,
+                        "destn":2,
+                        "invok":1,
+                        "algo":1,
+                        "buffer":1,
+                        "ring":1,
+                        "amp":1,
+                        "central":2,
+                        "object":1,
+                        "thread":2,
+                        "live":1,
+                        "src":2,
+                        "refer":1,
+                        "rough":1,
+                        "directori":2,
+                        "pass":1,
+                        "figur":1,
+                        "put":1,
+                        "msg":4,
+                        "ask":1,
+                        "creat":1,
+                        "send":1,
+                        "maintain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31423957,
+          "postId":20927474,
+          "creationDate":"2014-01-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"iii) Each dispatcher/thread round robins between it's incoming ring buffers (one per other dispatcher) and locates the actor reference from it's local map (actorId to actorRef) and call's a virtual function passing on the object. It maintains this local map of actorId-&gt;actorReference perfectly because the central coordinator thread lets every dispatcher know what actor has been scheduled on it in step (i). My question pertained to maintaining the central directory mapping actor-id to dispatcher/thread-id."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31423957]-[-422851736]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"iii) Each dispatcher/thread round robins between it's incoming ring buffers (one per other dispatcher) and locates the actor reference from it's local map (actorId to actorRef) and call's a virtual function passing on the object. It maintains this local map of actorId-&gt;actorReference perfectly because the central coordinator thread lets every dispatcher know what actor has been scheduled on it in step (i). My question pertained to maintaining the central directory mapping actor-id to dispatcher/thread-id."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorRef",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorId",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"actorReference",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":7,
+                        "question":1,
+                        "step":1,
+                        "robin":1,
+                        "map":3,
+                        "pertain":1,
+                        "dispatch":4,
+                        "local":2,
+                        "ref":1,
+                        "perfect":1,
+                        "buffer":1,
+                        "ring":1,
+                        "central":2,
+                        "virtual":1,
+                        "object":1,
+                        "thread":3,
+                        "iii":1,
+                        "function":1,
+                        "refer":2,
+                        "coordin":1,
+                        "directori":1,
+                        "incom":1,
+                        "pass":1,
+                        "round":1,
+                        "schedul":1,
+                        "call":1,
+                        "let":1,
+                        "locat":1,
+                        "maintain":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31451176,
+          "postId":20927474,
+          "creationDate":"2014-01-06",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Are you talking about the map maintained by the central thread which maps an actor-id to a dispatcher-id? If yes then the map is about looking up where an actor is scheduled to run. This can change through the course of the application because of load balancing concerns. Are you suggesting making the dispatcher-id part of the actor object? The only problem with that approach is that each the central writer thread can change this while a dispatcher thread is also making changes to adjacent object fields. This would cause false sharing. I'd have to pad the dispatcher id on each actor then."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31451176]-[-1941835780]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Are you talking about the map maintained by the central thread which maps an actor-id to a dispatcher-id? If yes then the map is about looking up where an actor is scheduled to run. This can change through the course of the application because of load balancing concerns. Are you suggesting making the dispatcher-id part of the actor object? The only problem with that approach is that each the central writer thread can change this while a dispatcher thread is also making changes to adjacent object fields. This would cause false sharing. I'd have to pad the dispatcher id on each actor then."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "balanc":1,
+                        "actor":4,
+                        "chang":2,
+                        "field":1,
+                        "writer":1,
+                        "map":3,
+                        "problem":1,
+                        "suggest":1,
+                        "run":1,
+                        "dispatch":4,
+                        "adjac":1,
+                        "talk":1,
+                        "load":1,
+                        "central":2,
+                        "pad":1,
+                        "object":2,
+                        "concern":1,
+                        "share":1,
+                        "thread":3,
+                        "applic":1,
+                        "make":2,
+                        "approach":1,
+                        "fals":1,
+                        "schedul":1,
+                        "part":1,
+                        "maintain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31451237,
+          "postId":20927474,
+          "creationDate":"2014-01-06",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"If you are talking about per dispatcher map mapping actor-id-&gt;actor-ref then I kind of agree, just having a reference to the destination actor with each actor message on the ring buffer should be fine. I won't be able to get rid of actor ids though since they are needed for remote actor communication, but I could have the single networking thread convert actor-ids to actor-refs to handle that."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31451237]-[1289119691]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"If you are talking about per dispatcher map mapping actor-id-&gt;actor-ref then I kind of agree, just having a reference to the destination actor with each actor message on the ring buffer should be fine. I won't be able to get rid of actor ids though since they are needed for remote actor communication, but I could have the single networking thread convert actor-ids to actor-refs to handle that."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":8,
+                        "network":1,
+                        "singl":1,
+                        "rid":1,
+                        "map":2,
+                        "dispatch":1,
+                        "talk":1,
+                        "ref":2,
+                        "buffer":1,
+                        "ring":1,
+                        "thread":1,
+                        "id":2,
+                        "need":1,
+                        "refer":1,
+                        "agre":1,
+                        "communic":1,
+                        "fine":1,
+                        "messag":1,
+                        "kind":1,
+                        "destin":1,
+                        "handl":1,
+                        "convert":1,
+                        "won":1,
+                        "remot":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31432261,
+          "postId":20927474,
+          "creationDate":"2014-01-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"All that sounds fine, except I don't understand the value of the extra level of references you have by placing an id in the queue/ring buffer. You start with an object which represents the actor or command pattern and at the end you invoke a method on it to run it. How does adding a ring buffer and a map you have to maintain better than having a ring buffer of references and no map?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31432261]-[1658964429]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"All that sounds fine, except I don't understand the value of the extra level of references you have by placing an id in the queue/ring buffer. You start with an object which represents the actor or command pattern and at the end you invoke a method on it to run it. How does adding a ring buffer and a map you have to maintain better than having a ring buffer of references and no map?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "actor":1,
+                        "method":1,
+                        "pattern":1,
+                        "map":2,
+                        "queue":1,
+                        "run":1,
+                        "understand":1,
+                        "invok":1,
+                        "buffer":3,
+                        "ring":3,
+                        "command":1,
+                        "object":1,
+                        "sound":1,
+                        "refer":2,
+                        "extra":1,
+                        "end":1,
+                        "ad":1,
+                        "place":1,
+                        "fine":1,
+                        "start":1,
+                        "repres":1,
+                        "level":1,
+                        "maintain":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31458994,
+          "postId":20927474,
+          "creationDate":"2014-01-06",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"If you need load balancing you could just have multiple readers for the same ring buffer. Or multiple ring buffers with work stealing."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31458994]-[-760939893]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"If you need load balancing you could just have multiple readers for the same ring buffer. Or multiple ring buffers with work stealing."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "balanc":1,
+                        "reader":1,
+                        "load":1,
+                        "buffer":2,
+                        "ring":2,
+                        "work":1,
+                        "steal":1,
+                        "multipl":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":31472927,
+          "postId":20927474,
+          "creationDate":"2014-01-06",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":1971442,
+            "displayName":"Rajiv",
+            "reputation":730
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I cannot have multiple readers for the same ring buffer because the processing is not stateless. The system's constraints require that for any actor pair A,B messages sent from A to B are processed in the order that they are sent. Parallel processing does not keep that order. Also I am trying the central coordinator idea as a form of work stealing. The central coordinator can make wiser decisions by looking at not only imbalanced dispatchers but also at frequently communicating pairs. It can schedule chatty actor pairs to the same dispatcher, removing the need for any communication."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[20927474-cu31472927]-[-1040270256]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I cannot have multiple readers for the same ring buffer because the processing is not stateless. The system's constraints require that for any actor pair A,B messages sent from A to B are processed in the order that they are sent. Parallel processing does not keep that order. Also I am trying the central coordinator idea as a form of work stealing. The central coordinator can make wiser decisions by looking at not only imbalanced dispatchers but also at frequently communicating pairs. It can schedule chatty actor pairs to the same dispatcher, removing the need for any communication."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "wiser":1,
+                        "actor":2,
+                        "remov":1,
+                        "system":1,
+                        "reader":1,
+                        "process":3,
+                        "requir":1,
+                        "idea":1,
+                        "dispatch":2,
+                        "buffer":1,
+                        "ring":1,
+                        "work":1,
+                        "central":2,
+                        "decis":1,
+                        "steal":1,
+                        "order":2,
+                        "stateless":1,
+                        "coordin":2,
+                        "chatti":1,
+                        "make":1,
+                        "communic":2,
+                        "constraint":1,
+                        "schedul":1,
+                        "pair":3,
+                        "messag":1,
+                        "form":1,
+                        "multipl":1,
+                        "parallel":1,
+                        "frequent":1,
+                        "imbalanc":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2014-01-04",
+      "lastActivityDate":"2014-01-04",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":57695,
+        "displayName":"Peter Lawrey",
+        "reputation":257803
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>False sharing only comes from multiple writers, as you have a single writer you shouldn't have a problem with sharing between writers.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[624790531]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>False sharing only comes from multiple writers, as you have a single writer you shouldn't have a problem with sharing between writers.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "singl":1,
+                    "writer":3,
+                    "problem":1,
+                    "share":2,
+                    "fals":1,
+                    "shouldn":1,
+                    "multipl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>i) How can I optimize for the single-writer/multiple reader use case?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[-2058139592]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>i) How can I optimize for the single-writer/multiple reader use case?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "singl":1,
+                    "writer":1,
+                    "reader":1,
+                    "blockquot":2,
+                    "optim":1,
+                    "multipl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You don't need to do anything special for multiple readers, each thread will have a local copy of the data structure in it's case. A single writer is the simplest (and fastest) use case.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[880333242]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You don't need to do anything special for multiple readers, each thread will have a local copy of the data structure in it's case. A single writer is the simplest (and fastest) use case.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "singl":1,
+                    "writer":1,
+                    "reader":1,
+                    "data":1,
+                    "local":1,
+                    "fastest":1,
+                    "structur":1,
+                    "thread":1,
+                    "simplest":1,
+                    "special":1,
+                    "multipl":1,
+                    "copi":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>As such both Trove and the ConcurrentMaps do this just fine. BTW ConcurrentMap is also optimised for multiple writers.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[606338188]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>As such both Trove and the ConcurrentMaps do this just fine. BTW ConcurrentMap is also optimised for multiple writers.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentMaps",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":2,
+                    "writer":1,
+                    "map":2,
+                    "btw":1,
+                    "optimis":1,
+                    "trove":1,
+                    "fine":1,
+                    "multipl":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentMaps",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>ii) How do I design the get(key) and getStrict(key) operations? Is this the right way of even thinking about it?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[532308691]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>ii) How do I design the get(key) and getStrict(key) operations? Is this the right way of even thinking about it?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getStrict",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strict":1,
+                    "design":1,
+                    "blockquot":2,
+                    "key":2,
+                    "oper":1,
+                    "think":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>What you describe is how Concurrent collections work now. It's not clear to me what getStrict does differently.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[786670038]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>What you describe is how Concurrent collections work now. It's not clear to me what getStrict does differently.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getStrict",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strict":1,
+                    "concurr":1,
+                    "clear":1,
+                    "differ":1,
+                    "work":1,
+                    "collect":1,
+                    "describ":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>iii) How can I design my map to take advantage of the incrementing keys and sparse value range?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[490759921]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>iii) How can I design my map to take advantage of the incrementing keys and sparse value range?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "spars":1,
+                    "design":1,
+                    "map":1,
+                    "rang":1,
+                    "blockquot":2,
+                    "key":1,
+                    "iii":1,
+                    "advantag":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you have plain incrementing keys, perhaps a Ring Buffer is a better choice. If you have <code>sparse values</code> all you need do is store the value.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[383848833]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you have plain incrementing keys, perhaps a Ring Buffer is a better choice. If you have <code>sparse values</code> all you need do is store the value.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "spars":1,
+                    "store":1,
+                    "buffer":1,
+                    "ring":1,
+                    "key":1,
+                    "code":2,
+                    "valu":1,
+                    "choic":1,
+                    "plain":1,
+                    "increment":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>iv) How do I optimally handle the frequent deletions? </p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[-220448744]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>iv) How do I optimally handle the frequent deletions? </p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "delet":1,
+                    "blockquot":2,
+                    "optim":1,
+                    "handl":1,
+                    "frequent":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A ring buffer is very efficient for deletions depending on what you are doing. The main thing to consider is to have a memory/object recycling strategy. This will reduce the cost of re-allocating and garbage collection.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[223472155]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A ring buffer is very efficient for deletions depending on what you are doing. The main thing to consider is to have a memory/object recycling strategy. This will reduce the cost of re-allocating and garbage collection.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "delet":1,
+                    "alloc":1,
+                    "reduc":1,
+                    "depend":1,
+                    "effici":1,
+                    "recycl":1,
+                    "thing":1,
+                    "buffer":1,
+                    "strategi":1,
+                    "ring":1,
+                    "main":1,
+                    "object":1,
+                    "cost":1,
+                    "collect":1,
+                    "garbag":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Any resizing/rehashing will need to be immediately visible to the reader threads instead of being eventually visible.</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[1203677710]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Any resizing/rehashing will need to be immediately visible to the reader threads instead of being eventually visible.</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "reader":1,
+                    "rehash":1,
+                    "visibl":2,
+                    "eventu":1,
+                    "blockquot":2,
+                    "thread":1,
+                    "resiz":1,
+                    "immedi":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If values can be eventually consistent I don't see why resizing needs to be immediate.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[20927474]-[-1216618509]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If values can be eventually consistent I don't see why resizing needs to be immediate.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "consist":1,
+                    "eventu":1,
+                    "valu":1,
+                    "resiz":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

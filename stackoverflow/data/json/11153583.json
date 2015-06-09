@@ -1,0 +1,2693 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":11153583,
+    "title":"Options to make Java's ByteBuffer thread safe",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":14630938,
+        "postId":11153583,
+        "creationDate":"2012-06-22",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":57695,
+          "displayName":"Peter Lawrey",
+          "reputation":257803
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"I prefer to use an actor model where any ByteBuffer is updated by only one thread (or is read only). The reason I do this is I have found the overhead of synchronization usually outweighs the benefits of having multiple threads."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14630938]-[-421457173]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"I prefer to use an actor model where any ByteBuffer is updated by only one thread (or is read only). The reason I do this is I have found the overhead of synchronization usually outweighs the benefits of having multiple threads."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "read":1,
+                      "actor":1,
+                      "model":1,
+                      "updat":1,
+                      "outweigh":1,
+                      "buffer":1,
+                      "reason":1,
+                      "overhead":1,
+                      "found":1,
+                      "thread":2,
+                      "benefit":1,
+                      "multipl":1,
+                      "prefer":1,
+                      "synchron":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14634066,
+        "postId":11153583,
+        "creationDate":"2012-06-22",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":194609,
+          "displayName":"Karussell",
+          "reputation":7805
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"thanks, peter! are you using this via slice? or how do you access the same data?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14634066]-[791404071]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"thanks, peter! are you using this via slice? or how do you access the same data?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "data":1,
+                      "slice":1,
+                      "peter":1,
+                      "access":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14634165,
+        "postId":11153583,
+        "creationDate":"2012-06-22",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":57695,
+          "displayName":"Peter Lawrey",
+          "reputation":257803
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"I don't use a slice, instead I use a wrapper which hides everything (even the fact I am using ByteBuffers and I may want to switch to Unsafe which is slightly faster) The benefit of using a wrapper is that you can hide all the details and access your &quot;array&quot; naturally by calling methods. This is particularly useful as I have arrays with billions of elements which won't fit into a single ByteBuffer."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14634165]-[-1926012597]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"I don't use a slice, instead I use a wrapper which hides everything (even the fact I am using ByteBuffers and I may want to switch to Unsafe which is slightly faster) The benefit of using a wrapper is that you can hide all the details and access your &quot;array&quot; naturally by calling methods. This is particularly useful as I have arrays with billions of elements which won't fit into a single ByteBuffer."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffers",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "singl":1,
+                      "method":1,
+                      "natur":1,
+                      "faster":1,
+                      "fit":1,
+                      "slight":1,
+                      "buffer":2,
+                      "element":1,
+                      "fact":1,
+                      "array":2,
+                      "hide":2,
+                      "billion":1,
+                      "wrapper":2,
+                      "slice":1,
+                      "quot":2,
+                      "detail":1,
+                      "unsaf":1,
+                      "benefit":1,
+                      "call":1,
+                      "won":1,
+                      "access":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffers",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14654377,
+        "postId":11153583,
+        "creationDate":"2012-06-23",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":194609,
+          "displayName":"Karussell",
+          "reputation":7805
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Do I have luck and you Buffer wrapper is open source ;) ?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14654377]-[2069574418]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Do I have luck and you Buffer wrapper is open source ;) ?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "luck":1,
+                      "buffer":1,
+                      "open":1,
+                      "wrapper":1,
+                      "sourc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14663082,
+        "postId":11153583,
+        "creationDate":"2012-06-24",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":57695,
+          "displayName":"Peter Lawrey",
+          "reputation":257803
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"No, but I have a similar library which is open source. https://github.com/peter-lawrey/Java-Chronicle This is entry/row/excerpt based rather than column based, but the techniques are the same."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14663082]-[1317025586]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"No, but I have a similar library which is open source. https://github.com/peter-lawrey/Java-Chronicle This is entry/row/excerpt based rather than column based, but the techniques are the same."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "github":1,
+                      "excerpt":1,
+                      "similar":1,
+                      "peter":1,
+                      "librari":1,
+                      "row":1,
+                      "https":1,
+                      "open":1,
+                      "base":2,
+                      "entri":1,
+                      "techniqu":1,
+                      "column":1,
+                      "lawrey":1,
+                      "chronicl":1,
+                      "sourc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14716824,
+        "postId":11153583,
+        "creationDate":"2012-06-26",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":194609,
+          "displayName":"Karussell",
+          "reputation":7805
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Hmmh, is it thread safe? I couldn't find any synchs or locks ..."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14716824]-[-161322026]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Hmmh, is it thread safe? I couldn't find any synchs or locks ..."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "find":1,
+                      "lock":1,
+                      "safe":1,
+                      "synch":1,
+                      "thread":1,
+                      "hmmh":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14717530,
+        "postId":11153583,
+        "creationDate":"2012-06-26",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":57695,
+          "displayName":"Peter Lawrey",
+          "reputation":257803
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Each chronicle is single threaded, you need to create one for each thread or process. As each thread is much faster you only need a few (possibly only one) It doesn't use locks, and is mostly heapless."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14717530]-[-10271246]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Each chronicle is single threaded, you need to create one for each thread or process. As each thread is much faster you only need a few (possibly only one) It doesn't use locks, and is mostly heapless."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "singl":1,
+                      "faster":1,
+                      "process":1,
+                      "lock":1,
+                      "possibl":1,
+                      "thread":3,
+                      "heapless":1,
+                      "creat":1,
+                      "chronicl":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14730234,
+        "postId":11153583,
+        "creationDate":"2012-06-26",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":194609,
+          "displayName":"Karussell",
+          "reputation":7805
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"hmmh maybe I already sleep (a bit late here) :) ... but again: what would be the difference to one buffer instance per thread (via Buffer.slice) ... hopefully I won't regret this question tomorrow ;)"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14730234]-[561351311]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"hmmh maybe I already sleep (a bit late here) :) ... but again: what would be the difference to one buffer instance per thread (via Buffer.slice) ... hopefully I won't regret this question tomorrow ;)"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "question":1,
+                      "regret":1,
+                      "bit":1,
+                      "late":1,
+                      "differ":1,
+                      "sleep":1,
+                      "buffer":2,
+                      "thread":1,
+                      "hmmh":1,
+                      "slice":1,
+                      "tomorrow":1,
+                      "won":1,
+                      "instanc":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":14737780,
+        "postId":11153583,
+        "creationDate":"2012-06-27",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":57695,
+          "displayName":"Peter Lawrey",
+          "reputation":257803
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"An ecxelent question. You would think it is redundant esp as I don't using the underlying ByteBuffer.position() (I use offsets only) The problem is that when you memory map a file in a thread, that is not immediately available to another thread and can randomly result in a bus error. :( This appears to be a low level OS issue on Centos at least. I haven't tried this on Windows."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[11153583-cu14737780]-[1983447857]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"An ecxelent question. You would think it is redundant esp as I don't using the underlying ByteBuffer.position() (I use offsets only) The problem is that when you memory map a file in a thread, that is not immediately available to another thread and can randomly result in a bus error. :( This appears to be a low level OS issue on Centos at least. I haven't tried this on Windows."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "question":1,
+                      "random":1,
+                      "window":1,
+                      "bus":1,
+                      "redund":1,
+                      "map":1,
+                      "problem":1,
+                      "appear":1,
+                      "result":1,
+                      "ecxel":1,
+                      "issu":1,
+                      "buffer":1,
+                      "cento":1,
+                      "thread":2,
+                      "low":1,
+                      "offset":1,
+                      "error":1,
+                      "posit":1,
+                      "file":1,
+                      "under":1,
+                      "immedi":1,
+                      "esp":1,
+                      "level":1,
+                      "memori":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "thread-safety",
+      "bytebuffer"
+    ],
+    "creationDate":"2012-06-22",
+    "lastActivityDate":"2012-06-23",
+    "lastEditDate":"2012-06-23",
+    "score":5,
+    "viewCount":2784,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":194609,
+      "displayName":"Karussell",
+      "reputation":7805
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What options do I have to make a ByteBuffer thread safe? It is known that it is not thread safe as it safes position, limit and some(/all?) methods depend on this internal state.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[-28117116]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What options do I have to make a ByteBuffer thread safe? It is known that it is not thread safe as it safes position, limit and some(/all?) methods depend on this internal state.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "depend":1,
+                  "state":1,
+                  "option":1,
+                  "buffer":1,
+                  "safe":3,
+                  "thread":2,
+                  "posit":1,
+                  "make":1,
+                  "limit":1,
+                  "intern":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>For my purposes it will be sufficient if multiple read-threads are safe, but for other future visitors I would like to know what technics/tricks/traps I need to know to make it completely thread safe.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[-1698717819]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>For my purposes it will be sufficient if multiple read-threads are safe, but for other future visitors I would like to know what technics/tricks/traps I need to know to make it completely thread safe.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "trick":1,
+                  "trap":1,
+                  "safe":2,
+                  "visitor":1,
+                  "thread":2,
+                  "suffici":1,
+                  "futur":1,
+                  "make":1,
+                  "technic":1,
+                  "complet":1,
+                  "multipl":1,
+                  "purpos":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What I have in mind:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[1249254109]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What I have in mind:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "mind":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ul> \n <li>Synchronizing or using ReadWrite locks for all methods. Probably the slowest approach (?)</li> \n <li>Subclassing ByteBuffer and avoid persisting thread-bound state like position etc. And throwing exceptions accordingly for all methods which need to use internal state. This would be the fastes. But are there any traps? (except that I'll have to read the directly mapped memory into heap memory ...)</li> \n</ul>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[-1020771989]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ul> \n <li>Synchronizing or using ReadWrite locks for all methods. Probably the slowest approach (?)</li> \n <li>Subclassing ByteBuffer and avoid persisting thread-bound state like position etc. And throwing exceptions accordingly for all methods which need to use internal state. This would be the fastes. But are there any traps? (except that I'll have to read the directly mapped memory into heap memory ...)</li> \n</ul>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ReadWrite",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":2,
+                  "method":2,
+                  "subclass":1,
+                  "state":2,
+                  "map":1,
+                  "trap":1,
+                  "lock":1,
+                  "buffer":1,
+                  "avoid":1,
+                  "direct":1,
+                  "persist":1,
+                  "thread":1,
+                  "bound":1,
+                  "posit":1,
+                  "approach":1,
+                  "fast":1,
+                  "heap":1,
+                  "throw":1,
+                  "except":1,
+                  "slowest":1,
+                  "intern":1,
+                  "write":1,
+                  "synchron":1,
+                  "memori":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ReadWrite",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>What other tricks could I use? How would I e.g. implement a &quot;clone bytes on read&quot; with DirectBuffer - is it possible at all? Would probably slicing the full ByteBuffer (ByteBuffer.slice) be involved in one solution?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[-1595451442]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>What other tricks could I use? How would I e.g. implement a &quot;clone bytes on read&quot; with DirectBuffer - is it possible at all? Would probably slicing the full ByteBuffer (ByteBuffer.slice) be involved in one solution?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"DirectBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "involv":1,
+                  "trick":1,
+                  "full":1,
+                  "buffer":3,
+                  "direct":1,
+                  "clone":1,
+                  "slice":2,
+                  "implement":1,
+                  "quot":2,
+                  "byte":1,
+                  "solut":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"DirectBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>Update</strong>: What is meant in this <a href=\"http://stackoverflow.com/questions/7002510/can-multiple-threads-see-writes-on-a-direct-mapped-bytebuffer-in-java\">question</a> with <em>&quot;duplicate (while synchronized) to get a new instance pointing to the same mapped bytes&quot;</em></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[11153583]-[-1863871389]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>Update</strong>: What is meant in this <a href=\"http://stackoverflow.com/questions/7002510/can-multiple-threads-see-writes-on-a-direct-mapped-bytebuffer-in-java\">question</a> with <em>&quot;duplicate (while synchronized) to get a new instance pointing to the same mapped bytes&quot;</em></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":2,
+                  "point":1,
+                  "map":2,
+                  "bytebuff":1,
+                  "updat":1,
+                  "strong":2,
+                  "direct":1,
+                  "meant":1,
+                  "stackoverflow":1,
+                  "thread":1,
+                  "quot":2,
+                  "duplic":1,
+                  "href":1,
+                  "http":1,
+                  "multipl":1,
+                  "byte":1,
+                  "write":1,
+                  "instanc":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":11154553,
+      "questionId":11153583,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":14645254,
+          "postId":11154553,
+          "creationDate":"2012-06-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":139985,
+            "displayName":"Stephen C",
+            "reputation":291715
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Karussell - 1) because most operations update the buffer's &quot;position&quot;. 2) yes that is true. But it is either that or the getXxx(pos) methods"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[11154553-cu14645254]-[-115738229]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Karussell - 1) because most operations update the buffer's &quot;position&quot;. 2) yes that is true. But it is either that or the getXxx(pos) methods"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Karussell",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"getXxx",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "method":1,
+                        "xxx":1,
+                        "pos":1,
+                        "updat":1,
+                        "buffer":1,
+                        "karussel":1,
+                        "oper":1,
+                        "posit":1,
+                        "true":1,
+                        "quot":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":14629108,
+          "postId":11154553,
+          "creationDate":"2012-06-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":194609,
+            "displayName":"Karussell",
+            "reputation":7805
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"would you comment on the read-only buffer case?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[11154553-cu14629108]-[456447311]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"would you comment on the read-only buffer case?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "comment":1,
+                        "buffer":1,
+                        "read":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":14629510,
+          "postId":11154553,
+          "creationDate":"2012-06-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":139985,
+            "displayName":"Stephen C",
+            "reputation":291715
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I don't think the read-only case simplifies things, unless you are prepared to treat the buffer as a simple array ... fetch and use the backing array directly via `array()`. Even then you need some synchronization to ensure memory is access consistently."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[11154553-cu14629510]-[-1029099023]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I don't think the read-only case simplifies things, unless you are prepared to treat the buffer as a simple array ... fetch and use the backing array directly via `array()`. Even then you need some synchronization to ensure memory is access consistently."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "simpl":1,
+                        "simplifi":1,
+                        "thing":1,
+                        "buffer":1,
+                        "direct":1,
+                        "array":3,
+                        "consist":1,
+                        "back":1,
+                        "fetch":1,
+                        "treat":1,
+                        "prepar":1,
+                        "access":1,
+                        "ensur":1,
+                        "synchron":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":14634043,
+          "postId":11154553,
+          "creationDate":"2012-06-22",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":194609,
+            "displayName":"Karussell",
+            "reputation":7805
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"how could it be inconsistent when no write happen? also the backing array is not always existent"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[11154553-cu14634043]-[167616839]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"how could it be inconsistent when no write happen? also the backing array is not always existent"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "exist":1,
+                        "happen":1,
+                        "array":1,
+                        "back":1,
+                        "inconsist":1,
+                        "write":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":14654365,
+          "postId":11154553,
+          "creationDate":"2012-06-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":194609,
+            "displayName":"Karussell",
+            "reputation":7805
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"ok, thanks! Assuming I would have a read-only operation and using ByteBuffer.slice (so that I can use one ByteBuffer per thread) - are they still any traps :) ?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[11154553-cu14654365]-[524477573]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"ok, thanks! Assuming I would have a read-only operation and using ByteBuffer.slice (so that I can use one ByteBuffer per thread) - are they still any traps :) ?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"ByteBuffer",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":1,
+                        "assum":1,
+                        "trap":1,
+                        "buffer":2,
+                        "oper":1,
+                        "thread":1,
+                        "slice":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        {
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"ByteBuffer",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-06-22",
+      "lastActivityDate":"2012-06-22",
+      "lastEditDate":"2012-06-22",
+      "score":8,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":139985,
+        "displayName":"Stephen C",
+        "reputation":291715
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>A Buffer class <em>could</em> be made thread-safe ... in the sense that the individual operations were properly synchronized, etcetera. However, the API is not designed with multiple threads in mind, so this this is probably a waste of time.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[-863930801]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>A Buffer class <em>could</em> be made thread-safe ... in the sense that the individual operations were properly synchronized, etcetera. However, the API is not designed with multiple threads in mind, so this this is probably a waste of time.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ClassDeclarationNode",
+                    "modifiers":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"could",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sens":1,
+                    "design":1,
+                    "wast":1,
+                    "proper":1,
+                    "individu":1,
+                    "etcetera":1,
+                    "buffer":1,
+                    "safe":1,
+                    "oper":1,
+                    "thread":2,
+                    "mind":1,
+                    "api":1,
+                    "time":1,
+                    "multipl":1,
+                    "made":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The basic problem is that the individual operations on a Buffer are too fine-grained to be the unit of synchronization. An application cannot meaningfully synchronize at the level of the get and put operations, or flip, position and so on. Generally speaking, an application needs to perform sequences of these operations atomically in order to synchronize effectively.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[-161683927]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The basic problem is that the individual operations on a Buffer are too fine-grained to be the unit of synchronization. An application cannot meaningfully synchronize at the level of the get and put operations, or flip, position and so on. Generally speaking, an application needs to perform sequences of these operations atomically in order to synchronize effectively.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "problem":1,
+                    "effect":1,
+                    "individu":1,
+                    "buffer":1,
+                    "oper":3,
+                    "general":1,
+                    "sequenc":1,
+                    "meaning":1,
+                    "order":1,
+                    "flip":1,
+                    "perform":1,
+                    "applic":2,
+                    "posit":1,
+                    "grain":1,
+                    "put":1,
+                    "atom":1,
+                    "unit":1,
+                    "fine":1,
+                    "basic":1,
+                    "speak":1,
+                    "level":1,
+                    "synchron":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The second problem is that if you do synchronize at a fine level, this is likely to add significant overheads on the method calls. Since the point of using the Buffer APIs is to do I/O efficiently, this defeats the purpose.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[499231119]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The second problem is that if you do synchronize at a fine level, this is likely to add significant overheads on the method calls. Since the point of using the Buffer APIs is to do I/O efficiently, this defeats the purpose.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "point":1,
+                    "problem":1,
+                    "effici":1,
+                    "buffer":1,
+                    "overhead":1,
+                    "signific":1,
+                    "defeat":1,
+                    "api":1,
+                    "fine":1,
+                    "call":1,
+                    "add":1,
+                    "purpos":1,
+                    "level":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<hr />"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[1817223689]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<hr />"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you do need to synchronize thread access to a shared buffer, it is better to use external synchronization; e.g. something like this</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[1325727080]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you do need to synchronize thread access to a shared buffer, it is better to use external synchronization; e.g. something like this</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "buffer":1,
+                    "share":1,
+                    "thread":1,
+                    "extern":1,
+                    "access":1,
+                    "synchron":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" synchronized (someLock) { buffer.getByte(); buffer.getLong(); ... } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[11154553]-[-1195222932]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" "
+                  },
+                  {
+                    "type":"SynchronizedStatementNode",
+                    "expression":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"someLock",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "block":{
+                      "type":"BlockNode",
+                      "statements":[
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"buffer",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getByte",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ExpressionStatement",
+                          "expression":{
+                            "type":"MethodInvocationNode",
+                            "qualifiedIdentifier":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"buffer",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"getLong",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "args":{
+                              "type":"ExpressionListNode",
+                              "arguments":[
+                                
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "labels":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":"."
+                        },
+                        {
+                          "type":"TextFragmentNode",
+                          "text":" "
+                        }
+                      ],
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":" synchronized (someLock) { buffer.getByte(); buffer.getLong(); ... } ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "buffer":2,
+                    "lock":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getByte",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"MethodInvocationNode",
+                      "qualifiedIdentifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"buffer",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"getLong",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "args":{
+                        "type":"ExpressionListNode",
+                        "arguments":[
+                          
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Provided all threads that use a given buffer synchronize properly (e.g. using the same lock object), it doesn't matter that the Buffer is not thread-safe. Thread safety is managed externally to the buffer object, and in a more coarse-grained fashion. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[11154553]-[-1770536034]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Provided all threads that use a given buffer synchronize properly (e.g. using the same lock object), it doesn't matter that the Buffer is not thread-safe. Thread safety is managed externally to the buffer object, and in a more coarse-grained fashion. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fashion":1,
+                    "provid":1,
+                    "proper":1,
+                    "lock":1,
+                    "coars":1,
+                    "buffer":3,
+                    "safe":1,
+                    "object":2,
+                    "thread":3,
+                    "safeti":1,
+                    "extern":1,
+                    "grain":1,
+                    "matter":1,
+                    "manag":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

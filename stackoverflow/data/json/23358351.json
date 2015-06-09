@@ -1,0 +1,1854 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":23358351,
+    "title":"Why JIT does so poor job of bound checks elimination?",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":35775268,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":541688,
+          "displayName":"Oleg Estekhin",
+          "reputation":3105
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"You found that hotspot eliminated a dozen of checks but did not eliminated one, and how is that &quot;poor job&quot;?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775268]-[949250205]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"You found that hotspot eliminated a dozen of checks but did not eliminated one, and how is that &quot;poor job&quot;?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "job":1,
+                      "hotspot":1,
+                      "found":1,
+                      "poor":1,
+                      "check":1,
+                      "elimin":2,
+                      "quot":2,
+                      "dozen":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775379,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@OlegEstekhin it doesn't eliminate 7, 3 of them I thaught it surely should, because data pattern is very simple, like in a loop with decremented counter. Checking the array length is non zero on each iteration (instead of once before the loop) is really silly."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775379]-[1703421200]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@OlegEstekhin it doesn't eliminate 7, 3 of them I thaught it surely should, because data pattern is very simple, like in a loop with decremented counter. Checking the array length is non zero on each iteration (instead of once before the loop) is really silly."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"OlegEstekhin",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "loop":2,
+                      "simpl":1,
+                      "pattern":1,
+                      "sure":1,
+                      "data":1,
+                      "oleg":1,
+                      "thaught":1,
+                      "silli":1,
+                      "array":1,
+                      "decrement":1,
+                      "check":1,
+                      "iter":1,
+                      "estekhin":1,
+                      "elimin":1,
+                      "counter":1,
+                      "length":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775496,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":2187042,
+          "displayName":"Richard Tingle",
+          "reputation":8323
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Once you get multithreading involved crazy things can happen. For example x==x can be false (even if we ignore NaN!=NaN) because [x can change between the 2 accesses](http://stackoverflow.com/a/20375252/2187042)"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775496]-[-1415244326]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Once you get multithreading involved crazy things can happen. For example x==x can be false (even if we ignore NaN!=NaN) because [x can change between the 2 accesses](http://stackoverflow.com/a/20375252/2187042)"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "chang":1,
+                      "ignor":1,
+                      "involv":1,
+                      "happen":1,
+                      "thing":1,
+                      "stackoverflow":1,
+                      "multithread":1,
+                      "fals":1,
+                      "crazi":1,
+                      "http":1,
+                      "access":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775503,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@OlegEstekhin right before operations 1, 2 and 3 the index is checked to be positive anyway I counted zero bound checks as eliminated, though it would be nonsense if JIT generate two equal checks one after another."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775503]-[1097517362]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@OlegEstekhin right before operations 1, 2 and 3 the index is checked to be positive anyway I counted zero bound checks as eliminated, though it would be nonsense if JIT generate two equal checks one after another."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"OlegEstekhin",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "jit":1,
+                      "count":1,
+                      "nonsens":1,
+                      "oleg":1,
+                      "oper":1,
+                      "bound":1,
+                      "equal":1,
+                      "check":3,
+                      "estekhin":1,
+                      "posit":1,
+                      "elimin":1,
+                      "generat":1,
+                      "index":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775720,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@RichardTingle it is not relevant to my case. 1) it is single threaded 2) array's lengths are immutable in java and should be accessible from any number of threads without &quot;effects&quot;"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775720]-[1167053768]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@RichardTingle it is not relevant to my case. 1) it is single threaded 2) array's lengths are immutable in java and should be accessible from any number of threads without &quot;effects&quot;"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"RichardTingle",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "number":1,
+                      "singl":1,
+                      "tingl":1,
+                      "effect":1,
+                      "relev":1,
+                      "immut":1,
+                      "array":1,
+                      "thread":2,
+                      "quot":2,
+                      "length":1,
+                      "richard":1,
+                      "access":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775797,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":2187042,
+          "displayName":"Richard Tingle",
+          "reputation":8323
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Array lengths are immutable but the reference `arr` isn't (it would be interesting to see what would happen if you declared arr as final)"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775797]-[761848653]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Array lengths are immutable but the reference `arr` isn't (it would be interesting to see what would happen if you declared arr as final)"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "happen":1,
+                      "immut":1,
+                      "declar":1,
+                      "array":1,
+                      "interest":1,
+                      "refer":1,
+                      "arr":2,
+                      "isn":1,
+                      "length":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35776011,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":1,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@RichardTingle `arr` is local in the sort methods. Adding `final` to local doesn't affect runtime performance at all at least because it isn't reflected in bytecode. In assembly of sorting methods both `arr` address and `arr.lendth` are kept in registers and aren't updated during the sort loop."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35776011]-[1618778877]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@RichardTingle `arr` is local in the sort methods. Adding `final` to local doesn't affect runtime performance at all at least because it isn't reflected in bytecode. In assembly of sorting methods both `arr` address and `arr.lendth` are kept in registers and aren't updated during the sort loop."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"RichardTingle",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "method":2,
+                      "assembl":1,
+                      "runtim":1,
+                      "tingl":1,
+                      "loop":1,
+                      "aren":1,
+                      "bytecod":1,
+                      "updat":1,
+                      "local":2,
+                      "regist":1,
+                      "affect":1,
+                      "lendth":1,
+                      "perform":1,
+                      "arr":3,
+                      "isn":1,
+                      "address":1,
+                      "ad":1,
+                      "sort":3,
+                      "reflect":1,
+                      "richard":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775068,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":355499,
+          "displayName":"Emil H",
+          "reputation":3492
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"Did you warm up the JVM before running your performance tests?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775068]-[433931667]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"Did you warm up the JVM before running your performance tests?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "jvm":1,
+                      "test":1,
+                      "warm":1,
+                      "run":1,
+                      "perform":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":35775079,
+        "postId":23358351,
+        "creationDate":"2014-04-29",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@EmilH I use JMH"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu35775079]-[2130208146]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@EmilH I use JMH"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"EmilH",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "emil":1,
+                      "jmh":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":37150028,
+        "postId":23358351,
+        "creationDate":"2014-06-06",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1502148,
+          "displayName":"Gábor Bakos",
+          "reputation":2712
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@leventov Which Java version were you using? Which parameters you used for starting the JVM?"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu37150028]-[-1646429558]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@leventov Which Java version were you using? Which parameters you used for starting the JVM?"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "jvm":1,
+                      "version":1,
+                      "paramet":1,
+                      "leventov":1,
+                      "start":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"StackOverflowComment",
+        "id":37151286,
+        "postId":23358351,
+        "creationDate":"2014-06-06",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":648955,
+          "displayName":"leventov",
+          "reputation":3060
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"@G&aacute;borBakos the latest Java 8 build at that moment. Parameters - don't remember"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[23358351-cu37151286]-[1071964062]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"@G&aacute;borBakos the latest Java 8 build at that moment. Parameters - don't remember"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    {
+                      "type":"AnnotationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"G",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"borBakos",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "bor":1,
+                      "bako":1,
+                      "build":1,
+                      "rememb":1,
+                      "paramet":1,
+                      "aacut":1,
+                      "moment":1,
+                      "latest":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "arrays",
+      "unsafe",
+      "heapsort",
+      "bounds-check-elimination"
+    ],
+    "creationDate":"2014-04-29",
+    "lastActivityDate":"2014-04-29",
+    "lastEditDate":"2014-04-29",
+    "score":1,
+    "viewCount":113,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":648955,
+      "displayName":"leventov",
+      "reputation":3060
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm testing HotSpot JIT array bound checks elimination capabilities. Here are two versions of the same heapsort implementation, one use ordinary array indexing, another <code>sun.misc.Unsafe</code> API, free of bound checks:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[-1162501240]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm testing HotSpot JIT array bound checks elimination capabilities. Here are two versions of the same heapsort implementation, one use ordinary array indexing, another <code>sun.misc.Unsafe</code> API, free of bound checks:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HotSpot",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                },
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jit":1,
+                  "test":1,
+                  "ordinari":1,
+                  "heapsort":1,
+                  "capabl":1,
+                  "sun":1,
+                  "code":2,
+                  "array":2,
+                  "version":1,
+                  "bound":2,
+                  "check":2,
+                  "implement":1,
+                  "misc":1,
+                  "elimin":1,
+                  "spot":1,
+                  "hot":1,
+                  "api":1,
+                  "unsaf":1,
+                  "free":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"sun",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"misc",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Unsafe",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HotSpot",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"public class HeapSort { // copied from http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Heapsort#C static int heapSortSimple(int[] arr) { int t; int n = arr.length, parent = n / 2, index, childI; while (true) { if (parent &gt; 0) { t = arr[--parent]; // 1, i. e. first indexing } else { if (--n == 0) break; t = arr[n]; // 2 arr[n] = arr[0]; // 3, 4 } index = parent; childI = (index &lt;&lt; 1) + 1; while (childI &lt; n) { int childV = arr[childI]; // 5 int right; if (childI + 1 &lt; n &amp;&amp; (right = arr[childI + 1]) &gt; childV) { // 6 childI++; childV = right; } if (childV &gt; t) { arr[index] = childV; // 7 index = childI; childI = (index &lt;&lt; 1) + 1; } else { break; } } arr[index] = t; // 8 } return arr[arr.length - 1]; } static int heapSortUnsafe(int[] arr) { int t; long n = arr.length * INT_SCALE, parent = (arr.length / 2) * INT_SCALE, index, childI; while (true) { if (parent &gt; 0) { t = U.getInt(arr, INT_BASE + (parent -= INT_SCALE)); } else { if ((n -= INT_SCALE) == 0) break; t = U.getInt(arr, INT_BASE + n); U.putInt(arr, INT_BASE + n, U.getInt(arr, INT_BASE)); } index = parent; childI = (index &lt;&lt; 1) + INT_SCALE; while (childI &lt; n) { int childV = U.getInt(arr, INT_BASE + childI); int right; if (childI + INT_SCALE &lt; n &amp;&amp; (right = U.getInt(arr, INT_BASE + (childI + INT_SCALE))) &gt; childV) { childI += INT_SCALE; childV = right; } if (childV &gt; t) { U.putInt(arr, INT_BASE + index, childV); index = childI; childI = (index &lt;&lt; 1) + INT_SCALE; } else { break; } } U.putInt(arr, INT_BASE + index, t); } return arr[arr.length - 1]; } @OutputTimeUnit(TimeUnit.MICROSECONDS) @BenchmarkMode(Mode.AverageTime) @Warmup(iterations = 5, time = 1) @Measurement(iterations = 10, time = 1) @State(Scope.Thread) @Threads(1) @Fork(1) public static class Benchmarks { static final int N = 1024; int[] a = new int[N]; @Setup(Level.Invocation) public void fill() { Random r = ThreadLocalRandom.current(); for (int i = 0; i &lt; N; i++) { a[i] = r.nextInt(); } } @GenerateMicroBenchmark public static int simple(Benchmarks st) { int[] arr = st.a; return heapSortSimple(arr); } @GenerateMicroBenchmark public static int unsafe(Benchmarks st) { int[] arr = st.a; return heapSortUnsafe(arr); } } public static void main(String[] args) { Benchmarks bs = new Benchmarks(); // verify simple sort bs.fill(); int[] a1 = bs.a; int[] a2 = a1.clone(); Arrays.sort(a2); heapSortSimple(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); // let JIT to generate optimized assembly for (int i = 0; i &lt; 10000; i++) { bs.fill(); heapSortSimple(bs.a); } // verify unsafe sort bs.fill(); a1 = bs.a; a2 = a1.clone(); Arrays.sort(a2); heapSortUnsafe(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); for (int i = 0; i &lt; 10000; i++) { bs.fill(); heapSortUnsafe(bs.a); } } static final Unsafe U; static final long INT_BASE; static final long INT_SCALE = 4; static { try { Field f = Unsafe.class.getDeclaredField(&quot;theUnsafe&quot;); f.setAccessible(true); U = (Unsafe) f.get(null); } catch (Exception e) { throw new IllegalStateException(e); } INT_BASE = U.arrayBaseOffset(int[].class); } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[23358351]-[-293313747]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "imports":[
+                    
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HeapSort",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          
+                        ],
+                        "comments":[
+                          {
+                            "text":"// copied from http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Heapsort#C static int heapSortSimple(int[] arr) { int t; int n = arr.length, parent = n / 2, index, childI; while (true) { if (parent > 0) { t = arr[--parent]; // 1, i. e. first indexing } else { if (--n == 0) break; t = arr[n]; // 2 arr[n] = arr[0]; // 3, 4 } index = parent; childI = (index << 1) + 1; while (childI < n) { int childV = arr[childI]; // 5 int right; if (childI + 1 < n && (right = arr[childI + 1]) > childV) { // 6 childI++; childV = right; } if (childV > t) { arr[index] = childV; // 7 index = childI; childI = (index << 1) + 1; } else { break; } } arr[index] = t; // 8 } return arr[arr.length - 1]; } static int heapSortUnsafe(int[] arr) { int t; long n = arr.length * INT_SCALE, parent = (arr.length / 2) * INT_SCALE, index, childI; while (true) { if (parent > 0) { t = U.getInt(arr, INT_BASE + (parent -= INT_SCALE)); } else { if ((n -= INT_SCALE) == 0) break; t = U.getInt(arr, INT_BASE + n); U.putInt(arr, INT_BASE + n, U.getInt(arr, INT_BASE)); } index = parent; childI = (index << 1) + INT_SCALE; while (childI < n) { int childV = U.getInt(arr, INT_BASE + childI); int right; if (childI + INT_SCALE < n && (right = U.getInt(arr, INT_BASE + (childI + INT_SCALE))) > childV) { childI += INT_SCALE; childV = right; } if (childV > t) { U.putInt(arr, INT_BASE + index, childV); index = childI; childI = (index << 1) + INT_SCALE; } else { break; } } U.putInt(arr, INT_BASE + index, t); } return arr[arr.length - 1]; } @OutputTimeUnit(TimeUnit.MICROSECONDS) @BenchmarkMode(Mode.AverageTime) @Warmup(iterations = 5, time = 1) @Measurement(iterations = 10, time = 1) @State(Scope.Thread) @Threads(1) @Fork(1) public static class Benchmarks { static final int N = 1024; int[] a = new int[N]; @Setup(Level.Invocation) public void fill() { Random r = ThreadLocalRandom.current(); for (int i = 0; i < N; i++) { a[i] = r.nextInt(); } } @GenerateMicroBenchmark public static int simple(Benchmarks st) { int[] arr = st.a; return heapSortSimple(arr); } @GenerateMicroBenchmark public static int unsafe(Benchmarks st) { int[] arr = st.a; return heapSortUnsafe(arr); } } public static void main(String[] args) { Benchmarks bs = new Benchmarks(); // verify simple sort bs.fill(); int[] a1 = bs.a; int[] a2 = a1.clone(); Arrays.sort(a2); heapSortSimple(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); // let JIT to generate optimized assembly for (int i = 0; i < 10000; i++) { bs.fill(); heapSortSimple(bs.a); } // verify unsafe sort bs.fill(); a1 = bs.a; a2 = a1.clone(); Arrays.sort(a2); heapSortUnsafe(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); for (int i = 0; i < 10000; i++) { bs.fill(); heapSortUnsafe(bs.a); } } static final Unsafe U; static final long INT_BASE; static final long INT_SCALE = 4; static { try { Field f = Unsafe.class.getDeclaredField(\"theUnsafe\"); f.setAccessible(true); U = (Unsafe) f.get(null); } catch (Exception e) { throw new IllegalStateException(e); } INT_BASE = U.arrayBaseOffset(int[].class); } } \n"
+                          }
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"public class HeapSort { // copied from http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Heapsort#C static int heapSortSimple(int[] arr) { int t; int n = arr.length, parent = n / 2, index, childI; while (true) { if (parent > 0) { t = arr[--parent]; // 1, i. e. first indexing } else { if (--n == 0) break; t = arr[n]; // 2 arr[n] = arr[0]; // 3, 4 } index = parent; childI = (index << 1) + 1; while (childI < n) { int childV = arr[childI]; // 5 int right; if (childI + 1 < n && (right = arr[childI + 1]) > childV) { // 6 childI++; childV = right; } if (childV > t) { arr[index] = childV; // 7 index = childI; childI = (index << 1) + 1; } else { break; } } arr[index] = t; // 8 } return arr[arr.length - 1]; } static int heapSortUnsafe(int[] arr) { int t; long n = arr.length * INT_SCALE, parent = (arr.length / 2) * INT_SCALE, index, childI; while (true) { if (parent > 0) { t = U.getInt(arr, INT_BASE + (parent -= INT_SCALE)); } else { if ((n -= INT_SCALE) == 0) break; t = U.getInt(arr, INT_BASE + n); U.putInt(arr, INT_BASE + n, U.getInt(arr, INT_BASE)); } index = parent; childI = (index << 1) + INT_SCALE; while (childI < n) { int childV = U.getInt(arr, INT_BASE + childI); int right; if (childI + INT_SCALE < n && (right = U.getInt(arr, INT_BASE + (childI + INT_SCALE))) > childV) { childI += INT_SCALE; childV = right; } if (childV > t) { U.putInt(arr, INT_BASE + index, childV); index = childI; childI = (index << 1) + INT_SCALE; } else { break; } } U.putInt(arr, INT_BASE + index, t); } return arr[arr.length - 1]; } @OutputTimeUnit(TimeUnit.MICROSECONDS) @BenchmarkMode(Mode.AverageTime) @Warmup(iterations = 5, time = 1) @Measurement(iterations = 10, time = 1) @State(Scope.Thread) @Threads(1) @Fork(1) public static class Benchmarks { static final int N = 1024; int[] a = new int[N]; @Setup(Level.Invocation) public void fill() { Random r = ThreadLocalRandom.current(); for (int i = 0; i < N; i++) { a[i] = r.nextInt(); } } @GenerateMicroBenchmark public static int simple(Benchmarks st) { int[] arr = st.a; return heapSortSimple(arr); } @GenerateMicroBenchmark public static int unsafe(Benchmarks st) { int[] arr = st.a; return heapSortUnsafe(arr); } } public static void main(String[] args) { Benchmarks bs = new Benchmarks(); // verify simple sort bs.fill(); int[] a1 = bs.a; int[] a2 = a1.clone(); Arrays.sort(a2); heapSortSimple(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); // let JIT to generate optimized assembly for (int i = 0; i < 10000; i++) { bs.fill(); heapSortSimple(bs.a); } // verify unsafe sort bs.fill(); a1 = bs.a; a2 = a1.clone(); Arrays.sort(a2); heapSortUnsafe(a1); if (!Arrays.equals(a2, a1)) throw new AssertionError(); for (int i = 0; i < 10000; i++) { bs.fill(); heapSortUnsafe(bs.a); } } static final Unsafe U; static final long INT_BASE; static final long INT_SCALE = 4; static { try { Field f = Unsafe.class.getDeclaredField(\"theUnsafe\"); f.setAccessible(true); U = (Unsafe) f.get(null); } catch (Exception e) { throw new IllegalStateException(e); } INT_BASE = U.arrayBaseOffset(int[].class); } } \n...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "assert":2,
+                  "jit":1,
+                  "warmup":1,
+                  "parent":8,
+                  "assembl":1,
+                  "random":2,
+                  "wikibook":1,
+                  "simpl":6,
+                  "field":2,
+                  "state":2,
+                  "heapsort":1,
+                  "invoc":1,
+                  "scale":10,
+                  "scope":1,
+                  "set":1,
+                  "local":1,
+                  "averag":1,
+                  "verifi":2,
+                  "main":1,
+                  "declar":1,
+                  "measur":1,
+                  "base":11,
+                  "fork":1,
+                  "child":28,
+                  "array":5,
+                  "optim":1,
+                  "thread":3,
+                  "offset":1,
+                  "equal":2,
+                  "algorithm":1,
+                  "error":2,
+                  "micro":2,
+                  "fill":5,
+                  "clone":2,
+                  "illeg":1,
+                  "iter":2,
+                  "arr":29,
+                  "implement":1,
+                  "true":3,
+                  "mode":2,
+                  "generat":3,
+                  "put":3,
+                  "length":5,
+                  "wiki":1,
+                  "unit":2,
+                  "unsaf":10,
+                  "time":5,
+                  "heap":9,
+                  "output":1,
+                  "sort":14,
+                  "org":1,
+                  "current":1,
+                  "http":1,
+                  "arg":1,
+                  "copi":1,
+                  "setup":1,
+                  "index":15,
+                  "access":1,
+                  "benchmark":8,
+                  "level":1,
+                  "microsecond":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Unsafe version is consistently <strong>13% faster</strong> both on Intel SB and AMD K10 CPUs.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[1704348024]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Unsafe version is consistently <strong>13% faster</strong> both on Intel SB and AMD K10 CPUs.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "faster":1,
+                  "amd":1,
+                  "strong":2,
+                  "version":1,
+                  "consist":1,
+                  "intel":1,
+                  "cpus":1,
+                  "unsaf":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I've looked into the generated assembly:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[168402894]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I've looked into the generated assembly:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "look":1,
+                  "assembl":1,
+                  "generat":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<ul> \n <li>lower bound check is eliminated for all indexing operations (1-8)</li> \n <li>upper bound check is eliminated only for operation 5, checks for 2 and 3 are merged</li> \n <li>yes, for operation 4 (<code>arr[0]</code>) <em>on each iteration</em> it is checked that <code>arr.length != 0</code></li> \n</ul>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[543259362]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<ul> \n <li>lower bound check is eliminated for all indexing operations (1-8)</li> \n <li>upper bound check is eliminated only for operation 5, checks for 2 and 3 are merged</li> \n <li>yes, for operation 4 (<code>arr[0]</code>) <em>on each iteration</em> it is checked that <code>arr.length != 0</code></li> \n</ul>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "lower":1,
+                  "upper":1,
+                  "code":4,
+                  "oper":3,
+                  "bound":2,
+                  "check":4,
+                  "iter":1,
+                  "merg":1,
+                  "arr":2,
+                  "elimin":2,
+                  "length":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Obviously all bound check branches are predicted perfecty, that's why heap sort with simple indexing is slower than unsafe only for 13%.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[-1018268286]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Obviously all bound check branches are predicted perfecty, that's why heap sort with simple indexing is slower than unsafe only for 13%.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "simpl":1,
+                  "branch":1,
+                  "bound":1,
+                  "check":1,
+                  "slower":1,
+                  "perfecti":1,
+                  "unsaf":1,
+                  "predict":1,
+                  "heap":1,
+                  "sort":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I thaught it definitely JIT's work to optimize bound checks at least for operations 1, 2 and 3, where the <strong>index is decremented steadily from some value below array's length to zero</strong>.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[1032079672]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I thaught it definitely JIT's work to optimize bound checks at least for operations 1, 2 and 3, where the <strong>index is decremented steadily from some value below array's length to zero</strong>.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jit":1,
+                  "strong":2,
+                  "thaught":1,
+                  "work":1,
+                  "oper":1,
+                  "array":1,
+                  "decrement":1,
+                  "optim":1,
+                  "bound":1,
+                  "check":1,
+                  "steadili":1,
+                  "length":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>The question is in the title: why HotSpot JIT does so poor job of bound checks elimination in this case?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[23358351]-[-217327939]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>The question is in the title: why HotSpot JIT does so poor job of bound checks elimination in this case?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"HotSpot",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "jit":1,
+                  "question":1,
+                  "job":1,
+                  "titl":1,
+                  "bound":1,
+                  "poor":1,
+                  "check":1,
+                  "elimin":1,
+                  "spot":1,
+                  "hot":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"HotSpot",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    
+  ]
+}

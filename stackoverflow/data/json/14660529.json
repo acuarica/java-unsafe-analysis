@@ -1,0 +1,3668 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":14660529,
+    "title":"Least intrusive compile barrier for Java on x86",
+    "comments":[
+      
+    ],
+    "tags":[
+      "java",
+      "performance",
+      "memory",
+      "x86",
+      "barrier"
+    ],
+    "creationDate":"2013-02-02",
+    "lastActivityDate":"2013-02-07",
+    "score":4,
+    "viewCount":177,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":2004300,
+      "displayName":"jmetcalfe",
+      "reputation":868
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>If I hava a Java process interacting with some other process via a shared ByteBuffer or similar, what would be the least intrusive equivalent of a compiler barrier in C/C++? No portability is required - I am specifically interested in x86.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[14660529]-[-278197771]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>If I hava a Java process interacting with some other process via a shared ByteBuffer or similar, what would be the least intrusive equivalent of a compiler barrier in C/C++? No portability is required - I am specifically interested in x86.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ByteBuffer",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "hava":1,
+                  "portabl":1,
+                  "equival":1,
+                  "similar":1,
+                  "process":2,
+                  "interact":1,
+                  "barrier":1,
+                  "requir":1,
+                  "buffer":1,
+                  "share":1,
+                  "intrus":1,
+                  "interest":1,
+                  "specif":1,
+                  "compil":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>For example I have 2 processes reading and writing to an area of memory as per the pseudocode:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[14660529]-[-1026262897]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>For example I have 2 processes reading and writing to an area of memory as per the pseudocode:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "area":1,
+                  "process":1,
+                  "write":1,
+                  "pseudocod":1,
+                  "memori":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"p1: i = 0 while true: A = 0 //Write to B A = ++i p2: a1 = A //Read from B a2 = A if a1 == a2 and a1 != 0: //Read was valid "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[14660529]-[-1955939718]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"p1: i = 0 while true: A = 0 //Write to B A = ++i p2: a1 = A //Read from B a2 = A if a1 == a2 and a1 != 0: //Read was valid "
+                }
+              ]
+            },
+            "rawText":"p1: i = 0 while true: A = 0 //Write to B A = ++i p2: a1 = A //Read from B a2 = A if a1 == a2 and a1 != 0: //Read was valid ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "valid":1,
+                  "write":1,
+                  "true":1,
+                  "read":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Due to the strict memory ordering on x86 (loads to separate locations not reorder and reads to separate locations not reordered) this does not require any memory barrier in C++, just a compile barrier between each write and between each read (i.e. asm volatile). </p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[14660529]-[504880351]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Due to the strict memory ordering on x86 (loads to separate locations not reorder and reads to separate locations not reordered) this does not require any memory barrier in C++, just a compile barrier between each write and between each read (i.e. asm volatile). </p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":2,
+                  "due":1,
+                  "strict":1,
+                  "reorder":2,
+                  "barrier":2,
+                  "requir":1,
+                  "separ":2,
+                  "load":1,
+                  "order":1,
+                  "asm":1,
+                  "compil":1,
+                  "write":1,
+                  "locat":2,
+                  "memori":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>How can I achieve the same ordering constraint in Java in the least expensive manner. Is there anything less intrusive than writing to a volatile?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[14660529]-[718073203]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>How can I achieve the same ordering constraint in Java in the least expensive manner. Is there anything less intrusive than writing to a volatile?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "manner":1,
+                  "intrus":1,
+                  "achiev":1,
+                  "order":1,
+                  "constraint":1,
+                  "expens":1,
+                  "write":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":14660625,
+      "questionId":14660529,
+      "comments":[
+        
+      ],
+      "creationDate":"2013-02-02",
+      "lastActivityDate":"2013-02-02",
+      "score":4,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":57695,
+        "displayName":"Peter Lawrey",
+        "reputation":257803
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You can use lazySet, it can be up to 10x faster than setting a volatile field as it doesn't stall the CPU pipeline. e.g. AtomicLong lazySet or you can use the Unsafe equivalent if you need.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660625]-[-1916725434]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You can use lazySet, it can be up to 10x faster than setting a volatile field as it doesn't stall the CPU pipeline. e.g. AtomicLong lazySet or you can use the Unsafe equivalent if you need.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicLong",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "faster":1,
+                    "field":1,
+                    "equival":1,
+                    "set":3,
+                    "lazi":2,
+                    "pipelin":1,
+                    "stall":1,
+                    "cpu":1,
+                    "atom":1,
+                    "unsaf":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicLong",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":14660627,
+      "questionId":14660529,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":20488952,
+          "postId":14660627,
+          "creationDate":"2013-02-02",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":57695,
+            "displayName":"Peter Lawrey",
+            "reputation":257803
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Agreed on the JVM not moving instructions, but the CPU might otherwise."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20488952]-[-912098272]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Agreed on the JVM not moving instructions, but the CPU might otherwise."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "jvm":1,
+                        "move":1,
+                        "cpu":1,
+                        "agre":1,
+                        "instruct":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20488983,
+          "postId":14660627,
+          "creationDate":"2013-02-02",
+          "score":2,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Right, but it still has specific semantics - in particular not being reordered with other stores, which on x86 is as simple as a plain store, which is how putOrdered and lazySet are implemented on that platform. So the method should do what the OP wants. Of course, the exact semantics are thinly documented, so a double check of the JDK source might be in order."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20488983]-[-1118945894]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Right, but it still has specific semantics - in particular not being reordered with other stores, which on x86 is as simple as a plain store, which is how putOrdered and lazySet are implemented on that platform. So the method should do what the OP wants. Of course, the exact semantics are thinly documented, so a double check of the JDK source might be in order."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrdered",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"lazySet",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "method":1,
+                        "simpl":1,
+                        "reorder":1,
+                        "document":1,
+                        "set":1,
+                        "lazi":1,
+                        "store":2,
+                        "exact":1,
+                        "check":1,
+                        "order":2,
+                        "specif":1,
+                        "semant":2,
+                        "implement":1,
+                        "plain":1,
+                        "put":1,
+                        "platform":1,
+                        "thin":1,
+                        "sourc":1,
+                        "jdk":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20505577,
+          "postId":14660627,
+          "creationDate":"2013-02-03",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2004300,
+            "displayName":"jmetcalfe",
+            "reputation":868
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks, this seems like it will fit pretty well. What about on the read side?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20505577]-[752064196]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks, this seems like it will fit pretty well. What about on the read side?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "fit":1,
+                        "side":1,
+                        "pretti":1,
+                        "read":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20521524,
+          "postId":14660627,
+          "creationDate":"2013-02-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I added more detail above to address that. I'm concerned that even with full volatile read/writes your seqlock won't work (in theory, I think it is likely to work in practice), because volatile reads on mean that you'll see everything that happened before the corresponding write, but do _not_ prevent you from seeing even more things that happened after that write."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20521524]-[95441002]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I added more detail above to address that. I'm concerned that even with full volatile read/writes your seqlock won't work (in theory, I think it is likely to work in practice), because volatile reads on mean that you'll see everything that happened before the corresponding write, but do _not_ prevent you from seeing even more things that happened after that write."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_not_",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":2,
+                        "happen":2,
+                        "prevent":1,
+                        "full":1,
+                        "thing":1,
+                        "work":2,
+                        "concern":1,
+                        "theori":1,
+                        "seqlock":1,
+                        "address":1,
+                        "ad":1,
+                        "detail":1,
+                        "practic":1,
+                        "won":1,
+                        "write":3
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20552868,
+          "postId":14660627,
+          "creationDate":"2013-02-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Details added to end of reply..."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20552868]-[292651873]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Details added to end of reply..."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "ad":1,
+                        "repli":1,
+                        "detail":1,
+                        "end":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20561882,
+          "postId":14660627,
+          "creationDate":"2013-02-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2004300,
+            "displayName":"jmetcalfe",
+            "reputation":868
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@BeeOnRope Very helpful, thanks. Just to clarify again, it seems from the above that your suggestion to use putOrdered on the two counter writes _unless_ `B` is also written with putOrdered/volatile, because, using your example, the assignment of Bv at (2) could move above that of A at (1). So we must use putOrdered on all three writes."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20561882]-[-224164565]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@BeeOnRope Very helpful, thanks. Just to clarify again, it seems from the above that your suggestion to use putOrdered on the two counter writes _unless_ `B` is also written with putOrdered/volatile, because, using your example, the assignment of Bv at (2) could move above that of A at (1). So we must use putOrdered on all three writes."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"BeeOnRope",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrdered",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"_unless_",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrdered",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"putOrdered",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "move":1,
+                        "suggest":1,
+                        "assign":1,
+                        "help":1,
+                        "order":3,
+                        "written":1,
+                        "bee":1,
+                        "put":3,
+                        "counter":1,
+                        "clarifi":1,
+                        "rope":1,
+                        "write":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20566736,
+          "postId":14660627,
+          "creationDate":"2013-02-05",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Actually I think I'm saying that even volatile isn't enough for your counter writes (A in your code). I didn't follow understand your question however. When you said &quot;counter&quot; did you mean your code or mine? When you said `B` did you mean `Bv` from my code?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20566736]-[296012463]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Actually I think I'm saying that even volatile isn't enough for your counter writes (A in your code). I didn't follow understand your question however. When you said &quot;counter&quot; did you mean your code or mine? When you said `B` did you mean `Bv` from my code?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "mine":1,
+                        "understand":1,
+                        "code":3,
+                        "isn":1,
+                        "counter":2,
+                        "quot":2,
+                        "write":1,
+                        "follow":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20629576,
+          "postId":14660627,
+          "creationDate":"2013-02-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Well in my example, thead 2 is looking at Bv and trying to reason about the validity of a and c, not the other way around. Basically a and c represent your &quot;data&quot; and Bv is your &quot;A&quot; variable - the seqlock version counter (confusing, sure). Let's abandon by example and look at yours directly. Because formatting sucks, I will put my analysis in the post."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20629576]-[-192042113]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Well in my example, thead 2 is looking at Bv and trying to reason about the validity of a and c, not the other way around. Basically a and c represent your &quot;data&quot; and Bv is your &quot;A&quot; variable - the seqlock version counter (confusing, sure). Let's abandon by example and look at yours directly. Because formatting sucks, I will put my analysis in the post."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "thead":1,
+                        "format":1,
+                        "post":1,
+                        "suck":1,
+                        "data":1,
+                        "reason":1,
+                        "direct":1,
+                        "version":1,
+                        "abandon":1,
+                        "seqlock":1,
+                        "valid":1,
+                        "put":1,
+                        "counter":1,
+                        "quot":4,
+                        "confus":1,
+                        "variabl":1,
+                        "analysi":1,
+                        "basic":1,
+                        "repres":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20630495,
+          "postId":14660627,
+          "creationDate":"2013-02-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I asked about the general case of a seqlock using volatiles [here](http://stackoverflow.com/questions/14742808/is-it-possible-to-efficiently-implement-a-seqlock-in-java)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20630495]-[-1079724259]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I asked about the general case of a seqlock using volatiles [here](http://stackoverflow.com/questions/14742808/is-it-possible-to-efficiently-implement-a-seqlock-in-java)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":1,
+                        "volatil":1,
+                        "effici":1,
+                        "stackoverflow":1,
+                        "general":1,
+                        "seqlock":2,
+                        "implement":1,
+                        "ask":1,
+                        "http":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20629997,
+          "postId":14660627,
+          "creationDate":"2013-02-07",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"The user @irreputable seems to know what is going on with this kind of stuff. See for example his reply on [this question](http://stackoverflow.com/questions/3971095/volatile-variables-and-happens-before-ordering), which indicates an exhaustive approach you might use to analyze this."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20629997]-[-440219448]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"The user @irreputable seems to know what is going on with this kind of stuff. See for example his reply on [this question](http://stackoverflow.com/questions/3971095/volatile-variables-and-happens-before-ordering), which indicates an exhaustive approach you might use to analyze this."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "question":2,
+                        "irreput":1,
+                        "analyz":1,
+                        "exhaust":1,
+                        "stackoverflow":1,
+                        "order":1,
+                        "repli":1,
+                        "stuff":1,
+                        "approach":1,
+                        "kind":1,
+                        "variabl":1,
+                        "http":1,
+                        "user":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20597937,
+          "postId":14660627,
+          "creationDate":"2013-02-06",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2004300,
+            "displayName":"jmetcalfe",
+            "reputation":868
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@BeeOnRope Lets take your example. If my understanding of the Java happens-before gaurentees is correct, making writes to A, Bv and C all volatile should gaurentee consistency? We have stopped (3) moving above (2) and I believe thread 2 sees c=1 and a=1 he can gaurentee Bv=1. The counter I referred to is A in my original example."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20597937]-[-1331819396]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@BeeOnRope Lets take your example. If my understanding of the Java happens-before gaurentees is correct, making writes to A, Bv and C all volatile should gaurentee consistency? We have stopped (3) moving above (2) and I believe thread 2 sees c=1 and a=1 he can gaurentee Bv=1. The counter I referred to is A in my original example."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"BeeOnRope",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "move":1,
+                        "gaurente":3,
+                        "correct":1,
+                        "understand":1,
+                        "stop":1,
+                        "thread":1,
+                        "consist":1,
+                        "origin":1,
+                        "bee":1,
+                        "refer":1,
+                        "make":1,
+                        "counter":1,
+                        "see":1,
+                        "rope":1,
+                        "let":1,
+                        "write":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20548521,
+          "postId":14660627,
+          "creationDate":"2013-02-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":2004300,
+            "displayName":"jmetcalfe",
+            "reputation":868
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Thanks for the update. To confirm (I am not well-versed in Java so excuse my ignorance), you think the volatile read would only guarantee ordering with respect to earlier writes, not earlier reads, meaning that the read from B or the initial read from A could be reordered with the second read from A? So the only solution would be the original write to volatile?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20548521]-[1482896490]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Thanks for the update. To confirm (I am not well-versed in Java so excuse my ignorance), you think the volatile read would only guarantee ordering with respect to earlier writes, not earlier reads, meaning that the read from B or the initial read from A could be reordered with the second read from A? So the only solution would be the original write to volatile?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "read":5,
+                        "ignor":1,
+                        "reorder":1,
+                        "excus":1,
+                        "updat":1,
+                        "mean":1,
+                        "earlier":2,
+                        "vers":1,
+                        "guarante":1,
+                        "order":1,
+                        "origin":1,
+                        "confirm":1,
+                        "initi":1,
+                        "respect":1,
+                        "solut":1,
+                        "write":2
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":20550520,
+          "postId":14660627,
+          "creationDate":"2013-02-04",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":149138,
+            "displayName":"BeeOnRope",
+            "reputation":3980
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"What I mean is like, well formatting in comments sucks so let me add it to the reply."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[14660627-cu20550520]-[-2069219733]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"What I mean is like, well formatting in comments sucks so let me add it to the reply."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "format":1,
+                        "suck":1,
+                        "repli":1,
+                        "comment":1,
+                        "add":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2013-02-02",
+      "lastActivityDate":"2013-02-07",
+      "lastEditDate":"2013-02-07",
+      "score":4,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":149138,
+        "displayName":"BeeOnRope",
+        "reputation":3980
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>sun.misc.Unsafe.putOrdered should do what you want - a store with the lock implied on x86 by volatile. The compiler will not move instructions around it, I believe. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-1795858017]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>sun.misc.Unsafe.putOrdered should do what you want - a store with the lock implied on x86 by volatile. The compiler will not move instructions around it, I believe. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"sun",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"misc",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"Unsafe",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrdered",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "move":1,
+                    "impli":1,
+                    "sun":1,
+                    "store":1,
+                    "lock":1,
+                    "order":1,
+                    "misc":1,
+                    "put":1,
+                    "compil":1,
+                    "unsaf":1,
+                    "instruct":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is the same as lazySet on AtomicInteger and friends, but that can't be used directly with ByteBuffer. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[467025385]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is the same as lazySet on AtomicInteger and friends, but that can't be used directly with ByteBuffer. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicInteger",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ByteBuffer",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "friend":1,
+                    "set":1,
+                    "lazi":1,
+                    "buffer":1,
+                    "direct":1,
+                    "atom":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicInteger",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ByteBuffer",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Unlike <code>volatile</code> or the <code>AtomicThings</code> classes, that method applies to the specific writes you use it on, and not the definition of the member, so using it doesn't imply anything for reads.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[6040441]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Unlike <code>volatile</code> or the <code>AtomicThings</code> classes, that method applies to the specific writes you use it on, and not the definition of the member, so using it doesn't imply anything for reads.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"AtomicThings",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "unlik":1,
+                    "method":1,
+                    "impli":1,
+                    "thing":1,
+                    "code":4,
+                    "member":1,
+                    "definit":1,
+                    "specif":1,
+                    "class":1,
+                    "atom":1,
+                    "appli":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"AtomicThings",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It looks like you are trying to implement something like a <a href=\"http://en.wikipedia.org/wiki/Seqlock\"rel=\"nofollow\">seqlock</a> - meaning you need to avoid re-ordering between reads of the version counter, <code>A</code>, and the reads/writes of the data itself. A plain int isn't going to cut it - since the JIT might do all sorts of naughty things. My recommendation would be to use a volatile int for your counter, but then write it to it with <code>putOrdered</code>. This way, you don't pay the price for volatile writes (a dozen cycles or more, usually), while getting the compiler barrier implied by the volatile read (and the hardware barrier for those reads is a no-op, making them fast).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[1653107832]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It looks like you are trying to implement something like a <a href=\"http://en.wikipedia.org/wiki/Seqlock\"rel=\"nofollow\">seqlock</a> - meaning you need to avoid re-ordering between reads of the version counter, <code>A</code>, and the reads/writes of the data itself. A plain int isn't going to cut it - since the JIT might do all sorts of naughty things. My recommendation would be to use a volatile int for your counter, but then write it to it with <code>putOrdered</code>. This way, you don't pay the price for volatile writes (a dozen cycles or more, usually), while getting the compiler barrier implied by the volatile read (and the hardware barrier for those reads is a no-op, making them fast).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"putOrdered",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jit":1,
+                    "read":4,
+                    "recommend":1,
+                    "naughti":1,
+                    "impli":1,
+                    "barrier":2,
+                    "cut":1,
+                    "price":1,
+                    "data":1,
+                    "rel":1,
+                    "mean":1,
+                    "thing":1,
+                    "pay":1,
+                    "avoid":1,
+                    "code":4,
+                    "version":1,
+                    "wikipedia":1,
+                    "nofollow":1,
+                    "seqlock":2,
+                    "order":2,
+                    "hardwar":1,
+                    "isn":1,
+                    "implement":1,
+                    "plain":1,
+                    "make":1,
+                    "put":1,
+                    "counter":2,
+                    "fast":1,
+                    "wiki":1,
+                    "compil":1,
+                    "sort":1,
+                    "org":1,
+                    "href":1,
+                    "cycl":1,
+                    "http":1,
+                    "write":3,
+                    "dozen":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>All that said, I think you are in a grey area here, because <code>lazySet</code> isn't a part of the formal memory model, and doesn't fit cleanly into the happens-before reasoning, so you need a deeper understanding of the actual JIT and hardware implementation to see if you can combine things in this way.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-1367983886]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>All that said, I think you are in a grey area here, because <code>lazySet</code> isn't a part of the formal memory model, and doesn't fit cleanly into the happens-before reasoning, so you need a deeper understanding of the actual JIT and hardware implementation to see if you can combine things in this way.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "jit":1,
+                    "area":1,
+                    "model":1,
+                    "fit":1,
+                    "set":1,
+                    "clean":1,
+                    "understand":1,
+                    "grey":1,
+                    "lazi":1,
+                    "thing":1,
+                    "reason":1,
+                    "deeper":1,
+                    "code":2,
+                    "combin":1,
+                    "hardwar":1,
+                    "isn":1,
+                    "implement":1,
+                    "part":1,
+                    "actual":1,
+                    "formal":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Finally, even with volatile reads and writes (ignoring <code>lazySet</code>), I don't think your seqlock is sound from point of view of the java memory model, because volatile writes only set up a happens-before between that write and later reads on another thread, and earlier actions in the writing thread, but not between the read and actions following the write on the writing thread. Said another way, it is a unidirectional fence, not a bidirectional one. I believe writes in version N+1 to your shared region can be seen by the reading thread even while it reads A == N twice. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-1691408167]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Finally, even with volatile reads and writes (ignoring <code>lazySet</code>), I don't think your seqlock is sound from point of view of the java memory model, because volatile writes only set up a happens-before between that write and later reads on another thread, and earlier actions in the writing thread, but not between the read and actions following the write on the writing thread. Said another way, it is a unidirectional fence, not a bidirectional one. I believe writes in version N+1 to your shared region can be seen by the reading thread even while it reads A == N twice. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"lazySet",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":5,
+                    "ignor":1,
+                    "point":1,
+                    "model":1,
+                    "fenc":1,
+                    "set":2,
+                    "earlier":1,
+                    "lazi":1,
+                    "code":2,
+                    "unidirect":1,
+                    "share":1,
+                    "version":1,
+                    "thread":4,
+                    "seqlock":1,
+                    "sound":1,
+                    "region":1,
+                    "bidirect":1,
+                    "action":2,
+                    "write":7,
+                    "view":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><em>Clarification from the comment:</em></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-551567516]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><em>Clarification from the comment:</em></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "comment":1,
+                    "clarif":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Volatile only sets up a one way barrier. It is very similar to acquire/release semantics used by WinTel in some APIs. For example, assume A, Bv, and C all initially zero:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[1766261579]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Volatile only sets up a one way barrier. It is very similar to acquire/release semantics used by WinTel in some APIs. For example, assume A, Bv, and C all initially zero:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"WinTel",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "assum":1,
+                    "win":1,
+                    "tel":1,
+                    "similar":1,
+                    "barrier":1,
+                    "set":1,
+                    "releas":1,
+                    "semant":1,
+                    "initi":1,
+                    "api":1,
+                    "acquir":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"WinTel",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"Thread 1: A = 1; // 1 Bv = 1; // 2 C = 1; // 3 Thread 2: int c = C; // 4 int b = Bv; // 5 int a = A; // 6 "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[14660627]-[1199554028]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"Thread 1: "
+                  },
+                  {
+                    "type":"ExpressionStatement",
+                    "expression":{
+                      "type":"BinaryExpressionNode",
+                      "operator":{
+                        "type":"OperatorNode",
+                        "symbol":"=",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "left":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"A",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "right":{
+                        "type":"LiteralNode",
+                        "node":{
+                          "type":"IntegerLiteralNode",
+                          "valueRep":"1"
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        {
+                          "text":"// 1 Bv = 1; // 2 C = 1; // 3 Thread 2: int c = C; // 4 int b = Bv; // 5 int a = A; // 6 \n"
+                        }
+                      ]
+                    },
+                    "labels":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "rawText":"Thread 1: A = 1; // 1 Bv = 1; // 2 C = 1; // 3 Thread 2: int c = C; // 4 int b = Bv; // 5 int a = A; // 6 \n",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "thread":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Here, only Bv is volatile. The two threads are doing something similar in concept to your seqlock writers and readers - thread 1 writes some stuff in one order, and thread 2 reads the same stuff in a reverse order, and tries to reason about ordering from that.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-1620933864]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Here, only Bv is volatile. The two threads are doing something similar in concept to your seqlock writers and readers - thread 1 writes some stuff in one order, and thread 2 reads the same stuff in a reverse order, and tries to reason about ordering from that.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "revers":1,
+                    "writer":1,
+                    "reader":1,
+                    "similar":1,
+                    "reason":1,
+                    "thread":3,
+                    "seqlock":1,
+                    "order":3,
+                    "stuff":2,
+                    "concept":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If thread two has b == 1, then a == 1 always, because 1 happens-before 2 (program order), and 5 happens before 6 (program order), and most critically 2 happens before 5 since 5 read the value written at 2. So in this way the write and read of Bv is acting like a fence. Things above (2) cannot &quot;move below&quot; (2), and things below (5) cannot &quot;move above&quot; 5. Note I only restricted movement in one directly for each thread, however, not both, which brings us to our next example:</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-600003748]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If thread two has b == 1, then a == 1 always, because 1 happens-before 2 (program order), and 5 happens before 6 (program order), and most critically 2 happens before 5 since 5 read the value written at 2. So in this way the write and read of Bv is acting like a fence. Things above (2) cannot &quot;move below&quot; (2), and things below (5) cannot &quot;move above&quot; 5. Note I only restricted movement in one directly for each thread, however, not both, which brings us to our next example:</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":2,
+                    "program":2,
+                    "move":2,
+                    "critic":1,
+                    "fenc":1,
+                    "thing":2,
+                    "direct":1,
+                    "thread":2,
+                    "note":1,
+                    "order":2,
+                    "written":1,
+                    "bring":1,
+                    "quot":4,
+                    "movement":1,
+                    "act":1,
+                    "restrict":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Equivalently to the above, you might assume that if a == 0, then c == 0 also, since C is written after a, and read before. However, volatiles don't guarantee this. In particular, the happens-before reasoning above doesn't prevent (3) from being moved above (2) as observed by thread 2, nor do they prevent (4) from being pushed below (5).</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[2040640481]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Equivalently to the above, you might assume that if a == 0, then c == 0 also, since C is written after a, and read before. However, volatiles don't guarantee this. In particular, the happens-before reasoning above doesn't prevent (3) from being moved above (2) as observed by thread 2, nor do they prevent (4) from being pushed below (5).</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "assum":1,
+                    "move":1,
+                    "observ":1,
+                    "equival":1,
+                    "prevent":2,
+                    "push":1,
+                    "volatil":1,
+                    "reason":1,
+                    "guarante":1,
+                    "thread":1,
+                    "written":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><em>Update:</em></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-966530345]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><em>Update:</em></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "updat":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Let's look at your example specifically.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[194296849]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Let's look at your example specifically.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "specif":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>What I believe can happen is this, unrolling the write loop which occurs in p1.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-395632096]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>What I believe can happen is this, unrolling the write loop which occurs in p1.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "loop":1,
+                    "happen":1,
+                    "occur":1,
+                    "unrol":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>p1:</strong></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[403872273]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>p1:</strong></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strong":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"i = 0 A = 0 // (p1-1) write data1 to B A = ++i; // (p1-2) 1 assigned to A A=0 // (p1-3) // (p1-4) write data2 to B A = ++i; // (p1-5) 2 assigned to A "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[14660627]-[-1094550530]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"i = 0 A = 0 // (p1-1) write data1 to "
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"A",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "assignment":{
+                            "type":"VariableAssignmentNode",
+                            "variableAssignment":{
+                              "type":"VariableExpressionInitNode",
+                              "expression":{
+                                "type":"PrefixOperatorExpressionNode",
+                                "operator":{
+                                  "type":"OperatorNode",
+                                  "symbol":"++",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "argument":{
+                                  "type":"QualifiedIdentifierNode",
+                                  "identifiers":[
+                                    {
+                                      "type":"IdentifierNode",
+                                      "name":"i",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            },
+                            "comments":[
+                              
+                            ]
+                          },
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"B",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"// (p1-2) 1 assigned to A A=0 // (p1-3) // (p1-4) write data2 to B A = ++i; // (p1-5) 2 assigned to A \n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "rawText":"i = 0 A = 0 // (p1-1) write data1 to B A = ++i; // (p1-2) 1 assigned to A A=0 // (p1-3) // (p1-4) write data2 to B A = ++i; // (p1-5) 2 assigned to A \n",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "data":2,
+                    "write":2,
+                    "assign":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"B",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"A",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "assignment":{
+                        "type":"VariableAssignmentNode",
+                        "variableAssignment":{
+                          "type":"VariableExpressionInitNode",
+                          "expression":{
+                            "type":"PrefixOperatorExpressionNode",
+                            "operator":{
+                              "type":"OperatorNode",
+                              "symbol":"++",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "argument":{
+                              "type":"QualifiedIdentifierNode",
+                              "identifiers":[
+                                {
+                                  "type":"IdentifierNode",
+                                  "name":"i",
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"B",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>p2:</strong></p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[1911424082]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>p2:</strong></p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strong":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"a1 = A // (p2-1) //Read from B // (p2-2) a2 = A // (p2-3) if a1 == a2 and a1 != 0: "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[14660627]-[80305324]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"a1 = A // (p2-1) //Read from B // (p2-2) a2 = A // (p2-3) if a1 == a2 and a1 != 0: "
+                  }
+                ]
+              },
+              "rawText":"a1 = A // (p2-1) //Read from B // (p2-2) a2 = A // (p2-3) if a1 == a2 and a1 != 0: ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Let's say p2 sees 1 for a1 and a2. This means there is a happens before between p2-1 and p1-2 (and by extension p1-1), and also between p2-3 and p1-2. However there is happens-before between anything in p2 and p1-4. So in fact, I believe the read of B at p2-2 can observe the second (perhaps partially completed) read at p1-4, which can &quot;move above&quot; the volatile writes at p1-2 and p1-3.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[-365296756]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Let's say p2 sees 1 for a1 and a2. This means there is a happens before between p2-1 and p1-2 (and by extension p1-1), and also between p2-3 and p1-2. However there is happens-before between anything in p2 and p1-4. So in fact, I believe the read of B at p2-2 can observe the second (perhaps partially completed) read at p1-4, which can &quot;move above&quot; the volatile writes at p1-2 and p1-3.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":2,
+                    "move":1,
+                    "observ":1,
+                    "partial":1,
+                    "mean":1,
+                    "fact":1,
+                    "quot":2,
+                    "complet":1,
+                    "see":1,
+                    "extens":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>It's interesting enough that I think you might make a new question just on that alone - forget about faster barriers - does this work at all even with volatile?</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[14660627]-[1634479950]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>It's interesting enough that I think you might make a new question just on that alone - forget about faster barriers - does this work at all even with volatile?</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":1,
+                    "faster":1,
+                    "barrier":1,
+                    "work":1,
+                    "interest":1,
+                    "forget":1,
+                    "make":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

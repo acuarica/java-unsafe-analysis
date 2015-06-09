@@ -1,0 +1,3893 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":7809131,
+    "title":"Does re-putting an object into a ConcurrentHashMap cause a &quot;happens-before&quot; memory relation?",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":9531908,
+        "postId":7809131,
+        "creationDate":"2011-10-19",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":554431,
+          "displayName":"bestsss",
+          "reputation":6866
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"it does, it locks on any modification."
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[7809131-cu9531908]-[-158549912]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"it does, it locks on any modification."
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "lock":1,
+                      "modif":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "concurrency",
+      "concurrenthashmap"
+    ],
+    "creationDate":"2011-10-18",
+    "lastActivityDate":"2011-10-19",
+    "lastEditDate":"2011-10-19",
+    "score":5,
+    "viewCount":1742,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":504695,
+      "displayName":"ryanlb1000",
+      "reputation":28
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I'm working with <em>existing</em> code that has an object store in the form of a ConcurrentHashMap. Within the map are stored mutable objects, use by multiple threads. No two threads try to modify an object at once by design. My concern is regarding the visibility of the modifications between the threads.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[1331995819]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I'm working with <em>existing</em> code that has an object store in the form of a ConcurrentHashMap. Within the map are stored mutable objects, use by multiple threads. No two threads try to modify an object at once by design. My concern is regarding the visibility of the modifications between the threads.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "design":1,
+                  "concurr":1,
+                  "exist":1,
+                  "map":2,
+                  "store":2,
+                  "modif":1,
+                  "visibl":1,
+                  "work":1,
+                  "object":3,
+                  "concern":1,
+                  "code":1,
+                  "hash":1,
+                  "thread":3,
+                  "modifi":1,
+                  "form":1,
+                  "multipl":1,
+                  "mutabl":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Currently the objects' code has synchronization on the &quot;setters&quot; (guarded by the object itself). There is no synchronization on the &quot;getters&quot; nor are the members volatile. This, to me, would mean that visibility is not guaranteed. However, when an object is modified it is <strong>re-put</strong> back into the map (the <code>put()</code> method is called again, same key). Does this mean that when another thread pulls the object out of the map, it will see the modifications?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[708506731]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Currently the objects' code has synchronization on the &quot;setters&quot; (guarded by the object itself). There is no synchronization on the &quot;getters&quot; nor are the members volatile. This, to me, would mean that visibility is not guaranteed. However, when an object is modified it is <strong>re-put</strong> back into the map (the <code>put()</code> method is called again, same key). Does this mean that when another thread pulls the object out of the map, it will see the modifications?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "method":1,
+                  "map":2,
+                  "setter":1,
+                  "modif":1,
+                  "visibl":1,
+                  "strong":2,
+                  "object":4,
+                  "getter":1,
+                  "key":1,
+                  "code":3,
+                  "guarante":1,
+                  "thread":1,
+                  "member":1,
+                  "back":1,
+                  "modifi":1,
+                  "put":2,
+                  "quot":4,
+                  "pull":1,
+                  "guard":1,
+                  "call":1,
+                  "synchron":2
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I've researched this here on stackoverflow, in <a href=\"http://jcip.net/\"rel=\"nofollow\">JCIP</a>, and in the package description for java.util.concurrent. I've basically confused myself I think... but the final straw that caused me to ask this question was from the package description, it states:</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[-2117358969]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I've researched this here on stackoverflow, in <a href=\"http://jcip.net/\"rel=\"nofollow\">JCIP</a>, and in the package description for java.util.concurrent. I've basically confused myself I think... but the final straw that caused me to ask this question was from the package description, it states:</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "descript":2,
+                  "concurr":1,
+                  "util":1,
+                  "research":1,
+                  "state":1,
+                  "rel":1,
+                  "straw":1,
+                  "net":1,
+                  "stackoverflow":1,
+                  "nofollow":1,
+                  "jcip":2,
+                  "caus":1,
+                  "confus":1,
+                  "href":1,
+                  "basic":1,
+                  "http":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<blockquote> \n <p>Actions in a thread prior to placing an object into any concurrent collection happen-before actions subsequent to the access or removal of that element from the collection in another thread. </p> \n</blockquote>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[1380667327]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<blockquote> \n <p>Actions in a thread prior to placing an object into any concurrent collection happen-before actions subsequent to the access or removal of that element from the collection in another thread. </p> \n</blockquote>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "remov":1,
+                  "concurr":1,
+                  "prior":1,
+                  "subsequ":1,
+                  "happen":1,
+                  "blockquot":2,
+                  "object":1,
+                  "element":1,
+                  "thread":2,
+                  "place":1,
+                  "collect":2,
+                  "action":2,
+                  "access":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>In relation to my question, do &quot;actions&quot; include the modifications to the objects stored in the map before the re-put()? If all this does result in visibility across threads, is this an efficient approach? I'm relatively new to threads and would appreciate your comments.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[924931802]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>In relation to my question, do &quot;actions&quot; include the modifications to the objects stored in the map before the re-put()? If all this does result in visibility across threads, is this an efficient approach? I'm relatively new to threads and would appreciate your comments.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "relat":1,
+                  "map":1,
+                  "result":1,
+                  "effici":1,
+                  "store":1,
+                  "modif":1,
+                  "visibl":1,
+                  "object":1,
+                  "includ":1,
+                  "thread":2,
+                  "comment":1,
+                  "put":1,
+                  "approach":1,
+                  "quot":2,
+                  "action":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p><strong>Edit:</strong></p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[2580858]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p><strong>Edit:</strong></p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "strong":2,
+                  "edit":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>Thank you all for you responses! This was my first question on StackOverflow and it has been very helpful to me.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[-1655652707]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>Thank you all for you responses! This was my first question on StackOverflow and it has been very helpful to me.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"ReferenceTypeNode",
+                  "ids":[
+                    {
+                      "type":"ParameterizedTypeNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"StackOverflow",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "comments":[
+                    
+                  ]
+                }
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "question":1,
+                  "overflow":1,
+                  "help":1,
+                  "stack":1,
+                  "respons":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"StackOverflow",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I have to go with <a href=\"http://stackoverflow.com/users/134894/ptomli\">ptomli</a>'s answer because I think it most clearly addressed my confusion. To wit, establishing a &quot;happens-before&quot; relation doesn't necessarily affect modification visibility in this case. My &quot;title question&quot; is poorly constructed regarding my actual question described in the text. <a href=\"http://stackoverflow.com/users/134894/ptomli\">ptomli</a>'s answer now jives with what I read in <a href=\"http://jcip.net/\"rel=\"nofollow\">JCIP</a>: &quot;To ensure all threads see the most up-to-date values of shared mutable variables, the reading and writing threads must synchronize on a common lock&quot; (page 37). Re-putting the object back into the map doesn't provide this common lock for the modification to the inserted object's members.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[440508476]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I have to go with <a href=\"http://stackoverflow.com/users/134894/ptomli\">ptomli</a>'s answer because I think it most clearly addressed my confusion. To wit, establishing a &quot;happens-before&quot; relation doesn't necessarily affect modification visibility in this case. My &quot;title question&quot; is poorly constructed regarding my actual question described in the text. <a href=\"http://stackoverflow.com/users/134894/ptomli\">ptomli</a>'s answer now jives with what I read in <a href=\"http://jcip.net/\"rel=\"nofollow\">JCIP</a>: &quot;To ensure all threads see the most up-to-date values of shared mutable variables, the reading and writing threads must synchronize on a common lock&quot; (page 37). Re-putting the object back into the map doesn't provide this common lock for the modification to the inserted object's members.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":2,
+                  "provid":1,
+                  "question":2,
+                  "relat":1,
+                  "insert":1,
+                  "map":1,
+                  "page":1,
+                  "jive":1,
+                  "rel":1,
+                  "establish":1,
+                  "modif":2,
+                  "titl":1,
+                  "lock":2,
+                  "text":1,
+                  "visibl":1,
+                  "affect":1,
+                  "net":1,
+                  "object":2,
+                  "wit":1,
+                  "share":1,
+                  "stackoverflow":2,
+                  "thread":2,
+                  "nofollow":1,
+                  "common":2,
+                  "poor":1,
+                  "date":1,
+                  "member":1,
+                  "jcip":2,
+                  "back":1,
+                  "valu":1,
+                  "address":1,
+                  "put":1,
+                  "answer":2,
+                  "quot":6,
+                  "necessarili":1,
+                  "confus":1,
+                  "variabl":1,
+                  "href":3,
+                  "actual":1,
+                  "http":3,
+                  "construct":1,
+                  "user":2,
+                  "write":1,
+                  "ptom":4,
+                  "ensur":1,
+                  "synchron":1,
+                  "mutabl":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I appreciate all the tips for change (immutable objects, etc), and I wholeheartedly concur. But for this case, as I mentioned there is no concurrent modification because of careful thread handling. One thread modifies an object, and another thread later reads the object (with the CHM being the object conveyer). I think the CHM is insufficient to ensure that the later executing thread will see the modifications from the first given the situation I provided. However, I think many of you <em>correctly answered the title question</em>.</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[7809131]-[1324926000]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I appreciate all the tips for change (immutable objects, etc), and I wholeheartedly concur. But for this case, as I mentioned there is no concurrent modification because of careful thread handling. One thread modifies an object, and another thread later reads the object (with the CHM being the object conveyer). I think the CHM is insufficient to ensure that the later executing thread will see the modifications from the first given the situation I provided. However, I think many of you <em>correctly answered the title question</em>.</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":1,
+                  "chang":1,
+                  "provid":1,
+                  "question":1,
+                  "concurr":1,
+                  "correct":1,
+                  "immut":1,
+                  "modif":2,
+                  "titl":1,
+                  "care":1,
+                  "concur":1,
+                  "insuffici":1,
+                  "object":4,
+                  "situat":1,
+                  "thread":4,
+                  "mention":1,
+                  "chm":2,
+                  "modifi":1,
+                  "answer":1,
+                  "tip":1,
+                  "wholeheart":1,
+                  "convey":1,
+                  "handl":1,
+                  "execut":1,
+                  "ensur":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":7810700,
+      "questionId":7809131,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":123054,
+        "displayName":"Matt",
+        "reputation":5095
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I think this has been already said across a few answers but to sum it up</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-43743403]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I think this has been already said across a few answers but to sum it up</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sum":1,
+                    "answer":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If your code goes </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-375448564]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If your code goes </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "code":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li>CHM#get </li> \n <li>call various setters </li> \n <li>CHM#put </li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-1544496298]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li>CHM#get </li> \n <li>call various setters </li> \n <li>CHM#put </li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "call":1,
+                    "put":1,
+                    "setter":1,
+                    "chm":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>then the &quot;happens-before&quot; provided by the put will guarantee that all the mutate calls are executed before the put. This means that any subsequent get will be guaranteed to see those changes.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-1531669163]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>then the &quot;happens-before&quot; provided by the put will guarantee that all the mutate calls are executed before the put. This means that any subsequent get will be guaranteed to see those changes.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "provid":1,
+                    "subsequ":1,
+                    "mean":1,
+                    "mutat":1,
+                    "guarante":2,
+                    "put":2,
+                    "quot":2,
+                    "call":1,
+                    "execut":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Your problem is that the actual state of the object will not be deterministic because if the actual flow of events is</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[444057789]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Your problem is that the actual state of the object will not be deterministic because if the actual flow of events is</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "state":1,
+                    "event":1,
+                    "problem":1,
+                    "object":1,
+                    "flow":1,
+                    "actual":2,
+                    "determinist":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li>thread 1: CHM#get</li> \n <li>thread 1: call setter</li> \n <li>thread 2: CHM#get</li> \n <li>thread 1: call setter</li> \n <li>thread 1: call setter</li> \n <li>thread 1: CHM#put</li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-1136320097]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li>thread 1: CHM#get</li> \n <li>thread 1: call setter</li> \n <li>thread 2: CHM#get</li> \n <li>thread 1: call setter</li> \n <li>thread 1: call setter</li> \n <li>thread 1: CHM#put</li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "setter":3,
+                    "thread":6,
+                    "chm":3,
+                    "put":1,
+                    "call":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>then there is no guarantee over what the state of the object will be in thread 2. It might see the object with the value provided by the first setter or it might not. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[409833299]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>then there is no guarantee over what the state of the object will be in thread 2. It might see the object with the value provided by the first setter or it might not. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "provid":1,
+                    "state":1,
+                    "setter":1,
+                    "object":2,
+                    "guarante":1,
+                    "thread":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>The immutable copy would be the best approach as then only completely consistent objects are published. Making the various setters synchronized (or the underlying references volatile) still doesn't let you publish consistent state, it just means that the object will always see the latest value for each getter on each call.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810700]-[-823829252]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>The immutable copy would be the best approach as then only completely consistent objects are published. Making the various setters synchronized (or the underlying references volatile) still doesn't let you publish consistent state, it just means that the object will always see the latest value for each getter on each call.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "state":1,
+                    "setter":1,
+                    "mean":1,
+                    "immut":1,
+                    "object":2,
+                    "getter":1,
+                    "publish":2,
+                    "consist":2,
+                    "refer":1,
+                    "make":1,
+                    "approach":1,
+                    "under":1,
+                    "complet":1,
+                    "latest":1,
+                    "call":1,
+                    "copi":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7810224,
+      "questionId":7809131,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "lastEditDate":"2011-10-18",
+      "score":2,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":238578,
+        "displayName":"b_erb",
+        "reputation":9849
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>That's a code snippet from <a href=\"http://www.docjar.com/html/api/java/util/concurrent/ConcurrentHashMap.java.html\"rel=\"nofollow\"><code>java.util.concurrent.ConcurrentHashMap</code></a> (Open JDK 7):</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810224]-[2001375155]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>That's a code snippet from <a href=\"http://www.docjar.com/html/api/java/util/concurrent/ConcurrentHashMap.java.html\"rel=\"nofollow\"><code>java.util.concurrent.ConcurrentHashMap</code></a> (Open JDK 7):</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"concurrent",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentHashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":4,
+                    "util":2,
+                    "docjar":1,
+                    "map":2,
+                    "snippet":1,
+                    "rel":1,
+                    "open":1,
+                    "code":3,
+                    "hash":2,
+                    "nofollow":1,
+                    "api":1,
+                    "html":2,
+                    "href":1,
+                    "http":1,
+                    "jdk":1,
+                    "www":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"concurrent",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentHashMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":" 919 public V get(Object key) { 920 Segment&lt;K,V&gt; s; // manually integrate access methods to reduce overhead 921 HashEntry&lt;K,V&gt;[] tab; 922 int h = hash(key.hashCode()); 923 long u = (((h &gt;&gt;&gt; segmentShift) &amp; segmentMask) &lt;&lt; SSHIFT) + SBASE; 924 if ((s = (Segment&lt;K,V&gt;)UNSAFE.getObjectVolatile(segments, u)) != null &amp;&amp; 925 (tab = s.table) != null) { 926 for (HashEntry&lt;K,V&gt; e = (HashEntry&lt;K,V&gt;) UNSAFE.getObjectVolatile 927 (tab, ((long)(((tab.length - 1) &amp; h)) &lt;&lt; TSHIFT) + TBASE); 928 e != null; e = e.next) { 929 K k; 930 if ((k = e.key) == key || (e.hash == h &amp;&amp; key.equals(k))) 931 return e.value; 932 } 933 } 934 return null; 935 } "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[7810224]-[-910840235]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":" 919 "
+                  },
+                  {
+                    "type":"MethodDeclaratorNode",
+                    "modifiers":[
+                      {
+                        "type":"KeywordModifierNode",
+                        "value":"public",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "returnType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"V",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"get",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "parameters":{
+                      "type":"FormalParametersNode",
+                      "parameters":{
+                        "type":"FormalParameterDeclsNode",
+                        "modifiers":[
+                          
+                        ],
+                        "parameterType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"Object",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "nextDeclarator":{
+                          "type":"AdditionalFormalParameterDeclNode",
+                          "variableDeclarator":{
+                            "type":"VariableDeclaratorNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"key",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "arrayDepth":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayReturnType":[
+                      
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"{ 920 "
+                  },
+                  {
+                    "type":"LocalVariableDeclarationStatementNode",
+                    "modifiers":[
+                      
+                    ],
+                    "declarators":{
+                      "type":"VariableDeclaratorsNode",
+                      "declarators":[
+                        {
+                          "type":"VariableDeclaratorNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"s",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "arrayDepth":[
+                            
+                          ],
+                          "varType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Segment",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "typeArguments":{
+                                  "type":"TypeArgumentsNode",
+                                  "types":[
+                                    {
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"K",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"ReferenceTypeNode",
+                                      "ids":[
+                                        {
+                                          "type":"ParameterizedTypeNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"V",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "labels":[
+                      
+                    ],
+                    "comments":[
+                      {
+                        "text":"// manually integrate access methods to reduce overhead 921 HashEntry<K,V>[] tab; 922 int h = hash(key.hashCode()); 923 long u = (((h >>> segmentShift) & segmentMask) << SSHIFT) + SBASE; 924 if ((s = (Segment<K,V>)UNSAFE.getObjectVolatile(segments, u)) != null && 925 (tab = s.table) != null) { 926 for (HashEntry<K,V> e = (HashEntry<K,V>) UNSAFE.getObjectVolatile 927 (tab, ((long)(((tab.length - 1) & h)) << TSHIFT) + TBASE); 928 e != null; e = e.next) { 929 K k; 930 if ((k = e.key) == key || (e.hash == h && key.equals(k))) 931 return e.value; 932 } 933 } 934 return null; 935 } \n"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "rawText":" 919 public V get(Object key) { 920 Segment<K,V> s; // manually integrate access methods to reduce overhead 921 HashEntry<K,V>[] tab; 922 int h = hash(key.hashCode()); 923 long u = (((h >>> segmentShift) & segmentMask) << SSHIFT) + SBASE; 924 if ((s = (Segment<K,V>)UNSAFE.getObjectVolatile(segments, u)) != null && 925 (tab = s.table) != null) { 926 for (HashEntry<K,V> e = (HashEntry<K,V>) UNSAFE.getObjectVolatile 927 (tab, ((long)(((tab.length - 1) & h)) << TSHIFT) + TBASE); 928 e != null; e = e.next) { 929 K k; 930 if ((k = e.key) == key || (e.hash == h && key.equals(k))) 931 return e.value; 932 } 933 } 934 return null; 935 } \n",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "sshift":1,
+                    "method":1,
+                    "mask":1,
+                    "reduc":1,
+                    "tab":4,
+                    "shift":1,
+                    "sbase":1,
+                    "integr":1,
+                    "segment":5,
+                    "tshift":1,
+                    "object":3,
+                    "key":5,
+                    "code":1,
+                    "overhead":1,
+                    "tbase":1,
+                    "tabl":1,
+                    "hash":6,
+                    "entri":3,
+                    "equal":1,
+                    "length":1,
+                    "unsaf":2,
+                    "manual":1,
+                    "access":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"V",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Object",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Segment",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "typeArguments":{
+                            "type":"TypeArgumentsNode",
+                            "types":[
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"K",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"V",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"K",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"key",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"VariableDeclaratorNode",
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"s",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "arrayDepth":[
+                        
+                      ],
+                      "varType":{
+                        "type":"ReferenceTypeNode",
+                        "ids":[
+                          {
+                            "type":"ParameterizedTypeNode",
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Segment",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "typeArguments":{
+                              "type":"TypeArgumentsNode",
+                              "types":[
+                                {
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"K",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"V",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><code>UNSAFE.getObjectVolatile()</code> is <a href=\"http://www.docjar.com/docs/api/sun/misc/Unsafe.html#getObjectVolatile%28Object,%20long%29\"rel=\"nofollow\">documented</a> as getter with internal <code>volatile</code> semantics, thus the memory barrier will be crossed when getting the reference.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7810224]-[1948957695]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><code>UNSAFE.getObjectVolatile()</code> is <a href=\"http://www.docjar.com/docs/api/sun/misc/Unsafe.html#getObjectVolatile%28Object,%20long%29\"rel=\"nofollow\">documented</a> as getter with internal <code>volatile</code> semantics, thus the memory barrier will be crossed when getting the reference.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"QualifiedIdentifierNode",
+                    "identifiers":[
+                      {
+                        "type":"IdentifierNode",
+                        "name":"UNSAFE",
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"IdentifierNode",
+                        "name":"getObjectVolatile",
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "docjar":1,
+                    "document":1,
+                    "barrier":1,
+                    "sun":1,
+                    "rel":1,
+                    "doc":1,
+                    "object":3,
+                    "getter":1,
+                    "code":4,
+                    "nofollow":1,
+                    "refer":1,
+                    "semant":1,
+                    "cross":1,
+                    "misc":1,
+                    "api":1,
+                    "unsaf":2,
+                    "html":1,
+                    "href":1,
+                    "http":1,
+                    "intern":1,
+                    "www":1,
+                    "memori":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7809261,
+      "questionId":7809131,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":9516106,
+          "postId":7809261,
+          "creationDate":"2011-10-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":813951,
+            "displayName":"Mister Smith",
+            "reputation":9376
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Perhaps I'm asking something stupid, but why the re-put? Is other thread removing that instance?"
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7809261-cu9516106]-[1936202420]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Perhaps I'm asking something stupid, but why the re-put? Is other thread removing that instance?"
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "remov":1,
+                        "thread":1,
+                        "put":1,
+                        "stupid":1,
+                        "instanc":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9516218,
+          "postId":7809261,
+          "creationDate":"2011-10-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":765009,
+            "displayName":"toto2",
+            "reputation":3987
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@Mister Smith The re-put is to trigger an happens-before (flush the cache) so that all threads see the updated value. However, I don't think it quite works as intended (see my answer)."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7809261-cu9516218]-[-17926546]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@Mister Smith The re-put is to trigger an happens-before (flush the cache) so that all threads see the updated value. However, I don't think it quite works as intended (see my answer)."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      {
+                        "type":"AnnotationNode",
+                        "identifier":{
+                          "type":"QualifiedIdentifierNode",
+                          "identifiers":[
+                            {
+                              "type":"IdentifierNode",
+                              "name":"Mister",
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "cach":1,
+                        "updat":1,
+                        "work":1,
+                        "intend":1,
+                        "thread":1,
+                        "mister":1,
+                        "put":1,
+                        "answer":1,
+                        "flush":1,
+                        "smith":1,
+                        "trigger":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9516380,
+          "postId":7809261,
+          "creationDate":"2011-10-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":134894,
+            "displayName":"ptomli",
+            "reputation":6113
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@toto2 weird logic you're using there. The same instance is put back into the same key. The map can have no effect on the visibility of the state change of the stored instance. The concurrent guarantees made by the map are only that the correct instance is returned from a get (for example). As I point out, the OP question really relates to the thread safety of the stored instances. The map is only a diversion. As to why the authors *thought* they were re-putting? Who knows, but probably doesn't do what they think."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7809261-cu9516380]-[1712201168]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@toto2 weird logic you're using there. The same instance is put back into the same key. The map can have no effect on the visibility of the state change of the stored instance. The concurrent guarantees made by the map are only that the correct instance is returned from a get (for example). As I point out, the OP question really relates to the thread safety of the stored instances. The map is only a diversion. As to why the authors *thought* they were re-putting? Who knows, but probably doesn't do what they think."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "weird":1,
+                        "chang":1,
+                        "question":1,
+                        "author":1,
+                        "point":1,
+                        "concurr":1,
+                        "thought":1,
+                        "state":1,
+                        "relat":1,
+                        "map":3,
+                        "return":1,
+                        "correct":1,
+                        "effect":1,
+                        "toto":1,
+                        "store":2,
+                        "visibl":1,
+                        "logic":1,
+                        "key":1,
+                        "guarante":1,
+                        "thread":1,
+                        "safeti":1,
+                        "divers":1,
+                        "back":1,
+                        "put":2,
+                        "made":1,
+                        "instanc":4
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":9516624,
+          "postId":7809261,
+          "creationDate":"2011-10-18",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":765009,
+            "displayName":"toto2",
+            "reputation":3987
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"@ptomli I disagree with your second sentence. In the most recent java memory model, when there is a &quot;happens-before&quot;, everything is updated. Nonetheless the synchronization procedure is still flawed even if everything is updated, as I explain in my answer."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7809261-cu9516624]-[-84818155]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"@ptomli I disagree with your second sentence. In the most recent java memory model, when there is a &quot;happens-before&quot;, everything is updated. Nonetheless the synchronization procedure is still flawed even if everything is updated, as I explain in my answer."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "nonetheless":1,
+                        "explain":1,
+                        "model":1,
+                        "recent":1,
+                        "updat":2,
+                        "procedur":1,
+                        "flaw":1,
+                        "sentenc":1,
+                        "answer":1,
+                        "quot":2,
+                        "disagre":1,
+                        "ptom":1,
+                        "synchron":1,
+                        "memori":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "score":2,
+      "isAccepted":true,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":134894,
+        "displayName":"ptomli",
+        "reputation":6113
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I think your question relates more to the objects you're storing in the map, and how they react to concurrent access, than the concurrent map itself.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809261]-[-31177677]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I think your question relates more to the objects you're storing in the map, and how they react to concurrent access, than the concurrent map itself.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "question":1,
+                    "concurr":2,
+                    "relat":1,
+                    "map":2,
+                    "react":1,
+                    "store":1,
+                    "object":1,
+                    "access":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If the instances you're storing in the map have synchronized mutators, but not synchronized accessors, then I don't see how they can be thread safe as described.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809261]-[1085820437]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If the instances you're storing in the map have synchronized mutators, but not synchronized accessors, then I don't see how they can be thread safe as described.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "map":1,
+                    "store":1,
+                    "safe":1,
+                    "mutat":1,
+                    "accessor":1,
+                    "thread":1,
+                    "instanc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Take the <code>Map</code> out of the equation and determine if the instances you're storing are thread safe by themselves. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809261]-[-744364649]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Take the <code>Map</code> out of the equation and determine if the instances you're storing are thread safe by themselves. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "determin":1,
+                    "map":1,
+                    "store":1,
+                    "safe":1,
+                    "code":2,
+                    "thread":1,
+                    "equat":1,
+                    "instanc":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>However, when an object is modified it is re-put back into the map (the put() method is called again, same key). Does this mean that when another thread pulls the object out of the map, it will see the modifications?</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809261]-[-1069277625]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>However, when an object is modified it is re-put back into the map (the put() method is called again, same key). Does this mean that when another thread pulls the object out of the map, it will see the modifications?</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "map":2,
+                    "modif":1,
+                    "blockquot":2,
+                    "object":2,
+                    "key":1,
+                    "thread":1,
+                    "back":1,
+                    "modifi":1,
+                    "put":2,
+                    "pull":1,
+                    "call":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This exemplifies the confusion. The instance that is re-put into the Map will be retrieved from the Map by another thread. This is the guarantee of the concurrent map. That has nothing to do with visibility of the state of the stored instance itself.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809261]-[794212824]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This exemplifies the confusion. The instance that is re-put into the Map will be retrieved from the Map by another thread. This is the guarantee of the concurrent map. That has nothing to do with visibility of the state of the stored instance itself.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "state":1,
+                    "map":3,
+                    "retriev":1,
+                    "store":1,
+                    "visibl":1,
+                    "guarante":1,
+                    "thread":1,
+                    "put":1,
+                    "confus":1,
+                    "exemplifi":1,
+                    "instanc":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7809411,
+      "questionId":7809131,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "score":3,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":697031,
+        "displayName":"Michael Krussel",
+        "reputation":1726
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>My understanding is that it should work for all gets after the re-put, but this would be a very unsafe method of synchronization.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809411]-[147385810]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>My understanding is that it should work for all gets after the re-put, but this would be a very unsafe method of synchronization.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "method":1,
+                    "understand":1,
+                    "work":1,
+                    "put":1,
+                    "unsaf":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>What happens to gets that happen before the re-put, but while modifications are happening. They may see only some of the changes, and the object would have an inconsistent state.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809411]-[-1434054123]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>What happens to gets that happen before the re-put, but while modifications are happening. They may see only some of the changes, and the object would have an inconsistent state.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "state":1,
+                    "happen":2,
+                    "modif":1,
+                    "object":1,
+                    "put":1,
+                    "inconsist":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>If you can, I'd recommend store immutable objects in the map. Then any get will retrieve a version of the object that was current when it did the get.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809411]-[454276189]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>If you can, I'd recommend store immutable objects in the map. Then any get will retrieve a version of the object that was current when it did the get.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "recommend":1,
+                    "map":1,
+                    "retriev":1,
+                    "immut":1,
+                    "store":1,
+                    "object":2,
+                    "version":1,
+                    "current":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7809750,
+      "questionId":7809131,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":9516348,
+          "postId":7809750,
+          "creationDate":"2011-10-18",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":765009,
+            "displayName":"toto2",
+            "reputation":3987
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"I think his code does modify the objects after they are initially put in the map. My answer was to put deep copies of the objects in the map, so those won't be modified."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[7809750-cu9516348]-[1517371122]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"I think his code does modify the objects after they are initially put in the map. My answer was to put deep copies of the objects in the map, so those won't be modified."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "map":2,
+                        "object":2,
+                        "code":1,
+                        "deep":1,
+                        "modifi":2,
+                        "put":2,
+                        "answer":1,
+                        "initi":1,
+                        "won":1,
+                        "copi":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "score":1,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":218978,
+        "displayName":"irreputable",
+        "reputation":27360
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>yes, <code>put</code> incurs a volatile write, even if key-value already exists in the map.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809750]-[654747046]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>yes, <code>put</code> incurs a volatile write, even if key-value already exists in the map.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "exist":1,
+                    "map":1,
+                    "key":1,
+                    "code":2,
+                    "incur":1,
+                    "put":1,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>using ConcurrentHashMap to publish objects across thread is pretty effecient. Objects should not be modified further once they are in the map. (They don't have to be strictly <em>immutable</em> (with final fields))</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809750]-[1716037711]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>using ConcurrentHashMap to publish objects across thread is pretty effecient. Objects should not be modified further once they are in the map. (They don't have to be strictly <em>immutable</em> (with final fields))</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentHashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strict":1,
+                    "concurr":1,
+                    "field":1,
+                    "map":2,
+                    "immut":1,
+                    "object":2,
+                    "pretti":1,
+                    "publish":1,
+                    "hash":1,
+                    "thread":1,
+                    "modifi":1,
+                    "effeci":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentHashMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":7809526,
+      "questionId":7809131,
+      "comments":[
+        
+      ],
+      "creationDate":"2011-10-18",
+      "lastActivityDate":"2011-10-18",
+      "lastEditDate":"2011-10-18",
+      "score":5,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":765009,
+        "displayName":"toto2",
+        "reputation":3987
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>You call <code>concurrHashMap.put</code> after each write to an object. However you did not specified that you also call <code>concurrHashMap.get</code> before each read. This is necessary.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[-1096302125]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>You call <code>concurrHashMap.put</code> after each write to an object. However you did not specified that you also call <code>concurrHashMap.get</code> before each read. This is necessary.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"IdentifierNode",
+                    "name":"concurrHashMap",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"IdentifierNode",
+                    "name":"concurrHashMap",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "concurr":2,
+                    "map":2,
+                    "object":1,
+                    "code":4,
+                    "hash":2,
+                    "put":1,
+                    "call":2,
+                    "write":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is true of all forms of synchronization: you need to have some &quot;checkpoints&quot; in both threads. Synchronizing only one thread is useless.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[1725067002]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is true of all forms of synchronization: you need to have some &quot;checkpoints&quot; in both threads. Synchronizing only one thread is useless.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "useless":1,
+                    "thread":2,
+                    "checkpoint":1,
+                    "true":1,
+                    "quot":2,
+                    "form":1,
+                    "synchron":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I haven't checked the source code of ConcurrentHashMap to make sure that <code>put</code> and <code>get</code> trigger an happens-before, but it is only logical that they should.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[1104664133]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I haven't checked the source code of ConcurrentHashMap to make sure that <code>put</code> and <code>get</code> trigger an happens-before, but it is only logical that they should.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"ConcurrentHashMap",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "concurr":1,
+                    "map":1,
+                    "logic":1,
+                    "code":5,
+                    "hash":1,
+                    "check":1,
+                    "make":1,
+                    "put":1,
+                    "sourc":1,
+                    "trigger":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    {
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"ConcurrentHashMap",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>There is still an issue with your method however, even if you use both <code>put</code> and <code>get</code>. The problem happens when you modify an object and it is used (in an inconsistent state) by the other thread before it is <code>put</code>. It's a subtle problem because you might think the old value would be read since it hasn't been <code>put</code> yet and it would not cause a problem. The problem is that when you don't synchronize, you are not guaranteed to get a consistent older object, but rather the behavior is undefined. The JVM can update whatever part of the object in the other threads, at any time. It's only when using some explicit synchronization that you are sure you are updating the values in a consistent way across threads. </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[-251905497]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>There is still an issue with your method however, even if you use both <code>put</code> and <code>get</code>. The problem happens when you modify an object and it is used (in an inconsistent state) by the other thread before it is <code>put</code>. It's a subtle problem because you might think the old value would be read since it hasn't been <code>put</code> yet and it would not cause a problem. The problem is that when you don't synchronize, you are not guaranteed to get a consistent older object, but rather the behavior is undefined. The JVM can update whatever part of the object in the other threads, at any time. It's only when using some explicit synchronization that you are sure you are updating the values in a consistent way across threads. </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "jvm":1,
+                    "method":1,
+                    "state":1,
+                    "subtl":1,
+                    "problem":4,
+                    "updat":2,
+                    "issu":1,
+                    "object":3,
+                    "code":8,
+                    "guarante":1,
+                    "thread":3,
+                    "older":1,
+                    "consist":2,
+                    "undefin":1,
+                    "valu":1,
+                    "modifi":1,
+                    "put":3,
+                    "inconsist":1,
+                    "time":1,
+                    "part":1,
+                    "behavior":1,
+                    "explicit":1,
+                    "synchron":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>What you could do:<br /> (1) synchronize all accesses (getters and setters) to your objects everywhere in the code. Be careful with the setters: make sure that you can't set the object in an inconsistent state. For example, when setting first and last name, having two synchronized setters is not sufficient: you must get the object lock for both operations together.<br /> or<br /> (2) when you <code>put</code> an object in the map, put a deep copy instead of the object itself. That way the other threads will never read an object in an inconsistent state.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[-1133433101]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>What you could do:<br /> (1) synchronize all accesses (getters and setters) to your objects everywhere in the code. Be careful with the setters: make sure that you can't set the object in an inconsistent state. For example, when setting first and last name, having two synchronized setters is not sufficient: you must get the object lock for both operations together.<br /> or<br /> (2) when you <code>put</code> an object in the map, put a deep copy instead of the object itself. That way the other threads will never read an object in an inconsistent state.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "read":1,
+                    "state":2,
+                    "map":1,
+                    "set":2,
+                    "setter":3,
+                    "lock":1,
+                    "care":1,
+                    "object":6,
+                    "getter":1,
+                    "code":3,
+                    "oper":1,
+                    "thread":1,
+                    "suffici":1,
+                    "deep":1,
+                    "make":1,
+                    "put":2,
+                    "inconsist":2,
+                    "copi":1,
+                    "access":1,
+                    "synchron":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p><strong>EDIT</strong>:<br /> I just noticed</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[-1399574776]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p><strong>EDIT</strong>:<br /> I just noticed</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "strong":2,
+                    "edit":1,
+                    "notic":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<blockquote> \n <p>Currently the objects' code has synchronization on the &quot;setters&quot; (guarded by the object itself). There is no synchronization on the &quot;getters&quot; nor are the members volatile.</p> \n</blockquote>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[-148663652]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<blockquote> \n <p>Currently the objects' code has synchronization on the &quot;setters&quot; (guarded by the object itself). There is no synchronization on the &quot;getters&quot; nor are the members volatile.</p> \n</blockquote>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "setter":1,
+                    "blockquot":2,
+                    "object":2,
+                    "getter":1,
+                    "code":1,
+                    "member":1,
+                    "quot":4,
+                    "guard":1,
+                    "synchron":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>This is not good. As I said above synchronizing on only one thread is no synchronization at all. You might synchronize on all your writer threads, but who cares since the readers won't get the right values.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[7809526]-[1405848354]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>This is not good. As I said above synchronizing on only one thread is no synchronization at all. You might synchronize on all your writer threads, but who cares since the readers won't get the right values.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "writer":1,
+                    "reader":1,
+                    "good":1,
+                    "care":1,
+                    "thread":2,
+                    "valu":1,
+                    "won":1,
+                    "synchron":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

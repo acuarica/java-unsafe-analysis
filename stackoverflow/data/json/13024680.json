@@ -1,0 +1,3947 @@
+{
+  "type":"StackOverflowArtifact",
+  "question":{
+    "type":"StackOverflowQuestion",
+    "id":13024680,
+    "title":"Compilation error of java program : unmappable character for encoding UTF8",
+    "comments":[
+      {
+        "type":"StackOverflowComment",
+        "id":17679579,
+        "postId":13024680,
+        "creationDate":"2012-10-23",
+        "score":0,
+        "isEdited":false,
+        "owner":{
+          "type":"StackOverflowUser",
+          "id":1602465,
+          "displayName":"kirschmichel",
+          "reputation":205
+        },
+        "source":[
+          {
+            "type":"SourceInfo",
+            "node":{
+              "type":"XmlTextNode",
+              "contents":"I guess your commends are the source of the trouble"
+            },
+            "units":[
+              {
+                "type":"TextUnit",
+                "id":"[13024680-cu17679579]-[1144073850]",
+                "astNode":{
+                  "type":"TextFragmentNode",
+                  "text":"I guess your commends are the source of the trouble"
+                },
+                "codeFragments":{
+                  "type":"CodeFragmentSequence",
+                  "fragments":[
+                    
+                  ]
+                },
+                "metaInformation":[
+                  {
+                    "type":"NaturalLanguageMetaInformation",
+                    "tfMap":{
+                      "troubl":1,
+                      "commend":1,
+                      "sourc":1,
+                      "guess":1
+                    }
+                  },
+                  {
+                    "type":"CodeTypesMetaInformation",
+                    "qualifiedTypes":[
+                      
+                    ],
+                    "simpleTypes":[
+                      
+                    ],
+                    "basicTypes":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeInvocationMetaInformation",
+                    "invocations":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"CodeVariablesMetaInformation",
+                    "variables":[
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tags":[
+      "java",
+      "utf-8",
+      "hadoop",
+      "compiler-errors",
+      "mapreduce"
+    ],
+    "creationDate":"2012-10-23",
+    "lastActivityDate":"2014-10-18",
+    "lastEditDate":"2012-10-23",
+    "score":0,
+    "viewCount":942,
+    "owner":{
+      "type":"StackOverflowUser",
+      "id":1730626,
+      "displayName":"user1730626",
+      "reputation":117
+    },
+    "source":[
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>I wrote this Java hadoop program which will execute parallel indexation of files.The file was created in eclipse</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13024680]-[-299140820]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>I wrote this Java hadoop program which will execute parallel indexation of files.The file was created in eclipse</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "program":1,
+                  "wrote":1,
+                  "eclips":1,
+                  "hadoop":1,
+                  "file":2,
+                  "creat":1,
+                  "parallel":1,
+                  "execut":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"package org.myorg; import java.io.*; import java.util.*; import org.apache.hadoop.fs.Path; import org.apache.hadoop.conf.*; import org.apache.hadoop.io.*; import org.apache.hadoop.mapred.*; import org.apache.hadoop.util.*; public class ParallelIndexation { public static class Map extends MapReduceBase implements Mapper&lt;LongWritable, Text, Text, IntWritable&gt; { private final static IntWritable zero = new IntWritable(0); private Text word = new Text(); public void map(LongWritable key, Text value, OutputCollector&lt;Text, IntWritable&gt; output, Reporter reporter) throws IOException { String line = value.toString(); int CountComputers; //DataInputStream ConfigFile = new DataInputStream( new FileInputStream(&quot;countcomputers.txt&quot;)); FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // путь к файлу DataInputStream in = new DataInputStream(fstream); BufferedReader br = new BufferedReader(new InputStreamReader(in)); String result = br.readLine(); // читаем как строку CountComputers = Integer.parseInt(result); // переводим строку в число //CountComputers=ConfigFile.readInt(); in.close(); fstream.close(); ArrayList&lt;String&gt; paths = new ArrayList&lt;String&gt;(); StringTokenizer tokenizer = new StringTokenizer(line, &quot;\\n&quot;); while (tokenizer.hasMoreTokens()) { paths.add(tokenizer.nextToken()); } String[] ConcatPaths= new String[CountComputers]; int NumberOfElementConcatPaths=0; if (paths.size()%CountComputers==0) { for (int i=0; i&lt;CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j&lt;paths.size()/CountComputers; j++) { ConcatPaths[i]+=&quot;\\n&quot;+paths.get(i*paths.size()/CountComputers+j); } } } else { NumberOfElementConcatPaths=0; for (int i=0; i&lt;paths.size()%CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers+1; for (int j=1; j&lt;paths.size()/CountComputers+1; j++) { ConcatPaths[i]+=&quot;\\n&quot;+paths.get(i*(paths.size()/CountComputers+1)+j); } } for (int k=paths.size()%CountComputers; k&lt;CountComputers; k++) { ConcatPaths[k]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j&lt;paths.size()/CountComputers; j++) { ConcatPaths[k]+=&quot;\\n&quot;+paths.get((k-paths.size()%CountComputers)*paths.size()/CountComputers+paths.size()%CountComputers*(paths.size()/CountComputers+1)+j); } } } //CountComputers=ConfigFile.readInt(); for (int i=0; i&lt;ConcatPaths.length; i++) { word.set(ConcatPaths[i]); output.collect(word, zero); } } } public static class Reduce extends MapReduceBase implements Reducer&lt;Text, IntWritable, Text, IntWritable&gt; { public native long Traveser(String Path); public native void Configure(String Path); public void reduce(Text key, IntWritable value, OutputCollector&lt;Text, LongWritable&gt; output, Reporter reporter) throws IOException { long count; String line = key.toString(); ArrayList&lt;String&gt; ProcessedPaths = new ArrayList&lt;String&gt;(); StringTokenizer tokenizer = new StringTokenizer(line, &quot;\\n&quot;); while (tokenizer.hasMoreTokens()) { ProcessedPaths.add(tokenizer.nextToken()); } Configure(&quot;/etc/nsindexer.conf&quot;); for (int i=0; i&lt;ProcessedPaths.size(); i++) { count=Traveser(ProcessedPaths.get(i)); } output.collect(key, new LongWritable(count)); } static { System.loadLibrary(&quot;nativelib&quot;); } } public static void main(String[] args) throws Exception { JobConf conf = new JobConf(ParallelIndexation.class); conf.setJobName(&quot;parallelindexation&quot;); conf.setOutputKeyClass(Text.class); conf.setOutputValueClass(LongWritable.class); conf.setMapperClass(Map.class); conf.setCombinerClass(Reduce.class); conf.setReducerClass(Reduce.class); conf.setInputFormat(TextInputFormat.class); conf.setOutputFormat(TextOutputFormat.class); FileInputFormat.setInputPaths(conf, new Path(args[0])); FileOutputFormat.setOutputPath(conf, new Path(args[1])); JobClient.runJob(conf); } } "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13024680]-[654319807]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"CompilationUnitNode",
+                  "packageDeclaration":{
+                    "type":"PackageDeclarationNode",
+                    "annotations":[
+                      
+                    ],
+                    "identifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        {
+                          "type":"IdentifierNode",
+                          "name":"myorg",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  },
+                  "imports":[
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"io",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"java",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"org",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"apache",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"hadoop",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"fs",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"Path",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":false,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"org",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"apache",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"hadoop",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"conf",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"org",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"apache",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"hadoop",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"io",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"org",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"apache",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"hadoop",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"mapred",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"ImportDeclarationNode",
+                      "identifier":{
+                        "type":"QualifiedIdentifierNode",
+                        "identifiers":[
+                          {
+                            "type":"IdentifierNode",
+                            "name":"org",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"apache",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"hadoop",
+                            "comments":[
+                              
+                            ]
+                          },
+                          {
+                            "type":"IdentifierNode",
+                            "name":"util",
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "isStatic":false,
+                      "isOnDemand":true,
+                      "comments":[
+                        
+                      ]
+                    }
+                  ],
+                  "typeDeclarations":[
+                    {
+                      "type":"ClassDeclarationNode",
+                      "modifiers":[
+                        {
+                          "type":"KeywordModifierNode",
+                          "value":"public",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "identifier":{
+                        "type":"IdentifierNode",
+                        "name":"ParallelIndexation",
+                        "comments":[
+                          
+                        ]
+                      },
+                      "body":{
+                        "type":"ClassBodyNode",
+                        "declarations":[
+                          {
+                            "type":"ClassDeclarationNode",
+                            "modifiers":[
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"public",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              {
+                                "type":"KeywordModifierNode",
+                                "value":"static",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "identifier":{
+                              "type":"IdentifierNode",
+                              "name":"Map",
+                              "comments":[
+                                
+                              ]
+                            },
+                            "superTypes":{
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"MapReduceBase",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "implementedInterfaces":{
+                              "type":"TypeListNode",
+                              "types":[
+                                {
+                                  "type":"ReferenceTypeNode",
+                                  "ids":[
+                                    {
+                                      "type":"ParameterizedTypeNode",
+                                      "identifier":{
+                                        "type":"IdentifierNode",
+                                        "name":"Mapper",
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "typeArguments":{
+                                        "type":"TypeArgumentsNode",
+                                        "types":[
+                                          {
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"LongWritable",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"Text",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"Text",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          {
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"IntWritable",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "body":{
+                              "type":"ClassBodyNode",
+                              "declarations":[
+                                {
+                                  "type":"FieldDeclaratorNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"private",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"final",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"static",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "variables":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"zero",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"IntWritable",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  {
+                                                    "type":"LiteralNode",
+                                                    "node":{
+                                                      "type":"IntegerLiteralNode",
+                                                      "valueRep":"0"
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"IntWritable",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"FieldDeclaratorNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"private",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "variables":{
+                                    "type":"VariableDeclaratorsNode",
+                                    "declarators":[
+                                      {
+                                        "type":"VariableDeclaratorNode",
+                                        "identifier":{
+                                          "type":"IdentifierNode",
+                                          "name":"word",
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "arrayDepth":[
+                                          
+                                        ],
+                                        "assignment":{
+                                          "type":"VariableAssignmentNode",
+                                          "variableAssignment":{
+                                            "type":"VariableExpressionInitNode",
+                                            "expression":{
+                                              "type":"ConstructorCreatorNode",
+                                              "creatorType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"Text",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "expressionArgs":{
+                                                "type":"ExpressionListNode",
+                                                "arguments":[
+                                                  
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          },
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "varType":{
+                                          "type":"ReferenceTypeNode",
+                                          "ids":[
+                                            {
+                                              "type":"ParameterizedTypeNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"Text",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                {
+                                  "type":"MethodDeclaratorNode",
+                                  "modifiers":[
+                                    {
+                                      "type":"KeywordModifierNode",
+                                      "value":"public",
+                                      "comments":[
+                                        
+                                      ]
+                                    }
+                                  ],
+                                  "returnType":{
+                                    "type":"PrimitiveTypeNode",
+                                    "name":"void",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"map",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "parameters":{
+                                    "type":"FormalParametersNode",
+                                    "parameters":{
+                                      "type":"FormalParameterDeclsNode",
+                                      "modifiers":[
+                                        
+                                      ],
+                                      "parameterType":{
+                                        "type":"ReferenceTypeNode",
+                                        "ids":[
+                                          {
+                                            "type":"ParameterizedTypeNode",
+                                            "identifier":{
+                                              "type":"IdentifierNode",
+                                              "name":"LongWritable",
+                                              "comments":[
+                                                
+                                              ]
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      "nextDeclarator":{
+                                        "type":"AdditionalFormalParameterDeclNode",
+                                        "variableDeclarator":{
+                                          "type":"VariableDeclaratorNode",
+                                          "identifier":{
+                                            "type":"IdentifierNode",
+                                            "name":"key",
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "arrayDepth":[
+                                            
+                                          ]
+                                        },
+                                        "formalParameterDeclarator":{
+                                          "type":"FormalParameterDeclsNode",
+                                          "modifiers":[
+                                            
+                                          ],
+                                          "parameterType":{
+                                            "type":"ReferenceTypeNode",
+                                            "ids":[
+                                              {
+                                                "type":"ParameterizedTypeNode",
+                                                "identifier":{
+                                                  "type":"IdentifierNode",
+                                                  "name":"Text",
+                                                  "comments":[
+                                                    
+                                                  ]
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            ],
+                                            "comments":[
+                                              
+                                            ]
+                                          },
+                                          "nextDeclarator":{
+                                            "type":"AdditionalFormalParameterDeclNode",
+                                            "variableDeclarator":{
+                                              "type":"VariableDeclaratorNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"value",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepth":[
+                                                
+                                              ]
+                                            },
+                                            "formalParameterDeclarator":{
+                                              "type":"FormalParameterDeclsNode",
+                                              "modifiers":[
+                                                
+                                              ],
+                                              "parameterType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"OutputCollector",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "typeArguments":{
+                                                      "type":"TypeArgumentsNode",
+                                                      "types":[
+                                                        {
+                                                          "type":"ReferenceTypeNode",
+                                                          "ids":[
+                                                            {
+                                                              "type":"ParameterizedTypeNode",
+                                                              "identifier":{
+                                                                "type":"IdentifierNode",
+                                                                "name":"Text",
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              },
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            }
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        },
+                                                        {
+                                                          "type":"ReferenceTypeNode",
+                                                          "ids":[
+                                                            {
+                                                              "type":"ParameterizedTypeNode",
+                                                              "identifier":{
+                                                                "type":"IdentifierNode",
+                                                                "name":"IntWritable",
+                                                                "comments":[
+                                                                  
+                                                                ]
+                                                              },
+                                                              "comments":[
+                                                                
+                                                              ]
+                                                            }
+                                                          ],
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "nextDeclarator":{
+                                                "type":"AdditionalFormalParameterDeclNode",
+                                                "variableDeclarator":{
+                                                  "type":"VariableDeclaratorNode",
+                                                  "identifier":{
+                                                    "type":"IdentifierNode",
+                                                    "name":"output",
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "arrayDepth":[
+                                                    
+                                                  ]
+                                                },
+                                                "formalParameterDeclarator":{
+                                                  "type":"FormalParameterDeclsNode",
+                                                  "modifiers":[
+                                                    
+                                                  ],
+                                                  "parameterType":{
+                                                    "type":"ReferenceTypeNode",
+                                                    "ids":[
+                                                      {
+                                                        "type":"ParameterizedTypeNode",
+                                                        "identifier":{
+                                                          "type":"IdentifierNode",
+                                                          "name":"Reporter",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        },
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      }
+                                                    ],
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  },
+                                                  "nextDeclarator":{
+                                                    "type":"AdditionalFormalParameterDeclNode",
+                                                    "variableDeclarator":{
+                                                      "type":"VariableDeclaratorNode",
+                                                      "identifier":{
+                                                        "type":"IdentifierNode",
+                                                        "name":"reporter",
+                                                        "comments":[
+                                                          
+                                                        ]
+                                                      },
+                                                      "arrayDepth":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            },
+                                            "comments":[
+                                              
+                                            ]
+                                          }
+                                        },
+                                        "comments":[
+                                          
+                                        ]
+                                      }
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "arrayReturnType":[
+                                    
+                                  ],
+                                  "thrownExceptions":{
+                                    "type":"ThrownExceptionsNode",
+                                    "qualifiedIdentifierList":{
+                                      "type":"QualifiedIdentifierListNode",
+                                      "qualifiedNames":[
+                                        {
+                                          "type":"QualifiedIdentifierNode",
+                                          "identifiers":[
+                                            {
+                                              "type":"IdentifierNode",
+                                              "name":"IOException",
+                                              "comments":[
+                                                
+                                              ]
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        }
+                                      ],
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "body":{
+                                    "type":"BlockNode",
+                                    "statements":[
+                                      {
+                                        "type":"LocalVariableDeclarationStatementNode",
+                                        "modifiers":[
+                                          
+                                        ],
+                                        "declarators":{
+                                          "type":"VariableDeclaratorsNode",
+                                          "declarators":[
+                                            {
+                                              "type":"VariableDeclaratorNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"line",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepth":[
+                                                
+                                              ],
+                                              "assignment":{
+                                                "type":"VariableAssignmentNode",
+                                                "variableAssignment":{
+                                                  "type":"VariableExpressionInitNode",
+                                                  "expression":{
+                                                    "type":"MethodInvocationNode",
+                                                    "qualifiedIdentifier":{
+                                                      "type":"QualifiedIdentifierNode",
+                                                      "identifiers":[
+                                                        {
+                                                          "type":"IdentifierNode",
+                                                          "name":"value",
+                                                          "comments":[
+                                                            
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"toString",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "args":{
+                                                      "type":"ExpressionListNode",
+                                                      "arguments":[
+                                                        
+                                                      ],
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                },
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "varType":{
+                                                "type":"ReferenceTypeNode",
+                                                "ids":[
+                                                  {
+                                                    "type":"ParameterizedTypeNode",
+                                                    "identifier":{
+                                                      "type":"IdentifierNode",
+                                                      "name":"String",
+                                                      "comments":[
+                                                        
+                                                      ]
+                                                    },
+                                                    "comments":[
+                                                      
+                                                    ]
+                                                  }
+                                                ],
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          
+                                        ]
+                                      },
+                                      {
+                                        "type":"LocalVariableDeclarationStatementNode",
+                                        "modifiers":[
+                                          
+                                        ],
+                                        "declarators":{
+                                          "type":"VariableDeclaratorsNode",
+                                          "declarators":[
+                                            {
+                                              "type":"VariableDeclaratorNode",
+                                              "identifier":{
+                                                "type":"IdentifierNode",
+                                                "name":"CountComputers",
+                                                "comments":[
+                                                  
+                                                ]
+                                              },
+                                              "arrayDepth":[
+                                                
+                                              ],
+                                              "varType":{
+                                                "type":"PrimitiveTypeNode",
+                                                "name":"int",
+                                                "comments":[
+                                                  
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "comments":[
+                                            
+                                          ]
+                                        },
+                                        "labels":[
+                                          
+                                        ],
+                                        "comments":[
+                                          {
+                                            "text":"//DataInputStream ConfigFile = new DataInputStream( new FileInputStream(\"countcomputers.txt\")); FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // путь к файлу DataInputStream in = new DataInputStream(fstream); BufferedReader br = new BufferedReader(new InputStreamReader(in)); String result = br.readLine(); // читаем как строку CountComputers = Integer.parseInt(result); // переводим строку в число //CountComputers=ConfigFile.readInt(); in.close(); fstream.close(); ArrayList<String> paths = new ArrayList<String>(); StringTokenizer tokenizer = new StringTokenizer(line, \"\\n\"); while (tokenizer.hasMoreTokens()) { paths.add(tokenizer.nextToken()); } String[] ConcatPaths= new String[CountComputers]; int NumberOfElementConcatPaths=0; if (paths.size()%CountComputers==0) { for (int i=0; i<CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j<paths.size()/CountComputers; j++) { ConcatPaths[i]+=\"\\n\"+paths.get(i*paths.size()/CountComputers+j); } } } else { NumberOfElementConcatPaths=0; for (int i=0; i<paths.size()%CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers+1; for (int j=1; j<paths.size()/CountComputers+1; j++) { ConcatPaths[i]+=\"\\n\"+paths.get(i*(paths.size()/CountComputers+1)+j); } } for (int k=paths.size()%CountComputers; k<CountComputers; k++) { ConcatPaths[k]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j<paths.size()/CountComputers; j++) { ConcatPaths[k]+=\"\\n\"+paths.get((k-paths.size()%CountComputers)*paths.size()/CountComputers+paths.size()%CountComputers*(paths.size()/CountComputers+1)+j); } } } //CountComputers=ConfigFile.readInt(); for (int i=0; i<ConcatPaths.length; i++) { word.set(ConcatPaths[i]); output.collect(word, zero); } } } public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> { public native long Traveser(String Path); public native void Configure(String Path); public void reduce(Text key, IntWritable value, OutputCollector<Text, LongWritable> output, Reporter reporter) throws IOException { long count; String line = key.toString(); ArrayList<String> ProcessedPaths = new ArrayList<String>(); StringTokenizer tokenizer = new StringTokenizer(line, \"\\n\"); while (tokenizer.hasMoreTokens()) { ProcessedPaths.add(tokenizer.nextToken()); } Configure(\"/etc/nsindexer.conf\"); for (int i=0; i<ProcessedPaths.size(); i++) { count=Traveser(ProcessedPaths.get(i)); } output.collect(key, new LongWritable(count)); } static { System.loadLibrary(\"nativelib\"); } } public static void main(String[] args) throws Exception { JobConf conf = new JobConf(ParallelIndexation.class); conf.setJobName(\"parallelindexation\"); conf.setOutputKeyClass(Text.class); conf.setOutputValueClass(LongWritable.class); conf.setMapperClass(Map.class); conf.setCombinerClass(Reduce.class); conf.setReducerClass(Reduce.class); conf.setInputFormat(TextInputFormat.class); conf.setOutputFormat(TextOutputFormat.class); FileInputFormat.setInputPaths(conf, new Path(args[0])); FileOutputFormat.setOutputPath(conf, new Path(args[1])); JobClient.runJob(conf); } } \n"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "labels":[
+                                      
+                                    ],
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            "labels":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          }
+                        ],
+                        "comments":[
+                          
+                        ]
+                      },
+                      "labels":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"package org.myorg; import java.io.*; import java.util.*; import org.apache.hadoop.fs.Path; import org.apache.hadoop.conf.*; import org.apache.hadoop.io.*; import org.apache.hadoop.mapred.*; import org.apache.hadoop.util.*; public class ParallelIndexation { public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> { private final static IntWritable zero = new IntWritable(0); private Text word = new Text(); public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException { String line = value.toString(); int CountComputers; //DataInputStream ConfigFile = new DataInputStream( new FileInputStream(\"countcomputers.txt\")); FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // путь к файлу DataInputStream in = new DataInputStream(fstream); BufferedReader br = new BufferedReader(new InputStreamReader(in)); String result = br.readLine(); // читаем как строку CountComputers = Integer.parseInt(result); // переводим строку в число //CountComputers=ConfigFile.readInt(); in.close(); fstream.close(); ArrayList<String> paths = new ArrayList<String>(); StringTokenizer tokenizer = new StringTokenizer(line, \"\\n\"); while (tokenizer.hasMoreTokens()) { paths.add(tokenizer.nextToken()); } String[] ConcatPaths= new String[CountComputers]; int NumberOfElementConcatPaths=0; if (paths.size()%CountComputers==0) { for (int i=0; i<CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j<paths.size()/CountComputers; j++) { ConcatPaths[i]+=\"\\n\"+paths.get(i*paths.size()/CountComputers+j); } } } else { NumberOfElementConcatPaths=0; for (int i=0; i<paths.size()%CountComputers; i++) { ConcatPaths[i]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers+1; for (int j=1; j<paths.size()/CountComputers+1; j++) { ConcatPaths[i]+=\"\\n\"+paths.get(i*(paths.size()/CountComputers+1)+j); } } for (int k=paths.size()%CountComputers; k<CountComputers; k++) { ConcatPaths[k]=paths.get(NumberOfElementConcatPaths); NumberOfElementConcatPaths+=paths.size()/CountComputers; for (int j=1; j<paths.size()/CountComputers; j++) { ConcatPaths[k]+=\"\\n\"+paths.get((k-paths.size()%CountComputers)*paths.size()/CountComputers+paths.size()%CountComputers*(paths.size()/CountComputers+1)+j); } } } //CountComputers=ConfigFile.readInt(); for (int i=0; i<ConcatPaths.length; i++) { word.set(ConcatPaths[i]); output.collect(word, zero); } } } public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> { public native long Traveser(String Path); public native void Configure(String Path); public void reduce(Text key, IntWritable value, OutputCollector<Text, LongWritable> output, Reporter reporter) throws IOException { long count; String line = key.toString(); ArrayList<String> ProcessedPaths = new ArrayList<String>(); StringTokenizer tokenizer = new StringTokenizer(line, \"\\n\"); while (tokenizer.hasMoreTokens()) { ProcessedPaths.add(tokenizer.nextToken()); } Configure(\"/etc/nsindexer.conf\"); for (int i=0; i<ProcessedPaths.size(); i++) { count=Traveser(ProcessedPaths.get(i)); } output.collect(key, new LongWritable(count)); } static { System.loadLibrary(\"nativelib\"); } } public static void main(String[] args) throws Exception { JobConf conf = new JobConf(ParallelIndexation.class); conf.setJobName(\"parallelindexation\"); conf.setOutputKeyClass(Text.class); conf.setOutputValueClass(LongWritable.class); conf.setMapperClass(Map.class); conf.setCombinerClass(Reduce.class); conf.setReducerClass(Reduce.class); conf.setInputFormat(TextInputFormat.class); conf.setOutputFormat(TextOutputFormat.class); FileInputFormat.setInputPaths(conf, new Path(args[0])); FileOutputFormat.setOutputPath(conf, new Path(args[1])); JobClient.runJob(conf); } } \n...\n}...\n}...\n}",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":3,
+                  "number":8,
+                  "format":6,
+                  "collector":2,
+                  "count":25,
+                  "apach":5,
+                  "path":51,
+                  "util":2,
+                  "reduc":8,
+                  "size":16,
+                  "system":1,
+                  "writabl":12,
+                  "как":1,
+                  "mapper":2,
+                  "map":5,
+                  "reader":3,
+                  "line":5,
+                  "файлу":1,
+                  "process":4,
+                  "run":1,
+                  "data":4,
+                  "result":2,
+                  "set":11,
+                  "concat":17,
+                  "nsindex":1,
+                  "job":5,
+                  "load":1,
+                  "buffer":2,
+                  "text":13,
+                  "librari":1,
+                  "config":3,
+                  "fstream":3,
+                  "main":1,
+                  "configur":2,
+                  "conf":16,
+                  "element":8,
+                  "txt":2,
+                  "base":2,
+                  "key":5,
+                  "array":4,
+                  "переводим":1,
+                  "pars":1,
+                  "comput":22,
+                  "traves":2,
+                  "путь":1,
+                  "hadoop":5,
+                  "myorg":1,
+                  "строку":2,
+                  "nativelib":1,
+                  "combin":1,
+                  "stream":8,
+                  "client":1,
+                  "token":14,
+                  "countcomput":2,
+                  "usr":1,
+                  "mapr":1,
+                  "report":4,
+                  "file":8,
+                  "length":1,
+                  "ioexcept":2,
+                  "collect":2,
+                  "output":12,
+                  "parallelindex":1,
+                  "org":6,
+                  "close":2,
+                  "читаем":1,
+                  "word":3,
+                  "add":2,
+                  "input":12,
+                  "parallel":2,
+                  "arg":3,
+                  "list":4,
+                  "index":2,
+                  "число":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"hadoop",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"conf",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"hadoop",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"mapred",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"hadoop",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"hadoop",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"fs",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Path",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"org",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"apache",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"hadoop",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"io",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"util",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"java",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      },
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"io",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Reporter",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"MapReduceBase",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"String",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Text",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"LongWritable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"IntWritable",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"Mapper",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"LongWritable",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Text",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Text",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"IntWritable",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"OutputCollector",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "typeArguments":{
+                          "type":"TypeArgumentsNode",
+                          "types":[
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"Text",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            },
+                            {
+                              "type":"ReferenceTypeNode",
+                              "ids":[
+                                {
+                                  "type":"ParameterizedTypeNode",
+                                  "identifier":{
+                                    "type":"IdentifierNode",
+                                    "name":"IntWritable",
+                                    "comments":[
+                                      
+                                    ]
+                                  },
+                                  "comments":[
+                                    
+                                  ]
+                                }
+                              ],
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"void",
+                    "comments":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"PrimitiveTypeNode",
+                    "name":"int",
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  {
+                    "type":"MethodInvocationNode",
+                    "qualifiedIdentifier":{
+                      "type":"QualifiedIdentifierNode",
+                      "identifiers":[
+                        {
+                          "type":"IdentifierNode",
+                          "name":"value",
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"toString",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "args":{
+                      "type":"ExpressionListNode",
+                      "arguments":[
+                        
+                      ],
+                      "comments":[
+                        
+                      ]
+                    },
+                    "comments":[
+                      
+                    ]
+                  }
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"reporter",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"key",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"word",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"Text",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"Text",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"zero",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"IntWritable",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"IntegerLiteralNode",
+                                  "valueRep":"0"
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"IntWritable",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"CountComputers",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "varType":{
+                      "type":"PrimitiveTypeNode",
+                      "name":"int",
+                      "comments":[
+                        
+                      ]
+                    }
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"output",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"value",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ]
+                  },
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"line",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"MethodInvocationNode",
+                          "qualifiedIdentifier":{
+                            "type":"QualifiedIdentifierNode",
+                            "identifiers":[
+                              {
+                                "type":"IdentifierNode",
+                                "name":"value",
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"toString",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "args":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"String",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>As a result of compilation in the Nexenta Illumos operating system (solaris) by means of team</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13024680]-[1973992112]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>As a result of compilation in the Nexenta Illumos operating system (solaris) by means of team</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "system":1,
+                  "result":1,
+                  "mean":1,
+                  "solari":1,
+                  "oper":1,
+                  "illumo":1,
+                  "team":1,
+                  "compil":1,
+                  "nexenta":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"javac -classpath hadoop-examples-1.0.1.jar -d folder/classes folder/src/ParallelIndexation.java, "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13024680]-[411090026]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"javac -classpath hadoop-examples-1.0.1.jar -d folder/classes folder/src/ParallelIndexation.java, "
+                }
+              ]
+            },
+            "rawText":"javac -classpath hadoop-examples-1.0.1.jar -d folder/classes folder/src/ParallelIndexation.java, ",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "exampl":1,
+                  "classpath":1,
+                  "folder":2,
+                  "hadoop":1,
+                  "src":1,
+                  "class":1,
+                  "jar":1,
+                  "javac":1,
+                  "parallel":1,
+                  "index":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>received the following mistake</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13024680]-[1392146028]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>received the following mistake</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "receiv":1,
+                  "mistak":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlNode",
+          "name":{
+            "type":"XmlNameNode",
+            "value":"pre"
+          },
+          "attributes":[
+            
+          ],
+          "elements":[
+            {
+              "type":"XmlNode",
+              "name":{
+                "type":"XmlNameNode",
+                "value":"code"
+              },
+              "attributes":[
+                
+              ],
+              "elements":[
+                {
+                  "type":"XmlTextNode",
+                  "contents":"folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(&quot;/usr/countcomputers.txt&quot;); // ���� � ����� ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ 46 errors "
+                }
+              ]
+            }
+          ]
+        },
+        "units":[
+          {
+            "type":"StructuredFragmentUnit",
+            "id":"[13024680]-[-1463571584]",
+            "astNode":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                {
+                  "type":"TextFragmentNode",
+                  "text":"folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 "
+                },
+                {
+                  "type":"LocalVariableDeclarationStatementNode",
+                  "modifiers":[
+                    
+                  ],
+                  "declarators":{
+                    "type":"VariableDeclaratorsNode",
+                    "declarators":[
+                      {
+                        "type":"VariableDeclaratorNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"fstream",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "arrayDepth":[
+                          
+                        ],
+                        "assignment":{
+                          "type":"VariableAssignmentNode",
+                          "variableAssignment":{
+                            "type":"VariableExpressionInitNode",
+                            "expression":{
+                              "type":"ConstructorCreatorNode",
+                              "creatorType":{
+                                "type":"ReferenceTypeNode",
+                                "ids":[
+                                  {
+                                    "type":"ParameterizedTypeNode",
+                                    "identifier":{
+                                      "type":"IdentifierNode",
+                                      "name":"FileInputStream",
+                                      "comments":[
+                                        
+                                      ]
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "expressionArgs":{
+                                "type":"ExpressionListNode",
+                                "arguments":[
+                                  {
+                                    "type":"LiteralNode",
+                                    "node":{
+                                      "type":"StringLiteralNode",
+                                      "valueRep":"\"/usr/countcomputers.txt\""
+                                    },
+                                    "comments":[
+                                      
+                                    ]
+                                  }
+                                ],
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          },
+                          "comments":[
+                            
+                          ]
+                        },
+                        "varType":{
+                          "type":"ReferenceTypeNode",
+                          "ids":[
+                            {
+                              "type":"ParameterizedTypeNode",
+                              "identifier":{
+                                "type":"IdentifierNode",
+                                "name":"FileInputStream",
+                                "comments":[
+                                  
+                                ]
+                              },
+                              "comments":[
+                                
+                              ]
+                            }
+                          ],
+                          "comments":[
+                            
+                          ]
+                        }
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  },
+                  "labels":[
+                    
+                  ],
+                  "comments":[
+                    {
+                      "text":"// ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ 46 errors \n"
+                    }
+                  ]
+                }
+              ]
+            },
+            "rawText":"folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:23: error: unmappable character for encoding UTF8 FileInputStream fstream = new FileInputStream(\"/usr/countcomputers.txt\"); // ���� � ����� ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:26: error: unmappable character for encoding UTF8 String result = br.readLine(); // ������ ��� ������ ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ folder/src/ParallelIndexation.java:27: error: unmappable character for encoding UTF8 CountComputers = Integer.parseInt(result); // ��������� ������ � ����� ^ 46 errors \n",
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "read":15,
+                  "count":21,
+                  "charact":46,
+                  "line":15,
+                  "result":36,
+                  "unmapp":46,
+                  "fstream":10,
+                  "txt":10,
+                  "encod":46,
+                  "pars":21,
+                  "comput":21,
+                  "folder":46,
+                  "error":47,
+                  "utf":46,
+                  "stream":20,
+                  "countcomput":10,
+                  "src":46,
+                  "usr":10,
+                  "file":20,
+                  "input":20,
+                  "parallel":46,
+                  "index":46
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  {
+                    "type":"ReferenceTypeNode",
+                    "ids":[
+                      {
+                        "type":"ParameterizedTypeNode",
+                        "identifier":{
+                          "type":"IdentifierNode",
+                          "name":"FileInputStream",
+                          "comments":[
+                            
+                          ]
+                        },
+                        "comments":[
+                          
+                        ]
+                      }
+                    ],
+                    "comments":[
+                      
+                    ]
+                  }
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  {
+                    "type":"VariableDeclaratorNode",
+                    "identifier":{
+                      "type":"IdentifierNode",
+                      "name":"fstream",
+                      "comments":[
+                        
+                      ]
+                    },
+                    "arrayDepth":[
+                      
+                    ],
+                    "assignment":{
+                      "type":"VariableAssignmentNode",
+                      "variableAssignment":{
+                        "type":"VariableExpressionInitNode",
+                        "expression":{
+                          "type":"ConstructorCreatorNode",
+                          "creatorType":{
+                            "type":"ReferenceTypeNode",
+                            "ids":[
+                              {
+                                "type":"ParameterizedTypeNode",
+                                "identifier":{
+                                  "type":"IdentifierNode",
+                                  "name":"FileInputStream",
+                                  "comments":[
+                                    
+                                  ]
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "expressionArgs":{
+                            "type":"ExpressionListNode",
+                            "arguments":[
+                              {
+                                "type":"LiteralNode",
+                                "node":{
+                                  "type":"StringLiteralNode",
+                                  "valueRep":"\"/usr/countcomputers.txt\""
+                                },
+                                "comments":[
+                                  
+                                ]
+                              }
+                            ],
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      },
+                      "comments":[
+                        
+                      ]
+                    },
+                    "varType":{
+                      "type":"ReferenceTypeNode",
+                      "ids":[
+                        {
+                          "type":"ParameterizedTypeNode",
+                          "identifier":{
+                            "type":"IdentifierNode",
+                            "name":"FileInputStream",
+                            "comments":[
+                              
+                            ]
+                          },
+                          "comments":[
+                            
+                          ]
+                        }
+                      ],
+                      "comments":[
+                        
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type":"SourceInfo",
+        "node":{
+          "type":"XmlTextNode",
+          "contents":"<p>How in eclipse to change the coding for UTF8?</p>"
+        },
+        "units":[
+          {
+            "type":"TextUnit",
+            "id":"[13024680]-[1615226166]",
+            "astNode":{
+              "type":"TextFragmentNode",
+              "text":"<p>How in eclipse to change the coding for UTF8?</p>"
+            },
+            "codeFragments":{
+              "type":"CodeFragmentSequence",
+              "fragments":[
+                
+              ]
+            },
+            "metaInformation":[
+              {
+                "type":"NaturalLanguageMetaInformation",
+                "tfMap":{
+                  "code":1,
+                  "chang":1,
+                  "utf":1,
+                  "eclips":1
+                }
+              },
+              {
+                "type":"CodeTypesMetaInformation",
+                "qualifiedTypes":[
+                  
+                ],
+                "simpleTypes":[
+                  
+                ],
+                "basicTypes":[
+                  
+                ]
+              },
+              {
+                "type":"CodeInvocationMetaInformation",
+                "invocations":[
+                  
+                ]
+              },
+              {
+                "type":"CodeVariablesMetaInformation",
+                "variables":[
+                  
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "answers":[
+    {
+      "type":"StackOverflowAnswer",
+      "id":13025108,
+      "questionId":13024680,
+      "comments":[
+        {
+          "type":"StackOverflowComment",
+          "id":17679833,
+          "postId":13025108,
+          "creationDate":"2012-10-23",
+          "score":1,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":40342,
+            "displayName":"Joachim Sauer",
+            "reputation":145645
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"There's rarely a good reason to set this on the file-level: all files of inside a project should use the same encoding, as much as possible."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13025108-cu17679833]-[528994490]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"There's rarely a good reason to set this on the file-level: all files of inside a project should use the same encoding, as much as possible."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "project":1,
+                        "good":1,
+                        "set":1,
+                        "reason":1,
+                        "encod":1,
+                        "insid":1,
+                        "rare":1,
+                        "file":2,
+                        "level":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":17680506,
+          "postId":13025108,
+          "creationDate":"2012-10-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":413337,
+            "displayName":"Codo",
+            "reputation":30824
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"Yes, you're right. I've updated my recommendation."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13025108-cu17680506]-[1292095221]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"Yes, you're right. I've updated my recommendation."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "recommend":1,
+                        "updat":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"StackOverflowComment",
+          "id":17680568,
+          "postId":13025108,
+          "creationDate":"2012-10-23",
+          "score":0,
+          "isEdited":false,
+          "owner":{
+            "type":"StackOverflowUser",
+            "id":687514,
+            "displayName":"Anders R. Bystrup",
+            "reputation":8389
+          },
+          "source":[
+            {
+              "type":"SourceInfo",
+              "node":{
+                "type":"XmlTextNode",
+                "contents":"If you have a few files to convert, Notepad++ (http://notepad-plus-plus.org/) can do that for you, if it's an entire project I concur with the `iconv` route."
+              },
+              "units":[
+                {
+                  "type":"TextUnit",
+                  "id":"[13025108-cu17680568]-[1647517299]",
+                  "astNode":{
+                    "type":"TextFragmentNode",
+                    "text":"If you have a few files to convert, Notepad++ (http://notepad-plus-plus.org/) can do that for you, if it's an entire project I concur with the `iconv` route."
+                  },
+                  "codeFragments":{
+                    "type":"CodeFragmentSequence",
+                    "fragments":[
+                      
+                    ]
+                  },
+                  "metaInformation":[
+                    {
+                      "type":"NaturalLanguageMetaInformation",
+                      "tfMap":{
+                        "project":1,
+                        "notepad":2,
+                        "iconv":1,
+                        "entir":1,
+                        "concur":1,
+                        "rout":1,
+                        "file":1,
+                        "org":1,
+                        "http":1,
+                        "convert":1
+                      }
+                    },
+                    {
+                      "type":"CodeTypesMetaInformation",
+                      "qualifiedTypes":[
+                        
+                      ],
+                      "simpleTypes":[
+                        
+                      ],
+                      "basicTypes":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeInvocationMetaInformation",
+                      "invocations":[
+                        
+                      ]
+                    },
+                    {
+                      "type":"CodeVariablesMetaInformation",
+                      "variables":[
+                        
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "creationDate":"2012-10-23",
+      "lastActivityDate":"2012-10-23",
+      "lastEditDate":"2012-10-23",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":413337,
+        "displayName":"Codo",
+        "reputation":30824
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>In Eclipse, you can set the text file encoding in three places: </p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13025108]-[1563932924]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>In Eclipse, you can set the text file encoding in three places: </p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "set":1,
+                    "text":1,
+                    "eclips":1,
+                    "encod":1,
+                    "file":1,
+                    "place":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<ul> \n <li>At the workspace level: Preferences / General / Workspace / Text file encoding</li> \n <li>At the project level: Properties (on project) / Resource / Text file encoding</li> \n <li>At the file level: Properties (on file) / Resource / Text file encoding</li> \n</ul>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13025108]-[-680921845]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<ul> \n <li>At the workspace level: Preferences / General / Workspace / Text file encoding</li> \n <li>At the project level: Properties (on project) / Resource / Text file encoding</li> \n <li>At the file level: Properties (on file) / Resource / Text file encoding</li> \n</ul>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "properti":2,
+                    "project":2,
+                    "resourc":2,
+                    "text":3,
+                    "encod":3,
+                    "general":1,
+                    "workspac":2,
+                    "file":5,
+                    "prefer":1,
+                    "level":3
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>I recommend to set it at workspace and project level and if only if necessary at file level.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13025108]-[361014479]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>I recommend to set it at workspace and project level and if only if necessary at file level.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "recommend":1,
+                    "project":1,
+                    "set":1,
+                    "workspac":1,
+                    "file":1,
+                    "level":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Setting the file encoding doesn't really convert the file itself. You might need to use a separate tool (such as <code>iconv</code>) for that.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[13025108]-[-1480705061]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Setting the file encoding doesn't really convert the file itself. You might need to use a separate tool (such as <code>iconv</code>) for that.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "tool":1,
+                    "set":1,
+                    "separ":1,
+                    "iconv":1,
+                    "code":2,
+                    "encod":1,
+                    "file":2,
+                    "convert":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type":"StackOverflowAnswer",
+      "id":26435317,
+      "questionId":13024680,
+      "comments":[
+        
+      ],
+      "creationDate":"2014-10-18",
+      "lastActivityDate":"2014-10-18",
+      "score":0,
+      "isAccepted":false,
+      "owner":{
+        "type":"StackOverflowUser",
+        "id":3571078,
+        "displayName":"Andre",
+        "reputation":41
+      },
+      "source":[
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Java 6 gives a &quot;warning&quot; for umappable characters.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26435317]-[1244206162]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Java 6 gives a &quot;warning&quot; for umappable characters.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "umapp":1,
+                    "warn":1,
+                    "charact":1,
+                    "quot":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Java 7 gives an &quot;error&quot; for umappable characters, and fails.</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26435317]-[1320572517]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Java 7 gives an &quot;error&quot; for umappable characters, and fails.</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "fail":1,
+                    "charact":1,
+                    "umapp":1,
+                    "error":1,
+                    "quot":2
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlTextNode",
+            "contents":"<p>Check file encoding with</p>"
+          },
+          "units":[
+            {
+              "type":"TextUnit",
+              "id":"[26435317]-[-2145403118]",
+              "astNode":{
+                "type":"TextFragmentNode",
+                "text":"<p>Check file encoding with</p>"
+              },
+              "codeFragments":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  
+                ]
+              },
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "encod":1,
+                    "file":1,
+                    "check":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"SourceInfo",
+          "node":{
+            "type":"XmlNode",
+            "name":{
+              "type":"XmlNameNode",
+              "value":"pre"
+            },
+            "attributes":[
+              
+            ],
+            "elements":[
+              {
+                "type":"XmlNode",
+                "name":{
+                  "type":"XmlNameNode",
+                  "value":"code"
+                },
+                "attributes":[
+                  
+                ],
+                "elements":[
+                  {
+                    "type":"XmlTextNode",
+                    "contents":"file -bi [filename] "
+                  }
+                ]
+              }
+            ]
+          },
+          "units":[
+            {
+              "type":"StructuredFragmentUnit",
+              "id":"[26435317]-[709357237]",
+              "astNode":{
+                "type":"CodeFragmentSequence",
+                "fragments":[
+                  {
+                    "type":"TextFragmentNode",
+                    "text":"file -bi [filename] "
+                  }
+                ]
+              },
+              "rawText":"file -bi [filename] ",
+              "metaInformation":[
+                {
+                  "type":"NaturalLanguageMetaInformation",
+                  "tfMap":{
+                    "file":1,
+                    "filenam":1
+                  }
+                },
+                {
+                  "type":"CodeTypesMetaInformation",
+                  "qualifiedTypes":[
+                    
+                  ],
+                  "simpleTypes":[
+                    
+                  ],
+                  "basicTypes":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeInvocationMetaInformation",
+                  "invocations":[
+                    
+                  ]
+                },
+                {
+                  "type":"CodeVariablesMetaInformation",
+                  "variables":[
+                    
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
