@@ -37,8 +37,8 @@ df[df$group == 'Off-Heap Get',]$group = 'Get';
 df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
-so = load.csv('analysis/so-method-usages.csv');
-#so$total = NULL;
+so = load.csv('stackoverflow/results/method-usages.csv');
+
 colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 'Usages in both');
 
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);
