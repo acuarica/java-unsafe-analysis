@@ -8,8 +8,16 @@ import ch.usi.inf.reveal.parsing.model.java._
 
 object FieldAnalyzer extends App{
 
+  
+  def getJsonIds(jsonFolder: String): List[Int] = {
+    val folder = new File(jsonFolder)
+    val jsonFiles = folder.list().par.filter{ _.endsWith(".json") }
+    jsonFiles.map { e => e.replaceAll("\\.json","").toInt }.toList
+  }
+  
+  
   val jsonDir = new File(args(0))
-  val ids = Source.fromFile(args(1)).getLines().map{ _.toInt }.toList
+  val ids = getJsonIds(args(0))
   val serializer = new ArtifactSerializer()
   val unsafeFields = Source.fromFile(args(2)).getLines().toList
   val writer = new PrintWriter(args(3))

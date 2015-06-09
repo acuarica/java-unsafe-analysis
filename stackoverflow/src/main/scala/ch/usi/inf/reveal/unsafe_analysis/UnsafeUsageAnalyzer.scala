@@ -32,7 +32,8 @@ object UnsafeUsageAnalyzer extends App {
   }
   
   val lines = Source.fromFile(args(2)).getLines
-  val methods = Source.fromFile("./methodNames.txt").getLines.toList
+  val methodsOrFields = Source.fromFile("./methodNames.txt").getLines.toList ++ Source.fromFile("./fieldNames.txt").getLines.toList
+  
  
   val rawEntries = lines.drop(1).map( line => { 
     val elems = line.split(",").toList
@@ -80,7 +81,7 @@ object UnsafeUsageAnalyzer extends App {
 
   val trueUsagesPerMethod = (usagesPerMethod-(""))
   
-  val usage2mentions = methods.map { method =>
+  val usage2mentions = methodsOrFields.map { method =>
     (method, trueUsagesPerMethod(method).size)
   }
   
@@ -98,21 +99,21 @@ object UnsafeUsageAnalyzer extends App {
   val usagesInQuestionsByMethod = usagesInQuestions groupBy { _.methodName } withDefaultValue List()
   val usagesInAnswersByMethod = usagesInAnswers groupBy { _.methodName } withDefaultValue List()
   
-  val usagesInQuestionsOnlyByMethod = methods.map { method =>
+  val usagesInQuestionsOnlyByMethod = methodsOrFields.map { method =>
     val usageInQuestion = usagesInQuestionsByMethod(method)
     val usageInAnswer = usagesInAnswersByMethod(method)
     val usageInQuestionOnly = usageInQuestion.filterNot { uq => usageInAnswer.exists { ua => uq.artifactId == ua.artifactId } }
     (method, usageInQuestionOnly)
   }.toMap
   
-   val usagesInAnswersOnlyByMethod = methods.map { method =>
+   val usagesInAnswersOnlyByMethod = methodsOrFields.map { method =>
     val usageInQuestion = usagesInQuestionsByMethod(method)
     val usageInAnswer = usagesInAnswersByMethod(method)
     val usageInAnswerOnly = usageInAnswer.filterNot { ua => usageInQuestion.exists { uq => uq.artifactId == ua.artifactId } }
     (method, usageInAnswerOnly)
   }.toMap
   
-  val usagesInBothByMethod = methods.map { method =>
+  val usagesInBothByMethod = methodsOrFields.map { method =>
     val usageInQuestion = usagesInQuestionsByMethod(method)
     val usageInAnswer = usagesInAnswersByMethod(method)
     val usageInBoth = usageInAnswer.filter { ua => usageInQuestion.exists { uq => uq.artifactId == ua.artifactId } }
@@ -126,7 +127,7 @@ object UnsafeUsageAnalyzer extends App {
     val writer_detail = new PrintWriter("./results/method-usages-detail.csv")
     writer.println("method,usagesInQuestionsOnly,usagesInAnswersOnly,usagesInBoth")
     writer_detail.println("method,question,answer_optional,where")
-    val toBePlotted = methods.map { method =>
+    val toBePlotted = methodsOrFields.map { method =>
       val uqs = usagesInQuestionsOnlyByMethod(method).size
       usagesInQuestionsOnlyByMethod(method).foreach { u => writer_detail.println(s"${u.methodName},${u.postId},,only_question")}
       val uas = usagesInAnswersOnlyByMethod(method).size
