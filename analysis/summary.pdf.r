@@ -24,6 +24,7 @@ invdeps <- function(f, bw) {
   grid.table(df[1:50,c('id', 'depCount', 'rank')], show.rownames=FALSE);  
 };
 
+# Stats on Maven
 total.arts = 75405;
 total.arts.wdeps = 40622;
 
