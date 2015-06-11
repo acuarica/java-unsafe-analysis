@@ -60,6 +60,16 @@ public class Analyze {
 					break;
 				}
 			}
+
+			for (String file : new String[] { "rt.jar" }) {
+				String aid = file.substring(0, file.lastIndexOf("."));
+				MavenArtifact a = new MavenArtifact("jdk8", aid, file + "@1.8",
+						1, "jar", "", "");
+
+				i++;
+				String path = "lib/" + file;
+				analyseArtifact(path, a, i, out);
+			}
 		}
 	}
 
