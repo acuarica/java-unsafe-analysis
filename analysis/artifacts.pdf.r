@@ -2,9 +2,9 @@
 library(ggplot2)
 library(reshape2)
 
-source('analysis/utils.r')
+source('analysis/utils/utils.r')
 
-df.maven = load.csv('out/cs.csv');
+df.maven = load.csv('out/analysis/cs.csv');
 
 df = df.maven;
 df = merge(df, df.methods, by.x='name', by.y='method', all.x=TRUE);

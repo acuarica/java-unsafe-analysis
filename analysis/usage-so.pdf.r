@@ -2,7 +2,7 @@
 library(reshape2)
 library(ggplot2)
 
-source('analysis/utils.r')
+source('analysis/utils/utils.r')
 
 replacename = function(df, name, offheapdesc) {
   df[df$method == sprintf('%s (Heap)', name),]$method = name;
@@ -38,37 +38,15 @@ df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
 so = load.csv('stackoverflow/results/method-usages.csv');
-
-colnames(so) = c('method','Usages in Questions only', 'Usages in Answers only', 'Usages in both');
-
+colnames(so) = c('method','Only in Questions', 'Only in Answers', 'Both');
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);
 so = melt(so, id=c('method', 'access', 'group', 'member'));
-
 so = so[so$value > 0, ];
 
-p = ggplot(so, aes(x=method, y=value, fill=variable))+
-  geom_bar(stat="identity")+
-  facet_grid(.~group, space='free_x', scales="free_x")+
-  theme(axis.text.x=element_text(size=10, angle=90, hjust=1, vjust=0.2),
-        axis.text.y=element_text(angle=90, hjust=1),
-        #axis.title.x=element_text(angle=180),
-        axis.title.x=element_blank(),
-        legend.box="horizontal", 
-        legend.position="none", 
-        #legend.text =element_text(angle=90, vjust=0),
-        #legend.text.align=
-        legend.title=element_blank(),
-        strip.text.x=element_text(size=11, angle=90),
-        
-        #panel.background=element_rect(fill='white'),
-        #plot.background=element_rect(color='green'),
-        #panel.border=element_rect(color='black'),
-        
-        panel.grid.major=element_line(),
-        panel.grid.minor=element_blank()
-        #axis.ticks=element_blank()
-  )+
-  labs(x="sun.misc.Unsafe members", y = "# matches");
+p = ggplot(so, aes(x=value, y=method, fill=variable))+
+  geom_bar_horz(stat="identity", position="identity")+
+  facet_grid(group~., space='free_y', scales="free_y")+
+  theme(legend.position="top", legend.title=element_blank(), strip.text.y=element_text(angle=0))+
+  labs(x="# matches", y = "sun.misc.Unsafe members")
 
-#outfile = 'build/overview-pre.pdf';
-save.plot(p, outfile, w=14, h=6);
+save.plot(p, outfile, w=6, h=14);

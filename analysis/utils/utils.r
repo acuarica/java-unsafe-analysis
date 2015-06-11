@@ -82,8 +82,8 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 outfile <- commandArgs(trailingOnly = TRUE)[1];
 
 df.methods = (function() {
-  csv.members = load.csv('analysis/unsafe-def-members.csv');
-  csv.groups = load.csv('analysis/unsafe-def-groups.csv');
+  csv.members = load.csv('analysis/csv/unsafe-def-members.csv');
+  csv.groups = load.csv('analysis/csv/unsafe-def-groups.csv');
   
   df.members = merge(csv.members, csv.groups, by='gid', all.x=TRUE, all.y=TRUE);
   df.members$gid = NULL; 
@@ -114,3 +114,34 @@ filterlang = function(df) {
   #df5;
   df;
 }
+
+library(proto)
+
+geom_bar_horz <- function (mapping = NULL, data = NULL, stat = "bin", position = "stack", ...) {
+  GeomBar_horz$new(mapping = mapping, data = data, stat = stat, position = position, ...)
+}
+
+GeomBar_horz <- proto(ggplot2:::Geom, {
+  objname <- "bar_horz"
+  
+  default_stat <- function(.) StatBin
+  default_pos <- function(.) PositionStack
+  default_aes <- function(.) aes(colour=NA, fill="grey20", size=0.5, linetype=1, weight = 1, alpha = NA)
+  
+  required_aes <- c("y")
+  
+  reparameterise <- function(., df, params) {
+    df$width <- df$width %||%
+      params$width %||% (resolution(df$x, FALSE) * 0.9)
+    OUT <- transform(df,
+                     xmin = pmin(x, 0), xmax = pmax(x, 0),
+                     ymin = y - .45, ymax = y + .45, width = NULL
+    )
+    return(OUT)
+  }
+  
+  draw_groups <- function(., data, scales, coordinates, ...) {
+    GeomRect$draw_groups(data, scales, coordinates, ...)
+  }
+  guide_geom <- function(.) "polygon"
+})

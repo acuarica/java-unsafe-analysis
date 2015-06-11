@@ -1,7 +1,7 @@
 
 library(reshape2);
 
-source('analysis/utils.r');
+source('analysis/utils/utils.r');
 
 fcls <- function(cls) {
   if (substr(cls, 1, 1) == '$') {

@@ -1,52 +1,26 @@
 
-UNAME=$(shell uname)
-
-ifeq ($(UNAME), Darwin)
-  R=r
-else ifeq ($(UNAME), Linux)
-  R=R
-else
-  $(error Unrecognized environment. Only supported Darwin and Linux)
-endif
-
+R=r
 SRC=analysis
-BUILD=out
-
-#OUTS=$(patsubst $(SRC)/%.r,$(BUILD)/%,$(wildcard $(SRC)/*.*.r))
-OUTS=$(BUILD)/artifacts.pdf $(BUILD)/classunit.pdf $(BUILD)/cs.csv \
-     $(BUILD)/deps.csv $(BUILD)/overview-pre.pdf $(BUILD)/patterns.pdf $(BUILD)/summary.pdf
-
-OVERVIEWPRE=$(BUILD)/overview-pre.pdf
-OVERVIEW=$(BUILD)/overview.pdf
-
-OVERVIEWSOPRE=$(BUILD)/overview-so-pre.pdf
-OVERVIEWSO=$(BUILD)/overview-so.pdf
+CSV=$(SRC)/csv
+OUT=out/analysis
+OUTS=$(patsubst $(SRC)/%.r,$(OUT)/%,$(wildcard $(SRC)/*.*.r))
 
 .SECONDARY:
 
-all: $(OUTS) $(OVERVIEW)
+all: $(OUTS)
 
-so: $(OVERVIEWSO)
+$(OUT)/cs.csv: out/unsafe-maven.csv
+$(OUT)/artifacts.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-def-groups.csv
+$(OUT)/classunit.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-def-groups.csv
+$(OUT)/patterns.pdf: $(CSV)/comments.csv
+$(OUT)/usage-maven.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-def-groups.csv
+$(OUT)/usage-so.pdf: stackoverflow/results/method-usages.csv
 
-$(BUILD)/cs.csv: out/unsafe-maven.csv
-$(BUILD)/overview-pre.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
-$(BUILD)/overview-so-pre.pdf: stackoverflow/results/method-usages.csv
-$(BUILD)/artifacts.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
-$(BUILD)/classunit.pdf: $(BUILD)/cs.csv analysis/unsafe-def-members.csv analysis/unsafe-def-groups.csv
-$(BUILD)/patterns.pdf: analysis/comments.csv
-
-$(OVERVIEWSO): $(OVERVIEWSOPRE) analysis/so.tex
-	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
-	latexmk -quiet -view=pdf -output-directory=out analysis/so.tex
-
-$(OVERVIEW): $(OVERVIEWPRE)
-	gs -q -sDEVICE=pdfwrite -sOutputFile="$@" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$<" -c quit
-	gs -q -sDEVICE=pdfwrite -sOutputFile="$(BUILD)/overview-field.pdf" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "$(BUILD)/overview-pre-field.pdf" -c quit
-
-check: $(SRC)/check.r
-	$(R) --slave --vanilla --file=$<
-	latexmk -quiet -view=pdf -output-directory=out analysis/check.tex
-	gs -q -sDEVICE=pdfwrite -sOutputFile="out/check-land.pdf" -dNOPAUSE -dEPSCrop -c "<</Orientation 2>> setpagedevice" -f "out/check.pdf" -c quit
-
-$(BUILD)/%: $(SRC)/%.r
+$(OUT)/%: $(SRC)/%.r | $(OUT)
 	$(R) --slave --vanilla --file=$< --args $@
+
+$(OUT):
+	mkdir -p $@
+
+clean:
+	rm -f $(OUT)

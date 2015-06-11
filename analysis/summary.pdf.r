@@ -4,9 +4,9 @@ library(reshape2)
 library(grid)
 library(gridExtra)
 
-source('analysis/utils.r')
+source('analysis/utils/utils.r')
 
-df.maven <- load.csv('out/cs.csv');
+df.maven <- load.csv('out/analysis/cs.csv');
 
 f = 'out/maven-invdeps-production.csv';
 invdeps <- function(f, bw) {
@@ -28,18 +28,15 @@ invdeps <- function(f, bw) {
 total.arts = 75405;
 total.arts.wdeps = 40622;
 
-df.prod = load.csv('out/deps-prod.csv');
+df.prod = load.csv('out/analysis/deps-prod.csv');
 unsart.prod = length(unique(df.prod$depCount))
 porc.prod =  (unsart.prod / total.arts) * 100;
 deps.prod =  (unsart.prod / total.arts.wdeps) * 100;
 
-df.all = load.csv('out/deps-all.csv');
+df.all = load.csv('out/analysis/deps-all.csv');
 unsart.all = length(unique(df.all$depCount));
 porc.all =  (unsart.all / total.arts) * 100;
 deps.all =  (unsart.all / total.arts.wdeps) * 100;
-
-
-#(17296 / total.arts.wdeps) * 100;
 
 df = dcast(df.maven, id~'cs', value.var='cs', fun.aggregate=sum);
 nocs = dcast(df, .~'cs', value.var='cs', fun.aggregate=sum)$cs[1];

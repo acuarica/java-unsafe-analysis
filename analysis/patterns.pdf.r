@@ -4,21 +4,17 @@ library(reshape2);
 library(grid);
 library(gridExtra);
 
-source('analysis/utils.r')
+source('analysis/utils/utils.r')
 
-csv.comments = load.csv('analysis/comments.csv');
+csv.comments = load.csv('analysis/csv/comments.csv');
 
 patterns = unique(strsplit(paste(levels(csv.comments$patterns), collapse='&'), split='&')[[1]]);
 patterns = patterns[2:length(patterns)];
 
-df.maven = load.csv('out/cs.csv');
-df.deps = load.csv('out/deps-prod.csv');
+df.maven = load.csv('out/analysis/cs.csv');
+df.deps = load.csv('out/analysis/deps-prod.csv');
 df.cu = dcast(df.maven, id+package+classunit~name, value.var='cs', fun.aggregate=sum);
 df.clones = dcast(df.cu, classunit~'clones', value.var='id', fun.aggregate=length);
-
-#levs = function(col) {
-#  levels(factor(col));
-#}
 
 depsbyarts = function(arts) {
   length(unique(df.deps[df.deps$depId %in% arts,]$depCount)) + length(arts);

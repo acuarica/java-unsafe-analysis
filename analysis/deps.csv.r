@@ -1,7 +1,7 @@
 
 library(reshape2);
 
-source('analysis/utils.r');
+source('analysis/utils/utils.r');
 
 df = load.csv('out/unsafe-maven.csv');
 df = filterlang(df);
