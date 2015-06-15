@@ -116,7 +116,7 @@ public class UnsafeAnalysis {
 		return matches;
 	}
 
-	public static List<UnsafeEntry> searchJarFile(byte[] jarFileBuffer,
+	private static List<UnsafeEntry> searchJarFile(byte[] jarFileBuffer,
 			MavenArtifact a) throws IOException {
 		List<UnsafeEntry> matches = new ArrayList<UnsafeEntry>();
 

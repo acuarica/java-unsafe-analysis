@@ -14,7 +14,9 @@ public class MavenIndex implements Iterable<MavenArtifact> {
 	public List<String> rootGroupsList;
 	public long totalSize = 0;
 	public long lastVersionJarsSize = 0;
+	public long uniqueJarsArtifactsCount = 0;
 	public long uniqueArtifactsCount = 0;
+	public long totalArtifactsCount = 0;
 	public Date mmindate = null;
 	public Date mmaxdate = null;
 	public Date imindate = null;
@@ -23,7 +25,7 @@ public class MavenIndex implements Iterable<MavenArtifact> {
 	public final Set<String> fieldSet = new HashSet<String>();
 	public final Set<String> extSet = new HashSet<String>();
 
-	MavenIndex() {
+	public MavenIndex() {
 	}
 
 	public void print(PrintStream out) {

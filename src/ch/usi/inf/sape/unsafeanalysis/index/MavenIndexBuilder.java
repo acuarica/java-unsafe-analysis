@@ -2,6 +2,8 @@ package ch.usi.inf.sape.unsafeanalysis.index;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MavenIndexBuilder {
 
@@ -14,9 +16,11 @@ public class MavenIndexBuilder {
 		Date imindate = null;
 		Date imaxdate = null;
 
-		// int docIndex = 0;
+		Set<String> ua = new HashSet<String>();
+
+		index.maxDoc = 0;
 		for (NexusRecord doc : nip) {
-			// docIndex++;
+			index.maxDoc++;
 
 			String allGroups = doc.get("allGroups");
 			String allGroupsList = doc.get("allGroupsList");
@@ -138,6 +142,11 @@ public class MavenIndexBuilder {
 						version, size, ext, n, d);
 				String id = a.getId();
 
+				if (us.length == 4) {
+					index.totalArtifactsCount++;
+					ua.add(id);
+				}
+
 				if (us.length == 4
 						&& Arrays.asList("jar", "ejb", "war", "ear").contains(
 								ext)) {
@@ -181,7 +190,8 @@ public class MavenIndexBuilder {
 		assert imaxdate.getYear() + 1900 == 2015 : "Unexpected imaxdate: "
 				+ imaxdate;
 
-		index.uniqueArtifactsCount = index.map.size();
+		index.uniqueArtifactsCount = ua.size();
+		index.uniqueJarsArtifactsCount = index.map.size();
 		index.mmindate = mmindate;
 		index.mmaxdate = mmaxdate;
 		index.imindate = imindate;

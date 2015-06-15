@@ -19,6 +19,7 @@
 	<property name="sessionlist" location="${out}/session.list" />
 	<property name="noartifacts.debug" value="5000" />
 	<property name="noartifacts.release" value="100000" />
+	<property name="mavenstats" location="${out}/stats-maven.csv" />
 	<property name="mavenunsafe" location="${out}/unsafe-maven.csv" />
 	<property name="mavendepgraph" location="${out}/maven-depgraph.csv" />
 	<path id="lib">
@@ -87,6 +88,14 @@
 			<arg value="--save-session=${sessionlist}" />
 			<arg value="--conditional-get=true" />
 		</exec>
+	</target>
+	<target name="stats" depends="compile,mkoutdir" description="Stats for the Maven repository.">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.Stats" classpath="${build}:${resources}">
+			<classpath refid="lib" />
+			<arg value="--index=${indexpath}" />
+			<arg value="--repo=${repo}" />
+			<arg value="--output=${mavenstats}" />
+		</java>
 	</target>
 	<target name="analyze-debug" depends="compile,mkoutdir" description="Analyze the Maven repository and JDK8 runtime in Debug mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.Analyze" classpath="${build}:${resources}">
