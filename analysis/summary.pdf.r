@@ -8,6 +8,8 @@ source('analysis/utils/utils.r')
 
 df.maven <- load.csv('out/analysis/cs.csv');
 
+df.stats <- load.csv('out/stats-maven.csv');
+
 f = 'out/maven-invdeps-production.csv';
 invdeps <- function(f, bw) {
   csv.invdeps <- read.csv(f, strip.white=TRUE, sep=',', header=TRUE);
@@ -38,12 +40,13 @@ unsart.all = length(unique(df.all$depCount));
 porc.all =  (unsart.all / total.arts) * 100;
 deps.all =  (unsart.all / total.arts.wdeps) * 100;
 
-df = dcast(df.maven, id~'cs', value.var='cs', fun.aggregate=sum);
-nocs = dcast(df, .~'cs', value.var='cs', fun.aggregate=sum)$cs[1];
-noarts = nrow(df);
+df = dcast(df.maven, id~'cs', value.var='cs', fun.aggregate=sum)
+nocs = dcast(df, .~'cs', value.var='cs', fun.aggregate=sum)$cs[1]
+noarts = nrow(df)
 df = data.frame(
-  desc=c("# of call sites to Unsafe", "# of artifacts using Unsafe", "% prod", "% all", "% prod w/ deps", "% all w/ deps", "# unarts prod", "# unarts all"),
-  total=c(nocs, noarts, porc.prod, porc.all, deps.prod, deps.all, unsart.prod, unsart.all));
+  variable=c("# of call sites to Unsafe", "# of artifacts using Unsafe", "% prod", "% all", "% prod w/ deps", "% all w/ deps", "# unarts prod", "# unarts all"),
+  value=c(nocs, noarts, porc.prod, porc.all, deps.prod, deps.all, unsart.prod, unsart.all))
+df = rbind(df, df.stats)
 
 save.plot.open(outfile, w=12, h=16);
 
