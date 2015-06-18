@@ -39,3 +39,9 @@ create table art (
 	path	varchar(512)	not null,
 	inrepo	boolean			not null
 );
+
+--create table dep {
+--	gid 	varchar(255)	not null,
+--	aid 	varchar(255)	not null,
+--	ver		varchar(128)	not null,
+--};
