@@ -23,7 +23,6 @@ public class MavenDbBuilder {
 				"insert into rootgroups (value) values (?)");
 
 		try (NexusIndexParser nip = new NexusIndexParser(indexPath)) {
-
 			for (NexusRecord doc : nip) {
 				MavenRecord mr = new MavenRecord(doc);
 

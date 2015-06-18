@@ -1,26 +1,26 @@
 
-DROP TABLE IF EXISTS allgroups;
+drop table if exists allgroups;
 
-CREATE TABLE allgroups (
+create table allgroups (
 	value	varchar(64)	not null
 );
 
-DROP TABLE IF EXISTS rootgroups;
+drop table if exists rootgroups;
 
-CREATE TABLE rootgroups (
+create table rootgroups (
 	value	varchar(64)	not null
 );
 
-DROP TABLE IF EXISTS prop;
+drop table if exists prop;
 
-CREATE TABLE prop (
+create table prop (
 	key		varchar(255)	not null,
 	value	text			not null
 );
 
-DROP TABLE IF EXISTS art;
+drop table if exists art;
 
-CREATE TABLE art (
+create table art (
 	mdate	date			not null,	/* m */
 	sha		varchar(64),				/* 1 */
 	gid 	varchar(255)	not null,	/* u[0] */

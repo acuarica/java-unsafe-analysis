@@ -56,21 +56,15 @@
 		</javac>
 	</target>
 	<target name="builddb" depends="compile,mkoutdir" description="Builds the list of artifacts to download in Debug mode.">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildDb" classpath="${build}:${resources}" fork="true">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildDb" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
 			<arg value="--index=${indexpath}" />
 			<arg value="--db=out/db.sqlite" />
 		</java>
 	</target>
 	<target name="buildurilist-debug" depends="compile,fetchindex,mkoutdir" description="Builds the list of artifacts to download in Debug mode.">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
 			<arg value="--index=${indexpath}" />
 			<arg value="--urilist=${urilist}" />
 			<arg value="--artscount=${noartifacts.debug}" />
@@ -78,11 +72,8 @@
 		</java>
 	</target>
 	<target name="buildurilist-release" depends="compile,fetchindex,mkoutdir" description="Builds the list of artifacts to download in Release mode.">
-		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}">
 			<classpath refid="lib" />
-			<assertions>
-				<enable />
-			</assertions>
 			<arg value="--index=${indexpath}" />
 			<arg value="--urilist=${urilist}" />
 			<arg value="--artscount=${noartifacts.release}" />
@@ -161,15 +152,6 @@
 			<formatter type="plain" usefile="false" />
 			<test name="ch.usi.inf.sape.unsafeanalysis.tests.DepsManagerTests" />
 		</junit>
-	</target>
-	<target name="check" description="Run tests for Unsafe analysis, dependency extraction and aria2.">
-		<exec executable="aria2c">
-			<arg value="http://www.google.com/index.html" />
-			<arg value="--out=out/index.html" />
-			<arg value="--allow-overwrite=true" />
-		</exec>
-		<antcall target="analyze-tests" />
-		<antcall target="extractdeps-tests" />
 	</target>
 	<target name="clean" description="Removes the build and out directories.">
 		<delete dir="${build}" />
