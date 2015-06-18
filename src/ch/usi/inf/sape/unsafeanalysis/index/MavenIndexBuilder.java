@@ -139,7 +139,7 @@ public class MavenIndexBuilder {
 				index.totalSize += size;
 
 				MavenArtifact a = new MavenArtifact(groupId, artifactId,
-						version, size, ext, n, d);
+						version, size, ext, n, d, kind, one);
 				String id = a.getId();
 
 				if (us.length == 4) {

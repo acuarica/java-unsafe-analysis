@@ -3,8 +3,9 @@ package ch.usi.inf.sape.unsafeanalysis.log;
 import java.io.PrintStream;
 
 /**
- * Wrapper around a PrintStream to serve as a log. 
- * @author Luis Mastrangelo
+ * Wrapper around a PrintStream to serve as a log.
+ * 
+ * @author Luis Mastrangelo (luis.mastrangelo@usi.ch)
  *
  */
 public class Log {

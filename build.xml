@@ -55,6 +55,16 @@
 			<classpath refid="lib" />
 		</javac>
 	</target>
+	<target name="builddb" depends="compile,mkoutdir" description="Builds the list of artifacts to download in Debug mode.">
+		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildDb" classpath="${build}:${resources}" fork="true">
+			<classpath refid="lib" />
+			<assertions>
+				<enable />
+			</assertions>
+			<arg value="--index=${indexpath}" />
+			<arg value="--db=out/db.sqlite" />
+		</java>
+	</target>
 	<target name="buildurilist-debug" depends="compile,fetchindex,mkoutdir" description="Builds the list of artifacts to download in Debug mode.">
 		<java classname="ch.usi.inf.sape.unsafeanalysis.BuildUriList" classpath="${build}:${resources}" fork="true">
 			<classpath refid="lib" />

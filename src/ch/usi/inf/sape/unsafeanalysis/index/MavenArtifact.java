@@ -15,10 +15,13 @@ public class MavenArtifact {
 	public final String ext;
 	public final String groupDesc;
 	public final String artifactDesc;
+	public final String kind;
+	public final String one;
 	public boolean sources = false;
 
 	public MavenArtifact(String groupId, String artifactId, String version,
-			long size, String ext, String groupDesc, String artifactDesc) {
+			long size, String ext, String groupDesc, String artifactDesc,
+			String kind, String one) {
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 		this.version = version;
@@ -26,6 +29,8 @@ public class MavenArtifact {
 		this.ext = ext;
 		this.groupDesc = groupDesc;
 		this.artifactDesc = artifactDesc;
+		this.kind = kind;
+		this.one = one;
 	}
 
 	public String getPath() {
