@@ -1,6 +1,7 @@
 
 library(reshape2)
 library(ggplot2)
+library(grid)
 
 source('analysis/utils/utils.r')
 
@@ -14,7 +15,6 @@ df = df.methods;
 df$method = as.character(df$method);
 df = replacename(df, 'copyMemory', '(JJJ)V');
 df = replacename(df, 'setMemory', '(JJB)V');
-#df = replacename(df, 'getBoolean', '(J)B');
 df = replacename(df, 'getByte', '(J)B');
 df = replacename(df, 'getChar', '(J)C');
 df = replacename(df, 'getDouble', '(J)D');
@@ -22,7 +22,6 @@ df = replacename(df, 'getFloat', '(J)F');
 df = replacename(df, 'getInt', '(J)I');
 df = replacename(df, 'getLong', '(J)J');
 df = replacename(df, 'getShort', '(J)S');
-#df = replacename(df, 'putBoolean', '(JB)V');
 df = replacename(df, 'putByte', '(JB)V');
 df = replacename(df, 'putChar', '(JC)V');
 df = replacename(df, 'putDouble', '(JD)V');
@@ -46,7 +45,15 @@ so = so[so$value > 0, ];
 p = ggplot(so, aes(x=value, y=method, fill=variable))+
   geom_bar_horz(stat="identity", position="identity")+
   facet_grid(group~., space='free_y', scales="free_y")+
-  theme(legend.position="top", legend.title=element_blank(), strip.text.y=element_text(angle=0))+
+  theme(
+    text=element_text(size=16),
+    plot.margin = unit(c(0,0,0,0), "cm"), 
+    panel.margin = unit(0.05, "cm"),
+    legend.position="top",
+    legend.text=element_text(size=12),
+    legend.title=element_blank(),
+    strip.text.y=element_text(angle=0)
+  )+
   labs(x="# matches", y = "sun.misc.Unsafe members")
 
 save.plot(p, outfile, w=6, h=14);

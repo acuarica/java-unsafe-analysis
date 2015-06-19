@@ -18,9 +18,14 @@ plotoverview = function(df, outfile, xlabel, ylabel, h) {
   p = ggplot(df, aes(y=name))+
     facet_grid(group~tag, scales="free_y", space = "free_y")+
     geom_bar_horz(aes(x=cs), stat="identity", position="identity", fill='#aaaaaa')+
-    geom_text(aes(label=cs, x=0, hjust=0), size=3.5)+
-    theme(strip.text.y=element_text(angle=0), plot.margin = unit(c(0,0,0,0), "cm"), panel.margin = unit(0.05, "cm") )+
-    labs(x=xlabel, y=sprintf("sun.misc.Unsafe %s", ylabel));
+    geom_text(aes(label=cs, x=0, hjust=0), size=4.2)+
+    theme(
+      text=element_text(size=15),
+      strip.text.y=element_text(angle=0), 
+      plot.margin = unit(c(0,0,0,0), "cm"), 
+      panel.margin = unit(0.05, "cm")
+    )+
+    labs(x=xlabel, y=sprintf("sun.misc.Unsafe %s", ylabel))
   
   save.plot(p, outfile, w=6, h=h);
 }
