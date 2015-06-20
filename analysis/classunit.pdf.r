@@ -95,7 +95,7 @@ df <- subset(df, value > 0);
 df <- merge(df, df.methods, by.x='variable', by.y='method');
 df$classunit = factor(df$classunit, levels=tree$labels[tree$order]);
 
-save.plot.open(outfile, w=12, h=10);
+save.plot.open(outfile, w=6, h=14);
 
 for (classes in groups) {
   printf('Processing %s', paste(classes, collapse=' '));
@@ -108,7 +108,7 @@ for (classes in groups) {
     labs(x="sun.misc.Unsafe members", y = "# call sites");
   
   hc <- do.hc(classes);
-  multiplot(ggdendrogram(hc), p, layout=matrix(c(1,2,2,2), nrow=1, byrow=TRUE));
+  multiplot(ggdendrogram(hc), p, layout=matrix(c(1,2,2,2), ncol=1, byrow=TRUE));
 }
 
 save.plot.close();

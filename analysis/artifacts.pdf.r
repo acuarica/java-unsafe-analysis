@@ -19,10 +19,11 @@ df.artsbyrank <- (function() {
   df;
 })();
 
-save.plot.open(outfile, w=12, h=10);
+save.plot.open(outfile, w=6, h=6);
 
 i = 1;
-for (i in (1:nrow(df.artsbyrank)) ) {
+#for (i in (1:nrow(df.artsbyrank)) ) {
+for (i in (1:6) ) {
   art = df.artsbyrank[i,]$id;
   deps = df.artsbyrank[i,]$depCount;
   
@@ -31,10 +32,11 @@ for (i in (1:nrow(df.artsbyrank)) ) {
   p = ggplot(df[df$id %in% art,], aes(x=name, y=cs))+
     geom_bar(stat="identity")+
     facet_grid(className~group, space='free_x', scales="free_x")+
-    theme(axis.text.x=element_text(angle=45, hjust=1),
+    theme(axis.text.x=element_text(angle=60, hjust=1),
           strip.text.x=element_text(angle=90),
           strip.text.y=element_text(angle=0))+
-    labs(x='Methods', y = '# call sites', title=sprintf('%s (%s)', art, deps));
+    #labs(x='Methods', y = '# call sites', title=sprintf('%s (%s)', art, deps));
+    labs(x='Methods', y = '# call sites', title=art);
   print(p);
 }
 
