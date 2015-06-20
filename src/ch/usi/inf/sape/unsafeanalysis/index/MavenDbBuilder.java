@@ -1,8 +1,6 @@
 package ch.usi.inf.sape.unsafeanalysis.index;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Arrays;
 
 import ch.usi.inf.sape.unsafeanalysis.log.Log;
@@ -74,23 +72,6 @@ public class MavenDbBuilder {
 				// System.out.println(docText);
 				// }
 			}
-		}
-	}
-
-	private static class Inserter {
-
-		private PreparedStatement stmt;
-
-		public Inserter(Connection conn, String sql) throws SQLException {
-			stmt = conn.prepareStatement(sql);
-		}
-
-		public void insert(Object... values) throws SQLException {
-			for (int i = 0; i < values.length; i++) {
-				stmt.setObject(i + 1, values[i]);
-			}
-
-			stmt.executeUpdate();
 		}
 	}
 }
