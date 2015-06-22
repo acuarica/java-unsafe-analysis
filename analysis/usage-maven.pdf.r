@@ -11,17 +11,35 @@ df = load.csv('out/analysis/cs.csv')
 df = merge(df, df.memxtag, by.x=c('name', 'tag'), by.y=c('method', 'tag'), all.x=TRUE, all.y=TRUE)
 df = df[df$access=='public' & df$name != 'getUnsafe',]
 df = dcast(df, name+member+group+tag~'cs', value.var='cs', fun.aggregate=sum)
-df[is.na(df$cs),]$cs = 0;
-df$tag = factor(df$tag, levels=c('app', 'lang'), labels=c('Application', 'Language'))
+df[is.na(df$cs),]$cs = 0
 
-plotoverview = function(df, outfile, xlabel, ylabel, h) {
-  p = ggplot(df, aes(y=name))+
-    facet_grid(group~tag, scales="free_y", space = "free_y")+
-    geom_bar_horz(aes(x=cs), stat="identity", position="identity", fill='#aaaaaa')+
-    geom_text(aes(label=cs, x=0, hjust=0), size=4.2)+
+df.text = dcast(df, name+member+group~tag, value.var='cs', fun.aggregate=sum)
+df.text$text = paste(df.text$app, '/', df.text$lang)
+df.text$app = NULL
+df.text$lang = NULL
+
+df = merge(df, df.text, by=c('name', 'member', 'group'))
+
+df$tag = factor(df$tag, levels=c('app', 'lang'), labels=c('Application  / ', 'Language'))
+
+
+plotoverview = function(df, outfile, xlabel, ylabel, h, l) {
+  p = ggplot(df, aes(x=cs, y=name, fill=tag))+
+    facet_grid(group~., scales="free_y", space = "free_y")+
+    geom_bar_horz(stat="identity", position="identity")+
+    #, fill='#aaaaaa'
+    #scale_x_continuous(expand= c(0.1,0.1))+
+    scale_x_continuous(limits = c(0,l))+
+  
+    #hjust=0,
+    #,color=tag, fill=tag
+    
+    geom_text(data=df[df$tag=='Application  / ',], aes(label=text, hjust=-0.05), size=3.75)+
     theme(
       text=element_text(size=15),
       strip.text.y=element_text(angle=0), 
+      legend.position="top",
+      legend.title=element_blank(),
       plot.margin = unit(c(0,0,0,0), "cm"), 
       panel.margin = unit(0.05, "cm")
     )+
@@ -31,5 +49,5 @@ plotoverview = function(df, outfile, xlabel, ylabel, h) {
 }
 
 save.plot(NULL, outfile, w=1, h=1);
-plotoverview(df[df$member=='method',], suffixfile(outfile, 'methods'), '# Call Sites', 'methods', 15.47)
-plotoverview(df[df$member=='field',], suffixfile(outfile, 'fields'), '# Reads', 'fields', 4)
+plotoverview(df[df$member=='method',], suffixfile(outfile, 'methods'), '# Call Sites', 'methods', 15.47, 7000)
+plotoverview(df[df$member=='field',], suffixfile(outfile, 'fields'), '# Reads', 'fields', 4, 85)
