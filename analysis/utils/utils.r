@@ -4,12 +4,13 @@ printf = function(format, ...) {
 }
 
 load.csv = function(file) {
-  read.csv(file, strip.white=TRUE, comment.char='#');
+  printf("Loading %s", file);
+  read.csv(file, strip.white=TRUE, comment.char='#')
 }
 
 save.csv = function(df, file, quote=FALSE, row.names=FALSE) {
-  printf("Saving %s", file);
-  write.csv(df, file=file, quote=quote, row.names=row.names);
+  printf("Saving %s", file)
+  write.csv(df, file=file, quote=quote, row.names=row.names)
 }
 
 save.plot.open = function(file, w=12, h=8) {
@@ -91,29 +92,28 @@ df.methods = (function() {
   df.members;
 })();
 
-filterin = function(df, gid, aid) {
-  df[df$groupId == gid | df$artifactId==aid,]
-}
+#filterin = function(df, gid, aid) {
+#  df[df$groupId == gid | df$artifactId==aid,]
+#}
+#filteroutga = function(df, gid, aid) {
+ # df[!(df$groupId == gid & df$artifactId==aid),];
+#}
 
-filteroutga = function(df, gid, aid) {
-  df[!(df$groupId == gid & df$artifactId==aid),];
-}
+#filterout = function(df, gid, aid) {
+ # df[df$artifactId!=aid,];
+#}
 
-filterout = function(df, gid, aid) {
-  df[df$artifactId!=aid,];
-}
-
-filterlang = function(df) {
-  df0 = df;
-  df1 = filterout(df0, 'org.scala-lang', 'scala-library');
-  df2 = filterout(df1, 'org.jruby', 'jruby-core');
-  df3 = filterout(df2, 'org.codehaus.groovy', 'groovy-all');
-  df4 = filterout(df3, 'org.python', 'jython');
-  df5 = filterout(df4, 'com.oracle', 'truffle');
+#filterlang = function(df) {
+#  df0 = df;
+#  df1 = filterout(df0, 'org.scala-lang', 'scala-library');
+#  df2 = filterout(df1, 'org.jruby', 'jruby-core');
+#  df3 = filterout(df2, 'org.codehaus.groovy', 'groovy-all');
+#  df4 = filterout(df3, 'org.python', 'jython');
+#  df5 = filterout(df4, 'com.oracle', 'truffle');
   
   #df5;
-  df;
-}
+  #df;
+#}
 
 library(proto)
 
