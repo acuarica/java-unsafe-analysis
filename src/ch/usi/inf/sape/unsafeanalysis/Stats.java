@@ -1,9 +1,11 @@
 package ch.usi.inf.sape.unsafeanalysis;
 
+import java.io.File;
 import java.io.PrintStream;
 
 import ch.usi.inf.sape.unsafeanalysis.argsparser.Arg;
 import ch.usi.inf.sape.unsafeanalysis.argsparser.ArgsParser;
+import ch.usi.inf.sape.unsafeanalysis.index.MavenArtifact;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndex;
 import ch.usi.inf.sape.unsafeanalysis.index.MavenIndexBuilder;
 import ch.usi.inf.sape.unsafeanalysis.index.NexusIndexParser;
@@ -39,6 +41,17 @@ public class Stats {
 		NexusIndexParser nip = new NexusIndexParser(ar.indexPath);
 		MavenIndex index = MavenIndexBuilder.build(nip);
 
+		log.info("Counting arts in repo...");
+
+		long jarsArtsInRepo = 0;
+		for (MavenArtifact a : index) {
+			String path = ar.repoPath + "/" + a.getPath();
+
+			if (new File(path).isFile()) {
+				jarsArtsInRepo++;
+			}
+		}
+
 		try (PrintStream out = new PrintStream(ar.outputPath)) {
 			out.format("variable, value\n");
 			out.format("maxDoc, %d\n", index.maxDoc);
@@ -49,6 +62,7 @@ public class Stats {
 			out.format("lastVersionJarsSize, %d GB\n",
 					index.lastVersionJarsSize / G);
 			out.format("totalSize, %f TB\n", index.totalSize / (G * 1024f));
+			out.format("jarsArtsInRepo, %d\n", jarsArtsInRepo);
 		}
 	}
 }
