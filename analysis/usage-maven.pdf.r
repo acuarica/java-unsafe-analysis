@@ -35,6 +35,9 @@ plotoverview = function(df, outfile, xlabel, ylabel, h, l) {
     #,color=tag, fill=tag
     
     geom_text(data=df[df$tag=='Application  / ',], aes(label=text, hjust=-0.05), size=3.75)+
+    #scale_fill_grey(start = 0.3, end = 0.7)+
+    #
+    #theme_bw()+
     theme(
       text=element_text(size=15),
       strip.text.y=element_text(angle=0), 
