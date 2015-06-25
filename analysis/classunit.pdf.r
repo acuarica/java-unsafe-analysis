@@ -97,18 +97,25 @@ df$classunit = factor(df$classunit, levels=tree$labels[tree$order]);
 
 save.plot.open(outfile, w=6, h=14);
 
-for (classes in groups) {
+classes=groups[[15]]
+#for (classes in groups) 
+{
   printf('Processing %s', paste(classes, collapse=' '));
   
   p = ggplot(subset(df, classunit %in% classes), aes(x=variable, y=value))+
     geom_bar(stat="identity")+facet_grid(classunit~group, space='free_x', scales="free_x")+
-    theme(axis.text.x=element_text(angle=45, hjust=1),
-          strip.text.x=element_text(angle=90),
-          strip.text.y=element_text(angle=0))+
+    theme(
+      plot.margin = unit(c(0,0,0,0), "cm"),
+      panel.margin = unit(0.05, "cm"),      
+      axis.text.x=element_text(angle=60, hjust=1, size=12),
+      axis.text.y=element_text(size=10),
+      strip.text.x=element_text(angle=90, size=12),
+      strip.text.y=element_text(angle=0, size=12)
+    )+
     labs(x="sun.misc.Unsafe members", y = "# call sites");
   
   hc <- do.hc(classes);
   multiplot(ggdendrogram(hc), p, layout=matrix(c(1,2,2,2), ncol=1, byrow=TRUE));
 }
 
-save.plot.close();
+save.plot.close()

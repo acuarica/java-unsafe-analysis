@@ -22,22 +22,14 @@ df = merge(df, df.text, by=c('name', 'member', 'group'))
 
 df$tag = factor(df$tag, levels=c('app', 'lang'), labels=c('Application  / ', 'Language'))
 
-
 plotoverview = function(df, outfile, xlabel, ylabel, h, l) {
   p = ggplot(df, aes(x=cs, y=name, fill=tag))+
     facet_grid(group~., scales="free_y", space = "free_y")+
     geom_bar_horz(stat="identity", position="identity")+
-    #, fill='#aaaaaa'
-    #scale_x_continuous(expand= c(0.1,0.1))+
     scale_x_continuous(limits = c(0,l))+
-  
-    #hjust=0,
-    #,color=tag, fill=tag
-    
+    scale_fill_grey(start = 0.6, end = 0.0)+
     geom_text(data=df[df$tag=='Application  / ',], aes(label=text, hjust=-0.05), size=3.75)+
-    #scale_fill_grey(start = 0.3, end = 0.7)+
-    #
-    #theme_bw()+
+    theme_bw()+
     theme(
       text=element_text(size=15),
       strip.text.y=element_text(angle=0), 
@@ -53,4 +45,4 @@ plotoverview = function(df, outfile, xlabel, ylabel, h, l) {
 
 save.plot(NULL, outfile, w=1, h=1);
 plotoverview(df[df$member=='method',], suffixfile(outfile, 'methods'), '# Call Sites', 'methods', 15.47, 7000)
-plotoverview(df[df$member=='field',], suffixfile(outfile, 'fields'), '# Reads', 'fields', 4, 85)
+plotoverview(df[df$member=='field',], suffixfile(outfile, 'fields'), '# Reads', 'fields', 6, 85)

@@ -36,15 +36,18 @@ df[df$group == 'Off-Heap Get',]$group = 'Get';
 df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
-so = load.csv('stackoverflow/results/method-usages.csv');
-colnames(so) = c('method','Only in Questions', 'Only in Answers', 'Both');
-so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE);
-so = melt(so, id=c('method', 'access', 'group', 'member'));
-so = so[so$value > 0, ];
+so = load.csv('stackoverflow/results/method-usages.csv')
+colnames(so) = c('method','Only in Questions', 'Only in Answers', 'Both')
+so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE)
+so = melt(so, id=c('method', 'access', 'group', 'member'))
+so = so[so$value > 0, ]
 
 p = ggplot(so, aes(x=value, y=method, fill=variable))+
   geom_bar_horz(stat="identity", position="identity")+
+  #geom_text(aes(label=value))+
   facet_grid(group~., space='free_y', scales="free_y")+
+  scale_fill_grey(start = 0.8, end = 0.0)+
+  theme_bw()+
   theme(
     text=element_text(size=16),
     plot.margin = unit(c(0,0,0,0), "cm"), 
@@ -56,4 +59,4 @@ p = ggplot(so, aes(x=value, y=method, fill=variable))+
   )+
   labs(x="# matches", y = "sun.misc.Unsafe members")
 
-save.plot(p, outfile, w=6, h=14);
+save.plot(p, outfile, w=6, h=15);
