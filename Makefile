@@ -14,7 +14,7 @@ $(OUT)/artifacts.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-
 $(OUT)/classunit.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-def-groups.csv
 $(OUT)/patterns.pdf: $(CSV)/comments.csv
 $(OUT)/usage-maven.pdf: $(OUT)/cs.csv $(CSV)/unsafe-def-members.csv $(CSV)/unsafe-def-groups.csv
-$(OUT)/usage-so.pdf: stackoverflow/results/method-usages.csv
+$(OUT)/usage-so.pdf: stackoverflow/results/method-usages.csv $(SRC)/utils/utils.r
 
 $(OUT)/%: $(SRC)/%.r | $(OUT)
 	$(R) --slave --vanilla --file=$< --args $@

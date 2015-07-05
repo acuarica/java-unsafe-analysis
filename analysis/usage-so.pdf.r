@@ -37,23 +37,32 @@ df[df$group == 'Heap Put',]$group = 'Put';
 df[df$group == 'Off-Heap Put',]$group = 'Put';
 
 so = load.csv('stackoverflow/results/method-usages.csv')
-colnames(so) = c('method','Only in Questions', 'Only in Answers', 'Both')
+so = so[so$usagesInQuestionsOnly+so$usagesInAnswersOnly+so$usagesInBoth > 0, ]
+
+df.text = so
+df.text$text = paste(df.text$usagesInQuestionsOnly, '/', df.text$usagesInAnswersOnly, '/', df.text$usagesInBoth)
+
+colnames(so) = c('method','Only in Questions / ', 'Only in Answers / ', 'Both')
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE)
 so = melt(so, id=c('method', 'access', 'group', 'member'))
-so = so[so$value > 0, ]
 
-p = ggplot(so, aes(x=value, y=method, fill=variable))+
-  geom_bar_horz(stat="identity", position="identity")+
-  #geom_text(aes(label=value))+
+#so = so[so$value > 0, ]
+
+so = merge(so, df.text, by='method')
+
+p = ggplot(so, aes(x=value, y=method, fill=variable ))+
+  geom_bar_horz(stat="identity", position=position_dodgev(height=-1))+
+  #geom_text(data=so[so$variable=='Both',], aes(x=26, label=text, hjust=-0.05))+
   facet_grid(group~., space='free_y', scales="free_y")+
-  scale_fill_grey(start = 0.8, end = 0.0)+
+  scale_fill_grey(start = 0.0, end = 0.8)+
+  #scale_x_continuous(limits = c(0,56))+
   theme_bw()+
   theme(
-    text=element_text(size=16),
+    text=element_text(size=16.5),
     plot.margin = unit(c(0,0,0,0), "cm"), 
     panel.margin = unit(0.05, "cm"),
     legend.position="top",
-    legend.text=element_text(size=12),
+    legend.text=element_text(size=11),
     legend.title=element_blank(),
     strip.text.y=element_text(angle=0)
   )+
