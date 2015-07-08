@@ -42,7 +42,7 @@ so = so[so$usagesInQuestionsOnly+so$usagesInAnswersOnly+so$usagesInBoth > 0, ]
 df.text = so
 df.text$text = paste(df.text$usagesInQuestionsOnly, '/', df.text$usagesInAnswersOnly, '/', df.text$usagesInBoth)
 
-colnames(so) = c('method','Only in Questions / ', 'Only in Answers / ', 'Both')
+colnames(so) = c('method','Only in Questions', 'Only in Answers', 'Both')
 so = merge(so, df, by.x='method', by.y='method', all.x=TRUE, all.y=FALSE)
 so = melt(so, id=c('method', 'access', 'group', 'member'))
 
