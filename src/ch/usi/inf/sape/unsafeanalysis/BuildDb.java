@@ -4,16 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.NoSuchFileException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.zip.ZipException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import ch.usi.inf.sape.unsafeanalysis.analysis.ClassAnalysis;
 import ch.usi.inf.sape.unsafeanalysis.analysis.DepsManager;
 import ch.usi.inf.sape.unsafeanalysis.argsparser.Arg;
 import ch.usi.inf.sape.unsafeanalysis.argsparser.ArgsParser;
@@ -52,7 +54,7 @@ public class BuildDb {
 		String line;
 
 		while ((line = reader.readLine()) != null) {
-			out.append(line);
+			out.append(line + "\n");
 		}
 
 		return out.toString();
@@ -87,7 +89,7 @@ public class BuildDb {
 								dep.groupId, dep.artifactId, dep.version,
 								dep.scope);
 					}
-				} catch (SQLException e) {
+				} catch (RuntimeException e) {
 					System.out.println(a);
 					System.out.println(deps);
 					// log.info("SQL Exception in %s (# %d): %s", path, i, e);
@@ -120,6 +122,41 @@ public class BuildDb {
 		c.setAutoCommit(false);
 		MavenDbBuilder.build(ar.indexPath, c);
 		deps(ar, c);
+		extract(ar.indexPath, ar.repoPath, c);
 		c.commit();
+	}
+
+	public static void extract(String indexPath, String repoPath, Connection c)
+			throws Exception {
+		log.info("Parsing Index...");
+
+		NexusIndexParser nip = new NexusIndexParser(indexPath);
+		MavenIndex index = MavenIndexBuilder.build(nip);
+
+		int i = 0;
+		for (MavenArtifact a : index) {
+			i++;
+			String path = repoPath + "/" + a.getPath();
+			analyseArtifact(path, a, i, c);
+
+			if (i == 1000) {
+				break;
+			}
+		}
+	}
+
+	private static void analyseArtifact(String path, MavenArtifact a, int i,
+			Connection c) {
+		log.info("Analyzing artifact %s (# %d)", a.getId(), i);
+
+		try {
+			ClassAnalysis.searchJarFile(path, a, c);
+		} catch (NoSuchFileException e) {
+			log.info("File not found %s: (# %d): %s", path, i, e.getMessage());
+		} catch (ZipException e) {
+			log.info("Zip exception for %s (# %d): %s", path, i, e.getMessage());
+		} catch (Exception e) {
+			log.info("Exception for %s (# %d): %s", path, i, e);
+		}
 	}
 }

@@ -17,11 +17,16 @@ public class Inserter {
 		stmt = conn.prepareStatement(sql);
 	}
 
-	public void insert(Object... values) throws SQLException {
-		for (int i = 0; i < values.length; i++) {
-			stmt.setObject(i + 1, values[i]);
-		}
+	public void insert(Object... values) {
+		try {
 
-		stmt.executeUpdate();
+			for (int i = 0; i < values.length; i++) {
+				stmt.setObject(i + 1, values[i]);
+			}
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
