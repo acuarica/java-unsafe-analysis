@@ -1,0 +1,5 @@
+with 
+  unscoords as (select distinct coorid from unsafe),
+  unsarts as (select distinct a.groupid || ':' ||a.artifactid from unscoords t inner join artifact_jar a on a.coorid = t.coorid)
+--  select * from unsarts;
+  select coorid in unscoords, * from artifact_jar a where groupid || ':' || artifactid in unsarts order by groupid, artifactid, version;
