@@ -2,6 +2,8 @@
 library ("RSQLite")
 library ("ggplot2")
 
+source('analysis/utils/utils.r');
+
 db = dbConnect(SQLite(), "unsafe-stage.sqlite3")
 dbDisconnect(db)
 
@@ -19,11 +21,14 @@ df = dbGetQuery(db, "select a.coorid, a.idate, a.mdate from artifact_jar a order
 df$a.idate = as.Date( df$a.idate )
 df$a.mdate = as.Date( df$a.mdate )
 
-ggplot(df, aes(x=a.mdate))+geom_bar()
-ggplot(df, aes(x=a.idate))+geom_bar()
+p = ggplot(df, aes(x=a.mdate))+geom_bar()
+save.plot(p, 'holam.pdf')
 
-ggplot(df)+geom_bar(aes(x=a.idate, fill='idate'))+geom_bar(aes(x=a.mdate, fill='mdate'))
+p = ggplot(df, aes(x=a.idate))+geom_bar()
+save.plot(p, 'holai.pdf')
 
+p = ggplot(df)+geom_bar(aes(x=a.idate, fill='idate'))+geom_bar(aes(x=a.mdate, fill='mdate'))
+save.plot(p, 'holaim.pdf')
 
 dbGetQuery(db, "
 with 
