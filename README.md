@@ -1,160 +1,78 @@
-Java sun.misc.Unsafe Study
-=============================
+# Use at Your Own Risk: The Java Unsafe API in the Wild
+Luis Mastrangelo Luca Ponzanelli Andrea Mocci Nathaniel Nystrom Matthias Hauswirth Michele Lanza
+Faculty of Informatics, Università della Svizzera italiana (USI), Switzerland
+## Getting Started Guide
+This artifact is packaged as a [VirtualBox](https://www.virtualbox.org/wiki/Downloads) Virtual Machine (VM).
+We have setup our VM using VirtualBox version 4.3.28.
+To run the artifact VM, a compatible version of VirtualBox needs to be installed.
+Then, add the VM to the VirtualBox installation: Select the option menu Machine -> Add, and then choose the .vbox file.
 
-The sun.misc.Unsafe is an API provided 
+The user might want to install the [VirtualBox Guest Additions](https://www.virtualbox.org/manual/ch04.html).
+Guest Additions improve user experience within the VM, like changing the guest OS resolution by resizing the container window.### VM and OS Setup
+The guest operating system installed in the VM is [Linux Lubuntu Desktop](http://lubuntu.net/) Minimal Install 14.04 32-bits.
+The VM is configured with 2GB of memory.
+The compressed size of the VM is 7 GB.
+The actual size of the VM is 15 GB (but the VM’s hard drive is dynamically allocated and can grow up to 128GB).
+The host machine should have enough memory and disk space to support this configuration.
+The VM is configured with GMT+2 time.
+The keyboard is English US.
+Both the VirtualBox image and the guest VM names are vm-oopsla-ae-221.
+The virtual machine is configured to automatically login after boot up. If needed, the username and password are the following:
+    username: ae    password: ae### External Tools SetupOur artifact uses external tools to build and run.
+We have installed those tools, which are:
 
-2015 OOPSLA Paper
------------------
-
-Toxicity: Unsafe study
-----
-
-* Mine maven central to:
-* ibiblio.org to mine maven.
-  - Download all pom.xml files
-  - Build graph of projects dependencies
-  - Download jar files
-  - Search for sun.misc.Unsafe call sites.
-  - Download source files where smu is used to manually investigate how and why smu is used.
-  - Now look for projects that depend on projects that use unsafe (first step in the transitive closure).
-  - Build the transitive closure of projects 
-  - Build some stat
-
-http://qualitascorpus.com/ for analysis code dataset
-
-Reference rust and cyclone?
-
-
-Repositories
-* 
-http://www.ibiblio.org/
+* [Git](https://git-scm.com/): To clone our repository.* [Java 7](http://openjdk.java.net/): To compile and run our applications.* [Ant](http://ant.apache.org/): Software tool for automating software build processes.* [Aria2](http://aria2.sourceforge.net/): Tool to automate downloads of a large amount of files.* [R](http://www.r-project.org/): The R interpreter used in our analysis. Version of R required is 3.1.0 or higher, because we depend on R package [plyr](http://cran.r-project.org/web/packages/plyr/index.html). We also installed the following R packages used in our analysis: *reshape2*, *ggplot2*, *ggdendro*, and *gridExtra*.
+* [LaTeX](http://www.latex-project.org/) and [Ghostscript](http://www.ghostscript.com/): To post-process some PDF plots.
 
 
-* References
-  - the isthmus in the VM
-  https://blogs.oracle.com/jrose/entry/the_isthmus_in_the_vm
+## Repository Setup
+Our artifact consists of three main components:
+a) a Java project to download and extract information for Java archives and POM files from Maven Repository,
+b) a Scala project to extract information about Stack Overflow posts, and c) R scripts to analyze the data and plot the results.
+An Eclipse Java project is located at the root of the repository.
+The Scala project is located inside the stackoverflow folder.
+The R scripts are inside the analysis folder.
+Our tools and analysis are available online in the Bitbucket [repository](https://bitbucket.org/acuarica/java-unsafe-analysis).
 
-Oracle (Paul Sandoz) did a survey (316 responses).
-We should look at it, and complement:
-http://www.infoq.com/news/2014/02/Unsafe-Survey
-http://stackoverflow.com/questions/5574241/using-sun-misc-unsafe-in-real-world
+We have cloned the repository inside the VM in the user home directory (/home/ae), using the following command:
+    git clone --depth 1 https://bitbucket.org/acuarica/java-unsafe-analysis.git
+    The *--depth 1* option is used to avoid copying the repository history, thus saving disk space.
 
-Paul Sandoz. Atomic VarHandles. July 30, 2014.
-http://www.oracle.com/technetwork/java/jvmls2014sandoz-2265216.pdf
-(JEP 193 Enhanced Volatiles, are VarHandles the same of our Lvalues??)
-
- check this!  Paul Sandoz. Safety Not Guaranteed: sun.misc.Unsafe and the quest for safe alternatives. DEVOXX talk. 2014.
-http://cr.openjdk.java.net/~psandoz/dv14-uk-paul-sandoz-unsafe-the-situation.pdf
-(this is essentially the paper we were thinking about writing)
-Table on slide 28:
-
-* Github search API
-- https://api.github.com/search/repositories?q=unsafe+language:java&sort=stars&order=desc
-http://boa.cs.iastate.edu/boa/
-
-* Systems Software Research is Irrelevant
-http://herpolhode.com/rob/utah2000.pdf
-
-* JSR166
-http://g.oswego.edu/dl/concurrency-interest/
-
-* Eli Gottlieb, Deca
-  http://www.infosun.fim.uni-passau.de/publications/docs/SSG+2012.pdf
-
-Java with sun.misc.Unsafe
-=========================
-
-* Enhanced atomic access
-  - JEP 193 Enhanced Volatiles
-    http://openjdk.java.net/jeps/193
-
-* De/Serialization
-  - JEP 187 Serialization 2.0
-    http://openjdk.java.net/jeps/187 404 Not found
-
-* Reduce GC
-  - Value types
-    http://cr.openjdk.java.net/~jrose/values/values-0.html
-  - JEP 189 Shenandoah: Low Pause GC for >20GB heap size.
-    http://openjdk.java.net/jeps/189
-
-* Efficient memory layout
-  - Value types
-    http://cr.openjdk.java.net/~jrose/values/values-0.html
-  - Arrays 2.0 & Layouts
-    http://cr.openjdk.java.net/~jrose/pres/201207-Arrays-2.pdf
-    http://hg.openjdk.java.net/sumatra/sumatra-dev/scratch/file/tip/src/org/openjdk/sumatra/data/prototype/README
-
-* Very Large Collections
-  - Value types
-    http://cr.openjdk.java.net/~jrose/values/values-0.html
-  - Arrays 2.0 & Layouts
-    http://cr.openjdk.java.net/~jrose/pres/201207-Arrays-2.pdf
-    http://hg.openjdk.java.net/sumatra/sumatra-dev/scratch/file/tip/src/org/openjdk/sumatra/data/prototype/README
-
-* Communicate across JVM boundary
-  - Project Panama
-  - JEP 191 FFI
-    http://openjdk.java.net/jeps/191
-
-C# with unsafe block
-====================
-
-- http://msdn.microsoft.com/en-us/library/y31yhkeb.aspx
-
-Structs/value types
-"A pointer cannot point to a reference or to a struct that contains references,
-because an object reference can be garbage collected even if a pointer is 
-pointing to it. The garbage collector does not keep track of whether an 
-object is being pointed to by any pointer types."
-
-- stackalloc, fixed, unsafe, valuetypes/structs in C#
-
-* Communicate across JVM boundary
-- Platform invoke
+The repository is located at:
+    /home/ae/java-unsafe-analysis
+    To start, within a terminal, issue the following command:
+    cd /home/ae/java-unsafe-analysis/
+    to change the current directory to the repository root directory.
+Our repository contains an ant build file to manage the build process.
+To see all available ant targets, issue the following command in the root folder of the repository mentioned above.
+    ant -projecthelpYou should see the following output:
 
 
+    Buildfile: /home/ae/java-unsafe-analysis/build.xml
+    Java Unsafe Analysis to study usage and impact of Unsafe API in Java
+    Main targets:
 
-* Sample 
-  - org.jocl
-  - bridj
-  - C#
-
-
-# unsafe in Racket: unsafe-fl+ performance unchecked operation.
-
-# Typed Assembly Language TAL
-
-# Request for a user account
-
-# https://blogs.oracle.com/jrose/entry/larval_objects_in_the_vm
-  - Typestate in java for larval objects
-  - Comment of Niko Matsakis, Rust:
-I just want to drop a note to my research on Intervals.
-It allows support for "temporarily mutable" objects like the larval objects you refer
- to, but using a rather different approach than Type State.
-The basic idea is that users can denote the span of time in which the object is
-mutable as part of its type. Once that span of time has expired, 
-the object can no longer be changed.
-One nice feature of this approach is that aliasing is no problem,
-as the type of the object never changes --- instead,
-the compiler is aware of whether a particular method occurs during the mutable span 
-or not, and so the permitted operations change depending on when a method will execute.
-Some more details are available here:
-http://harmonic-lang.org/news/larval-objects-using-interv.html or in our recent paper: 
-http://www.lst.inf.ethz.ch/research/publications/SPLASH_2010.html
-
-
-- http://smallcultfollowing.com/babysteps/blog/2014/04/01/value-types-in-javascript/
-Niko Matsakis
-
-http://kotka.de/blog/2010/12/What_are_Pods.html
-Pods
-
-http://ruby-doc.org/core-2.1.5/Object.html#M000356
-Freeze method
-
-http://openjdk.java.net/jeps/191
-
-JEP 193- Enhanced Volatiles
-* Find a reference implementation
+     analyze-debug         Analyze the Maven repository and JDK8 runtime in Debug mode.
+     analyze-release       Analyze the Maven repository and JDK8 runtime in Release mode.
+     analyze-tests         Run tests for Unsafe analysis.
+     buildurilist-debug    Builds the list of artifacts to download in Debug mode.
+     buildurilist-release  Builds the list of artifacts to download in Release mode.
+     check                 Run tests for Unsafe analysis, dependency extraction and aria2.
+     clean                 Removes the build and out directories.
+     compile               Compiles all Java files.
+     computedeps           Computes the inverse transitive dependencies.
+     extractdeps           Extract the dependency information from POM files.
+     extractdeps-tests     Run tests for the dependency extraction.
+     fetchartifacts        Fetches all artifacts specified by the URI list using aria2.
+     fetchgzindex          Fetches the Maven Index (compressed) from a mirror using aria2.
+     fetchindex            Fetches and uncompress the Maven Index from a mirror using aria2.
+     mkbuilddir            Creates the build directory, used for output of compilation.
+     mkcachedir            Creates the cache directory, used to cache downloaded files.
+     mkoutdir              Creates the output directory, used for output files.
+
+It is possible to run the artifact without Intenet connection in the VM.
+But you will get errors from aria2 because an Internet connection is needed to check whether a file to download is newer than the one cached.To check whether all components are setup correctly, first run:ant check (estimated time: 5 sec, depends on the Internet connection)This target runs the tests of the Unsafe analysis, and dependency extraction. Moreover it checks whether aria2 is correctly installed.Then, to check whether R, the R packages, LATEX, and Ghostscript are succefully installed, issue: make check (estimated time: 5 sec)Your output on the console should be similar to the following:    r --slave --vanilla --file=analysis/check.r    [1] "R packages succefully loaded"    latexmk -quiet -view=pdf -output-directory=out analysis/check.tex    Latexmk: Run number 1 of rule ’pdflatex’    This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012)     restricted \write18 enabled.    entering extended mode    gs -q -sDEVICE=pdfwrite -sOutputFile="out/check-land.pdf" -dNOPAUSE -dEPSCrop      -c "<</Orientation 2>> setpagedevice" -f "out/check.pdf" -c quitand the check.pdf and check-land.pdf files should be created in the out folder.At any point, if you want to start the experiments from scratch, you can run the following command to remove the build and out folders:ant clean (estimated time: 1 sec)Notice that this command does not remove the cache folder. This is to avoid downloading the Maven Indexand artifacts over again.2 Step-by-Step InstructionsThe following instructions describe how to reproduce the data in § 4 and § 5 of our paper. After the first round, the reviewers required a significant amount of changes, including shortening and removal of some parts from § 5. For this reason, the analysis of Stack Overflow post repliers (originally part of the submission) has been removed from the paper, and thus it has not been included in this artifact.Excluding this part, this version is the same as the one that we have originally submitted. We have included it here for convience to the reviewers under the name oopsla-2015-paper-221-ae.pdf. Moreover, a copy of the original submitted paper is available in the root folder of the repository under the name oopsla-2015-paper-221.pdf so the reviewer can see the differences.2.1 Gathering ArtifactsThe first step in our workflow is to get a representative subset of artifacts to get analyzed. This section implements § 4.1 of our paper.2.1.1 Get Maven IndexTo begin with, it is needed an index of all Maven artifacts. We get the maven index from a mirror and then un- compress it. Because this step requires an active Internet connection, we already have downloaded the index. This can be done using:3
+• •2.1.2cache/nexus-maven-repository-index.gz: The compressed Maven Index.cache/nexus-maven-repository-index: Uncompressed Maven Index for further processing. This file is in a binary format. It consists of a list of records. Each record represent a file in the repository. We have written a parser for this index.Build Download Listant fetchindex (estimated time: 30 min, depends on the Internet connection) Output:Afterwards, it is necessary to build a list of artifacts to download in order to analyze them. Due to space limita- tions, we fetch only the first 5000 artifacts. But because the dependency analysis does not make sense in a subset of the artifacts, we download all POM13 files. The following command does so:ant buildurilist-debug (estimated time: 1 min)Or alternatively, if you want to download every artifact needed for the analysis:ant buildurilist-release (estimated time: 1 min)Output:• out/uri.list: List of URIs to download in aria2 format. Refer to http://aria2.sourceforge.net/ manual/en/html/aria2c.html#input-file for more information about this file format.2.1.3 Get ArtifactsThe next step is to actually download the artifacts specified by the previous step. This command downloads all files specified in the out/uri.list file. Again, because this step requires an active Internet connection, we al- ready have downloaded the artifacts. This can be done using:ant fetchartifacts (estimated time: Debug: 1 hs, Release: 16 hs, depends on the Internet connec- tion)Output:• cache/repo/**.jar and cache/repo/**.pom: Files are downloaded in the cache/repo folder. Some artifacts that appear in the Maven Index do not exist in the repository, therefore it is possible to get errors for those artifacts.2.2 Determining UsageAt this stage, everything is set-up to actually start the analysis. This section implements § 4.2 of our paper. 2.2.1 Run Analysis on Maven RepositoryTo analyse the Maven Repository use:ant analyze-debug (estimated time: 3 min)Or alternatively,ant analyze-release (estimated time: 30 min)13 http://maven.apache.org/pom.html 4
+2.3– className: Name of the class where the call site or field usage appears;– methodName: Name of the method where the call site or field usage appears;– methodDesc: Descriptor of the method where the call site or field usage appears;– owner: Type of the call or usage target. This value must be sun/misc/Unsafe.– name: Name of the target method or field in sun.misc.Unsafe;– desc: Descriptor of the target method or field in sun.misc.Unsafe;– groupId, artifactId, and version: Maven Coordinates14 of the artifacts where the call site of field appears;– size: Size of the Java archive;– ext: Extension of the Java archive (usually jar, but it can be ejb, war, or ear).Determining ImpactIf you want to run the complete analysis.Output:• out/unsafe-maven.csv: CSV file with the call sites and field usage to Unsafe in Maven and JDK8, represented one per line. This file contains the following columns:This section implements § 4.3 of our paper. To compute dependencies, two commands are required. 2.3.1 Extract DepedenciesTo extract all dependency information from the POM files, run: ant extractdeps (estimated time: 4 min)Output:• out/maven-depgraph.csv: Dependency information gathered from the POM files. This file contains the following columns:– groupId and artifactId: Maven Coordinates of the POM file being analyzed.– depGroupId, depArtifactId, depVersion, and depScope: Maven Coordinates and scope of the de-pendency.2.3.2 Compute Transitive DependenciesWe compute the depedencies considering Maven Scopes15. To build the transitive clousure of reverse dependen- cies of each artifact, run:ant computedeps (estimated time: 8 min) Output:• out/maven-invdeps-all-list.csv: List of dependencies in all scopes. This file contains two columns. It states that the artifact in the first column has a dependency to the artifact specified in the second column.• out/maven-invdeps-production-list.csv: List of dependencies without the test scope. Same file format as above.• out/maven-invdeps-all.csv: Total count of dependencies in all scopes. This file contains two columns. The first one indicates the artifact, and the second how many transitive inverse dependencies it has.• out/maven-invdeps-production.csv: Total count of dependencies without the test scope. Same file format as above.14 http://maven.apache.org/pom.html#Maven_Coordinates15 https://maven.apache.org/guides/introduction/introduction- to- dependency- mechanism.html 5
+2.4 Which Features of Unsafe Are Actually Used?This section implements § 4.4 of our paper. 2.4.1 R AnalysisThe R scripts are executed by a Makefile script. To run the R analysis, issue:make (estimated time: 5 min with Debug data, 20 min with Release data)Output:All output files are pdf documents containing plots and tables. The following plots are included in the paper:• out/overview.pdf: Shows the overall call sites to Unsafe. This plot corresponds to Figure 1 in the paper.• out/overview-field.pdf: Shows the overall field usages of Unsafe. This plot corresponds to Figure 2 in the paper.The following plots are not shown in the paper, but they helped us to identify patterns. As reviewers have asked us, we are working in a new section describing the methodology on how we have devised patterns. We might include some of these plots in the final version of the paper.• out/artifacts.pdf: Contains the call sites to unsafe for each artifact by artifact and class.• out/classunit.pdf: Contains the groups by cluster and how similar are in the dendrogram.Notice. When executing *-debug targets, the numbers that appear in these plots are different from the ones appearing in the paper. This is because, due to space limitations, not all jar files were downloaded, and therefore were not analyzed. Giving fewer call sites and field usages to Unsafe. However, when running *-release targets, the numbers obtained should be similar to the ones in our paper. Still there might be differences because Java archives in the Maven repository might have changed since we performed the analysis. See § 4.1 for more details.2.5 Question/Answer Database AnalysisThis section implements § 5 of our paper. We provide the sources, in scala, of the scripts needed to perform the analysis of the usage of sun.misc.Unsafe in Stack Overflow. The whole process requires four steps to analyze the Stack Overflow discussions, extract the information2.5.1 Identifying Relevant DiscussionsThe first step consists in identifying discussions talking about sun.misc.Unsafe. Due to space constraints on the virtual machine, we cannot replicate the full parsing phase. Instead, we provide a balanced dataset of 1152 discus- sions containing 576 discussions related to sun.misc.Unsafe and 576 discussions randomly taken among the Stack Overflow discussions tagged as java, and not concerning sun.misc.Unsafe. The discussions are already parsed and provided in JSON format. Run the following:    cd stackoverflowsh step1-default.sh (estimated time: 2 min)Output:• results/candidates.csv:ACSVfilecontainingalltheidsofthediscussionsreferringtosun.misc.Unsafe6
+2.5.2 Refining Parsing ResultsIn the second step we refined the result by analyzing each question and answer to understand how sun.misc.Unsafe is used. We take into considerationRun the following:sh step2-default.sh (estimated time: 2 min)Output• results/intermediate.csv: An intermediate CSV file containing information regarding the usage of sun.misc.Unsafe (i.e., presence of type, method, or term “unsafe”) in each post (e.g., question or answer) of a discussion.2.5.3 Grouping Usages per PostIn the third step we extract all the usages of sun.misc.Unsafe, and we build data data to be prepare the plotting in last step.Run the following:sh step3-default.sh (estimated time: 2 min)Output• •2.5.4results/method-usages.csv: A CSV file containing usages of sun.misc.Unsafe members in question, answers, or both, grouped per member.results/method-usages-details.csv: A CSV file containing each single usage of sun.misc.Unsafe. Plotting sun.misc.UnsafeUsagesWe generate the bar chart (Figure 3 in the paper) representing the usages of sun.misc.Unsafe in Stack Overflow. Run the following:cd ..make so (estimated time: 5 secs)Output:• out/so.pdf: Shows how many questions and answers related to Unsafe appear in StackOverflow. This plot corresponds to Figure 3 in the paper.7
